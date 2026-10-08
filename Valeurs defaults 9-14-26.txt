@@ -1,0 +1,583 @@
+🎯 Objectifs Budget
+CA (Mds/mois)
+
+8.00
+Volume (kt/mois)
+
+108.00
+EBITDA (Mds/mois)
+
+1.00
+Marge EBITDA
+
+0.100
+Résultat Net cible (Mds/mois)
+
+0.70
+
+
+📊 Scenarios Predefinis
+Choisir un scenario
+
+Base
+
+ℹ️
+Scenario Actif — Détails de calcul
+Formule
+Scenario = Ensemble de paramètres prédéfinis ou personnalisés
+Paramètres utilisés
+Scenario actif: Base
+Disponibles: Base, Pessimiste, Optimiste, Hausse Clinker, Baisse Prix, Max CPA
+Raison principale
+Les scenarios permettent de tester rapidement différentes hypothèses de marché et de prix.
+Scenario actif: Base
+
+Mode Budget
+
+📥 Mode Input
+
+
+🧮 Mode Calcule
+
+🏭 Volumes Mensuels Base (t/mois)
+Saisonnalite appliquee automatiquement selon donnees marche CI
+
+Site 1
+
+CPA 52.5
+
+0
+CPJ 42.5
+
+13000
+CPJ 32.5
+
+27000
+Site 2
+
+CPA 52.5
+
+40000
+CPJ 42.5
+
+30000
+CPJ 32.5
+
+0
+🧮 Optimisation LP
+Objectif
+
+💰 Maximiser Profit
+
+
+💰 Prix de Vente (XOF/t)
+CPA 52.5
+
+80000
+CPJ 42.5
+
+66000
+CPJ 32.5
+
+61000
+
+⚙️ Couts de Production
+Clinker (XOF/t)
+
+50000
+Formulation chimique
+
+🧪 Couts des Ajouts (XOF/t d'ajout)
+Couts unitaires des matieres premieres additives.
+
+Gypse (XOF/t)
+
+30000
+Granite (XOF/t)
+
+5000
+Laitier (XOF/t)
+
+45000
+Calcaire (XOF/t)
+
+8000
+Pouzzolane (XOF/t)
+
+6000
+🧪 Formulation Chimique par Produit (% du total)
+K/C ratio fixe: CPA 80% | CPJ42 57% | CPJ32 47%. Les ajouts ci-dessous sont des pourcentages du MELANGE TOTAL (pas du reliquat). La somme des ajouts doit égaler le reliquat (100% − K/C).
+
+CPA 52.5 — Clinker: 80% | Reliquat cible: 20%
+
+Gypse (% total)
+
+0.05
+Granite (% total)
+
+0.15
+Laitier (% total)
+
+0.00
+Calcaire (% total)
+
+0.00
+Pouzzolane (% total)
+
+0.00
+Total ajouts: 20% | Reliquat attendu: 20% ✅
+
+CPJ 42.5 — Clinker: 57% | Reliquat cible: 43%
+
+Gypse (% total)
+
+0.05
+Granite (% total)
+
+0.38
+Laitier (% total)
+
+0.00
+Calcaire (% total)
+
+0.00
+Pouzzolane (% total)
+
+0.00
+Total ajouts: 43% | Reliquat attendu: 43% ✅
+
+CPJ 32.5 — Clinker: 47% | Reliquat cible: 53%
+
+Gypse (% total)
+
+0.05
+Granite (% total)
+
+0.48
+Laitier (% total)
+
+0.00
+Calcaire (% total)
+
+0.00
+Pouzzolane (% total)
+
+0.00
+Total ajouts: 53% | Reliquat attendu: 53% ✅
+
+Consommation energetique (kWh/t) — CES CPJ 42.5 ventilé par site
+
+CPA
+
+35
+CPJ42 S1
+
+50
+CPJ42 S2
+
+35
+CPJ32
+
+50
+Tarif kWh (XOF)
+
+95
+Sac (XOF/unit)
+
+140
+Sacs/tonne
+
+22
+
+
+Big bag (XOF/unit)
+
+6000
+Big bags/tonne
+
+1.0
+🔥 Combustibles
+Prix (XOF/L) par combustible et dosage (L/t clinker) par produit × site.
+
+Gasoil
+
+Prix Gasoil (XOF/L)
+
+725
+
+
+Dosage Gasoil par produit / site (L/t clk)
+
+CPA 52.5
+
+S1 (L/t)
+
+0.0
+S2 (L/t)
+
+0.0
+CPJ 42.5
+
+S1 (L/t)
+
+1.2
+S2 (L/t)
+
+0.0
+CPJ 32.5
+
+S1 (L/t)
+
+1.2
+S2 (L/t)
+
+0.0
+Fuel
+
+Prix Fuel (XOF/L)
+
+500
+
+
+Dosage Fuel par produit / site (L/t clk)
+
+CPA 52.5
+
+S1 (L/t)
+
+0.0
+S2 (L/t)
+
+0.5
+CPJ 42.5
+
+S1 (L/t)
+
+0.0
+S2 (L/t)
+
+1.2
+CPJ 32.5
+
+S1 (L/t)
+
+0.0
+S2 (L/t)
+
+0.0
+DDO
+
+Prix DDO (XOF/L)
+
+850
+
+
+Dosage DDO par produit / site (L/t clk)
+
+CNSL
+
+Prix CNSL (XOF/L)
+
+400
+
+
+Dosage CNSL par produit / site (L/t clk)
+
+⚗️ Adjuvants de Broyage
+Prix (XOF/kg) par adjuvant et dosage (g/t ciment) par produit × site.
+
+Pegasus
+
+Prix Pegasus (XOF/kg)
+
+1500
+
+
+Dosage Pegasus par produit / site (g/t)
+
+SIKA
+
+Prix SIKA (XOF/kg)
+
+1800
+
+
+Dosage SIKA par produit / site (g/t)
+
+CPA 52.5
+
+S1 (g/t)
+
+0
+S2 (g/t)
+
+0
+CPJ 42.5
+
+S1 (g/t)
+
+400
+S2 (g/t)
+
+0
+CPJ 32.5
+
+S1 (g/t)
+
+400
+S2 (g/t)
+
+0
+Chryso
+
+Prix Chryso (XOF/kg)
+
+2000
+
+
+Dosage Chryso par produit / site (g/t)
+
+Biolatex
+
+Prix Biolatex (XOF/kg)
+
+1200
+
+
+Dosage Biolatex par produit / site (g/t)
+
+CPA 52.5
+
+S1 (g/t)
+
+0
+S2 (g/t)
+
+450
+CPJ 42.5
+
+S1 (g/t)
+
+0
+S2 (g/t)
+
+450
+CPJ 32.5
+
+S1 (g/t)
+
+0
+S2 (g/t)
+
+0
+🏢 Couts Fixes (M XOF/mois)
+Site 1
+
+900
+Site 2
+
+900
+SGA (M XOF/mois)
+
+150
+
+
+Main-d'œuvre de production (M XOF/mois)
+
+Main-d'œuvre S1
+
+150
+Main-d'œuvre S2
+
+150
+Clé de répartition des coûts fixes par produit
+
+Clé de répartition
+
+Prorata des volumes (t)
+🚛 Transport & Expedition
+Cout transport (XOF/t.km)
+
+5
+
+
+Dist. Site 1 (km)
+
+300
+Dist. Site 2 (km)
+
+300
+Cout commercial (XOF/t)
+
+350
+
+
+📦 Mix Expedition (Vrac/Sac x EXW/DDP)
+Les volumes sont repartis selon 4 modes: Vrac-EXW, Vrac-DDP, Sac-EXW, Sac-DDP
+
+CPA 52.5
+
+Vrac
+
+EXW
+
+0.06
+DDP
+
+0.04
+Sac
+
+EXW
+
+0.35
+DDP
+
+0.55
+Total: 100% | Vrac: 10% | Sac: 90% | EXW: 41% | DDP: 59%
+
+CPJ 42.5
+
+Vrac
+
+EXW
+
+0.05
+DDP
+
+0.03
+Sac
+
+EXW
+
+0.36
+DDP
+
+0.56
+Total: 100% | Vrac: 8% | Sac: 92% | EXW: 41% | DDP: 59%
+
+CPJ 32.5
+
+Vrac
+
+EXW
+
+0.05
+DDP
+
+0.03
+Sac
+
+EXW
+
+0.36
+DDP
+
+0.56
+Total: 100% | Vrac: 8% | Sac: 92% | EXW: 41% | DDP: 59%
+
+Prime EXW (XOF/t)
+
+3000
+Prime DDP (XOF/t)
+
+2800
+💳 Parametres Financiers
+Amort. (M/mois)
+
+100
+Interets (M/mois)
+
+25
+Taux impot
+
+0.25
+Fonds de Roulement (jours)
+
+DIO
+
+10
+DSO
+
+10
+DPO
+
+45
+📐 Plafonds de Site
+Site 1 CPA max
+
+0.00
+Site 2 CPJ32 max
+
+0.00
+⚙️ Capacite & Utilisation
+Objectifs et taux reels d'utilisation capacite
+
+Site 1
+
+Cible Util. S1
+
+0.60
+Reel Util. S1
+
+0.50
+Site 2
+
+Cible Util. S2
+
+0.90
+Reel Util. S2
+
+0.70
+🔧 Maintenance & Arrets
+Couts et parametres de maintenance preventive/corrective
+
+Cout Maint. S1 (M/mois)
+
+78
+Heures Maint. S1/mois
+
+100
+Arret S1 (%)
+
+0.05
+Cout Maint. S2 (M/mois)
+
+50
+Heures Maint. S2/mois
+
+100
+Arret S2 (%)
+
+0.04
+Pieces rechange (%)
+
+0.35
+Cout heure maint. (XOF)
+
+35000
+Freq. revision majeure (mois)
+
+24
+Cout revision majeure (Mds XOF)
+
+0.25
+
+
+ℹ️ Ventilation sans double comptage : « Cout Maint. S1/S2 » = pièces de rechange + prestations externes, hors main-d'œuvre. La MO maintenance est calculée séparément : « Heures Maint. » × « Cout heure maint. » = 3.5 M S1 / 3.5 M S2, ajoutée aux coûts fixes du modèle. « Pièces rechange (%) » ventile l'enveloppe Cout Maint. ; « Révision majeure » est présentée amortie (onglet Maintenance). La « Main-d'œuvre de production » (coûts fixes) reste distincte : personnel de production, pas de maintenance.
+
+🗄️ Donnees Marche CI
+Plaf. CPJ42
+
+78000
+Plaf. CPJ32
+
+72000
+Plaf. CPA52
+
+95000
+Clinker import
+
+42000
+Transport forf.
+
+30

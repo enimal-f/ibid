@@ -1,0 +1,3583 @@
+{
+  "2025-W25": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 9379.362750000002,
+          "prod_sec": 9169.811799943753,
+          "temps_prod_h": 172.21666666666664,
+          "debit_th": 54.46257282492986,
+          "ces_kwh_t": 37.92593959547253,
+          "facteur_debit_pct": 0.7261676376657314,
+          "kc_sec_pct": 0.6120859725580505,
+          "kc_humide_pct": 0.598744514919204
+        },
+        "CPJ 32.5": {
+          "prod_humide": 155.62999999999874,
+          "prod_sec": 151.99745986428445,
+          "temps_prod_h": 2.4166666666666714,
+          "debit_th": 64.39862068965452,
+          "ces_kwh_t": 29.078602451165544,
+          "facteur_debit_pct": 0.8586482758620603,
+          "kc_sec_pct": 0.6582098738692249,
+          "kc_humide_pct": 0.6432050375891523
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9534.992750000001,
+          "prod_sec": 9321.809259808037,
+          "temps_prod_h": 174.63333333333333,
+          "debit_th": 54.600073010116446,
+          "ces_kwh_t": 37.78153349933066,
+          "facteur_debit_pct": 0.7800010430016635,
+          "kc_sec_pct": 0.6128380492893947,
+          "kc_humide_pct": 0.5994701988630249
+        }
+      },
+      "consommation": {
+        "clinker": 34006.73447334737,
+        "gypse": 6577.85030246,
+        "granite": 23314.83147678571,
+        "pouzzolane": 13084.307901665683,
+        "laitier": 1745.64,
+        "argile": 872.82,
+        "gasoil": 91324.58175832019
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 325,
+        "CPJ 42,5 SAC": 11749,
+        "CPJ 42,5 VRAC": 534.66
+      }
+    }
+  },
+  "2025-W26": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 9281.231999999998,
+          "prod_sec": 9068.346021462496,
+          "temps_prod_h": 152.60000000000002,
+          "debit_th": 60.820655307994734,
+          "ces_kwh_t": 34.38144849735466,
+          "facteur_debit_pct": 0.8109420707732631,
+          "kc_sec_pct": 0.6042481622655849,
+          "kc_humide_pct": 0.5909708969671267
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9281.231999999998,
+          "prod_sec": 9068.346021462496,
+          "temps_prod_h": 152.60000000000002,
+          "debit_th": 60.820655307994734,
+          "ces_kwh_t": 34.38144849735466,
+          "facteur_debit_pct": 0.8688665043999247,
+          "kc_sec_pct": 0.6042481622655849,
+          "kc_humide_pct": 0.5909708969671267
+        }
+      },
+      "consommation": {
+        "clinker": 36758.91214560752,
+        "gypse": 5638.534475195577,
+        "granite": 23982.97133001323,
+        "pouzzolane": 17391.96747078845,
+        "laitier": 1769.592160370383,
+        "gasoil": 3399.991519807956
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 141,
+        "CPJ 42,5 SAC": 11521.05,
+        "CPJ 42,5 VRAC": 248.16000000000003
+      }
+    }
+  },
+  "2025-W27": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 8670.400666666666,
+          "prod_sec": 8506.0758799375,
+          "temps_prod_h": 124.63333333333333,
+          "debit_th": 69.5672693233485,
+          "ces_kwh_t": 41.8922559714618,
+          "facteur_debit_pct": 0.92756359097798,
+          "kc_sec_pct": 0.6231917320698838,
+          "kc_humide_pct": 0.6117376082812321
+        },
+        "CPJ 32.5": {
+          "prod_humide": 1518.4570000000003,
+          "prod_sec": 1476.3446620000007,
+          "temps_prod_h": 20.8,
+          "debit_th": 73.0027403846154,
+          "ces_kwh_t": 45.264300468743485,
+          "facteur_debit_pct": 0.9733698717948719,
+          "kc_sec_pct": 0.54002272026142,
+          "kc_humide_pct": 0.525352380739132
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10188.857666666667,
+          "prod_sec": 9982.420541937501,
+          "temps_prod_h": 145.43333333333334,
+          "debit_th": 70.05861333944533,
+          "ces_kwh_t": 42.39479558274327,
+          "facteur_debit_pct": 1.0008373334206475,
+          "kc_sec_pct": 0.6108914962592005,
+          "kc_humide_pct": 0.5988635199634582
+        }
+      },
+      "consommation": {
+        "clinker": 46426.86929463382,
+        "gypse": 11262.790792568729,
+        "granite": 28579.83568051632,
+        "pouzzolane": 17603.333166606866,
+        "laitier": 1772.8098805163004,
+        "argile": 872.8199999999999,
+        "gasoil": 85235.78095121568
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 1374,
+        "CPJ 42,5 SAC": 8405,
+        "CPJ 42,5 VRAC": 141.35999999999999
+      }
+    }
+  },
+  "2025-W03": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 12441.389000000021,
+          "prod_sec": 12194.699549820021,
+          "temps_prod_h": 165.45000000000002,
+          "debit_th": 75.19727410093695,
+          "facteur_debit_pct": 1.002630321345826,
+          "kc_sec_pct": 0.6435715528415891,
+          "kc_humide_pct": 0.6311353177687795
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "TOTAL": {
+          "prod_humide": 12441.389000000021,
+          "prod_sec": 12194.699549820021,
+          "temps_prod_h": 165.45000000000002,
+          "debit_th": 75.19727410093695,
+          "facteur_debit_pct": 1.0742467728705278,
+          "kc_sec_pct": 0.6435715528415891,
+          "kc_humide_pct": 0.6311353177687795
+        }
+      },
+      "consommation": {
+        "clinker": 44480.362811221596,
+        "gypse": 10238.567076954358,
+        "granite": 19298.592508184305,
+        "pouzzolane": 9144.177926758168,
+        "laitier": 344.8530938985689,
+        "argile": 166.75199999999313,
+        "gasoil": 120696.35699330182
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 20,
+        "CPJ 42,5 SAC": 15237
+      }
+    }
+  },
+  "2025-W31": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 5947.952999999998,
+          "prod_sec": 5817.972073437499,
+          "temps_prod_h": 74.5,
+          "debit_th": 79.83829530201339,
+          "ces_kwh_t": 30.405035480273657,
+          "facteur_debit_pct": 1.0645106040268453,
+          "kc_sec_pct": 0.6241314640548881,
+          "kc_humide_pct": 0.6108511617358106
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 5947.952999999998,
+          "prod_sec": 5817.972073437499,
+          "temps_prod_h": 74.5,
+          "debit_th": 79.83829530201339,
+          "ces_kwh_t": 30.405035480273657,
+          "facteur_debit_pct": 1.1405470757430485,
+          "kc_sec_pct": 0.6241314640548881,
+          "kc_humide_pct": 0.6108511617358106
+        }
+      },
+      "consommation": {
+        "clinker": 63886.42776397745,
+        "gypse": 10743.99146134782,
+        "granite": 25709.828136270342,
+        "pouzzolane": 20272,
+        "laitier": 1782.532536270344,
+        "gasoil": 4020
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 100,
+        "CPJ 42,5 SAC": 5396,
+        "CPJ 42,5 VRAC": 50.92
+      }
+    }
+  },
+  "2025-W32": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 2394.6540000000027,
+          "prod_sec": 2375.8877020625027,
+          "temps_prod_h": 36.76666666666667,
+          "debit_th": 65.1311151405259,
+          "ces_kwh_t": 30.731377561549223,
+          "kc_sec_pct": 0.8335530354741927,
+          "kc_humide_pct": 0.8273930179474784
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7596.287000000004,
+          "prod_sec": 7421.746855612504,
+          "temps_prod_h": 106.76666666666665,
+          "debit_th": 71.1484889166407,
+          "ces_kwh_t": 33.23045203488568,
+          "facteur_debit_pct": 0.9486465188885427,
+          "kc_sec_pct": 0.6147358671967903,
+          "kc_humide_pct": 0.6008814569539042
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9990.941000000006,
+          "prod_sec": 9797.634557675006,
+          "temps_prod_h": 143.53333333333333,
+          "debit_th": 69.60711333023693,
+          "ces_kwh_t": 32.63146754645031,
+          "facteur_debit_pct": 0.994387333289099,
+          "kc_sec_pct": 0.6677981666783697,
+          "kc_humide_pct": 0.6551723206052367
+        }
+      },
+      "consommation": {
+        "clinker": 74649.87964624651,
+        "gypse": 10034.830359431793,
+        "granite": 32512.295515830006,
+        "pouzzolane": 20272,
+        "laitier": 1774.4955658300007,
+        "gasoil": 53578.289946007346
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 50,
+        "CPJ 42,5 SAC": 9609.5,
+        "CPA 52,5 SAC": 445,
+        "CPJ 42,5 VRAC": 341.5,
+        "CPA 42,5 VRAC": 47.36
+      }
+    }
+  },
+  "2025-W33": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 3835.7789999999964,
+          "prod_sec": 3809.944719999997,
+          "temps_prod_h": 60.266666666666666,
+          "debit_th": 63.64677544247782,
+          "ces_kwh_t": 31.284360558059447,
+          "facteur_debit_pct": 0.848623672566371,
+          "kc_sec_pct": 0.831205030213666,
+          "kc_humide_pct": 0.8258958610493454
+        },
+        "CPJ 42.5": {
+          "prod_humide": 13065.369,
+          "prod_sec": 12770.7696502125,
+          "temps_prod_h": 179.98333333333335,
+          "debit_th": 72.59210482452079,
+          "ces_kwh_t": 30.97549160249262,
+          "facteur_debit_pct": 0.9678947309936106,
+          "kc_sec_pct": 0.6216613846737027,
+          "kc_humide_pct": 0.607856846599587
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 16901.147999999997,
+          "prod_sec": 16580.714370212496,
+          "temps_prod_h": 240.25,
+          "debit_th": 70.3481706555671,
+          "ces_kwh_t": 31.045590571717383,
+          "facteur_debit_pct": 1.0049738665081014,
+          "kc_sec_pct": 0.6698106795779549,
+          "kc_humide_pct": 0.6573416196343583
+        }
+      },
+      "consommation": {
+        "clinker": 85034.16368712975,
+        "gypse": 9312.870797155269,
+        "granite": 33011.686,
+        "pouzzolane": 20272,
+        "laitier": 1746,
+        "argile": 873,
+        "gasoil": 82682.06332410083
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 12446,
+        "CPA 42,5 SAC": 30,
+        "CPA 52,5 SAC": 70,
+        "CPJ 42,5 VRAC": 281.76,
+        "CPA 42,5 VRAC": 120.74000000000001
+      }
+    }
+  },
+  "2025-W34": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 35.41599999999835,
+          "prod_sec": 34.99542851428403,
+          "temps_prod_h": 0.5000000000000036,
+          "debit_th": 70.8319999999962,
+          "ces_kwh_t": 29.250524514887434,
+          "facteur_debit_pct": 0.944426666666616,
+          "kc_sec_pct": 0.6840900373666217,
+          "kc_humide_pct": 0.6763044951433989
+        },
+        "CPJ 42.5": {
+          "prod_humide": 13927.47500000001,
+          "prod_sec": 13653.77605806251,
+          "temps_prod_h": 190.26666666666665,
+          "debit_th": 73.19976348983887,
+          "ces_kwh_t": 30.18568774481954,
+          "facteur_debit_pct": 0.975996846531185,
+          "kc_sec_pct": 0.6393970932930942,
+          "kc_humide_pct": 0.6271454086257563
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 13962.891000000007,
+          "prod_sec": 13688.771486576796,
+          "temps_prod_h": 190.76666666666665,
+          "debit_th": 73.19355757469863,
+          "ces_kwh_t": 30.183315761757346,
+          "facteur_debit_pct": 1.0456222510671234,
+          "kc_sec_pct": 0.6395113510795546,
+          "kc_humide_pct": 0.6272700975750655
+        }
+      },
+      "consommation": {
+        "clinker": 85842.43862762729,
+        "gypse": 7350.027453528027,
+        "granite": 34850.025539147915,
+        "pouzzolane": 20844.202939509047,
+        "laitier": 1765.4286891479096,
+        "gasoil": 23627.55314062107
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 289,
+        "CPJ 42,5 SAC": 11738,
+        "CPA 52,5 SAC": 437.12,
+        "CPJ 42,5 VRAC": 49.32,
+        "CPA 42,5 VRAC": 49.88,
+        "CPA 52,5 VRAC": 75.08
+      }
+    }
+  },
+  "2025-W35": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 32.70451104349591,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.8231468774215881
+        },
+        "CPJ 42.5": {
+          "prod_humide": 9670.733999999991,
+          "prod_sec": 9456.169908374992,
+          "temps_prod_h": 143.81666666666666,
+          "debit_th": 67.24348591957347,
+          "ces_kwh_t": 34.264168986552654,
+          "facteur_debit_pct": 0.8965798122609796,
+          "kc_sec_pct": 0.5934411125407052,
+          "kc_humide_pct": 0.58044859883438
+        },
+        "CPJ 32.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9670.733999999991,
+          "prod_sec": 9456.169908374992,
+          "temps_prod_h": 143.81666666666666,
+          "debit_th": 67.24348591957347,
+          "ces_kwh_t": 34.264168986552654,
+          "facteur_debit_pct": 0.9606212274224782,
+          "kc_sec_pct": 0.5934411125407052,
+          "kc_humide_pct": 0.58044859883438
+        }
+      },
+      "consommation": {
+        "clinker": 74689.06335378093,
+        "gypse": 5690.436307527979,
+        "granite": 37159.85805155074,
+        "pouzzolane": 20005.15981676833,
+        "laitier": 1902.8357944078862,
+        "gasoil": 41383.11372594432,
+        "argile": 1948.8213957257176
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 198,
+        "CPJ 42,5 SAC": 11833,
+        "CPA 52,5 SAC": 722,
+        "CPJ 42,5 VRAC": 446.42,
+        "CPA 42,5 VRAC": 49.88,
+        "CPA 52,5 VRAC": 75.08
+      }
+    }
+  },
+  "2025-W04": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 16052.787000000017,
+          "prod_sec": 15730.625465980016,
+          "temps_prod_h": 204.70000000000002,
+          "debit_th": 78.42104054714224,
+          "facteur_debit_pct": 1.0456138739618965,
+          "kc_sec_pct": 0.6415501044922912,
+          "kc_humide_pct": 0.6289624349964897
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "TOTAL": {
+          "prod_humide": 16052.787000000017,
+          "prod_sec": 15730.625465980016,
+          "temps_prod_h": 204.70000000000002,
+          "debit_th": 78.42104054714224,
+          "facteur_debit_pct": 1.1203005792448892,
+          "kc_sec_pct": 0.6415501044922912,
+          "kc_humide_pct": 0.6289624349964897
+        }
+      },
+      "consommation": {
+        "clinker": 30650.42045714285,
+        "gypse": 15091.277391390644,
+        "granite": 22776.590211183266,
+        "pouzzolane": 12822.330262357887,
+        "laitier": 2779.3108540404073,
+        "argile": 56.52867457880141,
+        "gasoil": 137433.80421799893
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 100,
+        "CPJ 42,5 SAC": 15034
+      }
+    }
+  },
+  "2025-W43": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 8298.961000000014,
+          "prod_sec": 8169.293836933346,
+          "temps_prod_h": 122.63333333333331,
+          "debit_th": 67.67296276162013,
+          "ces_kwh_t": 31.619051865022058,
+          "facteur_debit_pct": 0.902306170154935,
+          "kc_sec_pct": 0.6012910640026576,
+          "kc_humide_pct": 0.5921685859229845
+        },
+        "CPJ 32.5": {
+          "prod_humide": 215.01699999999255,
+          "prod_sec": 213.31667073332594,
+          "temps_prod_h": 3.099999999999998,
+          "debit_th": 69.3603225806428,
+          "ces_kwh_t": 28.37375516914683,
+          "facteur_debit_pct": 0.9248043010752374,
+          "kc_sec_pct": 0.541443130923344,
+          "kc_humide_pct": 0.5374086700121388
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 8513.978000000006,
+          "prod_sec": 8382.610507666672,
+          "temps_prod_h": 125.7333333333333,
+          "debit_th": 67.71456521739137,
+          "ces_kwh_t": 31.53709323655755,
+          "facteur_debit_pct": 0.9909448568398738,
+          "kc_sec_pct": 0.5997680823702564,
+          "kc_humide_pct": 0.5907856468503909
+        }
+      },
+      "consommation": {
+        "clinker": 58634.823488599985,
+        "gypse": 4711.843442428118,
+        "granite": 23304.73442274169,
+        "pouzzolane": 7726.962861239653,
+        "laitier": 2068.295953852797,
+        "argile": 3128.4087333333327,
+        "gasoil": 14159.621469682914
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 1765,
+        "CPJ 42,5 SAC": 4234
+      }
+    }
+  },
+  "2025-W45": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7450.89,
+          "prod_sec": 7346.85,
+          "temps_prod_h": 101.55,
+          "debit_th": 73.37,
+          "ces_kwh_t": 28.07,
+          "facteur_debit_pct": 0.9783,
+          "kc_sec_pct": 0.5864,
+          "kc_humide_pct": 0.5785
+        },
+        "CPJ 32.5": {
+          "prod_humide": 3238.66,
+          "prod_sec": 3188.78,
+          "temps_prod_h": 42.42,
+          "debit_th": 76.35,
+          "ces_kwh_t": 20.6,
+          "facteur_debit_pct": 1.018,
+          "kc_sec_pct": 0.4794,
+          "kc_humide_pct": 0.4723
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10689.54,
+          "prod_sec": 10535.63,
+          "temps_prod_h": 143.97,
+          "debit_th": 74.25,
+          "ces_kwh_t": 25.81,
+          "facteur_debit_pct": 1.0866,
+          "kc_sec_pct": 0.5541,
+          "kc_humide_pct": 0.5463
+        }
+      },
+      "consommation": {
+        "clinker": 53521.4405,
+        "gypse": 7120.9443,
+        "granite": 20779.3237,
+        "pouzzolane": 6534.4417,
+        "laitier": 1853.0441,
+        "argile": 3535.5437,
+        "gasoil": 10273.88
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 4130,
+        "CPJ 42,5 SAC": 6994.3
+      }
+    }
+  },
+  "2025-W46": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7611.2600000000175,
+          "prod_sec": 7496.325035833351,
+          "temps_prod_h": 104.93333333333334,
+          "debit_th": 72.53424396442202,
+          "ces_kwh_t": 33.71401250876182,
+          "facteur_debit_pct": 0.9671232528589603,
+          "kc_sec_pct": 0.5754707866674245,
+          "kc_humide_pct": 0.5670157109335383
+        },
+        "CPJ 32.5": {
+          "prod_humide": 3815.5509999999804,
+          "prod_sec": 3765.893034966647,
+          "temps_prod_h": 51.06666666666667,
+          "debit_th": 74.71705613576985,
+          "ces_kwh_t": 27.37008053425611,
+          "facteur_debit_pct": 0.996227415143598,
+          "kc_sec_pct": 0.47827739312271805,
+          "kc_humide_pct": 0.4722484380368657
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 11426.810999999998,
+          "prod_sec": 11262.218070799998,
+          "temps_prod_h": 156,
+          "debit_th": 73.24878846153845,
+          "ces_kwh_t": 31.595696559608804,
+          "facteur_debit_pct": 1.0719334896810506,
+          "kc_sec_pct": 0.5429709787704546,
+          "kc_humide_pct": 0.5353717673286104
+        }
+      },
+      "consommation": {
+        "clinker": 80701.43096339067,
+        "gypse": 6073.468912260114,
+        "granite": 19990.222750966463,
+        "pouzzolane": 6880.937253563689,
+        "laitier": 1846.1088604902766,
+        "argile": 2352.7401999999975,
+        "gasoil": 1.7157228637115622
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5170,
+        "CPJ 42,5 SAC": 5695,
+        "CPJ 42,5 VRAC": 342.26
+      }
+    }
+  },
+  "2025-W47": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 5003.266000000014,
+          "prod_sec": 4905.218268100015,
+          "temps_prod_h": 66.94999999999999,
+          "debit_th": 74.73138162808088,
+          "ces_kwh_t": 36.345264397101296,
+          "facteur_debit_pct": 0.9964184217077451,
+          "kc_sec_pct": 0.5778146274790681,
+          "kc_humide_pct": 0.5667018303644074,
+          "cs_gasoil_lt": 0.5661025501710959
+        },
+        "CPJ 32.5": {
+          "prod_humide": 4870.532999999974,
+          "prod_sec": 4768.893267999974,
+          "temps_prod_h": 65.01666666666665,
+          "debit_th": 74.91206870033287,
+          "ces_kwh_t": 34.40928834297456,
+          "facteur_debit_pct": 0.9988275826711049,
+          "kc_sec_pct": 0.4779744313144104,
+          "kc_humide_pct": 0.46817381177788786,
+          "cs_gasoil_lt": 1.3331545838395236
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9873.798999999988,
+          "prod_sec": 9674.11153609999,
+          "temps_prod_h": 131.96666666666664,
+          "debit_th": 74.82040161656977,
+          "ces_kwh_t": 35.390288986032665,
+          "facteur_debit_pct": 1.0949327065839478,
+          "kc_sec_pct": 0.5285979901073866,
+          "kc_humide_pct": 0.5181000747533954,
+          "cs_gasoil_lt": 0.9444728454038804
+        }
+      },
+      "consommation": {
+        "clinker": 74924.47429711807,
+        "gypse": 4842.18179322851,
+        "granite": 20707.607031694093,
+        "pouzzolane": 7078.051680491575,
+        "laitier": 1793.1539983607524,
+        "argile": 4061.773746666663,
+        "gasoil": 0.10302767820849112
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5169,
+        "CPJ 42,5 SAC": 7453,
+        "CPJ 42,5 VRAC": 342.34
+      }
+    }
+  },
+  "2025-W48": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1987.5429999999888,
+          "prod_sec": 1965.2448126999889,
+          "temps_prod_h": 27.81666666666667,
+          "debit_th": 71.4515158777707,
+          "ces_kwh_t": 32.38988396816602,
+          "facteur_debit_pct": 0.952686878370276,
+          "kc_sec_pct": 0.6129904939552681,
+          "kc_humide_pct": 0.6065136703960624
+        },
+        "CPJ 32.5": {
+          "prod_humide": 5245.561000000011,
+          "prod_sec": 5185.597345266678,
+          "temps_prod_h": 71.53333333333333,
+          "debit_th": 73.33030288909615,
+          "ces_kwh_t": 22.23888214211207,
+          "facteur_debit_pct": 0.9777373718546153,
+          "kc_sec_pct": 0.5453798317953598,
+          "kc_humide_pct": 0.5395014946923693
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 7233.103999999999,
+          "prod_sec": 7150.8421579666665,
+          "temps_prod_h": 99.35,
+          "debit_th": 72.80426774031203,
+          "ces_kwh_t": 25.028217484499052,
+          "facteur_debit_pct": 1.0654283083948102,
+          "kc_sec_pct": 0.5639610702226323,
+          "kc_humide_pct": 0.5579153845983688
+        }
+      },
+      "consommation": {
+        "clinker": 47580.9374816164,
+        "gypse": 3790.6462930779103,
+        "granite": 18700.889180215087,
+        "pouzzolane": 6534.862400000002,
+        "laitier": 2003.0624979928573,
+        "argile": 4061.773746666663,
+        "gasoil": 13437.939037408174
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 3502,
+        "CPJ 42,5 SAC": 3460
+      }
+    }
+  },
+  "2025-W49": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 6117.257000000006,
+          "prod_sec": 6007.265954200007,
+          "temps_prod_h": 80.96666666666668,
+          "debit_th": 75.55278303828742,
+          "ces_kwh_t": 47.258370197205416,
+          "cs_gasoil_lt": 0.8178142816128502,
+          "facteur_debit_pct": 1.0073704405104988,
+          "kc_sec_pct": 0.5790284380290848,
+          "kc_humide_pct": 0.5688366534216255
+        },
+        "CPJ 32.5": {
+          "prod_humide": 4504.692999999975,
+          "prod_sec": 4405.475660999974,
+          "temps_prod_h": 58.633333333333326,
+          "debit_th": 76.82819215463289,
+          "ces_kwh_t": 38.65393049039178,
+          "cs_gasoil_lt": 1.0140365478923055,
+          "facteur_debit_pct": 1.0243758953951052,
+          "kc_sec_pct": 0.48398843326235724,
+          "kc_humide_pct": 0.47351106945578314
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10621.94999999998,
+          "prod_sec": 10412.741615199982,
+          "temps_prod_h": 139.60000000000002,
+          "debit_th": 76.08846704871046,
+          "ces_kwh_t": 43.60928887821924,
+          "cs_gasoil_lt": 0.9010307408649831,
+          "facteur_debit_pct": 1.1134897616884458,
+          "kc_sec_pct": 0.5388184296284203,
+          "kc_humide_pct": 0.5284097552709243
+        }
+      },
+      "consommation": {
+        "clinker": 56462.776108675345,
+        "gypse": 11525.104848436258,
+        "granite": 18201.72998627699,
+        "laitier": 1727.7324148484222
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5051,
+        "CPJ 42,5 SAC": 5797,
+        "CPJ 42,5 VRAC": 99.4
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 3878.269999999975,
+          "prod_sec": 3837.8209616666422,
+          "temps_prod_h": 26.03333333333333,
+          "debit_th": 148.97323943661877,
+          "ces_kwh_t": 32.46909059967477,
+          "cs_fuel_lt": 0.006446173164839003,
+          "facteur_debit_pct": 1.1459479956662981,
+          "kc_sec_pct": 0.8083962308269519,
+          "kc_humide_pct": 0.7999649328179836
+        },
+        "CPJ 42.5": {
+          "prod_humide": 2194.1399999999267,
+          "prod_sec": 2149.0027866665923,
+          "temps_prod_h": 14.35,
+          "debit_th": 152.90174216027364,
+          "ces_kwh_t": 31.501339932730936,
+          "cs_fuel_lt": 1.2509684887929386,
+          "facteur_debit_pct": 1.0544947735191286,
+          "kc_sec_pct": 0.588016920145556,
+          "kc_humide_pct": 0.5759204061727825
+        },
+        "MIX": {
+          "prod_humide": 6072.409999999902,
+          "prod_sec": 5986.823748333234,
+          "temps_prod_h": 40.38333333333333,
+          "debit_th": 150.36921172100458,
+          "ces_kwh_t": 32.11941387356963,
+          "cs_fuel_lt": 0.45612862109114694,
+          "facteur_debit_pct": 1.0977272058068817,
+          "kc_sec_pct": 0.7292898845093684,
+          "kc_humide_pct": 0.7190110680932215
+        }
+      },
+      "consommation": {
+        "clinker": 737647.2960566569,
+        "gypse": 168723.77175308685,
+        "granite": 137652.74145557464,
+        "pouzzolane": 142.90555806928867,
+        "calcaire": 782.9012820512497,
+        "msa": 37.05627004617185,
+        "laitier": 52.00000000005829,
+        "fuel": 450740.1922777814,
+        "gasoil": 130300.06000000001
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 7615,
+        "CPA 42,5 SAC": 195.25,
+        "CPA 52,5 SAC": 8142,
+        "CPA 42,5 VRAC": 798.36,
+        "CPA 52,5 VRAC": 255.66
+      }
+    }
+  },
+  "2025-W50": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 9083.584999999992,
+          "prod_sec": 8873.829081899992,
+          "temps_prod_h": 125.31666666666665,
+          "debit_th": 72.48505120361745,
+          "ces_kwh_t": 46.66263706202969,
+          "cs_gasoil_lt": 1.4182128843171498,
+          "facteur_debit_pct": 0.966467349381566,
+          "kc_sec_pct": 0.5836464877143706,
+          "kc_humide_pct": 0.5704461399326368
+        },
+        "CPJ 32.5": {
+          "prod_humide": 7879.932000000003,
+          "prod_sec": 7696.413463200004,
+          "temps_prod_h": 104.78333333333333,
+          "debit_th": 75.20215046922223,
+          "ces_kwh_t": 40.089676779305094,
+          "cs_gasoil_lt": 1.5811660945295938,
+          "facteur_debit_pct": 1.0026953395896299,
+          "kc_sec_pct": 0.48171143364909796,
+          "kc_humide_pct": 0.47072132094540997
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 16963.516999999996,
+          "prod_sec": 16570.242545099994,
+          "temps_prod_h": 230.09999999999997,
+          "debit_th": 73.72236853541938,
+          "ces_kwh_t": 43.60935040770142,
+          "cs_gasoil_lt": 1.4939082849617071,
+          "facteur_debit_pct": 1.0788639297866252,
+          "kc_sec_pct": 0.5363005107110358,
+          "kc_humide_pct": 0.5241217372553113
+        }
+      },
+      "consommation": {
+        "clinker": 53767.42630940286,
+        "gypse": 10744.122242009575,
+        "granite": 28219.83375331561,
+        "laitier": 1727.1776533156058,
+        "gasoil": 16545.672979837345
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 6427,
+        "CPJ 42,5 SAC": 5526,
+        "CPJ 42,5 VRAC": 297.91999999999996
+      }
+    }
+  },
+  "2025-W51": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 4940.326000000008,
+          "prod_sec": 4831.957379000008,
+          "temps_prod_h": 68.88333333333334,
+          "debit_th": 71.72019356399721,
+          "ces_kwh_t": 50.668655897906014,
+          "cs_gasoil_lt": 1.2672905292573757,
+          "facteur_debit_pct": 0.9562692475199629,
+          "kc_sec_pct": 0.5811423274618613,
+          "kc_humide_pct": 0.568695264239648
+        },
+        "CPJ 32.5": {
+          "prod_humide": 5973.098999999996,
+          "prod_sec": 5805.385683799996,
+          "temps_prod_h": 85.93333333333334,
+          "debit_th": 69.50852211016286,
+          "ces_kwh_t": 43.37733593274134,
+          "cs_gasoil_lt": 1.7273628106985597,
+          "facteur_debit_pct": 0.9267802948021714,
+          "kc_sec_pct": 0.4821102309845852,
+          "kc_humide_pct": 0.46882129360320224
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10913.425000000003,
+          "prod_sec": 10637.343062800002,
+          "temps_prod_h": 154.81666666666666,
+          "debit_th": 70.4925718591883,
+          "ces_kwh_t": 46.677995221481794,
+          "cs_gasoil_lt": 1.5190957401974843,
+          "facteur_debit_pct": 1.0315986125734875,
+          "kc_sec_pct": 0.5270950421828486,
+          "kc_humide_pct": 0.5140325791399124
+        }
+      },
+      "consommation": {
+        "clinker": 48479.35057664684,
+        "gypse": 8745.456380520953,
+        "granite": 23552.44824797158,
+        "laitier": 1730.8220765429794,
+        "argile": 862,
+        "gasoil": 2913.1422796231745
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5860,
+        "CPJ 42,5 SAC": 6312,
+        "CPJ 42,5 VRAC": 554.6000000000001
+      }
+    }
+  },
+  "2025-W52": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 3684.5,
+          "prod_sec": 3606.24,
+          "temps_prod_h": 53.53,
+          "debit_th": 68.83,
+          "ces_kwh_t": 51.17,
+          "cs_gasoil_lt": 1.66,
+          "facteur_debit_pct": 0.9177,
+          "kc_sec_pct": 0.5784,
+          "kc_humide_pct": 0.5663
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8192.55,
+          "prod_sec": 7977.21,
+          "temps_prod_h": 118.73,
+          "debit_th": 69,
+          "ces_kwh_t": 43.62,
+          "cs_gasoil_lt": 2.04,
+          "facteur_debit_pct": 0.92,
+          "kc_sec_pct": 0.4811,
+          "kc_humide_pct": 0.4686
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 11877.05,
+          "prod_sec": 11583.45,
+          "temps_prod_h": 172.27,
+          "debit_th": 68.95,
+          "ces_kwh_t": 45.96,
+          "cs_gasoil_lt": 1.92,
+          "facteur_debit_pct": 1.009,
+          "kc_sec_pct": 0.5114,
+          "kc_humide_pct": 0.499
+        }
+      },
+      "consommation": {
+        "clinker": 37906.0504,
+        "gypse": 7691.3034,
+        "granite": 18267.1414,
+        "laitier": 1725,
+        "gasoil": 1.5699999999999998
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 6609,
+        "CPJ 42,5 SAC": 4218,
+        "CPJ 42,5 VRAC": 131.54
+      }
+    }
+  },
+  "2025-W53": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 2530.87,
+          "prod_sec": 2479.35,
+          "temps_prod_h": 38.87,
+          "debit_th": 65.12,
+          "ces_kwh_t": 55.12,
+          "cs_gasoil_lt": 1.05,
+          "facteur_debit_pct": 0.8682,
+          "kc_sec_pct": 0.5791,
+          "kc_humide_pct": 0.5676
+        },
+        "CPJ 32.5": {
+          "prod_humide": 1769.48,
+          "prod_sec": 1721.56,
+          "temps_prod_h": 27.53,
+          "debit_th": 64.27,
+          "ces_kwh_t": 49.44,
+          "cs_gasoil_lt": 1.83,
+          "facteur_debit_pct": 0.8569,
+          "kc_sec_pct": 0.48,
+          "kc_humide_pct": 0.4672
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 4300.35,
+          "prod_sec": 4200.91,
+          "temps_prod_h": 66.4,
+          "debit_th": 64.76,
+          "ces_kwh_t": 52.78,
+          "cs_gasoil_lt": 1.37,
+          "facteur_debit_pct": 0.9478,
+          "kc_sec_pct": 0.5385,
+          "kc_humide_pct": 0.5263
+        }
+      },
+      "consommation": {
+        "clinker": 28697.110500000003,
+        "gypse": 6176.657999999999,
+        "granite": 5387.7101,
+        "pouzzolane": 980.11,
+        "laitier": 1724,
+        "argile": 862,
+        "gasoil": 1.5699999999999998
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 2879,
+        "CPJ 42,5 SAC": 1420
+      }
+    }
+  },
+  "2026-W01": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 274.8440000000119,
+          "prod_sec": 268.983413200012,
+          "temps_prod_h": 4.433333333333334,
+          "debit_th": 61.994887218047786,
+          "ces_kwh_t": 50.896312765457694,
+          "cs_gasoil_lt": 0.788346935092021,
+          "facteur_debit_pct": 0.8265984962406372,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.5569413922079727
+        },
+        "CPJ 32.5": {
+          "prod_humide": 4626.333999999986,
+          "prod_sec": 4522.912837099986,
+          "temps_prod_h": 71.94999999999999,
+          "debit_th": 64.2992911744265,
+          "ces_kwh_t": 45.57979467420436,
+          "cs_gasoil_lt": 2.0571357177348384,
+          "facteur_debit_pct": 0.8573238823256867,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.4682506710496889
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 4901.177999999998,
+          "prod_sec": 4791.896250299998,
+          "temps_prod_h": 76.38333333333333,
+          "debit_th": 64.16554222125244,
+          "ces_kwh_t": 45.877929754846704,
+          "cs_gasoil_lt": 1.9859856831560703,
+          "facteur_debit_pct": 0.9390079349451577,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.47322419222480816
+        }
+      },
+      "consommation": {
+        "clinker": 33602.2077044904,
+        "gypse": 2931.5432055464116,
+        "granite": 5965.131999999997,
+        "pouzzolane": 490.11,
+        "laitier": 862.02
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 1978,
+        "CPJ 42,5 SAC": 850,
+        "CPJ 42,5 VRAC": 53.9,
+        "CHF VRAC": 682.84
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 7977.650000000103,
+          "prod_sec": 7927.5948110001045,
+          "temps_prod_h": 54.46666666666666,
+          "debit_th": 146.4684822521439,
+          "ces_kwh_t": 32.49500166088967,
+          "cs_fuel_lt": 0.07492181281454384,
+          "facteur_debit_pct": 1.1266806327087993,
+          "kc_sec_pct": 0.8050512358609024,
+          "kc_humide_pct": 0.8000000000000036
+        },
+        "CPJ 42.5": {
+          "prod_humide": 3789.0699999998906,
+          "prod_sec": 3743.439459999891,
+          "temps_prod_h": 24.666666666666668,
+          "debit_th": 153.6109459459415,
+          "ces_kwh_t": 31.145056702568983,
+          "cs_fuel_lt": 1.0066322342949143,
+          "facteur_debit_pct": 1.0593858341099414,
+          "kc_sec_pct": 0.5791866071743471,
+          "kc_humide_pct": 0.5722116508800232
+        },
+        "MIX": {
+          "prod_humide": 11766.719999999994,
+          "prod_sec": 11671.034270999995,
+          "temps_prod_h": 79.13333333333333,
+          "debit_th": 148.69486099410273,
+          "ces_kwh_t": 32.060298026977755,
+          "cs_fuel_lt": 0.37494730902066814,
+          "facteur_debit_pct": 1.0911979207203106,
+          "kc_sec_pct": 0.7326060228651369,
+          "kc_humide_pct": 0.726648547768624
+        }
+      },
+      "consommation": {
+        "clinker": 703528.984690907,
+        "gypse": 105525.83352000029,
+        "granite": 73053.77470000053,
+        "pouzzolane": 84.14296000000286,
+        "fuel": 219611.41031503503,
+        "gasoil": 122842.18529666668
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 3060,
+        "CPA 42,5 SAC": 100,
+        "CPA 52,5 SAC": 3152,
+        "CPA 42,5 VRAC": 340.1
+      }
+    }
+  },
+  "2026-W10": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 5019.06,
+          "prod_sec": 4994.15,
+          "temps_prod_h": 96.87,
+          "debit_th": 51.81,
+          "ces_kwh_t": 52.55,
+          "cs_gasoil_lt": 1.41,
+          "facteur_debit_pct": 0.7402,
+          "kc_sec_pct": 0.8017,
+          "kc_humide_pct": 0.7983
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7969.1,
+          "prod_sec": 7898.47,
+          "temps_prod_h": 139.47,
+          "debit_th": 57.14,
+          "ces_kwh_t": 56.11,
+          "cs_gasoil_lt": 2,
+          "facteur_debit_pct": 0.7619,
+          "kc_sec_pct": 0.588,
+          "kc_humide_pct": 0.5832
+        },
+        "CPJ 32.5": {
+          "prod_humide": 1251.02,
+          "prod_sec": 1235.18,
+          "temps_prod_h": 22.07,
+          "debit_th": 56.69,
+          "ces_kwh_t": 47.88,
+          "cs_gasoil_lt": 1.93,
+          "facteur_debit_pct": 0.7559,
+          "kc_sec_pct": 0.4831,
+          "kc_humide_pct": 0.4773
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 14239.18,
+          "prod_sec": 14127.8,
+          "temps_prod_h": 258.4,
+          "debit_th": 55.11,
+          "ces_kwh_t": 54.13,
+          "cs_gasoil_lt": 1.78,
+          "facteur_debit_pct": 0.8064,
+          "kc_sec_pct": 0.6544,
+          "kc_humide_pct": 0.6497
+        }
+      },
+      "consommation": {
+        "clinker": 76603.0207,
+        "gypse": 7536.5509999999995,
+        "granite": 14434.6796,
+        "pouzzolane": 265.94,
+        "laitier": 1714.02
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 4562,
+        "CPJ 42,5 SAC": 7676,
+        "CPA 52,5 SAC": 3946,
+        "CPJ 42,5 VRAC": 361.96,
+        "CPA 52,5 VRAC": 484.16
+      }
+    }
+  },
+  "2026-W11": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 5542.087000000012,
+          "prod_sec": 5508.506792500012,
+          "temps_prod_h": 92.55,
+          "debit_th": 59.882085359265396,
+          "ces_kwh_t": 46.108964724987395,
+          "cs_gasoil_lt": 0.631674375346493,
+          "facteur_debit_pct": 0.7402008160456194,
+          "kc_sec_pct": 0.8026865320935735,
+          "kc_humide_pct": 0.798165023392813
+        },
+        "CPJ 42.5": {
+          "prod_humide": 3716.03999999999,
+          "prod_sec": 3673.87016679999,
+          "temps_prod_h": 64.38333333333333,
+          "debit_th": 57.71742169298458,
+          "ces_kwh_t": 51.00649141154985,
+          "cs_gasoil_lt": 1.3062388135545335,
+          "facteur_debit_pct": 0.7695656225731278,
+          "kc_sec_pct": 0.5779707744990309,
+          "kc_humide_pct": 0.5716569251138293
+        },
+        "CPJ 32.5": {
+          "prod_humide": 1367.669000000018,
+          "prod_sec": 1349.416073300018,
+          "temps_prod_h": 24.96666666666666,
+          "debit_th": 54.779799732978034,
+          "ces_kwh_t": 48.869678020933506,
+          "cs_gasoil_lt": 2.058564002703611,
+          "facteur_debit_pct": 0.7303973297730405,
+          "kc_sec_pct": 0.4900019446063061,
+          "kc_humide_pct": 0.48366965983728943
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10625.79600000002,
+          "prod_sec": 10531.79303260002,
+          "temps_prod_h": 181.9,
+          "debit_th": 58.41559098405728,
+          "ces_kwh_t": 48.17705892339727,
+          "cs_gasoil_lt": 1.0512402266687375,
+          "facteur_debit_pct": 0.8548623070837652,
+          "kc_sec_pct": 0.6842339455108903,
+          "kc_humide_pct": 0.6784715234510434
+        }
+      },
+      "consommation": {
+        "clinker": 58485.81042857144,
+        "gypse": 5994.978700000003,
+        "granite": 10634.082700000012,
+        "pouzzolane": 265.88,
+        "laitier": 1714.04,
+        "argile": 0.033
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 2903,
+        "CPJ 42,5 SAC": 3594,
+        "CPA 52,5 SAC": 5196,
+        "CPJ 42,5 VRAC": 105.26,
+        "CPA 42,5 VRAC": 102.08,
+        "CPA 52,5 VRAC": 254.4
+      }
+    }
+  },
+  "2026-W12": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 2653.9339999999866,
+          "prod_sec": 2639.951548899987,
+          "temps_prod_h": 43.983333333333334,
+          "debit_th": 60.339537703675326,
+          "ces_kwh_t": 46.37587317564284,
+          "cs_gasoil_lt": 0.329543133500907,
+          "facteur_debit_pct": 0.8619933957667903,
+          "kc_sec_pct": 0.8026228471709334,
+          "kc_humide_pct": 0.7989648574531262
+        },
+        "CPJ 42.5": {
+          "prod_humide": 829.7499999999873,
+          "prod_sec": 820.3486068999873,
+          "temps_prod_h": 12.433333333333337,
+          "debit_th": 66.73592493297483,
+          "ces_kwh_t": 45.98422817866426,
+          "cs_gasoil_lt": 0.8729766985195457,
+          "facteur_debit_pct": 0.8898123324396643,
+          "kc_sec_pct": 0.5719088676581693,
+          "kc_humide_pct": 0.565833082253682
+        },
+        "CPJ 32.5": {
+          "prod_humide": 12618.602000000026,
+          "prod_sec": 12443.755089900027,
+          "temps_prod_h": 190.7,
+          "debit_th": 66.16991085474582,
+          "ces_kwh_t": 42.480044942239,
+          "cs_gasoil_lt": 1.2450691653622317,
+          "facteur_debit_pct": 0.8822654780632776,
+          "kc_sec_pct": 0.48364806506947655,
+          "kc_humide_pct": 0.4772874205874798
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 16102.286,
+          "prod_sec": 15904.055245700001,
+          "temps_prod_h": 247.11666666666667,
+          "debit_th": 65.16066365414447,
+          "ces_kwh_t": 43.302714906442475,
+          "cs_gasoil_lt": 1.075000804372708,
+          "facteur_debit_pct": 0.9535706876216264,
+          "kc_sec_pct": 0.5411480285937817,
+          "kc_humide_pct": 0.5348681547452334
+        }
+      },
+      "consommation": {
+        "clinker": 58696.85859819994,
+        "gypse": 5083.953081570134,
+        "granite": 17539.786357142842,
+        "pouzzolane": 265.88,
+        "laitier": 1714.04,
+        "argile": 857.0776999999999
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 7778,
+        "CPJ 42,5 SAC": 20,
+        "CPA 52,5 SAC": 2476,
+        "CPJ 42,5 VRAC": 49.64,
+        "CPA 52,5 VRAC": 107.66
+      }
+    }
+  },
+  "2026-W13": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 340.46899999998095,
+          "prod_sec": 337.9314510999809,
+          "temps_prod_h": 6.553333333333333,
+          "debit_th": 51.953560528989975,
+          "ces_kwh_t": 59.317727344291676,
+          "cs_gasoil_lt": 0.8487949183903691,
+          "facteur_debit_pct": 0.7421937218427139,
+          "kc_sec_pct": 0.7590110167336996,
+          "kc_humide_pct": 0.7536662662386034
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1999.6530000000002,
+          "prod_sec": 1975.8393151000005,
+          "temps_prod_h": 38.059999999999995,
+          "debit_th": 52.539490278507635,
+          "ces_kwh_t": 57.98354013399168,
+          "cs_gasoil_lt": 1.1057307571537447,
+          "facteur_debit_pct": 0.7005265370467685,
+          "kc_sec_pct": 0.6739151912930804,
+          "kc_humide_pct": 0.6661655797280857
+        },
+        "CPJ 32.5": {
+          "prod_humide": 11026.46600000004,
+          "prod_sec": 10864.171279400041,
+          "temps_prod_h": 176.2,
+          "debit_th": 62.57926220204337,
+          "ces_kwh_t": 43.565379216628315,
+          "cs_gasoil_lt": 1.4285742282265397,
+          "facteur_debit_pct": 0.8343901626939115,
+          "kc_sec_pct": 0.4759642245678054,
+          "kc_humide_pct": 0.4691530359772583
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 13366.588000000022,
+          "prod_sec": 13177.942045600023,
+          "temps_prod_h": 220.81333333333333,
+          "debit_th": 60.53342793309592,
+          "ces_kwh_t": 46.12358666250497,
+          "cs_gasoil_lt": 1.365508635324168,
+          "facteur_debit_pct": 0.885855042923355,
+          "kc_sec_pct": 0.5129024440590797,
+          "kc_humide_pct": 0.5058733013989813
+        }
+      },
+      "consommation": {
+        "clinker": 63882.985444750935,
+        "gypse": 3469.2213592264557,
+        "granite": 19360.826714285726,
+        "pouzzolane": 537.04,
+        "laitier": 1714.04
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 12739,
+        "CPJ 42,5 SAC": 1400,
+        "CPJ 42,5 VRAC": 637.62,
+        "CPA 42,5 VRAC": 427.94000000000005,
+        "CPA 52,5 VRAC": 56.36
+      }
+    }
+  },
+  "2026-W14": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 8743.687000000005,
+          "prod_sec": 8639.724443400006,
+          "temps_prod_h": 137.88333333333333,
+          "debit_th": 63.41366130786901,
+          "ces_kwh_t": 47.544362845394105,
+          "cs_gasoil_lt": 1.168924407816075,
+          "facteur_debit_pct": 0.8455154841049202,
+          "kc_sec_pct": 0.575933880831254,
+          "kc_humide_pct": 0.5693479192473391
+        },
+        "CPJ 32.5": {
+          "prod_humide": 598.7639999999992,
+          "prod_sec": 589.7102411999991,
+          "temps_prod_h": 9.399999999999999,
+          "debit_th": 63.698297872340355,
+          "ces_kwh_t": 43.32186414922118,
+          "cs_gasoil_lt": 2.73129036606678,
+          "facteur_debit_pct": 0.8493106382978713,
+          "kc_sec_pct": 0.481201420925899,
+          "kc_humide_pct": 0.47414340207493194
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9342.451000000005,
+          "prod_sec": 9229.434684600004,
+          "temps_prod_h": 147.28333333333333,
+          "debit_th": 63.43182754328395,
+          "ces_kwh_t": 47.273740049586536,
+          "cs_gasoil_lt": 1.2690574982252216,
+          "facteur_debit_pct": 0.9282706469748871,
+          "kc_sec_pct": 0.5698809963709013,
+          "kc_humide_pct": 0.5632461973843912
+        }
+      },
+      "consommation": {
+        "clinker": 49295.149046685925,
+        "gypse": 20731.27411875707,
+        "granite": 9623.514239999999,
+        "pouzzolane": 537.04,
+        "laitier": 1714.04
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 1945,
+        "CPJ 42,5 SAC": 8086,
+        "CPJ 42,5 VRAC": 235.42000000000002,
+        "CPA 42,5 VRAC": 204.9,
+        "CPA 52,5 VRAC": 182.94
+      }
+    }
+  },
+  "2026-W15": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 59.882085359265396,
+          "ces_kwh_t": 46.108964724987395,
+          "cs_gasoil_lt": 0.631674375346493,
+          "facteur_debit_pct": 0.7402008160456194,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.798165023392813
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1557.6000000000004,
+          "prod_sec": 1548.8325452000004,
+          "temps_prod_h": 24.5,
+          "debit_th": 63.575510204081645,
+          "ces_kwh_t": 48.290118177704926,
+          "cs_gasoil_lt": 1.1578387225529008,
+          "facteur_debit_pct": 0.8476734693877552,
+          "kc_sec_pct": 0.5727339158261822,
+          "kc_humide_pct": 0.5697868515665124
+        },
+        "CPJ 32.5": {
+          "prod_humide": 7990.333999999984,
+          "prod_sec": 7842.330149999984,
+          "temps_prod_h": 129.89999999999998,
+          "debit_th": 61.51142417244023,
+          "ces_kwh_t": 46.494703716566484,
+          "cs_gasoil_lt": 1.8512531714922082,
+          "facteur_debit_pct": 0.8201523222992031,
+          "kc_sec_pct": 0.47823508862167835,
+          "kc_humide_pct": 0.46960490012057016
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9547.933999999985,
+          "prod_sec": 9391.162695199984,
+          "temps_prod_h": 154.39999999999998,
+          "debit_th": 61.83895077720198,
+          "ces_kwh_t": 46.78759823853001,
+          "cs_gasoil_lt": 1.7381331660891686,
+          "facteur_debit_pct": 0.9049602552761266,
+          "kc_sec_pct": 0.493820257765045,
+          "kc_humide_pct": 0.4859480595487983
+        }
+      },
+      "consommation": {
+        "clinker": 60270.09844855748,
+        "gypse": 23845.551178362588,
+        "granite": 12391.374257142848,
+        "pouzzolane": 537.04,
+        "laitier": 1714.04,
+        "argile": 0.033,
+        "gasoil": 17700.36842105263
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 9209,
+        "CPJ 42,5 SAC": 2060,
+        "CPA 52,5 SAC": 5196,
+        "CPJ 42,5 VRAC": 210.85999999999999,
+        "CPA 42,5 VRAC": 160.32,
+        "CPA 52,5 VRAC": 254.4
+      }
+    }
+  },
+  "2026-W16": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 46.37587317564284,
+          "cs_gasoil_lt": 0.329543133500907,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.7989648574531262
+        },
+        "CPJ 42.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 45.98422817866426,
+          "cs_gasoil_lt": 0.8729766985195457,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.565833082253682
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8336.479000000016,
+          "prod_sec": 8209.540048600016,
+          "temps_prod_h": 141.43333333333334,
+          "debit_th": 58.94281640348821,
+          "ces_kwh_t": 47.85726683891357,
+          "cs_gasoil_lt": 2.1330826661809543,
+          "facteur_debit_pct": 0.7859042187131761,
+          "kc_sec_pct": 0.4765006878390349,
+          "kc_humide_pct": 0.46952676303748914
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 8336.479000000016,
+          "prod_sec": 8209.540048600016,
+          "temps_prod_h": 141.43333333333334,
+          "debit_th": 58.94281640348821,
+          "ces_kwh_t": 47.85726683891357,
+          "cs_gasoil_lt": 2.1330826661809543,
+          "facteur_debit_pct": 0.8625778010266568,
+          "kc_sec_pct": 0.4765006878390349,
+          "kc_humide_pct": 0.46952676303748914
+        }
+      },
+      "consommation": {
+        "clinker": 55784.735957416604,
+        "gypse": 21444.667627020215,
+        "granite": 13654.192867339265,
+        "pouzzolane": 537.04,
+        "laitier": 1714.241595910683,
+        "argile": 857.02,
+        "gasoil": 54236.57386809073
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 7741,
+        "CPJ 42,5 SAC": 20,
+        "CPA 52,5 SAC": 2476,
+        "CPJ 42,5 VRAC": 49.64,
+        "CPA 52,5 VRAC": 104.44,
+        "CPA 42,5 VRAC": 329.3
+      }
+    }
+  },
+  "2026-W17": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 59.317727344291676,
+          "cs_gasoil_lt": 0.8487949183903691,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.7536662662386034
+        },
+        "CPJ 42.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 57.98354013399168,
+          "cs_gasoil_lt": 1.1057307571537447,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.6661655797280857
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8212.111999999968,
+          "prod_sec": 8067.0889757999685,
+          "temps_prod_h": 123.98333333333332,
+          "debit_th": 66.23561231348275,
+          "ces_kwh_t": 49.147369154244565,
+          "cs_gasoil_lt": 2.122460201287635,
+          "facteur_debit_pct": 0.8831414975131033,
+          "kc_sec_pct": 0.47767134271318556,
+          "kc_humide_pct": 0.46947727941362466
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 8212.111999999968,
+          "prod_sec": 8067.0889757999685,
+          "temps_prod_h": 123.98333333333332,
+          "debit_th": 66.23561231348275,
+          "ces_kwh_t": 49.147369154244565,
+          "cs_gasoil_lt": 2.122460201287635,
+          "facteur_debit_pct": 0.9693016436119427,
+          "kc_sec_pct": 0.47767134271318556,
+          "kc_humide_pct": 0.46947727941362466
+        }
+      },
+      "consommation": {
+        "clinker": 45431.98479399724,
+        "gypse": 20384.283485741398,
+        "granite": 10838.26987142858,
+        "pouzzolane": 537.04,
+        "laitier": 1714.04,
+        "gasoil": 51319.515509361554
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 8659,
+        "CPJ 42,5 SAC": 1400,
+        "CPJ 42,5 VRAC": 47,
+        "CPA 42,5 VRAC": 105.92,
+        "CPA 52,5 VRAC": 56.36
+      }
+    }
+  },
+  "2026-W18": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 340.46899999998095,
+          "prod_sec": 337.9314510999809,
+          "temps_prod_h": 6.553333333333333,
+          "debit_th": 51.953560528989975,
+          "ces_kwh_t": 59.317727344291676,
+          "cs_gasoil_lt": 0.8487949183903691,
+          "facteur_debit_pct": 0.7421937218427139,
+          "kc_sec_pct": 0.7590110167336996,
+          "kc_humide_pct": 0.7536662662386034
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1999.6530000000002,
+          "prod_sec": 1975.8393151000005,
+          "temps_prod_h": 38.059999999999995,
+          "debit_th": 52.539490278507635,
+          "ces_kwh_t": 57.98354013399168,
+          "cs_gasoil_lt": 1.1057307571537447,
+          "facteur_debit_pct": 0.7005265370467685,
+          "kc_sec_pct": 0.6739151912930804,
+          "kc_humide_pct": 0.6661655797280857
+        },
+        "CPJ 32.5": {
+          "prod_humide": 11026.46600000004,
+          "prod_sec": 10864.171279400041,
+          "temps_prod_h": 176.2,
+          "debit_th": 62.57926220204337,
+          "ces_kwh_t": 43.565379216628315,
+          "cs_gasoil_lt": 1.4285742282265397,
+          "facteur_debit_pct": 0.8343901626939115,
+          "kc_sec_pct": 0.4759642245678054,
+          "kc_humide_pct": 0.4691530359772583
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 13366.588000000022,
+          "prod_sec": 13177.942045600023,
+          "temps_prod_h": 220.81333333333333,
+          "debit_th": 60.53342793309592,
+          "ces_kwh_t": 46.12358666250497,
+          "cs_gasoil_lt": 1.365508635324168,
+          "facteur_debit_pct": 0.885855042923355,
+          "kc_sec_pct": 0.5129024440590797,
+          "kc_humide_pct": 0.5058733013989813
+        }
+      },
+      "consommation": {
+        "clinker": 63882.985444750935,
+        "gypse": 3469.2213592264557,
+        "granite": 19360.826714285726,
+        "pouzzolane": 537.04,
+        "laitier": 1714.04,
+        "argile": 857.02,
+        "gasoil": 42835.54917380148
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 12739,
+        "CPJ 42,5 SAC": 1400,
+        "CPJ 42,5 VRAC": 637.62,
+        "CPA 42,5 VRAC": 427.94000000000005,
+        "CPA 52,5 VRAC": 56.36
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 7694.940000000162,
+          "prod_sec": 7627.354679000162,
+          "temps_prod_h": 56.666666666666664,
+          "debit_th": 135.79305882353228,
+          "ces_kwh_t": 31.984843286626734,
+          "cs_fuel_lt": 0.4132715784658524,
+          "facteur_debit_pct": 1.0445619909502484,
+          "kc_sec_pct": 0.8067607000028503,
+          "kc_humide_pct": 0.7996748512659041
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7048.5100000000675,
+          "prod_sec": 6948.574236000066,
+          "temps_prod_h": 54.68333333333334,
+          "debit_th": 128.89686071319844,
+          "ces_kwh_t": 31.930418120789895,
+          "cs_fuel_lt": 0.8277068486814997,
+          "facteur_debit_pct": 0.8889438669875754,
+          "kc_sec_pct": 0.5997273481529168,
+          "kc_humide_pct": 0.5912242445566454
+        },
+        "MIX": {
+          "prod_humide": 14743.45000000023,
+          "prod_sec": 14575.928915000228,
+          "temps_prod_h": 111.35,
+          "debit_th": 132.40637629097648,
+          "ces_kwh_t": 31.95882384574603,
+          "cs_fuel_lt": 0.6114037080873232,
+          "facteur_debit_pct": 0.9625087983153844,
+          "kc_sec_pct": 0.7080646496141357,
+          "kc_humide_pct": 0.7000193306180049
+        }
+      },
+      "consommation": {
+        "clinker": 149425.66936136666,
+        "gypse": 207594.8746318002,
+        "granite": 39710.12911666679,
+        "pouzzolane": 60,
+        "fuel": 185487.17395882442,
+        "gasoil": 86149.06221
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 2859,
+        "CPA 42,5 SAC": 30,
+        "CPA 52,5 SAC": 3834,
+        "CPJ 42,5 VRAC": 41.1,
+        "CPA 42,5 VRAC": 447.43999999999994
+      }
+    }
+  },
+  "2026-W19": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 32.5": {
+          "prod_humide": 5293.558999999972,
+          "prod_sec": 5177.619319199972,
+          "temps_prod_h": 81.75,
+          "debit_th": 64.75301529051954,
+          "ces_kwh_t": 52.19295751686178,
+          "cs_gasoil_lt": 3.672180394242478,
+          "facteur_debit_pct": 0.8633735372069272,
+          "kc_sec_pct": 0.47487642896794396,
+          "kc_humide_pct": 0.46473459538280193
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 5293.558999999972,
+          "prod_sec": 5177.619319199972,
+          "temps_prod_h": 81.75,
+          "debit_th": 64.75301529051954,
+          "ces_kwh_t": 52.19295751686178,
+          "cs_gasoil_lt": 3.672180394242478,
+          "facteur_debit_pct": 0.9476051018124811,
+          "kc_sec_pct": 0.47487642896794396,
+          "kc_humide_pct": 0.46473459538280193
+        }
+      },
+      "consommation": {
+        "clinker": 35482.745283779965,
+        "gypse": 9504.820221476999,
+        "granite": 11456.610521987117,
+        "pouzzolane": 537.04,
+        "laitier": 1718.9837791299844,
+        "gasoil": 65876.27643851831
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 7137
+      }
+    }
+  },
+  "2026-W20": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 32.5": {
+          "prod_humide": 7388.197000000018,
+          "prod_sec": 7298.498039900018,
+          "temps_prod_h": 115.85,
+          "debit_th": 63.77381959430314,
+          "ces_kwh_t": 46.52251422099318,
+          "cs_gasoil_lt": 2.2754206047613543,
+          "facteur_debit_pct": 0.8503175945907085,
+          "kc_sec_pct": 0.4742512693813698,
+          "kc_humide_pct": 0.46877472270975107
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 7388.197000000018,
+          "prod_sec": 7298.498039900018,
+          "temps_prod_h": 115.85,
+          "debit_th": 63.77381959430314,
+          "ces_kwh_t": 46.52251422099318,
+          "cs_gasoil_lt": 2.2754206047613543,
+          "facteur_debit_pct": 0.9332754086971192,
+          "kc_sec_pct": 0.4742512693813698,
+          "kc_humide_pct": 0.46877472270975107
+        }
+      },
+      "consommation": {
+        "clinker": 35426.1638927182,
+        "gypse": 9102.599474220291,
+        "granite": 14233.436635787282,
+        "pouzzolane": 537.04,
+        "laitier": 1717.5237500730007,
+        "argile": 857.02,
+        "gasoil": 62557.98419499519
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 7479,
+        "CPA 42,5 VRAC": 329.3,
+        "CPA 52,5 VRAC": 104.44
+      }
+    }
+  },
+  "2026-W21": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 4671.059000000034,
+          "prod_sec": 4638.335263900033,
+          "temps_prod_h": 71.11666666666666,
+          "debit_th": 65.68163580970285,
+          "facteur_debit_pct": 0.8757551441293714,
+          "kc_sec_pct": 0.57241012631185,
+          "ces_kwh_t": 46.69370669250971,
+          "cs_gasoil_lt": 1.4653989581700315,
+          "kc_humide_pct": 0.5687575344263458
+        },
+        "CPJ 32.5": {
+          "prod_humide": 9657.913999999946,
+          "prod_sec": 9579.959340599946,
+          "temps_prod_h": 141.88333333333333,
+          "debit_th": 68.06940444026745,
+          "ces_kwh_t": 40.67858143182813,
+          "cs_gasoil_lt": 1.483710627715676,
+          "facteur_debit_pct": 0.907592059203566,
+          "kc_sec_pct": 0.47667507171572937,
+          "kc_humide_pct": 0.4731249418870359
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 14328.97299999998,
+          "prod_sec": 14218.294604499979,
+          "temps_prod_h": 213,
+          "debit_th": 67.27217370892009,
+          "ces_kwh_t": 42.63943410319783,
+          "cs_gasoil_lt": 1.4777412613949907,
+          "facteur_debit_pct": 0.9844708347646843,
+          "kc_sec_pct": 0.5079060520883011,
+          "kc_humide_pct": 0.5042999243560573
+        }
+      },
+      "consommation": {
+        "clinker": 47405.83586445244,
+        "gypse": 8690.35056986298,
+        "granite": 21119.573223511175,
+        "pouzzolane": 622.0799999999999,
+        "laitier": 1715.1243663683017,
+        "gasoil": 66994.78178765513
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 8885,
+        "CPJ 42,5 VRAC": 354.14,
+        "CPA 42,5 VRAC": 105.92,
+        "CPJ 42,5 SAC": 3521.05
+      }
+    }
+  },
+  "2026-W22": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 7859.95,
+          "prod_sec": 7749.16,
+          "temps_prod_h": 125.17,
+          "debit_th": 62.8,
+          "facteur_debit_pct": 0.8373,
+          "kc_sec_pct": 0.5751,
+          "ces_kwh_t": 47.66,
+          "cs_gasoil_lt": 1.72,
+          "kc_humide_pct": 0.5677
+        },
+        "CPJ 32.5": {
+          "prod_humide": 4937.43,
+          "prod_sec": 4859.78,
+          "temps_prod_h": 79.37,
+          "debit_th": 62.21,
+          "ces_kwh_t": 45.65,
+          "cs_gasoil_lt": 2.26,
+          "facteur_debit_pct": 0.8295,
+          "kc_sec_pct": 0.4812,
+          "kc_humide_pct": 0.4743
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 12797.38,
+          "prod_sec": 12608.94,
+          "temps_prod_h": 204.53,
+          "debit_th": 62.57,
+          "ces_kwh_t": 46.88,
+          "cs_gasoil_lt": 1.93,
+          "facteur_debit_pct": 0.9156,
+          "kc_sec_pct": 0.5389,
+          "kc_humide_pct": 0.5316
+        }
+      },
+      "consommation": {
+        "clinker": 51334.7012,
+        "gypse": 7154.865400000001,
+        "granite": 18947.5169,
+        "pouzzolane": 622.0834,
+        "laitier": 1716.02,
+        "gasoil": 74797.16,
+        "argile": 857.02
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 3791,
+        "CPJ 42,5 VRAC": 170.92,
+        "CPA 42,5 VRAC": 105.92,
+        "CPJ 42,5 SAC": 3690
+      }
+    }
+  },
+  "2026-W23": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 3338.933000000021,
+          "prod_sec": 3273.204205100021,
+          "temps_prod_h": 55.03333333333333,
+          "debit_th": 60.671102362205104,
+          "ces_kwh_t": 46.4903582922697,
+          "cs_gasoil_lt": 1.9790714590167093,
+          "facteur_debit_pct": 0.007732553646263571,
+          "kc_sec_pct": 0.5799415234697678,
+          "kc_humide_pct": 0.5687146163160541
+        },
+        "CPJ 32.5": {
+          "prod_humide": 5794.103000000001,
+          "prod_sec": 5665.484279500001,
+          "temps_prod_h": 87.53333333333333,
+          "debit_th": 66.19310357958874,
+          "ces_kwh_t": 41.10232567769611,
+          "cs_gasoil_lt": 2.284384266673521,
+          "facteur_debit_pct": 0.0064250810274542125,
+          "kc_sec_pct": 0.4818810770590659,
+          "kc_humide_pct": 0.47134129303534983
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9133.036000000022,
+          "prod_sec": 8938.688484600023,
+          "temps_prod_h": 142.56666666666666,
+          "debit_th": 64.06151040448928,
+          "ces_kwh_t": 43.07212847951098,
+          "cs_gasoil_lt": 2.172765413007775,
+          "facteur_debit_pct": 0.007577403484301402,
+          "kc_sec_pct": 0.5177892380939291,
+          "kc_humide_pct": 0.5069398609618984
+        }
+      },
+      "consommation": {
+        "clinker": 42409.04341201756,
+        "gypse": 5710.784029637526,
+        "granite": 13250.73749005155,
+        "pouzzolane": 1124.72,
+        "laitier": 1714.9481233848885,
+        "gasoil": 69545.7106347828
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 7358,
+        "CPJ 42,5 SAC": 4171,
+        "CPJ 42,5 VRAC": 514.62
+      }
+    }
+  },
+  "2026-W24": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 4544.680000000046,
+          "prod_sec": 4495.8825310667125,
+          "temps_prod_h": 77.43333333333334,
+          "kc_sec_pct": 0.5790538836392525,
+          "debit_th": 58.69151958674187,
+          "ces_kwh_t": 50.53516967901348,
+          "cs_gasoil_lt": 2.1079793050090423,
+          "facteur_debit_pct": 0.7825535944898916,
+          "kc_humide_pct": 0.5730656503868317
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8050.166999999976,
+          "prod_sec": 7910.790768833309,
+          "temps_prod_h": 124.31666666666666,
+          "debit_th": 64.75533181391589,
+          "ces_kwh_t": 43.46358591855046,
+          "cs_gasoil_lt": 2.2334386779182918,
+          "facteur_debit_pct": 0.8634044241855452,
+          "kc_sec_pct": 0.48207240861742656,
+          "kc_humide_pct": 0.47391563429677774
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 12594.847000000022,
+          "prod_sec": 12406.673299900021,
+          "temps_prod_h": 201.75,
+          "debit_th": 62.427990086741126,
+          "ces_kwh_t": 46.01527116605695,
+          "cs_gasoil_lt": 2.188168361980892,
+          "facteur_debit_pct": 0.913580342732797,
+          "kc_sec_pct": 0.5172161823630627,
+          "kc_humide_pct": 0.509692575066614
+        }
+      },
+      "consommation": {
+        "clinker": 55857.723928312145,
+        "gypse": 4967.666825643524,
+        "granite": 20916.34942902817,
+        "pouzzolane": 2979.7740521617343,
+        "laitier": 2218.6742504567455,
+        "gasoil": 93573.13961465539,
+        "argile": 5.066974828117538
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 6908,
+        "CPJ 42,5 SAC": 4685,
+        "CPJ 42,5 VRAC": 354.20000000000005
+      }
+    }
+  },
+  "2026-W25": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 4872.262999999963,
+          "prod_sec": 4783.841693599963,
+          "temps_prod_h": 82.11666666666666,
+          "debit_th": 59.333423990257316,
+          "facteur_debit_pct": 0.7911123198700976,
+          "kc_sec_pct": 0.579861905487194,
+          "ces_kwh_t": 51.86665327307401,
+          "cs_gasoil_lt": 0,
+          "kc_humide_pct": 0.5695094866594805
+        },
+        "CPJ 32.5": {
+          "prod_humide": 6910.590000000053,
+          "prod_sec": 6743.118564700054,
+          "temps_prod_h": 110.45,
+          "debit_th": 62.567587143504326,
+          "ces_kwh_t": 46.465196795609685,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0.8342344952467243,
+          "kc_sec_pct": 0.49219126108420774,
+          "kc_humide_pct": 0.480407606297006
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 11782.853000000016,
+          "prod_sec": 11526.960258300016,
+          "temps_prod_h": 192.56666666666666,
+          "debit_th": 61.18843517396581,
+          "ces_kwh_t": 48.698723475545314,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0.8954405147409631,
+          "kc_sec_pct": 0.5285757436018593,
+          "kc_humide_pct": 0.5172516367640336
+        }
+      },
+      "consommation": {
+        "clinker": 42929.685383433054,
+        "gypse": 3657.219145283464,
+        "granite": 14632.240372482673,
+        "pouzzolane": 1101.5704141323572,
+        "laitier": 2365.0412581969263,
+        "argile": 360.0399175321663,
+        "gasoil": 101098.87212907933
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5052,
+        "CPJ 42,5 SAC": 3655,
+        "CPJ 42,5 VRAC": 372.56
+      }
+    }
+  },
+  "2026-W26": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 6260.878999999955,
+          "prod_sec": 6145.603287599955,
+          "temps_prod_h": 110.36666666666667,
+          "debit_th": 56.72798852310439,
+          "ces_kwh_t": 53.07142967967713,
+          "cs_gasoil_lt": 2.3273922591285743,
+          "facteur_debit_pct": 0.7563731803080586,
+          "kc_sec_pct": 0.5808891304785333,
+          "kc_humide_pct": 0.5704790014309459
+        },
+        "CPJ 32.5": {
+          "prod_humide": 4249.117000000071,
+          "prod_sec": 4164.59419580007,
+          "temps_prod_h": 68.8,
+          "debit_th": 61.76042151162894,
+          "ces_kwh_t": 45.54190915866326,
+          "cs_gasoil_lt": 2.7761170653382456,
+          "facteur_debit_pct": 0.8234722868217192,
+          "kc_sec_pct": 0.4952387082707904,
+          "kc_humide_pct": 0.48563030860294587
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 10509.996000000026,
+          "prod_sec": 10310.197483400025,
+          "temps_prod_h": 179.16666666666669,
+          "debit_th": 58.660442790697815,
+          "ces_kwh_t": 50.02729782199714,
+          "cs_gasoil_lt": 2.5088085225017713,
+          "facteur_debit_pct": 0.8584455042541144,
+          "kc_sec_pct": 0.546292387616091,
+          "kc_humide_pct": 0.5361752754235108
+        }
+      },
+      "consommation": {
+        "clinker": 30266.640499999878,
+        "gypse": 3491.4336428571364,
+        "granite": 17067.097900000033,
+        "pouzzolane": 11.457999999996446,
+        "laitier": 2333.2685666666657,
+        "gasoil": 86340.69755287605
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 4083,
+        "CPJ 42,5 SAC": 4025,
+        "CPJ 42,5 VRAC": 223.89999999999998
+      }
+    }
+  },
+  "2026-W27": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0.5677
+        },
+        "CPJ 32.5": {
+          "prod_humide": 3395.8959999999934,
+          "prod_sec": 3335.543417199994,
+          "temps_prod_h": 44.63305555555556,
+          "debit_th": 76.0847752350959,
+          "ces_kwh_t": 33.789668470412636,
+          "cs_gasoil_lt": 2.6299832448184395,
+          "facteur_debit_pct": 0.03506644326424586,
+          "kc_sec_pct": 0.4757026431788965,
+          "kc_humide_pct": 0.4675054830890018
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0
+        },
+        "MIX": {
+          "prod_humide": 3395.8959999999934,
+          "prod_sec": 3335.543417199994,
+          "temps_prod_h": 44.63305555555556,
+          "debit_th": 76.0847752350959,
+          "ces_kwh_t": 33.789668470412636,
+          "cs_gasoil_lt": 2.6299832448184395,
+          "facteur_debit_pct": 0.03848755968026985,
+          "kc_sec_pct": 0.4757026431788965,
+          "kc_humide_pct": 0.4675054830890018
+        }
+      },
+      "consommation": {
+        "clinker": 79997.14114999985,
+        "gypse": 4066.927399999989,
+        "granite": 15748.539966666649,
+        "pouzzolane": 193.4139999999956,
+        "laitier": 1091.9402666666588,
+        "argile": 857.02,
+        "gasoil": 38109.1445252432
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5128,
+        "CPJ 42,5 SAC": 3318,
+        "CPJ 42,5 VRAC": 53.9
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 11932.610000000393,
+          "prod_sec": 11843.253660000393,
+          "temps_prod_h": 83.7,
+          "debit_th": 142.56403823178488,
+          "ces_kwh_t": 27.755767598202663,
+          "cs_fuel_lt": 0,
+          "facteur_debit_pct": 1.0966464479368068,
+          "kc_sec_pct": 0.8061467122203018,
+          "kc_humide_pct": 0.8001099507986985
+        },
+        "CPJ 42.5": {
+          "prod_humide": 197.33999999976368,
+          "prod_sec": 194.84888799976628,
+          "temps_prod_h": 1.56666666666667,
+          "debit_th": 125.96170212750846,
+          "ces_kwh_t": 42.84737002133318,
+          "cs_fuel_lt": 0,
+          "facteur_debit_pct": 0.868701393982817,
+          "kc_sec_pct": 0.8098583554657136,
+          "kc_humide_pct": 0.7996351474612481
+        },
+        "MIX": {
+          "prod_humide": 12129.950000000157,
+          "prod_sec": 12038.102548000159,
+          "temps_prod_h": 85.26666666666668,
+          "debit_th": 142.2589913995327,
+          "ces_kwh_t": 28.00129019493035,
+          "cs_fuel_lt": 0,
+          "facteur_debit_pct": 0.9764572376701575,
+          "kc_sec_pct": 0.8062067889272526,
+          "kc_humide_pct": 0.8001022263076155
+        }
+      },
+      "consommation": {
+        "clinker": 367227.60400909575,
+        "gypse": 236035.7609224003,
+        "granite": 107908.60384444521,
+        "pouzzolane": 80,
+        "fuel": 188795.58499999848,
+        "gasoil": 163144.36829999997
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 681,
+        "CPA 42,5 SAC": 510,
+        "CPA 52,5 SAC": 5439,
+        "CPA 42,5 VRAC": 691.8799999999999
+      }
+    }
+  },
+  "2026-W28": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 4782.730333333312,
+          "prod_sec": 4705.751921766646,
+          "temps_prod_h": 76.1,
+          "debit_th": 62.8479675865087,
+          "ces_kwh_t": 45.61528548397528,
+          "cs_gasoil_lt": 2.1063578240576133,
+          "facteur_debit_pct": 0.8379729011534494,
+          "kc_sec_pct": 0.5769138886056626,
+          "kc_humide_pct": 0.5678555575403151
+        },
+        "CPJ 32.5": {
+          "prod_humide": 6791.946333333381,
+          "prod_sec": 6667.7785051000465,
+          "temps_prod_h": 108.2,
+          "debit_th": 62.77214725816433,
+          "ces_kwh_t": 44.20146681353303,
+          "cs_gasoil_lt": 2.41946611308433,
+          "facteur_debit_pct": 0.8369619634421911,
+          "kc_sec_pct": 0.4795331034998238,
+          "kc_humide_pct": 0.4709548401908778
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 11574.676666666692,
+          "prod_sec": 11373.530426866691,
+          "temps_prod_h": 184.3,
+          "debit_th": 62.80345451257022,
+          "ces_kwh_t": 34.17010352772986,
+          "cs_gasoil_lt": 2.2900877680408978,
+          "facteur_debit_pct": 0.9190749440863936,
+          "kc_sec_pct": 0.519824006979755,
+          "kc_humide_pct": 0.5109948355648806
+        }
+      },
+      "consommation": {
+        "clinker": 62717.61818683258,
+        "gypse": 5699.11434430034,
+        "granite": 12941.282099664892,
+        "pouzzolane": 1472.8951908648498,
+        "laitier": 5182.725452328652,
+        "msa": 5.73,
+        "gasoil": 82565.12817602593
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 8254,
+        "CPJ 42,5 SAC": 3659,
+        "CPJ 42,5 VRAC": 116.86
+      }
+    }
+  },
+  "2026-W29": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 6650.395999999999,
+          "prod_sec": 6544.2690335,
+          "temps_prod_h": 90.28333333333333,
+          "debit_th": 73.66139191434372,
+          "ces_kwh_t": 42.31624074419478,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0.9821518921912497,
+          "kc_sec_pct": 0.577129182902811,
+          "kc_humide_pct": 0.5681466186374502
+        },
+        "CPJ 32.5": {
+          "prod_humide": 7024.150000000014,
+          "prod_sec": 6886.965188500014,
+          "temps_prod_h": 95.44999999999999,
+          "debit_th": 73.58983761131498,
+          "ces_kwh_t": 38.98140583839599,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0.981197834817533,
+          "kc_sec_pct": 0.47897439724367985,
+          "kc_humide_pct": 0.4698077347437047
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 13674.546000000013,
+          "prod_sec": 13431.234222000014,
+          "temps_prod_h": 185.73333333333332,
+          "debit_th": 73.62461952620252,
+          "ces_kwh_t": 40.60324927789188,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 1.0774334564810126,
+          "kc_sec_pct": 0.5267995869218352,
+          "kc_humide_pct": 0.5176332727975039
+        }
+      },
+      "consommation": {
+        "clinker": 84499.76686558545,
+        "gypse": 5042.955462146907,
+        "granite": 14293.152338249789,
+        "pouzzolane": 2526.108414451271,
+        "laitier": 7740.308792633026,
+        "msa": 5.73,
+        "argile": 293.37666666666587,
+        "gasoil": 69667.31899884845
+      },
+      "expedition": {
+        "CPJ 30,5 SAC": 7008,
+        "CPJ 42,5 SAC": 5248,
+        "CPJ 42,5 VRAC": 393.24
+      }
+    }
+  },
+  "2026-W30": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 6032.990999999973,
+          "prod_sec": 5945.737889999973,
+          "temps_prod_h": 90.5,
+          "debit_th": 66.66288397790025,
+          "ces_kwh_t": 47.5093491357141,
+          "cs_gasoil_lt": 1.2193978822321794,
+          "facteur_debit_pct": 0.88883845303867,
+          "kc_sec_pct": 0.5762966581091553,
+          "kc_humide_pct": 0.5681095827923464
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8300.369333333372,
+          "prod_sec": 8168.35125210004,
+          "temps_prod_h": 124.4,
+          "debit_th": 66.72322615219753,
+          "ces_kwh_t": 42.76716010970826,
+          "cs_gasoil_lt": 1.5457261245578435,
+          "facteur_debit_pct": 0.8896430153626337,
+          "kc_sec_pct": 0.47863798915293726,
+          "kc_humide_pct": 0.4711477095718017
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "ces_kwh_t": 0,
+          "cs_gasoil_lt": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0,
+          "kc_humide_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 14333.360333333345,
+          "prod_sec": 14114.089142100012,
+          "temps_prod_h": 214.9,
+          "debit_th": 66.69781448735851,
+          "ces_kwh_t": 44.76317381820745,
+          "cs_gasoil_lt": 1.4083727542935032,
+          "facteur_debit_pct": 0.9760655778637832,
+          "kc_sec_pct": 0.5197779339594326,
+          "kc_humide_pct": 0.5119595007274521
+        }
+      },
+      "consommation": {
+        "clinker": 77434.98125589806,
+        "gypse": 3761.937286026453,
+        "granite": 19279.577517601854,
+        "pouzzolane": 2242.342788374154,
+        "laitier": 8350.587964567534,
+        "msa": 5.73,
+        "gasoil": 69987.30743770403
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 5904,
+        "CPJ 42,5 SAC": 5366,
+        "CPJ 42,5 VRAC": 334.42
+      }
+    }
+  },
+  "2026-W31": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 5077.275999999998,
+          "prod_sec": 5030.540080199998,
+          "temps_prod_h": 83.71666666666667,
+          "debit_th": 60.648329683456076,
+          "ces_kwh_t": 50.84681509807606,
+          "cs_gasoil_lt": 1.2968606216335015,
+          "facteur_debit_pct": 0.8086443957794144,
+          "kc_sec_pct": 0.5751588206976317,
+          "kc_humide_pct": 0.570187636047361
+        },
+        "CPJ 32.5": {
+          "prod_humide": 1061.0119999999988,
+          "prod_sec": 1044.1561245999987,
+          "temps_prod_h": 17.733333333333334,
+          "debit_th": 59.83150375939842,
+          "ces_kwh_t": 46.93461150873021,
+          "cs_gasoil_lt": 1.6693908525625392,
+          "facteur_debit_pct": 0.7977533834586457,
+          "kc_sec_pct": 0.48719875762022347,
+          "kc_humide_pct": 0.47973067222613935
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 6138.287999999997,
+          "prod_sec": 6074.696204799997,
+          "temps_prod_h": 101.45,
+          "debit_th": 60.50554953178903,
+          "ces_kwh_t": 50.170585023055295,
+          "cs_gasoil_lt": 1.361253013352248,
+          "facteur_debit_pct": 0.8854470663188639,
+          "kc_sec_pct": 0.5600397043688338,
+          "kc_humide_pct": 0.5545520184129519
+        }
+      },
+      "consommation": {
+        "clinker": 59162.74056666659,
+        "gypse": 4327.248899999996,
+        "granite": 12663.212966666662,
+        "pouzzolane": 11.46,
+        "laitier": 2763.7030999999984,
+        "gasoil": 33781.29375036024
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 2875,
+        "CPJ 42,5 SAC": 4990,
+        "CPJ 42,5 VRAC": 153.26
+      }
+    }
+  },
+  "2026-W06": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 2161.2560000000067,
+          "prod_sec": 2149.276615300007,
+          "temps_prod_h": 36.41666666666667,
+          "debit_th": 59.347990846682094,
+          "ces_kwh_t": 52.01145324727295,
+          "cs_gasoil_lt": 1.5793050334277652,
+          "facteur_debit_pct": 0.7913065446224279,
+          "kc_sec_pct": 0.5699753169412441,
+          "kc_humide_pct": 0.5671239316397606
+        },
+        "CPJ 32.5": {
+          "prod_humide": 13224.713000000003,
+          "prod_sec": 13141.413631300004,
+          "temps_prod_h": 218.11666666666667,
+          "debit_th": 60.63137311836174,
+          "ces_kwh_t": 43.037814249777014,
+          "cs_gasoil_lt": 1.2449258782032002,
+          "facteur_debit_pct": 0.8084183082448232,
+          "kc_sec_pct": 0.47261480015741947,
+          "kc_humide_pct": 0.4698929950313463
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 15385.96900000001,
+          "prod_sec": 15290.69024660001,
+          "temps_prod_h": 254.53333333333336,
+          "debit_th": 60.447756678889505,
+          "ces_kwh_t": 44.29833486600679,
+          "cs_gasoil_lt": 1.29189587765556,
+          "facteur_debit_pct": 0.8846013172520416,
+          "kc_sec_pct": 0.48629990387754274,
+          "kc_humide_pct": 0.48355095476924487
+        }
+      },
+      "consommation": {
+        "clinker": 48449.687260420564,
+        "gypse": 7816.192967043129,
+        "granite": 19214.771571428577,
+        "pouzzolane": 1142.22,
+        "laitier": 1724.04
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 10562,
+        "CPJ 42,5 SAC": 1370,
+        "CPJ 42,5 VRAC": 189.27999999999997
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 10471.109999999913,
+          "prod_sec": 10390.861649999912,
+          "temps_prod_h": 71.91666666666666,
+          "debit_th": 145.60060254924562,
+          "ces_kwh_t": 32.69273744617358,
+          "cs_fuel_lt": 0.19321733798997462,
+          "facteur_debit_pct": 1.120004634994197,
+          "kc_sec_pct": 0.8061824208774838,
+          "kc_humide_pct": 0.8000040110360797
+        },
+        "CPJ 42.5": {
+          "prod_humide": 9225.880000000165,
+          "prod_sec": 9109.989117000163,
+          "temps_prod_h": 62.599999999999994,
+          "debit_th": 147.37827476038603,
+          "ces_kwh_t": 31.32233998274369,
+          "cs_fuel_lt": 0.785345137807953,
+          "facteur_debit_pct": 1.016401894899214,
+          "kc_sec_pct": 0.5824013543659718,
+          "kc_humide_pct": 0.5750855202972577
+        },
+        "MIX": {
+          "prod_humide": 19696.990000000078,
+          "prod_sec": 19500.850767000076,
+          "temps_prod_h": 134.51666666666665,
+          "debit_th": 146.42787758642112,
+          "ces_kwh_t": 32.050856501424725,
+          "cs_fuel_lt": 0.4705642841875798,
+          "facteur_debit_pct": 1.065377735671388,
+          "kc_sec_pct": 0.7016411829146552,
+          "kc_humide_pct": 0.6946543608947376
+        }
+      },
+      "consommation": {
+        "clinker": 369108.4228840912,
+        "gypse": 60951.329060000186,
+        "granite": 63961.00961111091,
+        "pouzzolane": 60,
+        "fuel": 293869.5958176494,
+        "gasoil": 75333.89981500001
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 7373,
+        "CPA 42,5 SAC": 534,
+        "CPA 52,5 SAC": 10517,
+        "CPA 42,5 VRAC": 684.72,
+        "CPA 52,5 VRAC": 249.74
+      }
+    }
+  },
+  "2026-W07": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1532.8350000000046,
+          "prod_sec": 1523.366951300005,
+          "temps_prod_h": 25.96666666666667,
+          "debit_th": 59.03087291399247,
+          "ces_kwh_t": 57.64906208422807,
+          "cs_gasoil_lt": 1.3701066332774972,
+          "facteur_debit_pct": 0.7870783055198995,
+          "kc_sec_pct": 0.5698087567349962,
+          "kc_humide_pct": 0.5665319489703758
+        },
+        "CPJ 32.5": {
+          "prod_humide": 8251.368000000006,
+          "prod_sec": 8184.409117200006,
+          "temps_prod_h": 139.95333333333332,
+          "debit_th": 58.95799552231701,
+          "ces_kwh_t": 46.5593764476535,
+          "cs_gasoil_lt": 1.8136497416930994,
+          "facteur_debit_pct": 0.7861066069642269,
+          "kc_sec_pct": 0.47442889550779666,
+          "kc_humide_pct": 0.4707807238751192
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 9784.20300000001,
+          "prod_sec": 9707.77606850001,
+          "temps_prod_h": 165.92,
+          "debit_th": 58.96940091610421,
+          "ces_kwh_t": 48.296733929171296,
+          "cs_gasoil_lt": 1.7441623853301713,
+          "facteur_debit_pct": 0.8629668426746958,
+          "kc_sec_pct": 0.4893961266622692,
+          "kc_humide_pct": 0.4857815194553916
+        }
+      },
+      "consommation": {
+        "clinker": 41811.67975617817,
+        "gypse": 6008.960614201955,
+        "granite": 13054.72614285715,
+        "pouzzolane": 1082.16,
+        "laitier": 1724.04
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 9965,
+        "CPJ 42,5 SAC": 2541,
+        "CPJ 42,5 VRAC": 147.44,
+        "CHF VRAC": 0.009319526627218935
+      }
+    }
+  },
+  "2026-W08": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0
+        },
+        "CPJ 42.5": {
+          "prod_humide": 1171.2340000000095,
+          "prod_sec": 1159.37535480001,
+          "temps_prod_h": 18.149999999999995,
+          "debit_th": 64.53079889807216,
+          "ces_kwh_t": 45.655545097857136,
+          "cs_gasoil_lt": 2.6513453557474365,
+          "facteur_debit_pct": 0.8604106519742956,
+          "kc_sec_pct": 0.5762169874664702,
+          "kc_humide_pct": 0.5705947744003436
+        },
+        "CPJ 32.5": {
+          "prod_humide": 10273.635999999986,
+          "prod_sec": 10159.345991499984,
+          "temps_prod_h": 160.66000000000003,
+          "debit_th": 63.9464459106186,
+          "ces_kwh_t": 46.068526594952026,
+          "cs_gasoil_lt": 1.1498139077170157,
+          "facteur_debit_pct": 0.852619278808248,
+          "kc_sec_pct": 0.4799047521725218,
+          "kc_humide_pct": 0.47474234049172026
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "kc_sec_pct": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 11444.869999999995,
+          "prod_sec": 11318.721346299993,
+          "temps_prod_h": 178.81000000000003,
+          "debit_th": 64.0057603042335,
+          "ces_kwh_t": 46.026263295258055,
+          "cs_gasoil_lt": 1.3034761759649276,
+          "facteur_debit_pct": 0.9366696629887831,
+          "kc_sec_pct": 0.48977000360412504,
+          "kc_humide_pct": 0.4845515938582097
+        }
+      },
+      "consommation": {
+        "clinker": 49827.17446277615,
+        "gypse": 5090.2016543135605,
+        "granite": 15100.265542857123,
+        "pouzzolane": 1022.1,
+        "laitier": 1724.04,
+        "argile": 862.02,
+        "gasoil": 40131.842984271774
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 10972,
+        "CPJ 42,5 SAC": 2541,
+        "CPJ 42,5 VRAC": 379.94,
+        "CHF VRAC": 0.009319526627218935
+      }
+    }
+  },
+  "2026-W09": {
+    "DEX 1": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 821.2270000000426,
+          "prod_sec": 817.6884689000426,
+          "temps_prod_h": 15.766666666666666,
+          "debit_th": 52.08627906977015,
+          "ces_kwh_t": 52.459858127786084,
+          "cs_gasoil_lt": 1.464820835911248,
+          "facteur_debit_pct": 0.7440897009967165,
+          "kc_sec_pct": 0.7984111938681557,
+          "kc_humide_pct": 0.7953951830614517
+        },
+        "CPJ 42.5": {
+          "prod_humide": 2814.382999999967,
+          "prod_sec": 2786.0291499999676,
+          "temps_prod_h": 45.3,
+          "debit_th": 62.12766004414939,
+          "ces_kwh_t": 49.75882634044956,
+          "cs_gasoil_lt": 2.392552826234038,
+          "facteur_debit_pct": 0.8283688005886585,
+          "kc_sec_pct": 0.5844271753820838,
+          "kc_humide_pct": 0.5788480103809542
+        },
+        "CPJ 32.5": {
+          "prod_humide": 3603.8889999999974,
+          "prod_sec": 3559.440416299997,
+          "temps_prod_h": 57.93666666666667,
+          "debit_th": 62.20394108509287,
+          "ces_kwh_t": 49.90941955670079,
+          "cs_gasoil_lt": 2.3500612359423,
+          "facteur_debit_pct": 0.8293858811345717,
+          "kc_sec_pct": 0.49944405788965973,
+          "kc_humide_pct": 0.4935473872807954
+        },
+        "CHF": {
+          "prod_humide": 0,
+          "prod_sec": 0,
+          "temps_prod_h": 0,
+          "debit_th": 0,
+          "facteur_debit_pct": 0,
+          "kc_sec_pct": 0
+        },
+        "MIX": {
+          "prod_humide": 7239.499000000007,
+          "prod_sec": 7163.158035200007,
+          "temps_prod_h": 119.00333333333333,
+          "debit_th": 60.83442200498592,
+          "ces_kwh_t": 50.14018994960836,
+          "cs_gasoil_lt": 2.2661609952438337,
+          "facteur_debit_pct": 0.8902598342193062,
+          "kc_sec_pct": 0.5666249604883019,
+          "kc_humide_pct": 0.5609490380480743
+        }
+      },
+      "consommation": {
+        "clinker": 59548.40769976314,
+        "gypse": 7916.769574584121,
+        "granite": 10383.606900000013,
+        "pouzzolane": 1022.1,
+        "laitier": 1724.04,
+        "gasoil": 32670.436253649208
+      },
+      "expedition": {
+        "CPJ 32,5 SAC": 3441,
+        "CPJ 42,5 SAC": 6362,
+        "CPJ 42,5 VRAC": 599.61
+      }
+    },
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 7347.270000000077,
+          "prod_sec": 7290.580109833409,
+          "temps_prod_h": 53.216666666666676,
+          "debit_th": 138.06332602568258,
+          "ces_kwh_t": 31.744804532839996,
+          "cs_fuel_lt": 0.28984915485613544,
+          "facteur_debit_pct": 1.062025584812943,
+          "kc_sec_pct": 0.8062184231501923,
+          "kc_humide_pct": 0.7999978223203973
+        },
+        "CPJ 42.5": {
+          "prod_humide": 8112.079999999929,
+          "prod_sec": 7993.001902666598,
+          "temps_prod_h": 58.1,
+          "debit_th": 139.62271944922423,
+          "ces_kwh_t": 29.378177360184118,
+          "cs_fuel_lt": 0.8887979408487461,
+          "facteur_debit_pct": 0.962915306546374,
+          "kc_sec_pct": 0.5847615272605748,
+          "kc_humide_pct": 0.5761777497263391
+        },
+        "MIX": {
+          "prod_humide": 15459.350000000006,
+          "prod_sec": 15283.582012500006,
+          "temps_prod_h": 111.31666666666668,
+          "debit_th": 138.87722712980988,
+          "ces_kwh_t": 30.50294967123468,
+          "cs_fuel_lt": 0.6041392425942934,
+          "facteur_debit_pct": 1.0097674380905701,
+          "kc_sec_pct": 0.690400980043162,
+          "kc_humide_pct": 0.682551336246352
+        }
+      },
+      "consommation": {
+        "clinker": 414244.5526250013,
+        "gypse": 71187.85749300031,
+        "granite": 89147.17989444404,
+        "pouzzolane": 100,
+        "fuel": 332414.25002941675,
+        "gasoil": 134497.20851
+      },
+      "expedition": {}
+    }
+  },
+  "2025-W44": {
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 10720.219999999943,
+          "prod_sec": 10611.043207999943,
+          "temps_prod_h": 69.17,
+          "debit_th": 154.9836634379058,
+          "ces_kwh_t": 31.376039857391113,
+          "cs_fuel_lt": 0.0911361893692485,
+          "facteur_debit_pct": 1.1921820264454293,
+          "kc_sec_pct": 0.8083041254165817,
+          "kc_humide_pct": 0.8000722000108206
+        },
+        "CPJ 42.5": {
+          "prod_humide": 2373.4400000000896,
+          "prod_sec": 2321.0318600000896,
+          "temps_prod_h": 15.116666666666665,
+          "debit_th": 157.0081587651658,
+          "ces_kwh_t": 32.05903667250797,
+          "cs_fuel_lt": 1.193373331535577,
+          "facteur_debit_pct": 1.0828148880356263,
+          "kc_sec_pct": 0.5907286425616063,
+          "kc_humide_pct": 0.5776847107995321
+        },
+        "MIX": {
+          "prod_humide": 13093.660000000033,
+          "prod_sec": 12932.075068000033,
+          "temps_prod_h": 84.28666666666666,
+          "debit_th": 155.34675314403268,
+          "ces_kwh_t": 31.499844199406343,
+          "cs_fuel_lt": 0.29093469663943444,
+          "facteur_debit_pct": 1.1345157171020785,
+          "kc_sec_pct": 0.7692539633191697,
+          "kc_humide_pct": 0.7597608308143041
+        }
+      },
+      "consommation": {
+        "clinker": 833199.5434911766,
+        "gypse": 215822.4370320993,
+        "granite": 169675.13630942287,
+        "pouzzolane": 141.61601270851878,
+        "calcaire": 896.3207820512584,
+        "msa": 35.766724685401975,
+        "laitier": 220.30000000005828,
+        "fuel": 469030.02302222577,
+        "gasoil": 201703.92000000004
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 680,
+        "CPA 42,5 SAC": 10,
+        "CPA 52,5 SAC": 2640
+      }
+    }
+  },
+  "2025-W40": {
+    "DEX 2": {
+      "production": {
+        "CPA 52.5": {
+          "prod_humide": 4503.409999999763,
+          "prod_sec": 4475.844973333098,
+          "temps_prod_h": 30.416666666666668,
+          "debit_th": 148.05731506848537,
+          "ces_kwh_t": 33.270488363264285,
+          "cs_fuel_lt": 0.03381881729623876,
+          "facteur_debit_pct": 1.1389024236037335,
+          "kc_sec_pct": 0.8304040962419568,
+          "kc_humide_pct": 0.8253212565589124
+        },
+        "CPJ 42.5": {
+          "prod_humide": 5702.830000000104,
+          "prod_sec": 5600.797915200105,
+          "temps_prod_h": 37.88333333333334,
+          "debit_th": 150.53664760229043,
+          "ces_kwh_t": 31.930225870312945,
+          "cs_fuel_lt": 0.7036331084741927,
+          "facteur_debit_pct": 1.0381837765675201,
+          "kc_sec_pct": 0.6257394130377076,
+          "kc_humide_pct": 0.6145440070982419
+        },
+        "MIX": {
+          "prod_humide": 10206.239999999867,
+          "prod_sec": 10076.642888533202,
+          "temps_prod_h": 68.30000000000001,
+          "debit_th": 149.43250366032012,
+          "ces_kwh_t": 32.52160443023136,
+          "cs_fuel_lt": 0.40808368213955915,
+          "facteur_debit_pct": 1.08579622789373,
+          "kc_sec_pct": 0.7166474072647308,
+          "kc_humide_pct": 0.7075475395444356
+        }
+      },
+      "consommation": {
+        "clinker": 912040.1401328377,
+        "gypse": 242474.3461049388,
+        "granite": 212598.03000050306,
+        "pouzzolane": 106.01693502889512,
+        "calcaire": 12236.863756410194,
+        "msa": 0.33529401155662614,
+        "laitier": 199.72000000002038,
+        "fuel": 286773.0729444485,
+        "gasoil": 185499.25999999998
+      },
+      "expedition": {
+        "CPJ 42,5 SAC": 855,
+        "CPA 42,5 SAC": 120,
+        "CPA 52,5 SAC": 5772,
+        "CPA 42,5 VRAC": 32.8
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# System packages for Streamlit Cloud (Debian).
+# The app runs fine with NOTHING here — OCR/PDF libs are only needed if you
+# later add ibid_universal_collector.py with image-OCR support. Uncomment then:
+# tesseract-ocr
+# tesseract-ocr-fra

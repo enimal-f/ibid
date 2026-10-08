@@ -1,0 +1,158 @@
+{
+ "_meta": {
+  "source": "PRODUCTION MOYENNE 2024/2025 SITE 1.xlsx — facteurs de formulation mesurés au labo",
+  "kc_source": "facteur clinker mesuré (réel)",
+  "features": [
+   "blaine",
+   "so3",
+   "paf",
+   "res_insoluble",
+   "refus_45um",
+   "humidite",
+   "kc"
+  ],
+  "standardized": true,
+  "generated": "2026-08-18"
+ },
+ "CPJ 32.5": {
+  "resistance_2j": {
+   "r2": 0.7723,
+   "rmse": 1.17,
+   "n": 45,
+   "intercept": 10.853,
+   "coefficients": {
+    "blaine": -0.5761,
+    "so3": -0.4153,
+    "paf": -1.8631,
+    "res_insoluble": -2.0582,
+    "refus_45um": -1.4204,
+    "humidite": -0.2668,
+    "kc": -0.3697
+   }
+  },
+  "resistance_7j": {
+   "r2": 0.7937,
+   "rmse": 1.432,
+   "n": 45,
+   "intercept": 19.171,
+   "coefficients": {
+    "blaine": -0.9666,
+    "so3": -0.2985,
+    "paf": -2.0022,
+    "res_insoluble": -3.0121,
+    "refus_45um": -2.0442,
+    "humidite": -0.6252,
+    "kc": -0.713
+   }
+  },
+  "resistance_28j": {
+   "r2": 0.736,
+   "rmse": 1.698,
+   "n": 45,
+   "intercept": 28.042,
+   "coefficients": {
+    "blaine": -0.844,
+    "so3": -0.034,
+    "paf": -1.7421,
+    "res_insoluble": -3.0069,
+    "refus_45um": -1.9887,
+    "humidite": -0.5478,
+    "kc": -1.2176
+   }
+  }
+ },
+ "CPJ 42.5": {
+  "resistance_2j": {
+   "r2": 0.4575,
+   "rmse": 1.677,
+   "n": 920,
+   "intercept": 14.891,
+   "coefficients": {
+    "blaine": 0.4518,
+    "so3": -0.1834,
+    "paf": -0.686,
+    "res_insoluble": -1.2355,
+    "refus_45um": -0.2029,
+    "humidite": 0.3143,
+    "kc": -0.0209
+   }
+  },
+  "resistance_7j": {
+   "r2": 0.5127,
+   "rmse": 2.057,
+   "n": 920,
+   "intercept": 24.541,
+   "coefficients": {
+    "blaine": 0.7316,
+    "so3": -0.087,
+    "paf": -0.7899,
+    "res_insoluble": -1.6386,
+    "refus_45um": -0.1802,
+    "humidite": 0.5079,
+    "kc": -0.0134
+   }
+  },
+  "resistance_28j": {
+   "r2": 0.6138,
+   "rmse": 2.233,
+   "n": 920,
+   "intercept": 34.323,
+   "coefficients": {
+    "blaine": 0.9207,
+    "so3": 0.0134,
+    "paf": -0.8096,
+    "res_insoluble": -2.24,
+    "refus_45um": -0.1759,
+    "humidite": 0.5948,
+    "kc": 0.0319
+   }
+  }
+ },
+ "CPA 52.5": {
+  "resistance_2j": {
+   "r2": 0.6198,
+   "rmse": 1.167,
+   "n": 36,
+   "intercept": 22.942,
+   "coefficients": {
+    "blaine": 1.5136,
+    "so3": 0.2146,
+    "paf": 0.254,
+    "res_insoluble": 0.1154,
+    "refus_45um": 2.2305,
+    "humidite": 0.0586,
+    "kc": 0.6578
+   }
+  },
+  "resistance_7j": {
+   "r2": 0.6947,
+   "rmse": 1.328,
+   "n": 36,
+   "intercept": 37.392,
+   "coefficients": {
+    "blaine": 1.2617,
+    "so3": 0.0094,
+    "paf": 0.3279,
+    "res_insoluble": -0.3448,
+    "refus_45um": 2.3274,
+    "humidite": -0.1299,
+    "kc": 0.6344
+   }
+  },
+  "resistance_28j": {
+   "r2": 0.6479,
+   "rmse": 1.595,
+   "n": 36,
+   "intercept": 50.564,
+   "coefficients": {
+    "blaine": 0.381,
+    "so3": -0.0575,
+    "paf": 0.0821,
+    "res_insoluble": 0.1352,
+    "refus_45um": 0.9353,
+    "humidite": 0.0836,
+    "kc": 1.727
+   }
+  }
+ }
+}

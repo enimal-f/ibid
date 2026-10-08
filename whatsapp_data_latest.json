@@ -1,0 +1,1457 @@
+{
+ "commercial": [
+  {
+   "date": "2026-03-09",
+   "orders_t": 3887.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-10",
+   "orders_t": 3450.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-11",
+   "orders_t": 3876.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-12",
+   "orders_t": 5889.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-13",
+   "orders_t": 3589.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-14",
+   "orders_t": 3811.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-19",
+   "orders_t": 2739.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-23",
+   "orders_t": 5334.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-24",
+   "orders_t": 6093.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-25",
+   "orders_t": 6845.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-26",
+   "orders_t": 5087.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-27",
+   "orders_t": 6593.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-28",
+   "orders_t": 4120.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-30",
+   "orders_t": 9569.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-03-31",
+   "orders_t": 8073.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-07",
+   "orders_t": 5120.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-08",
+   "orders_t": 6842.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-09",
+   "orders_t": 5327.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-10",
+   "orders_t": 6429.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-11",
+   "orders_t": 6104.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-13",
+   "orders_t": 6123.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-16",
+   "orders_t": 4926.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-17",
+   "orders_t": 6473.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-18",
+   "orders_t": 3807.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-20",
+   "orders_t": 5457.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-21",
+   "orders_t": 5156.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-22",
+   "orders_t": 5624.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-23",
+   "orders_t": 4785.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-24",
+   "orders_t": 5054.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-25",
+   "orders_t": 3032.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-27",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-28",
+   "orders_t": 4036.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-29",
+   "orders_t": 3114.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-30",
+   "orders_t": 4369.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-04-30",
+   "orders_t": 3681.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-06",
+   "orders_t": 5122.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-08",
+   "orders_t": 4324.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-09",
+   "orders_t": 2982.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-11",
+   "orders_t": 4341.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-12",
+   "orders_t": 5043.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-13",
+   "orders_t": 4214.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-15",
+   "orders_t": 5135.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-16",
+   "orders_t": 4207.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-18",
+   "orders_t": 5178.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-18",
+   "orders_t": 5178.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-19",
+   "orders_t": 4633.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-20",
+   "orders_t": 5074.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-21",
+   "orders_t": 4622.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-22",
+   "orders_t": 3733.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-23",
+   "orders_t": 2403.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-05-26",
+   "orders_t": 2160.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-02",
+   "orders_t": 4127.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-03",
+   "orders_t": 4077.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-05",
+   "orders_t": 4077.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-06",
+   "orders_t": 4077.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-08",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-09",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-10",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-11",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-12",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-13",
+   "orders_t": 4187.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-18",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-18",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-19",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-20",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-22",
+   "orders_t": 4386.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-23",
+   "orders_t": 3007.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-24",
+   "orders_t": 3007.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-06-25",
+   "orders_t": 3007.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-08",
+   "orders_t": 1635.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-10",
+   "orders_t": 1635.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-11",
+   "orders_t": 1635.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-13",
+   "orders_t": 4042.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-14",
+   "orders_t": 4042.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-16",
+   "orders_t": 4042.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-18",
+   "orders_t": 4042.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-20",
+   "orders_t": 4042.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-21",
+   "orders_t": 3561.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-22",
+   "orders_t": 3561.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-23",
+   "orders_t": 3561.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-23",
+   "orders_t": 4000.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-24",
+   "orders_t": 3561.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-25",
+   "orders_t": 3561.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-27",
+   "orders_t": 5179.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-28",
+   "orders_t": 5179.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-29",
+   "orders_t": 5179.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-29",
+   "orders_t": 5179.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-07-31",
+   "orders_t": 5179.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-14",
+   "orders_t": 3566.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-15",
+   "orders_t": 3805.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-16",
+   "orders_t": 3212.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-17",
+   "orders_t": 3295.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-18",
+   "orders_t": 3698.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-19",
+   "orders_t": 2405.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-21",
+   "orders_t": 3797.0,
+   "source": "whatsapp_commercial"
+  }
+ ],
+ "production": [
+  {
+   "date": "2026-03-04",
+   "expedie_t": 2045.82,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-05",
+   "expedie_t": 2727.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-06",
+   "expedie_t": 1837.6,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-07",
+   "expedie_t": 1754.14,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-09",
+   "expedie_t": 1919.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-10",
+   "expedie_t": 2261.26,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-11",
+   "expedie_t": 2077.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-12",
+   "expedie_t": 4521.44,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-13",
+   "expedie_t": 3362.9,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-14",
+   "expedie_t": 3039.4,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-15",
+   "expedie_t": 4090.44,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-16",
+   "expedie_t": 4322.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-17",
+   "expedie_t": 2954.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-18",
+   "expedie_t": 2858.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-19",
+   "expedie_t": 2510.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-20",
+   "expedie_t": 1894.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-21",
+   "expedie_t": 4657.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-22",
+   "expedie_t": 2572.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-23",
+   "expedie_t": 1127.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-24",
+   "expedie_t": 4889.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-25",
+   "expedie_t": 5393.68,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-26",
+   "expedie_t": 5771.3,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-27",
+   "expedie_t": 5434.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-28",
+   "expedie_t": 4716.44,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-29",
+   "expedie_t": 4934.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-30",
+   "expedie_t": 4779.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-03-31",
+   "expedie_t": 4624.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-01",
+   "expedie_t": 3573.24,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-02",
+   "expedie_t": 5085.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-03",
+   "expedie_t": 5432.92,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-04",
+   "expedie_t": 4185.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-05",
+   "expedie_t": 5382.12,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-06",
+   "expedie_t": 4485.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-07",
+   "expedie_t": 1545.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-08",
+   "expedie_t": 4624.52,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-09",
+   "expedie_t": 5311.22,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-10",
+   "expedie_t": 4698.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-11",
+   "expedie_t": 5425.78,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-12",
+   "expedie_t": 5734.38,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-13",
+   "expedie_t": 3415.54,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-14",
+   "expedie_t": 4301.2,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-15",
+   "expedie_t": 4448.84,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-16",
+   "expedie_t": 4668.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-17",
+   "expedie_t": 4399.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-18",
+   "expedie_t": 4919.66,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-19",
+   "expedie_t": 5215.56,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-20",
+   "expedie_t": 1884.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-21",
+   "expedie_t": 4286.04,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-22",
+   "expedie_t": 4028.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-23",
+   "expedie_t": 4458.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-24",
+   "expedie_t": 3374.42,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-25",
+   "expedie_t": 4674.1,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-26",
+   "expedie_t": 5333.9,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-27",
+   "expedie_t": 1719.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-28",
+   "expedie_t": 5060.98,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-29",
+   "expedie_t": 5176.12,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-04-30",
+   "expedie_t": 4045.28,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-01",
+   "expedie_t": 4230.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-03",
+   "expedie_t": 4707.54,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-04",
+   "expedie_t": 1401.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-05",
+   "expedie_t": 3098.44,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-06",
+   "expedie_t": 4363.78,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-07",
+   "expedie_t": 3432.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-08",
+   "expedie_t": 3814.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-10",
+   "expedie_t": 3379.14,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-11",
+   "expedie_t": 2480.88,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-12",
+   "expedie_t": 4019.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-13",
+   "expedie_t": 1799.3,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-14",
+   "expedie_t": 2525.42,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-15",
+   "expedie_t": 3431.78,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-16",
+   "expedie_t": 4246.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-17",
+   "expedie_t": 4341.68,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-18",
+   "expedie_t": 2705.16,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-19",
+   "expedie_t": 4244.16,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-20",
+   "expedie_t": 3049.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-21",
+   "expedie_t": 4034.48,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-22",
+   "expedie_t": 4521.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-23",
+   "expedie_t": 3377.06,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-24",
+   "expedie_t": 1527.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-25",
+   "expedie_t": 3337.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-26",
+   "expedie_t": 3795.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-27",
+   "expedie_t": 2320.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-28",
+   "expedie_t": 655.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-05-30",
+   "expedie_t": 2287.22,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-01",
+   "expedie_t": 1075.18,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-02",
+   "expedie_t": 3464.22,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-03",
+   "expedie_t": 3552.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-04",
+   "expedie_t": 3499.54,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-05",
+   "expedie_t": 3028.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-06",
+   "expedie_t": 3077.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-07",
+   "expedie_t": 2057.16,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-08",
+   "expedie_t": 2372.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-09",
+   "expedie_t": 3053.6,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-10",
+   "expedie_t": 3107.36,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-11",
+   "expedie_t": 3895.44,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-13",
+   "expedie_t": 4441.56,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-14",
+   "expedie_t": 2912.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-15",
+   "expedie_t": 1188.04,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-16",
+   "expedie_t": 1382.9,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-17",
+   "expedie_t": 2851.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-18",
+   "expedie_t": 3270.98,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-19",
+   "expedie_t": 3215.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-20",
+   "expedie_t": 3016.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-21",
+   "expedie_t": 3306.66,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-22",
+   "expedie_t": 275.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-23",
+   "expedie_t": 2806.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-24",
+   "expedie_t": 1980.88,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-25",
+   "expedie_t": 3647.48,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-26",
+   "expedie_t": 3113.6,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-27",
+   "expedie_t": 3046.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-28",
+   "expedie_t": 807.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-29",
+   "expedie_t": 274.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-06-30",
+   "expedie_t": 3054.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-01",
+   "expedie_t": 1650.06,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-02",
+   "expedie_t": 3829.02,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-03",
+   "expedie_t": 3348.56,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-04",
+   "expedie_t": 2818.3,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-05",
+   "expedie_t": 3031.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-06",
+   "expedie_t": 2741.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-08",
+   "expedie_t": 3554.12,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-09",
+   "expedie_t": 3190.4,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-10",
+   "expedie_t": 4801.5,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-11",
+   "expedie_t": 3117.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-12",
+   "expedie_t": 1297.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-13",
+   "expedie_t": 2741.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-14",
+   "expedie_t": 2897.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-15",
+   "expedie_t": 3016.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-16",
+   "expedie_t": 3501.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-17",
+   "expedie_t": 4041.26,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-18",
+   "expedie_t": 3977.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-19",
+   "expedie_t": 2828.14,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-20",
+   "expedie_t": 3786.98,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-21",
+   "expedie_t": 3020.6,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-22",
+   "expedie_t": 2449.4,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-23",
+   "expedie_t": 3441.7,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-24",
+   "expedie_t": 5067.96,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-25",
+   "expedie_t": 4226.92,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-26",
+   "expedie_t": 1125.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-27",
+   "expedie_t": 2611.92,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-28",
+   "expedie_t": 3418.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-29",
+   "expedie_t": 3600.48,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-30",
+   "expedie_t": 1990.54,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-07-31",
+   "expedie_t": 2134.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-01",
+   "expedie_t": 5686.6,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-02",
+   "expedie_t": 921.22,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-03",
+   "expedie_t": 3064.48,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-05",
+   "expedie_t": 3557.82,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-06",
+   "expedie_t": 2783.16,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-07",
+   "expedie_t": 1240.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-08",
+   "expedie_t": 2886.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-09",
+   "expedie_t": 913.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-10",
+   "expedie_t": 4141.76,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-11",
+   "expedie_t": 3403.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-12",
+   "expedie_t": 3660.82,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-13",
+   "expedie_t": 1483.72,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-14",
+   "expedie_t": 2929.75,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-15",
+   "expedie_t": 1957.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-16",
+   "expedie_t": 1125.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-17",
+   "expedie_t": 2436.04,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-18",
+   "expedie_t": 2921.64,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-19",
+   "expedie_t": 3341.56,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-20",
+   "expedie_t": 2623.76,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-21",
+   "expedie_t": 3846.92,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-22",
+   "expedie_t": 3647.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-23",
+   "expedie_t": 730.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-24",
+   "expedie_t": 3269.78,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-25",
+   "expedie_t": 2406.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-26",
+   "expedie_t": 3131.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-27",
+   "expedie_t": 4025.28,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-28",
+   "expedie_t": 3173.86,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-29",
+   "expedie_t": 2858.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-30",
+   "expedie_t": 1600.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-08-31",
+   "expedie_t": 1748.98,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-01",
+   "expedie_t": 4635.32,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-02",
+   "expedie_t": 4100.08,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-03",
+   "expedie_t": 4208.28,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-04",
+   "expedie_t": 3347.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-05",
+   "expedie_t": 4042.94,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-06",
+   "expedie_t": 670.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-07",
+   "expedie_t": 2529.28,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-08",
+   "expedie_t": 3957.8,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-09",
+   "expedie_t": 3638.38,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-10",
+   "expedie_t": 3369.74,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-11",
+   "expedie_t": 3651.98,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-12",
+   "expedie_t": 2758.38,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-13",
+   "expedie_t": 20.0,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-14",
+   "expedie_t": 3449.58,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-15",
+   "expedie_t": 3684.42,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-16",
+   "expedie_t": 3343.66,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-17",
+   "expedie_t": 3197.76,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-18",
+   "expedie_t": 2874.46,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-19",
+   "expedie_t": 2328.16,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-20",
+   "expedie_t": 363.82,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-09-21",
+   "expedie_t": 3672.98,
+   "source": "whatsapp_production"
+  }
+ ],
+ "meta": {
+  "parsed_at": "2026-09-23T00:00:00",
+  "commercial_file": "WhatsApp Chat with Suivi commercial SC-CI(4).txt",
+  "production_file": "WhatsApp Chat with Suivi production et maintenance .txt",
+  "note": "Dates = date du rapport dans le corps du message (jour J-1), fallback date du message. MTD disponible dans daily_data (whatsapp_mtd)."
+ }
+}
