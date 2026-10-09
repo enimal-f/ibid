@@ -727,7 +727,7 @@ st.set_page_config(
 
     page_title="I-BiD",
 
-    page_icon="🎯",
+    page_icon="I_BID Logo orange.png",
 
     layout="wide",
 
