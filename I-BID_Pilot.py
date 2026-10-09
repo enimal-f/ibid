@@ -727,7 +727,7 @@ st.set_page_config(
 
     page_title="I-BiD",
 
-    page_icon="I_BID Logo orange.png",
+    page_icon="https://raw.githubusercontent.com/enimal-f/ibid/main/I_BID%20Logo%20orange.png",
 
     layout="wide",
 
