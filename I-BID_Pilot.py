@@ -38,7 +38,7 @@ import streamlit as st
 from PIL import Image
 
 # Load your custom image file
-app_icon = Image.open("https://raw.githubusercontent.com/enimal-f/ibid/main/I_BID%20Logo%20orange.png")
+app_icon = Image.open("I-BID favicon.png")
 
 st.set_page_config(
     page_title="i-BiD",
