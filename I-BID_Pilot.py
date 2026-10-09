@@ -35,15 +35,6 @@ import base64
 import json
 
 import streamlit as st
-from PIL import Image
-
-# Load your custom image file
-app_icon = Image.open("I-BID favicon.png")
-
-st.set_page_config(
-    page_title="i-BiD",
-    page_icon=app_icon # Pass the PIL Image object
-)
 import streamlit.components.v1 as components
 
 import pandas as pd
@@ -736,7 +727,7 @@ st.set_page_config(
 
     page_title="I-BiD",
 
-    page_icon="https://raw.githubusercontent.com/enimal-f/ibid/main/I_BID%20Logo%20orange.png",
+    page_icon="I_BID Logo orange.png",
 
     layout="wide",
 
