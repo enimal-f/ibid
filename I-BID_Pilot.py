@@ -1401,6 +1401,28 @@ div[data-testid="stExpander"] button {
 
 .stTabs [aria-selected="true"] { background: #0B1F3A !important; color: white !important; }
 
+/* Sous-navigation Donnees Modele stylee comme les onglets Donnees Historiques */
+
+div[data-testid="stRadio"].ibid-subnav { background: #0d1526 !important; border-radius: 12px !important; padding: 4px 12px 0 !important; }
+
+div[data-testid="stRadio"].ibid-subnav div[role="radiogroup"] { display: flex !important; flex-wrap: nowrap !important; gap: 2px !important; width: 100% !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"] { background: transparent !important; border: none !important; border-bottom: 3px solid transparent !important; border-radius: 8px 8px 0 0 !important; box-shadow: none !important; padding: 10px 10px 8px !important; margin: 0 !important; flex: 1 1 0 !important; min-width: 0 !important; justify-content: center !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"] p { color: #c7d0dd !important; font-weight: 600 !important; font-size: 0.85rem !important; white-space: nowrap !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"]:hover { background: rgba(255, 255, 255, 0.04) !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"][data-selected="true"] { background: rgba(255, 255, 255, 0.06) !important; border-bottom: 3px solid #F58220 !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"][data-selected="true"] p { color: #ffffff !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"] input[type="radio"] { display: none !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"] svg { display: none !important; }
+
+div[data-testid="stRadio"].ibid-subnav [data-testid="stRadioOption"] > div > div:first-child { display: none !important; }
+
 .metric-box { background: #ffffff; border-radius: 10px; padding: 12px 10px; text-align: center; position: relative; overflow: visible; border: 1px solid #E6E9ED; height: 100%; min-height: 95px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
 .metric-box .label { font-size: 0.72rem; color: #5B6770; text-transform: uppercase; font-weight: 600; line-height: 1.2; white-space: normal; word-break: break-word; }
@@ -5633,6 +5655,86 @@ def treasury_daily_flow(enc_data=None, dec_data=None):
         dec = sum(site.get("total_jour", 0) for site in (dec_data.get(d) or {}).values())
         flow[d] = {"encaisse": enc, "decaisse": dec, "net": enc - dec}
     return flow
+
+
+# ============================================================
+# DONNÉES D'EXEMPLE 2026 — extension automatique des templates
+# ============================================================
+# Génère des flux d'exemple réalistes sur toute l'année 2026 (déterministe,
+# seed fixe) pour couvrir toute plage de dates sélectionnable dans les vues
+# journalières / hebdomadaires / mensuelles / annuelles. Dès que des flux
+# réels sont intégrés via daily_data.json, ils prennent le pas sur ces
+# exemples (voir treasury_data_source).
+
+def _treasury_split(total, items, rng):
+    """Répartit `total` entre des dimensions (clé, poids). Les poids négatifs
+    produisent des montants négatifs (ex. avoirs remboursés). La somme des
+    montants retournés vaut exactement `total`."""
+    pos = [(k, w) for k, w in items if w > 0]
+    neg = [(k, w) for k, w in items if w < 0]
+    base = total * (1 + sum(-w for _, w in neg))
+    wsum = sum(w for _, w in pos) or 1
+    raw = {k: base * (w / wsum) * (0.8 + 0.4 * rng.random()) for k, w in pos}
+    s = sum(raw.values()) or 1
+    out = {k: round(v / s * base, 0) for k, v in raw.items()}
+    out[pos[0][0]] = round(out[pos[0][0]] + round(base - sum(out.values()), 0), 0)
+    for k, w in neg:
+        out[k] = -round(total * (-w), 0)
+    return out
+
+
+def _generate_treasury_example_year(year=2026):
+    import random as _rnd
+    from datetime import timedelta as _td
+    _rng = _rnd.Random(f"ibid-treo-{year}")
+    _enc_out, _dec_out = {}, {}
+    _enc_cats = [("ventes_ciment", 0.84), ("prestations_services", 0.05),
+                 ("avoirs_rembourses", -0.02), ("autres", 0.06)]
+    _canaux = [("banque", 0.68), ("mobile_money", 0.24), ("especes", 0.08)]
+    _dec_cats = [("matieres_premieres", 0.38), ("energie", 0.18), ("salaires_charges", 0.16),
+                 ("maintenance", 0.09), ("logistique", 0.08), ("administration", 0.06), ("autres", 0.05)]
+    _services = [("broyage", 0.42), ("expedition", 0.22), ("maintenance", 0.14),
+                 ("laboratoire", 0.08), ("administration", 0.14)]
+    _fournisseurs = [("CIE / CI Energies", 0.20), ("PETROCI / Vivo", 0.16),
+                     ("Fournisseurs clinker & gypse", 0.30), ("Transitaires & transporteurs", 0.14),
+                     ("Fournisseurs consommables", 0.11), ("Prestataires externes", 0.09)]
+    _start = datetime(year, 1, 1)
+    for _off in range(367):
+        _dt = _start + _td(days=_off)
+        if _dt.year != year:
+            break
+        _d = _dt.strftime("%Y-%m-%d")
+        _weekend = 0.55 if _dt.weekday() >= 5 else 1.0
+        _monthend = 1.22 if _dt.day >= 25 else (0.9 if _dt.day <= 3 else 1.0)
+        _rain = 0.92 if _dt.month in (6, 7, 8) else 1.0  # saison des pluies : chantiers au ralenti
+        for _site, _base in (("DEX 1", 225_000_000), ("DEX 2", 285_000_000)):
+            _noise = 0.72 + 0.56 * _rng.random()
+            _tot_e = round(_base * _weekend * _monthend * _rain * _noise, 0)
+            _tot_d = round(_base * 0.82 * _weekend * (1.08 if _dt.day <= 5 else 1.0) * _noise, 0)
+            _prods = [("CPA 52.5", 0.34), ("CPJ 42.5", 0.42),
+                      ("CPJ 32.5", 0.22 if _site == "DEX 1" else 0.0), ("CHF", 0.02)]
+            _enc_out.setdefault(_d, {})[_site] = {
+                "date": _d, "site": _site, "source": "exemple (template généré)",
+                "total_jour": _tot_e,
+                "par_canal": _treasury_split(_tot_e, _canaux, _rng),
+                "par_categorie": _treasury_split(_tot_e, _enc_cats, _rng),
+                "par_produit": _treasury_split(_tot_e, _prods, _rng),
+            }
+            _dec_out.setdefault(_d, {})[_site] = {
+                "date": _d, "site": _site, "source": "exemple (template généré)",
+                "total_jour": _tot_d,
+                "par_categorie": _treasury_split(_tot_d, _dec_cats, _rng),
+                "par_service": _treasury_split(_tot_d, _services, _rng),
+                "par_fournisseur": _treasury_split(_tot_d, _fournisseurs, _rng),
+            }
+    return _enc_out, _dec_out
+
+
+_gen_enc, _gen_dec = _generate_treasury_example_year(2026)
+for _d, _sites in _gen_enc.items():
+    BD_ENCAISSEMENTS_DAILY.setdefault(_d, _sites)
+for _d, _sites in _gen_dec.items():
+    BD_DECAISSEMENTS_DAILY.setdefault(_d, _sites)
 
 
 def treasury_data_source():
@@ -13118,43 +13220,58 @@ def _render_treasury_flow_section(freq="D", expanded=False, filtered_dates=None)
 
         _unit_lbl = {"D": "journaliers", "W": "hebdomadaires", "M": "mensuels", "Y": "annuels"}[freq]
 
-        if _enc_sel == "total" and _dec_sel == "total":
-            fig = _go.Figure()
+        # ── Graphique UNIQUE : encaissements empilés au-dessus de zéro,
+        #    décaissements empilés en dessous (barmode relatif), flux net en ligne.
+        #    Un seul graphique quel que soit le mode de ventilation choisi. ──
+        _enc_lbl = dict(_enc_dims)[_enc_sel]
+        _dec_lbl = dict(_dec_dims)[_dec_sel]
+        _enc_pal = ["#10b981", "#34d399", "#6ee7b7", "#1E4D8F", "#60a5fa", "#14b8a6", "#a7f3d0"]
+        _dec_pal = ["#ef4444", "#f97316", "#f59e0b", "#dc2626", "#fb7185", "#fbbf24", "#c084fc"]
+        _enc_filt = filtered_dates if freq == "D" else None
+
+        fig = _go.Figure()
+
+        def _add_dim_bars(data, dim_key, prefix, palette, sign):
+            _p2, _series = treasury_strat_records(data, dim_key, freq=freq, filtered_dates=_enc_filt)
+            _traces = []
+            for _idx, (_dim, _vals) in enumerate(sorted(_series.items(), key=lambda kv: -max(kv[1]))):
+                _color = "#64748b" if _dim == "Autres" else palette[_idx % len(palette)]
+                _disp = [sign * v for v in _vals]
+                _traces.append(_go.Bar(
+                    name=f"{prefix} · {_dim}", x=_p2, y=_disp,
+                    marker_color=_color, customdata=[abs(v) for v in _vals],
+                    hovertemplate="%{x}<br>" + prefix + " · " + _dim + ": %{customdata:,.0f} FCFA<extra></extra>"))
+            return _traces
+
+        if _enc_sel == "total":
             fig.add_trace(_go.Bar(name="Encaissements", x=periods, y=[r["encaisse"] for r in records],
                                   marker_color="#10b981",
                                   hovertemplate="%{x}<br>Encaissements: %{y:,.0f} FCFA<extra></extra>"))
-            fig.add_trace(_go.Bar(name="Décaissements", x=periods, y=[r["decaisse"] for r in records],
-                                  marker_color="#ef4444",
-                                  hovertemplate="%{x}<br>Décaissements: %{y:,.0f} FCFA<extra></extra>"))
-            fig.add_trace(_go.Scatter(name="Flux net", x=periods, y=[r["net"] for r in records],
-                                      mode="lines+markers", line=dict(color="#F58220", width=2.5),
-                                      hovertemplate="%{x}<br>Flux net: %{y:,.0f} FCFA<extra></extra>"))
-            fig.update_layout(barmode="group", height=420,
-                              title=f"Encaissements vs Décaissements — flux net {_unit_lbl} (FCFA)",
-                              yaxis=dict(title="FCFA", gridcolor="rgba(91,103,112,0.15)"),
-                              xaxis=dict(title="Période", gridcolor="rgba(91,103,112,0.15)"),
-                              legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-                              plot_bgcolor="#0B1F3A", paper_bgcolor="#0B1F3A", font=dict(color="#E6E9ED"))
-            st.plotly_chart(fig, use_container_width=True, key=f"chart_treo_total_{freq}", config={"displayModeBar": False})
         else:
-            if _enc_sel != "total":
-                fig_e = _stacked_figure(enc_data, _enc_sel, f"Encaissements {_unit_lbl} — ventilation ({dict(_enc_dims)[_enc_sel]})", "enc")
-                if fig_e:
-                    st.plotly_chart(fig_e, use_container_width=True, key=f"chart_treo_enc_{freq}", config={"displayModeBar": False})
-            if _dec_sel != "total":
-                fig_d = _stacked_figure(dec_data, _dec_sel, f"Décaissements {_unit_lbl} — ventilation ({dict(_dec_dims)[_dec_sel]})", "dec")
-                if fig_d:
-                    st.plotly_chart(fig_d, use_container_width=True, key=f"chart_treo_dec_{freq}", config={"displayModeBar": False})
-            # Flux net en regard
-            fig_n = _go.Figure()
-            fig_n.add_trace(_go.Scatter(name="Flux net", x=periods, y=[r["net"] for r in records],
-                                        mode="lines+markers", line=dict(color="#F58220", width=2.5),
-                                        hovertemplate="%{x}<br>Flux net: %{y:,.0f} FCFA<extra></extra>"))
-            fig_n.update_layout(height=300, title=f"Flux net {_unit_lbl} (FCFA)",
-                                yaxis=dict(title="FCFA", gridcolor="rgba(91,103,112,0.15)"),
-                                xaxis=dict(title="Période", gridcolor="rgba(91,103,112,0.15)"),
-                                plot_bgcolor="#0B1F3A", paper_bgcolor="#0B1F3A", font=dict(color="#E6E9ED"))
-            st.plotly_chart(fig_n, use_container_width=True, key=f"chart_treo_net_{freq}", config={"displayModeBar": False})
+            for _t in _add_dim_bars(enc_data, _enc_sel, "Enc", _enc_pal, 1):
+                fig.add_trace(_t)
+
+        if _dec_sel == "total":
+            fig.add_trace(_go.Bar(name="Décaissements", x=periods, y=[-r["decaisse"] for r in records],
+                                  marker_color="#ef4444", customdata=[r["decaisse"] for r in records],
+                                  hovertemplate="%{x}<br>Décaissements: %{customdata:,.0f} FCFA<extra></extra>"))
+        else:
+            for _t in _add_dim_bars(dec_data, _dec_sel, "Déc", _dec_pal, -1):
+                fig.add_trace(_t)
+
+        fig.add_trace(_go.Scatter(name="Flux net", x=periods, y=[r["net"] for r in records],
+                                  mode="lines+markers", line=dict(color="#F58220", width=2.5),
+                                  hovertemplate="%{x}<br>Flux net: %{y:,.0f} FCFA<extra></extra>"))
+        _ttl_enc = "Total" if _enc_sel == "total" else _enc_lbl
+        _ttl_dec = "Total" if _dec_sel == "total" else _dec_lbl
+        fig.update_layout(barmode="relative", height=460, bargap=0.25,
+                          title=f"Encaissements vs Décaissements {_unit_lbl} — ventilation : {_ttl_enc} / {_ttl_dec} (FCFA)",
+                          yaxis=dict(title="FCFA", zeroline=True, zerolinecolor="#5B6770", zerolinewidth=1,
+                                     gridcolor="rgba(91,103,112,0.15)"),
+                          xaxis=dict(title="Période", gridcolor="rgba(91,103,112,0.15)"),
+                          legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
+                          plot_bgcolor="#0B1F3A", paper_bgcolor="#0B1F3A", font=dict(color="#E6E9ED"))
+        st.plotly_chart(fig, use_container_width=True, key=f"chart_treo_main_{freq}", config={"displayModeBar": False})
 
         # ── Tableaux par dimension (agrégés sur toute la période) ──
         def _dim_table(data, dim_key, label):
@@ -36655,3 +36772,39 @@ st.html("""
 })();
 </script>
 """)
+
+# ============================================================
+# NAV TABS STYLING - tag top nav + sub-navigation radios so the CSS
+# renders them as tab bars (style Donnees Historiques)
+# Injected twice (st.html + components.html) for robustness across
+# Streamlit versions : only the mechanism that actually executes JS runs.
+# ============================================================
+
+_NAV_TABS_JS = """
+<script>
+(function() {
+    var doc = window.parent ? window.parent.document : document;
+    function tagNavTabs() {
+        var radios = doc.querySelectorAll('div[data-testid="stRadio"]');
+        radios.forEach(function(r) {
+            if (r.classList.contains('ibid-subnav')) return;
+            var t = r.textContent || '';
+            var isSub = t.indexOf('Optimisation IA') !== -1 && t.indexOf('Cartographie Valeur') !== -1
+                        && t.indexOf('Tableau de Bord') !== -1;
+            var isTop = t.indexOf('Données Modèle') !== -1 && t.indexOf('Données Historiques') !== -1
+                        && t.indexOf('Optimisation IA') === -1;
+            if (isSub || isTop) {
+                r.classList.add('ibid-subnav');
+            }
+        });
+    }
+    tagNavTabs();
+    setInterval(tagNavTabs, 500);
+    var navTabsObserver = new MutationObserver(tagNavTabs);
+    navTabsObserver.observe(doc.body, { childList: true, subtree: true });
+})();
+</script>
+"""
+
+st.html(_NAV_TABS_JS)
+components.html(_NAV_TABS_JS, height=1)

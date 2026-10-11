@@ -28441,60 +28441,68 @@
  "2026-W40": {
   "DEX 1": {
    "Prod humide": {
-    "CPJ 42.5": 1350.11,
-    "MIX": 1350.11
+    "CPJ 32.5": 2306.54,
+    "CPJ 42.5": 2350.13,
+    "MIX": 4656.67
    },
    "Prod. Sèche": {
-    "CPJ 42.5": 1328.373,
-    "MIX": 1328.373
+    "CPJ 32.5": 2269.405,
+    "CPJ 42.5": 2312.293,
+    "MIX": 4581.698
    },
    "TOTAL (T)": {
-    "TOTAL": 1828.02
+    "TOTAL": 3951.02
    },
    "CES (KWh/t)": {
-    "CPJ 42.5": 56.4,
-    "MIX": 56.4
+    "MIX": 57.44
    },
-   "CS Gasoil+DDO (L/t)": {},
+   "CS Gasoil+DDO (L/t)": {
+    "MIX": 3.58
+   },
    "Tps de prod. (H)": {
-    "CPJ 42.5": 0.0
+    "CPJ 32.5": 48.12,
+    "CPJ 42.5": 22.65
    },
    "Débit (T/h)": {
-    "CPJ 42.5": null,
-    "MIX": null
+    "CPJ 32.5": 47.16,
+    "CPJ 42.5": 102.09,
+    "MIX": 64.74
    },
    "Facteur de débit (%)": {},
    "% K/C Sec": {
-    "CPJ 42.5": 0.6094,
-    "MIX": 0.6075
+    "CPJ 32.5": 0.4134,
+    "CPJ 42.5": 0.5885,
+    "MIX": 0.5018
    },
    "% K/C Humide": {
-    "CPJ 42.5": 0.5996,
-    "MIX": 0.5996
+    "CPJ 32.5": 0.4067,
+    "CPJ 42.5": 0.5791,
+    "MIX": 0.4937
    },
    "Clinker": {
-    "CPJ 42.5": 809.5,
-    "TOTAL": 809.5
+    "CPJ 32.5": 938.16,
+    "CPJ 42.5": 1360.88,
+    "TOTAL": 2299.04
    },
    "Gypse": {
-    "TOTAL": 67.41
+    "TOTAL": 227.91
    },
    "Granite": {
-    "TOTAL": 315.47
+    "TOTAL": 1511.99
    },
    "Pouzzolane": {},
    "Laitier": {
-    "TOTAL": 157.73
+    "TOTAL": 313.48
    },
    "Calcaire": {},
    "Marnes": {},
    "Transports": {},
    "expedition_par_produit": {
-    "CPJ 32.5": 1122.0,
-    "CPJ 42.5": 706.02
+    "CPJ 32.5": 2512.0,
+    "CPJ 42.5": 1439.02
    },
    "faits_marquants": [
-    "Site 1 : rapports journaliers disponibles du 28/09 au 29/09 uniquement (S40).",
+    "Site 1 : rapports journaliers disponibles du 28/09 au 04/10/2026 (S40, 6 jours) ; production hebdomadaire 4 656,67 t humides, expéditions 3 951,02 t.",
     "Réunion Qualité du 29/09/2026 : résistances 28j en dessous des exigences (CPJ 42.5 N : 33,7 MPa site 1 / 28,7 MPa site 2 ; CPA 52.5 N : 45,7 MPa, -13%) ; benchmark septembre : SC-CI 3e/5 en CEM II 42.5 N et 4e/4 en CEM II 32.5 R"
    ],
    "cibles": {},
@@ -28503,7 +28511,7 @@
    "date_debut": "2026-09-28",
    "date_fin": "2026-10-04",
    "date_range": "28/09 - 04/10",
-   "days_count": 2,
+   "days_count": 6,
    "qualite": {
     "reunion_date": "2026-09-29",
     "resistances_mecaniques": {
@@ -28831,6 +28839,190 @@
      "Clinker hydraté concassé site 2 : utilisation en mélange à 20% avec clinker de bonne qualité",
      "Procédure QHSE de traitement des réclamations qualité clients (en attente approbation)"
     ]
+   }
+  }
+ },
+ "2026-W41": {
+  "DEX 1": {
+   "Prod humide": {
+    "CPJ 32.5": 250.56,
+    "CPJ 42.5": 918.24,
+    "MIX": 1168.8
+   },
+   "Prod. Sèche": {
+    "CPJ 32.5": 246.526,
+    "CPJ 42.5": 903.456,
+    "MIX": 1149.982
+   },
+   "TOTAL (T)": {
+    "TOTAL": 3162.82
+   },
+   "CES (KWh/t)": {
+    "MIX": 51.87
+   },
+   "CS Gasoil+DDO (L/t)": {
+    "MIX": 4.63
+   },
+   "Tps de prod. (H)": {
+    "CPJ 32.5": 5.18,
+    "CPJ 42.5": 18.68
+   },
+   "Débit (T/h)": {
+    "CPJ 32.5": 47.59,
+    "CPJ 42.5": 48.36,
+    "MIX": 48.2
+   },
+   "Facteur de débit (%)": {},
+   "% K/C Sec": {
+    "CPJ 32.5": 0.4961,
+    "CPJ 42.5": 0.6094,
+    "MIX": 0.5851
+   },
+   "% K/C Humide": {
+    "CPJ 32.5": 0.4881,
+    "CPJ 42.5": 0.5996,
+    "MIX": 0.5757
+   },
+   "Clinker": {
+    "CPJ 32.5": 122.3,
+    "CPJ 42.5": 550.6,
+    "TOTAL": 672.9
+   },
+   "Gypse": {
+    "TOTAL": 58.4
+   },
+   "Granite": {
+    "TOTAL": 315.77
+   },
+   "Pouzzolane": {},
+   "Laitier": {
+    "TOTAL": 121.73
+   },
+   "Calcaire": {},
+   "Marnes": {},
+   "Transports": {},
+   "expedition_par_produit": {
+    "CPJ 32.5": 633.0,
+    "CPJ 42.5": 663.36
+   },
+   "days_count": 4,
+   "site": "SCCI1",
+   "date_debut": "2026-10-05",
+   "date_fin": "2026-10-08",
+   "date_range": "05/10 - 08/10",
+   "faits_marquants": [
+    "Performance commerciale semaine 41 (oct. 2026) : baisse significative des ventes enregistrée du 1er au 5 octobre, consécutive à l'arrêt de la campagne CPA ; décision du CODIR : reprise de la campagne ce matin 06 octobre 2026. Pression concurrentielle : remises constatées de 2 000 à 4 000 FCFA/T.",
+    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
+   ],
+   "cibles": {},
+   "ecarts": {},
+   "qualite": {
+    "source": "Rapport hebdomadaire SCCI du 06.10.26 (frontières de semaine différentes des RPJ — indicatif)",
+    "production_seche_t": {
+     "DEX 1": 4958.93,
+     "DEX 2": 14980.94,
+     "SCCI": 19939.87
+    },
+    "kc_sec": {
+     "DEX 1": 0.6176,
+     "DEX 2": 0.7163,
+     "SCCI": 0.6918
+    },
+    "ces_global_kwh_t": {
+     "DEX 1": 60.26,
+     "DEX 2": 33.48
+    },
+    "expeditions_hebdo_t": {
+     "DEX 1": 4474.84,
+     "DEX 2": 13705.58
+    }
+   }
+  },
+  "DEX 2": {
+   "Prod humide": {
+    "CPA 52.5": 3141.19,
+    "MIX": 3141.19
+   },
+   "Prod. Sèche": {
+    "CPA 52.5": 3141.19,
+    "MIX": 3141.19
+   },
+   "TOTAL (T)": {
+    "TOTAL": 7713.06
+   },
+   "CES (KWh/t)": {
+    "MIX": 32.96
+   },
+   "CS Gasoil+DDO (L/t)": {
+    "MIX": 0.0
+   },
+   "Tps de prod. (H)": {
+    "CPA 52.5": 23.53
+   },
+   "Débit (T/h)": {
+    "CPA 52.5": 133.5,
+    "MIX": 133.5
+   },
+   "Facteur de débit (%)": {},
+   "% K/C Sec": {
+    "CPA 52.5": 0.7996,
+    "MIX": 0.7996
+   },
+   "% K/C Humide": {
+    "CPA 52.5": 0.7996,
+    "MIX": 0.7996
+   },
+   "Clinker": {
+    "CPA 52.5": 2511.75,
+    "TOTAL": 2511.75
+   },
+   "Gypse": {
+    "TOTAL": 157.3
+   },
+   "Granite": {
+    "TOTAL": 472.14
+   },
+   "Pouzzolane": {},
+   "Laitier": {},
+   "Calcaire": {},
+   "Marnes": {},
+   "Transports": {},
+   "expedition_par_produit": {
+    "CPJ 42.5": 2085.0,
+    "CPA 42.5": 930.06,
+    "CPA 52.5": 4689.0
+   },
+   "days_count": 4,
+   "site": "SCCI2",
+   "date_debut": "2026-10-05",
+   "date_fin": "2026-10-08",
+   "date_range": "05/10 - 08/10",
+   "faits_marquants": [
+    "Performance commerciale semaine 41 (oct. 2026) : baisse significative des ventes enregistrée du 1er au 5 octobre, consécutive à l'arrêt de la campagne CPA ; décision du CODIR : reprise de la campagne ce matin 06 octobre 2026. Pression concurrentielle : remises constatées de 2 000 à 4 000 FCFA/T.",
+    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
+   ],
+   "cibles": {},
+   "ecarts": {},
+   "qualite": {
+    "source": "Rapport hebdomadaire SCCI du 06.10.26 (frontières de semaine différentes des RPJ — indicatif)",
+    "production_seche_t": {
+     "DEX 1": 4958.93,
+     "DEX 2": 14980.94,
+     "SCCI": 19939.87
+    },
+    "kc_sec": {
+     "DEX 1": 0.6176,
+     "DEX 2": 0.7163,
+     "SCCI": 0.6918
+    },
+    "ces_global_kwh_t": {
+     "DEX 1": 60.26,
+     "DEX 2": 33.48
+    },
+    "expeditions_hebdo_t": {
+     "DEX 1": 4474.84,
+     "DEX 2": 13705.58
+    }
    }
   }
  }
