@@ -36791,9 +36791,7 @@ _NAV_TABS_JS = """
             var t = r.textContent || '';
             var isSub = t.indexOf('Optimisation IA') !== -1 && t.indexOf('Cartographie Valeur') !== -1
                         && t.indexOf('Tableau de Bord') !== -1;
-            var isTop = t.indexOf('Données Modèle') !== -1 && t.indexOf('Données Historiques') !== -1
-                        && t.indexOf('Optimisation IA') === -1;
-            if (isSub || isTop) {
+            if (isSub) {
                 r.classList.add('ibid-subnav');
             }
         });
