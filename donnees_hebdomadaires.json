@@ -28845,76 +28845,92 @@
  "2026-W41": {
   "DEX 1": {
    "Prod humide": {
-    "CPJ 32.5": 250.56,
-    "CPJ 42.5": 918.24,
-    "MIX": 1168.8
+    "CPJ 32.5": 2783.66,
+    "CPJ 42.5": 1189.87,
+    "MIX": 3973.53
    },
    "Prod. Sèche": {
-    "CPJ 32.5": 246.526,
-    "CPJ 42.5": 903.456,
-    "MIX": 1149.982
+    "CPJ 32.5": 2738.843,
+    "CPJ 42.5": 1170.713,
+    "MIX": 3909.556
    },
    "TOTAL (T)": {
-    "TOTAL": 3162.82
+    "TOTAL": 4681.74
    },
    "CES (KWh/t)": {
-    "MIX": 51.87
+    "MIX": 50.75
    },
    "CS Gasoil+DDO (L/t)": {
-    "MIX": 4.63
+    "MIX": 3.79
    },
    "Tps de prod. (H)": {
-    "CPJ 32.5": 5.18,
-    "CPJ 42.5": 18.68
+    "CPJ 32.5": 57.7,
+    "CPJ 42.5": 24.75
    },
    "Débit (T/h)": {
-    "CPJ 32.5": 47.59,
-    "CPJ 42.5": 48.36,
-    "MIX": 48.2
+    "CPJ 32.5": 48.24,
+    "CPJ 42.5": 48.08,
+    "MIX": 48.19
    },
    "Facteur de débit (%)": {},
    "% K/C Sec": {
-    "CPJ 32.5": 0.4961,
-    "CPJ 42.5": 0.6094,
-    "MIX": 0.5851
+    "CPJ 32.5": 0.482,
+    "CPJ 42.5": 0.609,
+    "MIX": 0.5201
    },
    "% K/C Humide": {
-    "CPJ 32.5": 0.4881,
-    "CPJ 42.5": 0.5996,
-    "MIX": 0.5757
+    "CPJ 32.5": 0.4743,
+    "CPJ 42.5": 0.5992,
+    "MIX": 0.5117
    },
    "Clinker": {
-    "CPJ 32.5": 122.3,
-    "CPJ 42.5": 550.6,
-    "TOTAL": 672.9
+    "CPJ 32.5": 1320.2,
+    "CPJ 42.5": 713.0,
+    "TOTAL": 2033.2
    },
    "Gypse": {
-    "TOTAL": 58.4
+    "TOTAL": 198.53
    },
    "Granite": {
-    "TOTAL": 315.77
+    "TOTAL": 1433.78
    },
    "Pouzzolane": {},
    "Laitier": {
-    "TOTAL": 121.73
+    "TOTAL": 308.02
    },
    "Calcaire": {},
    "Marnes": {},
    "Transports": {},
    "expedition_par_produit": {
-    "CPJ 32.5": 633.0,
-    "CPJ 42.5": 663.36
+    "CPJ 32.5": 1723.0,
+    "CPJ 42.5": 1092.28
    },
-   "days_count": 4,
+   "days_count": 7,
    "site": "SCCI1",
    "date_debut": "2026-10-05",
-   "date_fin": "2026-10-08",
-   "date_range": "05/10 - 08/10",
+   "date_fin": "2026-10-11",
+   "date_range": "05/10 - 11/10",
    "faits_marquants": [
     "Performance commerciale semaine 41 (oct. 2026) : baisse significative des ventes enregistrée du 1er au 5 octobre, consécutive à l'arrêt de la campagne CPA ; décision du CODIR : reprise de la campagne ce matin 06 octobre 2026. Pression concurrentielle : remises constatées de 2 000 à 4 000 FCFA/T.",
-    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
+    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion).",
+    "09/10 : DEX2 — arrêts broyeur (déraillement élévateur à rejets 06h00-12h45 ; déviateur silos 00h18-01h26) ; DEX1 — broyeur A à l'arrêt (interconnexion site 2). Réceptions clinker : 629,34 t (S1) / 2437,38 t (S2).",
+    "10/10 : réceptions clinker 566,92 t (S1) / 2362,96 t (S2) ; fortes expéditions DEX2 (2 374,90 t).",
+    "11/10 : expéditions groupe très limitées (480 t, dimanche) — entretien hebdomadaire DEX2, quais vides ; réceptions clinker 934,70 t (S1) / 1700,62 t (S2).",
+    "Commercial (WhatsApp DCM) : ventes 09/10 = 2 965 t, 10/10 = 1 712 t, 12/10 = 3 590 t (11/10 non communiqué) ; cumul MTD au 12/10 = 25 741 t (30 % du budget de 85 000 t) ; pression concurrentielle persistante (remises 2 000-4 000 FCFA/t).",
+    "Incident majeur : ligne HT-CIE toujours en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
    ],
-   "cibles": {},
+   "cibles": {
+    "commandes_journalieres_t": {
+     "2026-10-09": 2965,
+     "2026-10-10": 1712,
+     "2026-10-12": 3590
+    },
+    "commandes_mtd_t": {
+     "2026-10-10": 22151,
+     "2026-10-12": 25741
+    },
+    "budget_octobre_t": 85000
+   },
    "ecarts": {},
    "qualite": {
     "source": "Rapport hebdomadaire SCCI du 06.10.26 (frontières de semaine différentes des RPJ — indicatif)",
@@ -28935,52 +28951,213 @@
     "expeditions_hebdo_t": {
      "DEX 1": 4474.84,
      "DEX 2": 13705.58
+    },
+    "reunion_qualite_0610": {
+     "source": "Réunion Qualité du 06/10/2026 (PPTX Direction Qualité)",
+     "site1": {
+      "CPJ-CEM II 32.5 R": {
+       "rc2_moy_mpa": 8.9,
+       "rc2_s40_mpa": 9.9,
+       "rc2_conformite_normative": "66 % (≥10,0 MPa)",
+       "rc7_moy_mpa": 17.1,
+       "rc7_s40_mpa": 15.0,
+       "rc7_conformite_interne": "0 % (≥22 MPa)",
+       "rc28_moy_mpa": 26.5,
+       "rc28_s40_mpa": 22.4,
+       "rc28_deficit": "≈19 % vs 32,5 MPa"
+      },
+      "CPJ-CEM II 42.5 N": {
+       "rc2_moy_mpa": 13.3,
+       "rc2_s40_mpa": 13.1,
+       "rc2_conformite_normative": "100 % (≥10 MPa)",
+       "rc2_conformite_interne": "0 % (≥17 MPa)",
+       "rc7_moy_mpa": 22.5,
+       "rc7_s40_mpa": 22.4,
+       "rc7_conformite_interne": "0 % (≥30 MPa)",
+       "rc28_moy_mpa": 32.7,
+       "rc28_s40_mpa": 33.7,
+       "rc28_deficit": "≈23 % vs 42,5 MPa"
+      }
+     },
+     "site2": {
+      "CPJ-CEM II 42.5 N": {
+       "rc2_moy_mpa": 11.1,
+       "rc2_s40_mpa": 12.7,
+       "rc2_conformite": "normative OK (≥10) ; interne non (≥17)",
+       "rc7_moy_mpa": 23.7,
+       "rc7_s40_mpa": 21.0,
+       "rc7_deficit": "6,3 MPa vs exigence interne 30 MPa",
+       "rc28_moy_mpa": 36.0,
+       "rc28_s40_mpa": 28.7,
+       "rc28_deficit": "6,5 MPa (15,3 %) vs 42,5 MPa"
+      },
+      "CPA-CEM I 52.5 N": {
+       "rc2_moy_mpa": 22.2,
+       "rc2_s40_mpa": 22.0,
+       "rc2_conformite": "100 % normative (≥20) ; 100 % < interne (≥25)",
+       "rc7_moy_mpa": 35.2,
+       "rc7_s40_mpa": 36.3,
+       "rc7_deficit": "3,7 MPa vs interne 39 MPa",
+       "rc28_moy_mpa": 44.0,
+       "rc28_s40_mpa": 45.7,
+       "rc28_deficit": "8,5 MPa (16,2 %) vs 52,5 MPa"
+      }
+     },
+     "humidite_mp_semaine": {
+      "site1": {
+       "periode": "28/09 - 04/10/2026",
+       "moyennes": {
+        "clinker": 0.05,
+        "gypse": 1.94,
+        "granite_laitier": 3.18
+       },
+       "spectres": {
+        "clinker": 0.2,
+        "gypse": 3.0,
+        "granite_laitier": 5.0
+       },
+       "navire": "MV KYPROS BRAVERY — humidité clinker 0,02-0,07 %, toutes conformes"
+      },
+      "site2": {
+       "periode": "28/09 - 04/10/2026",
+       "moyennes": {
+        "clinker": 0.06,
+        "gypse": 1.91,
+        "granite": 1.79
+       },
+       "spectres": {
+        "clinker": 0.2,
+        "gypse": 3.0,
+        "granite": 5.0
+       }
+      }
+     },
+     "ecarts_production": {
+      "CPA 52.5 N (K/C 80/15/5)": {
+       "refus_45u": 3.7,
+       "so3": 2.7,
+       "ri": 12.4,
+       "cibles": "refus 3-4 % ; SO3 2,3-2,7 % ; RI ≤15 %"
+      },
+      "CPJ 42.5 N (K/C 57/38/5)": {
+       "refus_45u": 5.3,
+       "so3": 2.65,
+       "ri": 31.0,
+       "cibles": "refus 4-6 % ; SO3 2,5-2,9 % ; RI ≤34 %"
+      },
+      "CEM II 42.5 N (K/C 60/25/10)": {
+       "refus_45u": 13.6,
+       "so3": 2.5,
+       "ri": 22.0,
+       "cibles": "refus 6-8 % ; SO3 2,5-2,9 % ; RI ≤25 %"
+      },
+      "CEM II 32.5 R (K/C 47/43/5/5)": {
+       "refus_45u": 12.4,
+       "so3": 2.7,
+       "ri": 37.6,
+       "cibles": "refus 6-8 % ; SO3 2,5-2,9 % ; RI ≤39 %"
+      }
+     },
+     "test_industriel_cpa_argile": {
+      "formulation_actuelle": {
+       "clinker": 80,
+       "gypse": 5,
+       "granite": 15,
+       "argile": 0,
+       "cout_matiere_fcfa_t": 44064,
+       "rc2_mpa": 20.7,
+       "rc7_mpa": 35.0
+      },
+      "formulation_007": {
+       "clinker": 65,
+       "gypse": 5,
+       "granite": 5,
+       "argile": 25,
+       "cout_matiere_fcfa_t": 44385,
+       "ecart_fcfa_t": 321.15,
+       "rc2_mpa": 19.3,
+       "rc7_mpa": 29.0,
+       "conclusion": "réduction clinker 80→65 % mais Rc2 < 20 MPa et Rc7 -6 MPa — risque important"
+      },
+      "formulation_008": {
+       "clinker": 75,
+       "gypse": 5,
+       "granite": 5,
+       "argile": 15,
+       "cout_matiere_fcfa_t": 46071,
+       "ecart_fcfa_t": 2007.05,
+       "rc2_mpa": 22.5,
+       "rc7_mpa": 33.0,
+       "conclusion": "Rc2 conforme (≥20 MPa) mais +2 007 FCFA/t de coût matière (≈4,6 %)"
+      }
+     },
+     "suivi_reunion_precedente": [
+      {
+       "sujet": "Gestion du clinker hydraté concassé site 2",
+       "action": "Utilisation en mélange à 20 % avec clinker de bonne qualité",
+       "responsable": "DAL/Qualité Site 2",
+       "statut": "Clinker isolé — utilisation en mélange en cours"
+      },
+      {
+       "sujet": "Traitement des réclamations qualité clients",
+       "action": "Définir les modalités de traitement par la Direction Qualité",
+       "responsable": "QHSE",
+       "statut": "En attente de recommandations / approbation du contrôle interne"
+      }
+     ]
     }
    }
   },
   "DEX 2": {
    "Prod humide": {
-    "CPA 52.5": 3141.19,
-    "MIX": 3141.19
+    "CPJ 42.5": 3120.42,
+    "CPA 52.5": 7565.8,
+    "MIX": 10686.22
    },
    "Prod. Sèche": {
-    "CPA 52.5": 3141.19,
-    "MIX": 3141.19
+    "CPJ 42.5": 3120.42,
+    "CPA 52.5": 7565.8,
+    "MIX": 10686.22
    },
    "TOTAL (T)": {
-    "TOTAL": 7713.06
+    "TOTAL": 12418.62
    },
    "CES (KWh/t)": {
-    "MIX": 32.96
+    "MIX": 31.9
    },
    "CS Gasoil+DDO (L/t)": {
     "MIX": 0.0
    },
    "Tps de prod. (H)": {
-    "CPA 52.5": 23.53
+    "CPJ 42.5": 22.6,
+    "CPA 52.5": 56.96
    },
    "Débit (T/h)": {
-    "CPA 52.5": 133.5,
-    "MIX": 133.5
+    "CPJ 42.5": 138.07,
+    "CPA 52.5": 132.83,
+    "MIX": 134.32
    },
    "Facteur de débit (%)": {},
    "% K/C Sec": {
-    "CPA 52.5": 0.7996,
-    "MIX": 0.7996
+    "CPJ 42.5": 0.5749,
+    "CPA 52.5": 0.7999,
+    "MIX": 0.7342
    },
    "% K/C Humide": {
-    "CPA 52.5": 0.7996,
-    "MIX": 0.7996
+    "CPJ 42.5": 0.5749,
+    "CPA 52.5": 0.7999,
+    "MIX": 0.7342
    },
    "Clinker": {
-    "CPA 52.5": 2511.75,
-    "TOTAL": 2511.75
+    "CPJ 42.5": 1794.0,
+    "CPA 52.5": 6051.75,
+    "TOTAL": 7845.75
    },
    "Gypse": {
-    "TOTAL": 157.3
+    "TOTAL": 534.52
    },
    "Granite": {
-    "TOTAL": 472.14
+    "TOTAL": 2305.95
    },
    "Pouzzolane": {},
    "Laitier": {},
@@ -28988,20 +29165,36 @@
    "Marnes": {},
    "Transports": {},
    "expedition_par_produit": {
-    "CPJ 42.5": 2085.0,
-    "CPA 42.5": 930.06,
-    "CPA 52.5": 4689.0
+    "CPJ 42.5": 4420.0,
+    "CPA 42.5": 1388.62,
+    "CPA 52.5": 6601.0
    },
-   "days_count": 4,
+   "days_count": 7,
    "site": "SCCI2",
    "date_debut": "2026-10-05",
-   "date_fin": "2026-10-08",
-   "date_range": "05/10 - 08/10",
+   "date_fin": "2026-10-11",
+   "date_range": "05/10 - 11/10",
    "faits_marquants": [
     "Performance commerciale semaine 41 (oct. 2026) : baisse significative des ventes enregistrée du 1er au 5 octobre, consécutive à l'arrêt de la campagne CPA ; décision du CODIR : reprise de la campagne ce matin 06 octobre 2026. Pression concurrentielle : remises constatées de 2 000 à 4 000 FCFA/T.",
-    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
+    "Incident majeur : ligne HT-CIE en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion).",
+    "09/10 : DEX2 — arrêts broyeur (déraillement élévateur à rejets 06h00-12h45 ; déviateur silos 00h18-01h26) ; DEX1 — broyeur A à l'arrêt (interconnexion site 2). Réceptions clinker : 629,34 t (S1) / 2437,38 t (S2).",
+    "10/10 : réceptions clinker 566,92 t (S1) / 2362,96 t (S2) ; fortes expéditions DEX2 (2 374,90 t).",
+    "11/10 : expéditions groupe très limitées (480 t, dimanche) — entretien hebdomadaire DEX2, quais vides ; réceptions clinker 934,70 t (S1) / 1700,62 t (S2).",
+    "Commercial (WhatsApp DCM) : ventes 09/10 = 2 965 t, 10/10 = 1 712 t, 12/10 = 3 590 t (11/10 non communiqué) ; cumul MTD au 12/10 = 25 741 t (30 % du budget de 85 000 t) ; pression concurrentielle persistante (remises 2 000-4 000 FCFA/t).",
+    "Incident majeur : ligne HT-CIE toujours en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
    ],
-   "cibles": {},
+   "cibles": {
+    "commandes_journalieres_t": {
+     "2026-10-09": 2965,
+     "2026-10-10": 1712,
+     "2026-10-12": 3590
+    },
+    "commandes_mtd_t": {
+     "2026-10-10": 22151,
+     "2026-10-12": 25741
+    },
+    "budget_octobre_t": 85000
+   },
    "ecarts": {},
    "qualite": {
     "source": "Rapport hebdomadaire SCCI du 06.10.26 (frontières de semaine différentes des RPJ — indicatif)",
@@ -29022,6 +29215,160 @@
     "expeditions_hebdo_t": {
      "DEX 1": 4474.84,
      "DEX 2": 13705.58
+    },
+    "reunion_qualite_0610": {
+     "source": "Réunion Qualité du 06/10/2026 (PPTX Direction Qualité)",
+     "site1": {
+      "CPJ-CEM II 32.5 R": {
+       "rc2_moy_mpa": 8.9,
+       "rc2_s40_mpa": 9.9,
+       "rc2_conformite_normative": "66 % (≥10,0 MPa)",
+       "rc7_moy_mpa": 17.1,
+       "rc7_s40_mpa": 15.0,
+       "rc7_conformite_interne": "0 % (≥22 MPa)",
+       "rc28_moy_mpa": 26.5,
+       "rc28_s40_mpa": 22.4,
+       "rc28_deficit": "≈19 % vs 32,5 MPa"
+      },
+      "CPJ-CEM II 42.5 N": {
+       "rc2_moy_mpa": 13.3,
+       "rc2_s40_mpa": 13.1,
+       "rc2_conformite_normative": "100 % (≥10 MPa)",
+       "rc2_conformite_interne": "0 % (≥17 MPa)",
+       "rc7_moy_mpa": 22.5,
+       "rc7_s40_mpa": 22.4,
+       "rc7_conformite_interne": "0 % (≥30 MPa)",
+       "rc28_moy_mpa": 32.7,
+       "rc28_s40_mpa": 33.7,
+       "rc28_deficit": "≈23 % vs 42,5 MPa"
+      }
+     },
+     "site2": {
+      "CPJ-CEM II 42.5 N": {
+       "rc2_moy_mpa": 11.1,
+       "rc2_s40_mpa": 12.7,
+       "rc2_conformite": "normative OK (≥10) ; interne non (≥17)",
+       "rc7_moy_mpa": 23.7,
+       "rc7_s40_mpa": 21.0,
+       "rc7_deficit": "6,3 MPa vs exigence interne 30 MPa",
+       "rc28_moy_mpa": 36.0,
+       "rc28_s40_mpa": 28.7,
+       "rc28_deficit": "6,5 MPa (15,3 %) vs 42,5 MPa"
+      },
+      "CPA-CEM I 52.5 N": {
+       "rc2_moy_mpa": 22.2,
+       "rc2_s40_mpa": 22.0,
+       "rc2_conformite": "100 % normative (≥20) ; 100 % < interne (≥25)",
+       "rc7_moy_mpa": 35.2,
+       "rc7_s40_mpa": 36.3,
+       "rc7_deficit": "3,7 MPa vs interne 39 MPa",
+       "rc28_moy_mpa": 44.0,
+       "rc28_s40_mpa": 45.7,
+       "rc28_deficit": "8,5 MPa (16,2 %) vs 52,5 MPa"
+      }
+     },
+     "humidite_mp_semaine": {
+      "site1": {
+       "periode": "28/09 - 04/10/2026",
+       "moyennes": {
+        "clinker": 0.05,
+        "gypse": 1.94,
+        "granite_laitier": 3.18
+       },
+       "spectres": {
+        "clinker": 0.2,
+        "gypse": 3.0,
+        "granite_laitier": 5.0
+       },
+       "navire": "MV KYPROS BRAVERY — humidité clinker 0,02-0,07 %, toutes conformes"
+      },
+      "site2": {
+       "periode": "28/09 - 04/10/2026",
+       "moyennes": {
+        "clinker": 0.06,
+        "gypse": 1.91,
+        "granite": 1.79
+       },
+       "spectres": {
+        "clinker": 0.2,
+        "gypse": 3.0,
+        "granite": 5.0
+       }
+      }
+     },
+     "ecarts_production": {
+      "CPA 52.5 N (K/C 80/15/5)": {
+       "refus_45u": 3.7,
+       "so3": 2.7,
+       "ri": 12.4,
+       "cibles": "refus 3-4 % ; SO3 2,3-2,7 % ; RI ≤15 %"
+      },
+      "CPJ 42.5 N (K/C 57/38/5)": {
+       "refus_45u": 5.3,
+       "so3": 2.65,
+       "ri": 31.0,
+       "cibles": "refus 4-6 % ; SO3 2,5-2,9 % ; RI ≤34 %"
+      },
+      "CEM II 42.5 N (K/C 60/25/10)": {
+       "refus_45u": 13.6,
+       "so3": 2.5,
+       "ri": 22.0,
+       "cibles": "refus 6-8 % ; SO3 2,5-2,9 % ; RI ≤25 %"
+      },
+      "CEM II 32.5 R (K/C 47/43/5/5)": {
+       "refus_45u": 12.4,
+       "so3": 2.7,
+       "ri": 37.6,
+       "cibles": "refus 6-8 % ; SO3 2,5-2,9 % ; RI ≤39 %"
+      }
+     },
+     "test_industriel_cpa_argile": {
+      "formulation_actuelle": {
+       "clinker": 80,
+       "gypse": 5,
+       "granite": 15,
+       "argile": 0,
+       "cout_matiere_fcfa_t": 44064,
+       "rc2_mpa": 20.7,
+       "rc7_mpa": 35.0
+      },
+      "formulation_007": {
+       "clinker": 65,
+       "gypse": 5,
+       "granite": 5,
+       "argile": 25,
+       "cout_matiere_fcfa_t": 44385,
+       "ecart_fcfa_t": 321.15,
+       "rc2_mpa": 19.3,
+       "rc7_mpa": 29.0,
+       "conclusion": "réduction clinker 80→65 % mais Rc2 < 20 MPa et Rc7 -6 MPa — risque important"
+      },
+      "formulation_008": {
+       "clinker": 75,
+       "gypse": 5,
+       "granite": 5,
+       "argile": 15,
+       "cout_matiere_fcfa_t": 46071,
+       "ecart_fcfa_t": 2007.05,
+       "rc2_mpa": 22.5,
+       "rc7_mpa": 33.0,
+       "conclusion": "Rc2 conforme (≥20 MPa) mais +2 007 FCFA/t de coût matière (≈4,6 %)"
+      }
+     },
+     "suivi_reunion_precedente": [
+      {
+       "sujet": "Gestion du clinker hydraté concassé site 2",
+       "action": "Utilisation en mélange à 20 % avec clinker de bonne qualité",
+       "responsable": "DAL/Qualité Site 2",
+       "statut": "Clinker isolé — utilisation en mélange en cours"
+      },
+      {
+       "sujet": "Traitement des réclamations qualité clients",
+       "action": "Définir les modalités de traitement par la Direction Qualité",
+       "responsable": "QHSE",
+       "statut": "En attente de recommandations / approbation du contrôle interne"
+      }
+     ]
     }
    }
   }
