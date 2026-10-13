@@ -13348,10 +13348,10 @@ def _render_treasury_flow_section(freq="D", expanded=False, filtered_dates=None)
     service, fournisseur. Sources : daily_data.json (réel) ou templates.
     """
     _titles = {
-        "D": "🏦 Flux de Trésorerie — Encaissements & Décaissements Journaliers",
-        "W": "🏦 Flux de Trésorerie — Encaissements & Décaissements Hebdomadaires",
-        "M": "🏦 Flux de Trésorerie — Encaissements & Décaissements Mensuels",
-        "Y": "🏦 Flux de Trésorerie — Encaissements & Décaissements Annuels",
+        "D": "🏦 Flux de Trésorerie — Encaissements & Décaissements Journaliers ⚠️ fictif",
+        "W": "🏦 Flux de Trésorerie — Encaissements & Décaissements Hebdomadaires ⚠️ fictif",
+        "M": "🏦 Flux de Trésorerie — Encaissements & Décaissements Mensuels ⚠️ fictif",
+        "Y": "🏦 Flux de Trésorerie — Encaissements & Décaissements Annuels ⚠️ fictif",
     }
     st.markdown("---")
     with st.expander(_titles.get(freq, _titles["D"]), expanded=expanded):
@@ -13360,7 +13360,7 @@ def _render_treasury_flow_section(freq="D", expanded=False, filtered_dates=None)
         if _is_real:
             st.success("✅ Flux réels — source : daily_data.json (clés « encaissements » / « decaissements »)")
         else:
-            st.info("⚠️ Données d'exemple issues des templates (BD_ENCAISSEMENTS_DAILY / BD_DECAISSEMENTS_DAILY). "
+            st.info("⚠️ Données fictives (placeholder) issues des templates (BD_ENCAISSEMENTS_DAILY / BD_DECAISSEMENTS_DAILY). "
                     "Les flux réels seront intégrés via daily_data.json (protocole actuel), puis automatiquement depuis SAP (protocole futur).")
 
         records = treasury_flow_records(enc_data, dec_data, freq=freq, filtered_dates=filtered_dates if freq == "D" else None)
@@ -16763,7 +16763,52 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
                 total_t = week_data.get('TOTAL (T)', {}).get('TOTAL', 0)
                 if total_t:
                     st.metric("Total Expédition", f"{total_t:,.0f} t")
-                
+
+                # Rapport officiel hebdomadaire (fichier « Rapport semaine »)
+                _ro = week_data.get('rapport_officiel')
+                if _ro:
+                    st.markdown("**📄 Rapport officiel de la semaine**")
+                    st.caption(f"Source : {_ro.get('source', 'rapport hebdomadaire')}")
+                    if _ro.get('taux_casse_pct') is not None:
+                        st.write(f"- Taux de casse : {_ro['taux_casse_pct']:.2f} %")
+                    _vd = _ro.get('ventes_detail_t', {})
+                    if _vd:
+                        st.markdown("*Détail des ventes (t)*")
+                        for _p, _v in _vd.items():
+                            st.write(f"  - {_p} : {_v:,.2f} t")
+                    _sm = _ro.get('stocks_mp', {})
+                    if _sm:
+                        st.markdown("*Stocks matières premières (fin de semaine)*")
+                        for _m, _d in _sm.items():
+                            if not isinstance(_d, dict) or 'stock' not in _d:
+                                continue
+                            _l = f"  - {_m} : stock {_d['stock']:,.2f}"
+                            if _d.get('recu'):
+                                _l += f" · reçu {_d['recu']:,.2f}"
+                            if _d.get('autonomie') is not None:
+                                _l += f" · autonomie {_d['autonomie']:,.1f} j"
+                            st.write(_l)
+
+                # Cumul mensuel (fichier « Rapport semaine », onglet mois)
+                _rm = week_data.get('rapport_mensuel_octobre')
+                if _rm:
+                    st.markdown("**🗓️ Cumul mensuel d'octobre 2026 (S40 + S41)**")
+                    st.caption(f"Source : {_rm.get('source', 'rapport mensuel')} — périodes : {' ; '.join(_rm.get('periodes', []))}")
+                    _pm = _rm.get('prod_humide_t', {})
+                    if _pm:
+                        st.markdown("*Production humide cumulée (t)*")
+                        for _p, _v in _pm.items():
+                            st.write(f"  - {_p} : {_v:,.2f} t")
+                    if _rm.get('total_ventes_t'):
+                        st.write(f"- Total ventes cumulées : {_rm['total_ventes_t']:,.2f} t")
+                    if _rm.get('taux_casse_pct') is not None:
+                        st.write(f"- Taux de casse cumulé : {_rm['taux_casse_pct']:.2f} %")
+                    if _rm.get('ces_kwh_t'):
+                        st.write(f"- CES cumulé : {_rm['ces_kwh_t']:.2f} kWh/t · Débit : {_rm.get('debit_t_h', 0):.2f} t/h")
+                    _cm = _rm.get('clinker_t')
+                    if _cm:
+                        st.write(f"- Clinker consommé cumulé : {_cm:,.2f} t")
+
                 # Cibles & Écarts (from Excel)
                 cibles = week_data.get('cibles', {})
                 ecarts = week_data.get('ecarts', {})
@@ -25644,6 +25689,177 @@ def generate_corrective_actions(comparison):
     return actions
 
 
+def _treasury_dim_agg(data, dim_key, year, months):
+    """Agrège une dimension de ventilation (par_categorie / par_produit / par_canal /
+    par_service / par_fournisseur) sur les mois d'une année. Retourne {cle: total}."""
+    _agg = {}
+    for _d, _sites in (data or {}).items():
+        if not (isinstance(_d, str) and _d[:4] == str(year) and int(_d[5:7]) in set(months)):
+            continue
+        for _s in (_sites or {}).values():
+            if not isinstance(_s, dict):
+                continue
+            for _k, _v in (_s.get(dim_key) or {}).items():
+                _agg[_k] = _agg.get(_k, 0) + (_v or 0)
+    return _agg
+
+
+def _treasury_report_flow_html(year, months, detail_view=None):
+    """Graphique « Encaissements vs Décaissements » pour le rapport comparatif (HTML
+    statique) avec menu de ventilation (updatemenus Plotly).
+    detail_view : None (agrégation mensuelle), 'journalier' ou 'hebdomadaire'.
+    Retourne (html_figure, source_est_reelle) ou (None, is_real)."""
+    import plotly.graph_objects as _go
+    try:
+        _enc_data, _dec_data, _is_real = treasury_data_source()
+        _months = sorted(months or [])
+        if not _months:
+            return None, _is_real
+
+        def _period_of(_d):
+            if detail_view == "journalier":
+                return _d[8:] + "/" + _d[5:7]
+            if detail_view == "hebdomadaire":
+                return "S%02d" % datetime.strptime(_d, "%Y-%m-%d").isocalendar()[1]
+            return "%02d" % int(_d[5:7])
+
+        _dates = sorted(_d for _d in set(_enc_data) | set(_dec_data)
+                        if isinstance(_d, str) and _d[:4] == str(year) and int(_d[5:7]) in set(_months))
+        if not _dates:
+            return None, _is_real
+        _periods = sorted({_period_of(_d) for _d in _dates})
+        _per_lbl = {"journalier": "jour", "hebdomadaire": "semaine"}.get(detail_view, "mois")
+
+        _enc_t, _dec_t, _net = {}, {}, {}
+        _enc_dims = {k: {} for k in ("par_categorie", "par_produit", "par_canal")}
+        _dec_dims = {k: {} for k in ("par_categorie", "par_service", "par_fournisseur")}
+        for _d in _dates:
+            _p = _period_of(_d)
+            _e = sum(_s.get("total_jour", 0) for _s in (_enc_data.get(_d) or {}).values() if isinstance(_s, dict))
+            _dd = sum(_s.get("total_jour", 0) for _s in (_dec_data.get(_d) or {}).values() if isinstance(_s, dict))
+            _enc_t[_p] = _enc_t.get(_p, 0) + _e
+            _dec_t[_p] = _dec_t.get(_p, 0) + _dd
+            _net[_p] = _net.get(_p, 0) + _e - _dd
+            for _k in ("par_categorie", "par_produit", "par_canal"):
+                for _s in (_enc_data.get(_d) or {}).values():
+                    if isinstance(_s, dict):
+                        for _dim, _v in (_s.get(_k) or {}).items():
+                            _per = _enc_dims[_k].setdefault(_dim, {})
+                            _per[_p] = _per.get(_p, 0) + (_v or 0)
+            for _k in ("par_categorie", "par_service", "par_fournisseur"):
+                for _s in (_dec_data.get(_d) or {}).values():
+                    if isinstance(_s, dict):
+                        for _dim, _v in (_s.get(_k) or {}).items():
+                            _per = _dec_dims[_k].setdefault(_dim, {})
+                            _per[_p] = _per.get(_p, 0) + (_v or 0)
+
+        _enc_pal = ["#10b981", "#34d399", "#6ee7b7", "#1E4D8F", "#60a5fa", "#14b8a6", "#a7f3d0", "#94a3b8"]
+        _dec_pal = ["#ef4444", "#f97316", "#f59e0b", "#dc2626", "#fb7185", "#fbbf24", "#c084fc", "#94a3b8"]
+
+        # Menus découplés : un menu « Encaissements » et un menu « Décaissements » indépendants
+        _enc_combos = [
+            ("Total", "total"),
+            ("Par catégorie", "par_categorie"),
+            ("Par produit", "par_produit"),
+            ("Par canal", "par_canal"),
+        ]
+        _dec_combos = [
+            ("Total", "total"),
+            ("Par catégorie", "par_categorie"),
+            ("Par service", "par_service"),
+            ("Par fournisseur", "par_fournisseur"),
+        ]
+        _enc_traces = []  # (combo_idx, trace)
+        for _ci, (_lbl, _ek) in enumerate(_enc_combos):
+            _vis = (_ci == 0)  # seule la 1re ventilation est visible au chargement
+            if _ek == "total":
+                _enc_traces.append((_ci, _go.Bar(
+                    name="Encaissements", x=_periods, y=[_enc_t.get(_p, 0) for _p in _periods],
+                    marker_color="#10b981", visible=_vis,
+                    hovertemplate="%{x}<br>Encaissements: %{y:,.0f} FCFA<extra></extra>")))
+            else:
+                for _i, (_dim, _per_vals) in enumerate(sorted(_enc_dims[_ek].items(), key=lambda kv: -sum(kv[1].values()))):
+                    _enc_traces.append((_ci, _go.Bar(
+                        name=f"Enc · {_dim}", x=_periods, y=[_per_vals.get(_p, 0) for _p in _periods],
+                        marker_color=_enc_pal[_i % len(_enc_pal)], visible=_vis,
+                        hovertemplate="%{x}<br>Enc · " + _dim + ": %{y:,.0f} FCFA<extra></extra>")))
+        _dec_traces = []  # (combo_idx, trace)
+        for _ci, (_lbl, _dk) in enumerate(_dec_combos):
+            _vis = (_ci == 0)
+            if _dk == "total":
+                _dec_traces.append((_ci, _go.Bar(
+                    name="Décaissements", x=_periods, y=[-_dec_t.get(_p, 0) for _p in _periods],
+                    marker_color="#ef4444", customdata=[_dec_t.get(_p, 0) for _p in _periods], visible=_vis,
+                    hovertemplate="%{x}<br>Décaissements: %{customdata:,.0f} FCFA<extra></extra>")))
+            else:
+                for _i, (_dim, _per_vals) in enumerate(sorted(_dec_dims[_dk].items(), key=lambda kv: -sum(kv[1].values()))):
+                    _dec_traces.append((_ci, _go.Bar(
+                        name=f"Déc · {_dim}", x=_periods, y=[-_per_vals.get(_p, 0) for _p in _periods],
+                        marker_color=_dec_pal[_i % len(_dec_pal)],
+                        customdata=[_per_vals.get(_p, 0) for _p in _periods], visible=_vis,
+                        hovertemplate="%{x}<br>Déc · " + _dim + ": %{customdata:,.0f} FCFA<extra></extra>")))
+        _net_trace = _go.Scatter(
+            name="Flux net", x=_periods, y=[_net.get(_p, 0) for _p in _periods],
+            mode="lines+markers", line=dict(color="#F58220", width=2.5), visible=True,
+            hovertemplate="%{x}<br>Flux net: %{y:,.0f} FCFA<extra></extra>")
+
+        # Ordre des traces dans la figure : encaissements, décaissements, flux net (toujours visible)
+        _all = ([("enc", _ci, _t) for _ci, _t in _enc_traces]
+                + [("dec", _ci, _t) for _ci, _t in _dec_traces])
+
+        def _vis_menu(_kind, _i):
+            return [(_k == _kind and _ci == _i) for (_k, _ci, _) in _all] + [True]
+
+        fig = _go.Figure()
+        for _, _, _t in _all:
+            fig.add_trace(_t)
+        fig.add_trace(_net_trace)
+        fig.update_layout(
+            barmode="relative", height=440, bargap=0.25,
+            title=f"Encaissements vs Décaissements ⚠️ données fictives (placeholder) — par {_per_lbl}, FCFA",
+            updatemenus=[
+                dict(
+                    buttons=[dict(label=_lbl, method="restyle",
+                                  args=[{"visible": _vis_menu("enc", _bi)}])
+                             for _bi, (_lbl, _) in enumerate(_enc_combos)],
+                    direction="down", showactive=True,
+                    x=0.0, xanchor="left", y=1.22, yanchor="top",
+                    bgcolor="#10b981", bordercolor="#F58220",
+                    font=dict(color="#FFFFFF")),
+                dict(
+                    buttons=[dict(label=_lbl, method="restyle",
+                                  args=[{"visible": _vis_menu("dec", _bi)}])
+                             for _bi, (_lbl, _) in enumerate(_dec_combos)],
+                    direction="down", showactive=True,
+                    x=0.30, xanchor="left", y=1.22, yanchor="top",
+                    bgcolor="#dc2626", bordercolor="#F58220",
+                    font=dict(color="#FFFFFF")),
+            ],
+            annotations=[
+                dict(text="Encaissements :", x=0.0, xref="paper", xanchor="left",
+                     y=1.30, yref="paper", yanchor="bottom", showarrow=False,
+                     font=dict(color="#10b981", size=11)),
+                dict(text="Décaissements :", x=0.30, xref="paper", xanchor="left",
+                     y=1.30, yref="paper", yanchor="bottom", showarrow=False,
+                     font=dict(color="#f97316", size=11)),
+            ],
+            yaxis=dict(title="FCFA", zeroline=True, zerolinecolor="#5B6770",
+                       gridcolor="rgba(255,255,255,0.1)"),
+            xaxis=dict(title=_per_lbl.capitalize(), gridcolor="rgba(255,255,255,0.1)",
+                       type="category"),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.28, xanchor="center", x=0.5,
+                        bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1),
+            plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+            font=dict(color="white"), title_font_color="white")
+        _src = "⚠️ Données fictives (placeholder) — " + (
+            "Source : daily_data.json (données réelles)" if _is_real
+            else "Source : templates (données d'exemple)")
+        _html = fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False, "displayModeBar": False})
+        return f"<div class='chart-container'><p style='color:#f59e0b;font-size:0.78rem;margin:0 0 6px;'>{_src} — menus « Encaissements » et « Décaissements » indépendants en haut du graphique.</p>{_html}</div>", _is_real
+    except Exception:
+        return None, False
+
+
 def generate_historical_comparison_report_tab(timeframe_type, selected_year, selected_month=None, include_projection=True, detail_view="mensuel"):
 
     """Génère le rapport comparatif historique avec projections."""
@@ -28305,6 +28521,47 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
     html_parts.append(f"<div class='kpi-box'><div class='kpi-val'>{format_xof(hist.get('ebitda_reel', 0))}</div><div class='kpi-lbl'>EBITDA — Réalisé</div><div class='kpi-sub'>Budget: {format_xof(hist_budget_ebitda)} · Réal. <span class='{_tr_eb_cls}'>{tr_ebitda:.1f}%</span></div><div class='kpi-sub'>Modèle: {format_xof(model.get('ebitda', 0))} · Écart <span class='{_ec_eb_cls}'>{ecart_model_hist_ebitda:+.1f}%</span></div>{_html_ebitda_split}{_info_ebitda}</div>")
     _ec_mg_cls = "tr-high" if (model_marge - hist_marge) <= 0 else "tr-low"
     html_parts.append(f"<div class='kpi-box'><div class='kpi-val'>{hist_marge:.1f}%</div><div class='kpi-lbl'>Marge EBITDA — Réalisée</div><div class='kpi-sub'>Budget: {hist_budget_marge:.1f}% · Modèle: {model_marge:.1f}%</div><div class='kpi-sub'>Écart modèle/réel: <span class='{_ec_mg_cls}'>{model_marge - hist_marge:+.1f} pts</span></div>{_html_marge_split}{_info_marge}</div>")
+
+    # ── Flux de Trésorerie Net (encaissements − décaissements) ──
+    _treo_t1 = None
+    _treo_real1 = False
+    try:
+        _treo_enc1, _treo_dec1, _treo_real1 = treasury_data_source()
+        _treo_m1 = report_period_months(tf_type, month)
+        if _treo_m1:
+            _treo_t1 = treasury_totals_for_months(_treo_enc1, _treo_dec1, year, _treo_m1)
+    except Exception:
+        _treo_t1 = None
+    if _treo_t1:
+        _fl_enc = _treo_t1["encaisse"]
+        _fl_dec = _treo_t1["decaisse"]
+        _fl_net = _treo_t1["net"]
+        _fl_net_cls = "tr-high" if _fl_net >= 0 else "tr-low"
+        _fl_enc_cat = _treasury_dim_agg(_treo_enc1, "par_categorie", year, _treo_m1)
+        _fl_enc_prod = _treasury_dim_agg(_treo_enc1, "par_produit", year, _treo_m1)
+        _fl_enc_canal = _treasury_dim_agg(_treo_enc1, "par_canal", year, _treo_m1)
+        _fl_dec_cat = _treasury_dim_agg(_treo_dec1, "par_categorie", year, _treo_m1)
+        _fl_dec_srv = _treasury_dim_agg(_treo_dec1, "par_service", year, _treo_m1)
+        _fl_dec_four = _treasury_dim_agg(_treo_dec1, "par_fournisseur", year, _treo_m1)
+        _info_flux = _kpi_info(
+            f"Flux net = encaissements − décaissements sur {period_title}. "
+            f"Encaissements {format_xof(_fl_enc)} · Décaissements {format_xof(_fl_dec)} · Net {format_xof(_fl_net)}. "
+            f"Ventilation encaissements — par catégorie : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_enc_cat.items(), key=lambda kv: -kv[1])], 'Mds', 2)} ; "
+            f"par produit : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_enc_prod.items(), key=lambda kv: -kv[1])], 'Mds', 2)} ; "
+            f"par canal : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_enc_canal.items(), key=lambda kv: -kv[1])], 'Mds', 2)}. "
+            f"Ventilation décaissements — par catégorie : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_dec_cat.items(), key=lambda kv: -kv[1])], 'Mds', 2)} ; "
+            f"par service : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_dec_srv.items(), key=lambda kv: -kv[1])], 'Mds', 2)} ; "
+            f"par fournisseur : {_fmt_items([(k, v / 1e9) for k, v in sorted(_fl_dec_four.items(), key=lambda kv: -kv[1])], 'Mds', 2)}. "
+            f"⚠️ Données fictives (placeholder) en attente des flux réels. "
+            f"{'Source : daily_data.json (données réelles).' if _treo_real1 else 'Source : templates (données d\'exemple).'}"
+        )
+        html_parts.append(
+            f"<div class='kpi-box'><div class='kpi-val'>{format_xof(_fl_net)}</div>"
+            f"<div class='kpi-lbl'>Flux de Trésorerie — Net</div>"
+            f"<div class='kpi-sub' style='color:#f59e0b;font-weight:600;'>⚠️ Données fictives (placeholder)</div>"
+            f"<div class='kpi-sub'>Encaissements: {format_xof(_fl_enc)}</div>"
+            f"<div class='kpi-sub'>Décaissements: {format_xof(_fl_dec)}</div>"
+            f"<div class='kpi-sub'>Solde: <span class='{_fl_net_cls}'>{_fl_net / 1e9:+,.2f} Mds</span></div>{_info_flux}</div>")
     html_parts.append('</div>')
     # -- Cascade simplifiée CA → Coûts → EBITDA (historique réel) --
 
@@ -28689,6 +28946,10 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
         html_parts.append('<div class="chart-container">')
         html_parts.append(fig_mg.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
         html_parts.append('</div>')
+        # ── Trésorerie : encaissements vs décaissements (menu de ventilation) ──
+        _treo_flow_html, _treo_flow_real = _treasury_report_flow_html(year, [month], detail_view)
+        if _treo_flow_html:
+            html_parts.append(_treo_flow_html)
 
 # === SECTION 4: GRAPHIQUES COMPARATIFS ÉVOLUTIFS ===
 
@@ -28921,6 +29182,11 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
         html_parts.append(chart3_html)
 
         html_parts.append('</div>')
+
+        # ── Trésorerie : encaissements vs décaissements (menu de ventilation) ──
+        _treo_flow_html_m, _ = _treasury_report_flow_html(year, report_period_months(tf_type, month), None)
+        if _treo_flow_html_m:
+            html_parts.append(_treo_flow_html_m)
 # === SECTION 5: PROJECTIONS ANNUELLES ===
 
     if projection:
@@ -29614,6 +29880,40 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
         "n": [(_sl(_s), _ke_site[_s], None) for _s in sorted(_ke_site)],
         "b": [],
     }
+
+    # Flux net de trésorerie mensuel (encaissements − décaissements) + ventilation par site
+    _ser_flux_net = {}
+    _flux_site_series = {}
+    try:
+        _t_enc, _t_dec, _t_is_real = treasury_data_source()
+        for _d in sorted(set(_t_enc) | set(_t_dec)):
+            _mk = str(_d)[:7]
+            _e_sites = (_t_enc.get(_d) or {})
+            _d_sites = (_t_dec.get(_d) or {})
+            _e_tot = sum(_s.get("total_jour", 0) for _s in _e_sites.values() if isinstance(_s, dict))
+            _d_tot = sum(_s.get("total_jour", 0) for _s in _d_sites.values() if isinstance(_s, dict))
+            _ser_flux_net[_mk] = _ser_flux_net.get(_mk, 0) + _e_tot - _d_tot
+            for _st in set(_e_sites) | set(_d_sites):
+                _se = (_e_sites.get(_st) or {}).get("total_jour", 0) if isinstance(_e_sites.get(_st), dict) else 0
+                _sd = (_d_sites.get(_st) or {}).get("total_jour", 0) if isinstance(_d_sites.get(_st), dict) else 0
+                _flux_site_series.setdefault(_st, {})[_mk] = _flux_site_series.setdefault(_st, {}).get(_mk, 0) + _se - _sd
+    except Exception:
+        _ser_flux_net = {}
+        _flux_site_series = {}
+    # Données fictives (placeholder) : mois sans flux réels (années N-1, N-2, mois futurs)
+    # remplis avec une série déterministe afin de renseigner toutes les colonnes de la 3a.
+    _real_flux_keys = set(_ser_flux_net)
+    _fl_base = (sum(_ser_flux_net.values()) / len(_ser_flux_net)) if _ser_flux_net else 2.5e9
+    for _fy in range(2020, year + 1):
+        for _fm in range(1, 13):
+            _fk = f"{_fy}-{_fm:02d}"
+            if _fk in _real_flux_keys:
+                continue
+            _fh = ((_fy * 12 + _fm) * 2654435761) % 1000 / 1000
+            _ser_flux_net[_fk] = _fl_base * (0.7 + 0.6 * _fh)
+    _tgt_flux = {_fk: _fv * 0.95 for _fk, _fv in _ser_flux_net.items()}
+    _bd_flux = {"n": [(_st, _sser, None) for _st, _sser in sorted(_flux_site_series.items())], "b": []}
+
     _bd_map = {
         "Production": _bd_prod,
         "Expédition": _bd_exp,
@@ -29621,6 +29921,7 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
         "TRG / Capacité (%)": _bd_trg,
         "CES Broyeur (kWh/t)": _bd_kb,
         "CES Expédition (kWh/t)": _bd_ke,
+        "Flux Net Trésorerie ⚠️ fictif": _bd_flux,
     }
 
     _vser_map = [
@@ -29628,6 +29929,7 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
         ("EBITDA", {k: v.get("ebitda_reel", 0) for k, v in HISTORICAL_FINANCIAL_DATA.items()}, False, False, _tgt_eb),
         ("Marge EBITDA", {k: (v.get("ebitda_reel", 0) / v.get("ca_reel", 0) * 100 if v.get("ca_reel") else 0)
                           for k, v in HISTORICAL_FINANCIAL_DATA.items()}, True, False, _tgt_mg),
+        ("Flux Net Trésorerie ⚠️ fictif", _ser_flux_net, False, False, _tgt_flux),
         ("Production", {k: sum(sv for pv in v.values() for sv in pv.values())
                         for k, v in BD_BROYEUR_PRODUCT_MONTHLY.items()}, False, False, _ser_exp_real),
         ("Expédition", _ser_exp_real, False, False, None),
@@ -29764,7 +30066,7 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
             </tr></thead>
             <tbody>{_rows}</tbody>
         </table>
-        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>Pour les consommations spécifiques (kWh/t), une hausse est défavorable : couleurs inversées (▲ rouge / ▼ vert). TRG estimé = production / capacité calendaire nominale (TRS strict : heures de fonctionnement non disponibles dans le TDB).<br>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).</p>""")
+        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>Pour les consommations spécifiques (kWh/t), une hausse est défavorable : couleurs inversées (▲ rouge / ▼ vert). TRG estimé = production / capacité calendaire nominale (TRS strict : heures de fonctionnement non disponibles dans le TDB).<br>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).<br>⚠️ « Flux Net Trésorerie ⚠️ fictif » : données fictives (placeholder) — les mois sans flux réels (années N-1/N-2, mois futurs) sont renseignés avec une série d'exemple déterministe, en attente des flux réels.</p>""")
 
     elif tf_type == "month":
 
@@ -29840,7 +30142,7 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
             </tr></thead>
             <tbody>{_rows}</tbody>
         </table>
-        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).</p>""")
+        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).<br>⚠️ « Flux Net Trésorerie ⚠️ fictif » : données fictives (placeholder) — les mois sans flux réels (années N-1/N-2, mois futurs) sont renseignés avec une série d'exemple déterministe, en attente des flux réels.</p>""")
 
     elif tf_type in ("semester", "quarter"):
 
@@ -29937,7 +30239,7 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
             </tr></thead>
             <tbody>{_rows}</tbody>
         </table>
-        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).</p>""")
+        <p style='font-size:0.72rem; color:#5B6770; margin-top:6px;'>🎯 Cibles : débit broyeur 75 t/h (A &amp; B, Site 1) et 150 t/h (Site 2) ; conso clinker = Σ k/c cible × production par produit ; TRG = cibles sidebar par site ({get_val('cap_util_target_site1')*100:.0f} % Site 1 / {get_val('cap_util_target_site2')*100:.0f} % Site 2) ; CES Broyeur 35 (Site 1) / 30 (Site 2). « — » = pas de cible définie. Les écarts entre parenthèses détaillent la ventilation par produit, site (S1/S2) ou broyeur (A/B/C) lorsque les données sont disponibles. En vs Budget/Cible : Production compare sites (vs expédition réalisée) et produits (vs modèle) ; débit et CES Broyeur comparent sites et broyeurs (vs cibles 75/150 t/h et 35/30 kWh/t).<br>⚠️ « Flux Net Trésorerie ⚠️ fictif » : données fictives (placeholder) — les mois sans flux réels (années N-1/N-2, mois futurs) sont renseignés avec une série d'exemple déterministe, en attente des flux réels.</p>""")
 
     html_parts.append('</div>')  # ── fin .ibid-sec ──
 
@@ -30012,56 +30314,9 @@ def build_historical_report_html(tf_type, year, month, hist, model, comparison, 
 
     html_parts.append('</div>')  # ── fin .ibid-sec ──
 
-    # === SECTION 3d: FLUX DE TRÉSORERIE (encaissements / décaissements) ===
-    try:
-        _treo_enc, _treo_dec, _treo_real = treasury_data_source()
-        _treo_months = report_period_months(tf_type, month)
-        _treo_cur = treasury_totals_for_months(_treo_enc, _treo_dec, year, _treo_months) if _treo_months else None
-        _treo_n1 = treasury_totals_for_months(_treo_enc, _treo_dec, year - 1, _treo_months) if _treo_months else None
-        _treo_n2 = treasury_totals_for_months(_treo_enc, _treo_dec, year - 2, _treo_months) if _treo_months else None
-        if _treo_cur:
-            def _treo_fmt(v):
-                return f"{v/1e9:,.2f} Mds"
-            def _treo_delta(cur, prev):
-                if prev is None or prev == 0:
-                    return "n/a"
-                return f"{(cur/prev - 1)*100:+.1f}%"
-            _treo_rows = [
-                ("Encaissements", "encaisse", "#10b981"),
-                ("Décaissements", "decaisse", "#ef4444"),
-                ("Flux net", "net", "#F58220"),
-            ]
-            _treo_tbl = "".join(
-                "<tr><td style='padding:8px 14px;color:#E6E9ED;border-bottom:1px solid rgba(91,103,112,0.2);'>"
-                + f"<span style='color:{c};'>●</span> {lbl}</td>"
-                + f"<td style='padding:8px 14px;text-align:right;color:#E6E9ED;border-bottom:1px solid rgba(91,103,112,0.2);'>{_treo_fmt(_treo_n2[k]) if _treo_n2 else 'n/a'}</td>"
-                + f"<td style='padding:8px 14px;text-align:right;color:#E6E9ED;border-bottom:1px solid rgba(91,103,112,0.2);'>{_treo_fmt(_treo_n1[k]) if _treo_n1 else 'n/a'}</td>"
-                + f"<td style='padding:8px 14px;text-align:right;font-weight:700;color:#E6E9ED;border-bottom:1px solid rgba(91,103,112,0.2);'>{_treo_fmt(_treo_cur[k])}</td>"
-                + f"<td style='padding:8px 14px;text-align:right;color:#8ab4f8;border-bottom:1px solid rgba(91,103,112,0.2);'>{_treo_delta(_treo_cur[k], _treo_n1[k] if _treo_n1 else None)}</td></tr>"
-                for lbl, k, c in _treo_rows
-            )
-            _treo_src = "Source : daily_data.json (données réelles)" if _treo_real else "Source : templates (données d'exemple — flux réels à intégrer via daily_data.json, puis automatiquement depuis SAP)"
-            html_parts.append('<div class="ibid-sec">')
-            html_parts.append('<h2 id="s3d">🏦 Flux de Trésorerie — Encaissements &amp; Décaissements</h2>')
-            html_parts.append(f"<p style='color:#8ab4f8;font-size:0.9rem;margin:4px 0 14px;'>Période : {period_title} — Comparaison N-2 / N-1 / Période. {_treo_src}</p>")
-            html_parts.append("<table style='width:100%;border-collapse:collapse;background:rgba(255,255,255,0.03);border:1px solid rgba(30,77,143,0.35);'>")
-            html_parts.append("<thead><tr>"
-                "<th style='padding:8px 14px;text-align:left;color:#8ab4f8;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid rgba(30,77,143,0.5);'></th>"
-                f"<th style='padding:8px 14px;text-align:right;color:#8ab4f8;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid rgba(30,77,143,0.5);'>{year - 2}</th>"
-                f"<th style='padding:8px 14px;text-align:right;color:#8ab4f8;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid rgba(30,77,143,0.5);'>{year - 1}</th>"
-                f"<th style='padding:8px 14px;text-align:right;color:#F58220;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid rgba(30,77,143,0.5);'>{year} ({period_title})</th>"
-                "<th style='padding:8px 14px;text-align:right;color:#8ab4f8;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid rgba(30,77,143,0.5);'>Δ vs N-1</th>"
-                "</tr></thead>")
-            html_parts.append(f"<tbody>{_treo_tbl}</tbody></table>")
-            html_parts.append('</div>')  # ── fin .ibid-sec ──
-        else:
-            html_parts.append('<div class="ibid-sec">')
-            html_parts.append('<h2 id="s3d">🏦 Flux de Trésorerie — Encaissements &amp; Décaissements</h2>')
-            html_parts.append("<p style='color:#5B6770;font-size:0.9rem;'>Données de trésorerie non disponibles pour la période sélectionnée. "
-                "Les flux seront alimentés via daily_data.json (protocole actuel), puis automatiquement depuis SAP (protocole futur).</p>")
-            html_parts.append('</div>')  # ── fin .ibid-sec ──
-    except Exception as _treo_err:
-        html_parts.append(f"<!-- trésorerie indisponible: {_treo_err} -->")
+    # (Section « 🏦 Flux de Trésorerie — Encaissements & Décaissements » supprimée :
+    #  la trésorerie est désormais présentée via le KPI « Flux de Trésorerie — Net » en 1.a,
+    #  le graphique ventilé en 2.a et la ligne « Flux Net Trésorerie » en 3a.)
 
 # === SECTION 4: ANNEXE — ANALYSE SAISONNIÈRE ===
 # === SECTION 8: ANALYSE SAISONNIÈRE ===

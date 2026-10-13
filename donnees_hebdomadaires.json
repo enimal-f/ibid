@@ -28917,7 +28917,8 @@
     "10/10 : réceptions clinker 566,92 t (S1) / 2362,96 t (S2) ; fortes expéditions DEX2 (2 374,90 t).",
     "11/10 : expéditions groupe très limitées (480 t, dimanche) — entretien hebdomadaire DEX2, quais vides ; réceptions clinker 934,70 t (S1) / 1700,62 t (S2).",
     "Commercial (WhatsApp DCM) : ventes 09/10 = 2 965 t, 10/10 = 1 712 t, 12/10 = 3 590 t (11/10 non communiqué) ; cumul MTD au 12/10 = 25 741 t (30 % du budget de 85 000 t) ; pression concurrentielle persistante (remises 2 000-4 000 FCFA/t).",
-    "Incident majeur : ligne HT-CIE toujours en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion)."
+    "Incident majeur : ligne HT-CIE toujours en défaut — 7 km de câble à remplacer ; CIE en attente du retour de CI Énergie (site 2 sur interconnexion).",
+    "Rapport officiel semaine 41 (DEX1, 05–11/10) : taux de casse 0,90 %, ventes 4 681,74 t (sacs 4 258 t dont CPJ 32.5 2 864 t + CPJ 42.5 1 394 t ; vrac 423,74 t), clinker reçu 8 157,16 t (stock 31 759,94 t ≈ 109 j), granite stock 642 t (≈ 2,2 j), gasoil stock 2 612 L (≈ 1,2 j). Cumul octobre (S40+S41) : production 7 280 t humide, ventes 6 804,74 t, taux de casse 0,77 %."
    ],
    "cibles": {
     "commandes_journalieres_t": {
@@ -29105,6 +29106,158 @@
        "statut": "En attente de recommandations / approbation du contrôle interne"
       }
      ]
+    }
+   },
+   "rapport_officiel": {
+    "source": "Rapport semaine 41.xlsx — SCCI DEX1, point de la semaine du 05 au 11/10/2026",
+    "taux_casse_pct": 0.8957,
+    "ventes_detail_t": {
+     "CPJ 32.5 SAC": 2864.0,
+     "CPJ 42.5 SAC": 1394.0,
+     "CPJ 42.5 VRAC": 423.74
+    },
+    "ventes_sacs_t": 4258.0,
+    "ventes_vracs_t": 423.74,
+    "transfert_t": 0.0,
+    "sacs_kraft": {
+     "PP": null,
+     "KRAFT": 4258.0
+    },
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 8157.16,
+      "stock_initial": 28965.72,
+      "stock": 31759.94,
+      "autonomie": 109.34,
+      "humidite": 0.047
+     },
+     "Gypse": {
+      "recu": 0.0,
+      "stock_initial": 1884.03,
+      "stock": 1698.06,
+      "autonomie": 59.87,
+      "humidite": 1.616
+     },
+     "Granite": {
+      "recu": 273.82,
+      "stock_initial": 1935.62,
+      "stock": 642.11,
+      "autonomie": 2.21,
+      "humidite": 2.74
+     },
+     "Pouzzolane": {
+      "recu": 0.0,
+      "stock_initial": 0.0,
+      "stock": 5.73,
+      "autonomie": null
+     },
+     "Laitier": {
+      "recu": 0.0,
+      "stock_initial": -61.52,
+      "stock": -355.07,
+      "autonomie": null,
+      "humidite": 3.969
+     },
+     "Argile calciné": {
+      "recu": 0.0,
+      "stock_initial": -304.24,
+      "stock": -304.24,
+      "autonomie": null
+     },
+     "Gasoil": {
+      "recu": 14001.05,
+      "stock_initial": 2221.1,
+      "stock": 2611.98,
+      "autonomie": 1.21
+     },
+     "Adj. Pegasus": {
+      "recu": 0.0,
+      "stock_initial": -304.24,
+      "stock": -1786.97,
+      "autonomie": null
+     },
+     "Adj. SIKA": {
+      "recu": 0.0,
+      "stock_initial": 5377.16,
+      "stock": 5377.16,
+      "autonomie": 375.56
+     },
+     "Adj. Chryso": {
+      "stock": 38000.0
+     },
+     "Adj. BIOLATEX": {
+      "stock": 1800.0
+     }
+    }
+   },
+   "rapport_mensuel_octobre": {
+    "source": "Rapport semaine 41.xlsx — SCCI DEX1, point du mois d'octobre 2026 (S40 + S41)",
+    "periodes": [
+     "28/09 - 04/10",
+     "05/10 - 11/10"
+    ],
+    "prod_humide_t": {
+     "CPJ 42.5": 2189.9,
+     "CPJ 32.5": 5090.19,
+     "MIX": 7280.09
+    },
+    "prod_seche_t": {
+     "CPJ 42.5": 2166.97,
+     "CPJ 32.5": 5021.09,
+     "MIX": 7188.06
+    },
+    "tps_prod_h": 153.23,
+    "debit_t_h": 47.51,
+    "ces_kwh_t": 53.98,
+    "cs_gasoil_l_t": 3.59,
+    "kc_sec": 0.4899,
+    "kc_humide": 0.4839,
+    "clinker_t": 3522.74,
+    "gypse_t": 359.03,
+    "granite_t": 2630.3,
+    "laitier_t": 463.77,
+    "argile_t": 304.24,
+    "ventes_detail_t": {
+     "CPJ 32.5 SAC": 4254.0,
+     "CPJ 42.5 SAC": 2127.0,
+     "CPJ 42.5 VRAC": 423.74
+    },
+    "total_ventes_t": 6804.74,
+    "taux_casse_pct": 0.77,
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 27448.14,
+      "stock": 31760
+     },
+     "Gypse": {
+      "stock": 1698
+     },
+     "Granite": {
+      "recu": 273.82,
+      "stock": 642
+     },
+     "Pouzzolane": {
+      "stock": 6
+     },
+     "Laitier": {
+      "stock": -3.55
+     },
+     "Argile calciné": {
+      "stock": -304
+     },
+     "Gasoil": {
+      "recu": 26001.05,
+      "stock": 2612
+     },
+     "Adj. SIKA": {
+      "stock": 5377
+     },
+     "Adj. Chryso": {
+      "stock": 38000
+     },
+     "Adj. BIOLATEX": {
+      "stock": 1800
+     }
     }
    }
   },
@@ -29371,6 +29524,70 @@
      ]
     }
    }
+  }
+ },
+ "2026-W42": {
+  "DEX 1": {
+   "Prod humide": {},
+   "Prod. Sèche": {},
+   "TOTAL (T)": {
+    "TOTAL": 804.0
+   },
+   "CES (KWh/t)": {},
+   "CS Gasoil+DDO (L/t)": {},
+   "Tps de prod. (H)": {},
+   "Débit (T/h)": {},
+   "% K/C Sec": {},
+   "% K/C Humide": {},
+   "Clinker": {},
+   "Gypse": {},
+   "Granite": {},
+   "Laitier": {},
+   "expedition_par_produit": {
+    "CPJ 32.5": 450.0,
+    "CPJ 42.5": 354.0
+   },
+   "days_count": 1,
+   "site": "SCCI1",
+   "date_debut": "2026-10-12",
+   "date_fin": "2026-10-12",
+   "date_range": "12/10 - 12/10",
+   "faits_marquants": [
+    "12/10 : expédition 804 t (sacs uniquement : CPJ 32.5 450 t + CPJ 42.5 354 t), production nulle — broyeur A en maintenance, broyeur B arrêt (silos suffisants) ; stocks ciment 7 907,98 t",
+    "Incident ligne HT-CIE persistant : 7 km de câble à remplacer, CIE en attente du retour de CI Energie (site 2 sur interconnexion)"
+   ],
+   "cibles": {},
+   "ecarts": {},
+   "qualite": {}
+  },
+  "DEX 2": {
+   "Prod humide": {},
+   "Prod. Sèche": {},
+   "TOTAL (T)": {
+    "TOTAL": 1957.44
+   },
+   "CES (KWh/t)": {},
+   "CS Gasoil+DDO (L/t)": {},
+   "Tps de prod. (H)": {},
+   "Débit (T/h)": {},
+   "% K/C Sec": {},
+   "% K/C Humide": {},
+   "Clinker": {},
+   "Gypse": {},
+   "Granite": {},
+   "Laitier": {},
+   "expedition_par_produit": {},
+   "days_count": 1,
+   "site": "SCCI2",
+   "date_debut": "2026-10-12",
+   "date_fin": "2026-10-12",
+   "date_range": "12/10 - 12/10",
+   "faits_marquants": [
+    "12/10 (point WhatsApp) : expédition 1 957,44 t ; broyeur en marche ; quais vides ; ligne HT-CIE en défaut (7 km de câble à remplacer)"
+   ],
+   "cibles": {},
+   "ecarts": {},
+   "qualite": {}
   }
  }
 }

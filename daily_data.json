@@ -253541,5 +253541,183 @@
     }
    }
   }
+ },
+ "2026-10-12": {
+  "DEX 1": {
+   "date": "2026-10-12",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_12102026.pdf",
+   "expedition": {
+    "CPJ 32.5": {
+     "sacs": 450.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 354.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "total_jour": 804.0,
+    "whatsapp_total": 2761.44,
+    "whatsapp_mtd": 29396.84,
+    "total_sacs": 804.0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     },
+     "gypse": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     },
+     "argile_calcinee": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     },
+     "pouzzolane": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     },
+     "granite": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     },
+     "laitier": {
+      "CPJ 32.5": 0.0,
+      "CPJ 42.5": 0.0,
+      "CPA 42.5": 0.0,
+      "CPA 52.5": 0.0,
+      "CHF": 0.0,
+      "Mills": 0.0
+     }
+    },
+    "total_production": {
+     "Total": 0.0
+    },
+    "ces_mills": {},
+    "fuel_mills": {},
+    "debit_broyeur": {},
+    "temps_broyage": {
+     "Total": 0.0
+    },
+    "total_matieres": {
+     "production": 0.0,
+     "temps": 0.0
+    }
+   },
+   "computed": {
+    "CES_Site": null,
+    "Debit_Site": null
+   },
+   "quality": {},
+   "faits_marquants": [
+    "- 06h00-06h00 : Broyeur A à l'arrêt pour maintenance, Broyeur B à l'arrêt pour niveau des silos suffisants",
+    "- Aucune réception de matières premières",
+    "- Expédition sacs uniquement : 804 t (CPJ 32.5 : 450 t ; CPJ 42.5 : 354 t)",
+    "- Incident ligne HT-CIE persistant : 7 km de câble à remplacer, CIE en attente du retour de CI Energie"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1737.0,
+    "SILO 2 (CPJ 32,5)": 2071.2,
+    "SILO 3 (CPJ 32,5)": 2316.7,
+    "SILO 4 (CPJ 42,5)": 1783.08,
+    "TOTAL DISPONIBLE": 7907.98
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "laitier": 0.0,
+    "calcaire": 0.0
+   }
+  },
+  "DEX 2": {
+   "date": "2026-10-12",
+   "site": "DEX 2",
+   "source_pdf": null,
+   "expedition": {
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "total_jour": 1957.44,
+    "whatsapp_total": 2761.44,
+    "whatsapp_mtd": 29396.84,
+    "total_sacs": null,
+    "total_vracs": null,
+    "total_big_bag": null
+   },
+   "production": {},
+   "computed": {},
+   "quality": {},
+   "faits_marquants": [
+    "- Point WhatsApp du 12.10.2026 : expédition 1 957,44 t ; broyeur en marche ; quais vides",
+    "- Incident ligne HT-CIE : site 2 sur interconnexion ; 7 km de câble à remplacer, CIE en attente du retour de CI Energie"
+   ],
+   "stocks": {},
+   "receptions_mp": {}
+  }
  }
 }
