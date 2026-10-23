@@ -16162,10 +16162,541 @@ def _ventilate_production_records(prod_by_period, exp_by_period, x_label):
     return records, ventilated
 
 
-def _render_aggregated_charts(agg_data, x_label, key_prefix):
+def _agg_period_extras(bucket, site_data):
+    """Ajoute au bucket d'agrégation (semaine/mois) les métriques journalières
+    absentes des fichiers Excel hebdomadaires : arrêts broyeur et performance
+    (TRG/CU/disponibilité nette). Toutes les autres lignes détaillées (débit,
+    CS fuel, flux MP, ventes par emballage, taux de casse, adjuvants) sont
+    alimentées par les fichiers Excel hebdomadaires via _xdet_to_bucket."""
+    prod = site_data.get('production', {}) or {}
+
+    # Arrêts broyeur
+    ar = prod.get('arrets_broyeur', {}) or {}
+    if ar:
+        a = bucket.setdefault('arrets', {'externe': 0.0, 'planifie': 0.0, 'non_planifie': 0.0})
+        a['externe'] += ar.get('causes_externes', 0) or 0
+        a['planifie'] += ar.get('planifie', 0) or 0
+        a['non_planifie'] += ar.get('non_planifie', 0) or 0
+
+    # Performance (TRG = OEE, CU, disponibilité nette) — moyennes
+    pf = prod.get('performance', {}) or {}
+    if pf:
+        p = bucket.setdefault('perf', {'trg': [0.0, 0], 'cu': [0.0, 0], 'dispo': [0.0, 0]})
+        for kk, src in (('trg', 'trg_pct'), ('cu', 'cu_pct'), ('dispo', 'dispo_nette_pct')):
+            v = pf.get(src)
+            if isinstance(v, (int, float)) and v > 0:
+                p[kk][0] += v
+                p[kk][1] += 1
+
+
+# Correspondance matières premières des fichiers Excel hebdomadaires
+_XDET_MAT_MAP = {'Clinker': 'clinker', 'Gypse': 'gypse', 'Granite': 'granite',
+                 'Pouzzolane': 'pouzzolane', 'Laitier': 'laitier', 'MSA': 'msa',
+                 'Argile calciné': 'argile calcinée', 'Gasoil': 'gasoil', 'DDO': 'ddo',
+                 'Fuel': 'fuel',
+                 'Adj. PEG': 'adjuvants', 'Adj. Pegasus': 'adjuvants', 'Adj. SIKA': 'adjuvants',
+                 'Adj. Chryso': 'adjuvants', 'Adj. BIOLATEX': 'adjuvants'}
+
+
+def _xdet_to_bucket(bucket, det):
+    """Fusionne un bloc 'excel_detail' (issues des fichiers Excel hebdomadaires)
+    dans un bucket d'agrégation, au format attendu par _render_aggregated_extras.
+    Sommes pour conso/ventes/reçus, moyennes pondérées par la production sèche
+    pour débit/CES/CS fuel/K-C, dernier stock connu pour les flux MP."""
+    if not isinstance(det, dict):
+        return
+    prod_s = det.get('prod_seche_t', {}) or {}
+
+    def _wadd(key, src):
+        vals = det.get(src, {}) or {}
+        tgt = bucket.setdefault(key, {})
+        for p in ('CPA 52.5', 'CPJ 42.5', 'CPJ 32.5', 'CHF', 'MIX'):
+            v = vals.get(p)
+            w = prod_s.get(p) or 0
+            if isinstance(v, (int, float)) and v > 0 and w > 0:
+                e = tgt.get(p, {'ws': 0.0, 'wp': 0.0})
+                e['ws'] += v * w
+                e['wp'] += w
+                tgt[p] = e
+
+    _wadd('debit', 'debit_t_h')
+    _wadd('fuel', 'cs_gasoil_ddo_l_t')
+    _wadd('ces_x', 'ces_kwh_t')
+    for p, v in (det.get('kc_sec', {}) or {}).items():
+        if p == 'MIX' and isinstance(v, (int, float)) and v > 0:
+            k = bucket.setdefault('kc_x', {'ws': 0.0, 'wp': 0.0})
+            w = prod_s.get('MIX') or 0
+            k['ws'] += v * w if w else v
+            k['wp'] += w if w else 1
+
+    # Temps de production (h)
+    tps = det.get('tps_prod_h', {}) or {}
+    tv = tps.get('MIX')
+    if isinstance(tv, (int, float)) and tv > 0:
+        bucket['tps_prod'] = bucket.get('tps_prod', 0) + tv
+
+    # Flux MP (reçu / conso / dernier stock / dernière autonomie)
+    flux = bucket.setdefault('mp_flux', {})
+    for mat, e in (det.get('consommations_mp', {}) or {}).items():
+        if not isinstance(e, dict):
+            continue
+        nm = _XDET_MAT_MAP.get(mat)
+        if not nm:
+            continue
+        f = flux.setdefault(nm, {'recu': 0.0, 'conso': 0.0, 'stock': None, 'autonomie': None})
+        if isinstance(e.get('conso_t'), (int, float)):
+            f['conso'] += e['conso_t']
+        if isinstance(e.get('recu_t'), (int, float)):
+            f['recu'] += e['recu_t']
+        if isinstance(e.get('stock_t'), (int, float)):
+            f['stock'] = e['stock_t']
+        if isinstance(e.get('autonomie_j'), (int, float)):
+            f['autonomie'] = e['autonomie_j']
+    # Fuel (Gasoil+DDO) agrégé
+    if 'gasoil' in flux or 'ddo' in flux:
+        gtot = round(flux.get('gasoil', {}).get('conso', 0) + flux.get('ddo', {}).get('conso', 0), 4)
+        f = flux.setdefault('fuel', {'recu': 0.0, 'conso': 0.0, 'stock': None, 'autonomie': None})
+        f['conso'] = gtot
+        f['recu'] = round(flux.get('gasoil', {}).get('recu', 0) + flux.get('ddo', {}).get('recu', 0), 4)
+        gs = flux.get('gasoil', {}).get('stock')
+        ds = flux.get('ddo', {}).get('stock')
+        if isinstance(gs, (int, float)) or isinstance(ds, (int, float)):
+            f['stock'] = (gs or 0) + (ds or 0)
+
+    # Adjuvants consommés (L) — détail par adjuvant
+    ad_t = 0.0
+    for mat, e in (det.get('consommations_mp', {}) or {}).items():
+        if str(mat).startswith('Adj.') and isinstance(e, dict):
+            v = e.get('conso_t', 0) or 0
+            if v > 0:
+                ad_t += v
+                tgt = bucket.setdefault('additives', {})
+                if isinstance(tgt, dict):
+                    tgt[str(mat)] = round((tgt.get(str(mat)) or 0) + v, 4)
+    if ad_t > 0 and not isinstance(bucket.get('additives'), dict):
+        bucket['additives'] = {'Adjuvants (total)': round(bucket.get('additives', 0) + ad_t, 4)}
+
+    # Fuel consommé (L) = CS Gasoil+DDO MIX × production sèche MIX
+    cs = (det.get('cs_gasoil_ddo_l_t', {}) or {}).get('MIX')
+    pm = prod_s.get('MIX')
+    if isinstance(cs, (int, float)) and cs > 0 and isinstance(pm, (int, float)) and pm > 0:
+        bucket['fuel_l'] = bucket.get('fuel_l', 0) + cs * pm
+
+    # Ventes stratifiées par produit × emballage
+    em = bucket.setdefault('exp_mode', {})
+    for lbl, v in (det.get('ventes', {}) or {}).get('detail_t', {}).items():
+        if not isinstance(v, (int, float)) or v <= 0:
+            continue
+        s = str(lbl).strip()
+        mode = None
+        prod_lbl = None
+        for suf, mname in (('BIG BAG', 'Big Bag'), ('SAC', 'Sacs'), ('VRAC', 'Vrac')):
+            if s.upper().endswith(suf):
+                mode = mname
+                prod_lbl = s[:-len(suf)].strip().rstrip(',').rstrip()
+                break
+        if mode is None or not prod_lbl:
+            continue
+        prod_lbl = prod_lbl.replace(',', '.')
+        e = em.setdefault(prod_lbl, {'Sacs': 0.0, 'Vrac': 0.0, 'Big Bag': 0.0})
+        e[mode] = e.get(mode, 0) + v
+
+    # Taux de casse (pondéré par le volume vendu)
+    vt = (det.get('ventes', {}) or {}).get('total_t')
+    cas = (det.get('ventes', {}) or {}).get('taux_casse_pct')
+    if isinstance(cas, (int, float)) and cas > 0:
+        c = bucket.setdefault('casse', {'ws': 0.0, 'wp': 0.0})
+        w = vt if isinstance(vt, (int, float)) and vt > 0 else 1
+        c['ws'] += cas * w
+        c['wp'] += w
+
+    # Totaux de production / expédition (KPI annuels)
+    if isinstance(prod_s.get('MIX'), (int, float)):
+        bucket['xprod'] = bucket.get('xprod', 0) + prod_s['MIX']
+    if isinstance(vt, (int, float)):
+        bucket['xexp'] = bucket.get('xexp', 0) + vt
+    pp = bucket.setdefault('xprod_detail', {})
+    for p, v in prod_s.items():
+        if p != 'MIX' and isinstance(v, (int, float)) and v > 0:
+            pp[p] = round(pp.get(p, 0) + v, 4)
+
+
+def _finalize_excel_bucket(bucket):
+    """Transforme le taux de casse pondéré {'ws','wp'} en valeur moyenne."""
+    c = bucket.get('casse')
+    if isinstance(c, dict):
+        bucket['casse'] = round(c['ws'] / c['wp'], 4) if c.get('wp') else None
+    return bucket
+
+
+def _fmt_week_ranges(weeks):
+    """Compacte une liste de semaines ISO 'YYYY-Www' en plages consécutives."""
+    if not weeks:
+        return ""
+    try:
+        import datetime as _dt
+        def _d(w):
+            y, wk = w.split('-W')
+            return _dt.date.fromisocalendar(int(y), int(wk), 1)
+        ws = sorted(weeks, key=_d)
+        out, start, prev = [], ws[0], ws[0]
+        for w in ws[1:]:
+            if _d(w) == _d(prev) + _dt.timedelta(days=7):
+                prev = w
+            else:
+                out.append((start, prev))
+                start = prev = w
+        out.append((start, prev))
+        return ", ".join(a if a == b else f"{a}–W{b.split('-W')[1]}" for a, b in out)
+    except Exception:
+        return ", ".join(sorted(weeks))
+
+
+def _data_coverage(year):
+    """Couverture des données pour une année : semaines/mois couverts par les
+    données journalières et par les fichiers Excel hebdomadaires (excel_detail),
+    par site. Sert à signaler les périodes manquantes dans le reporting."""
+    import datetime as _dt
+    daily_weeks, daily_months = set(), set()
+    for _ds in (DAILY_DATA or {}):
+        if not str(_ds).startswith(str(year)):
+            continue
+        try:
+            _d = _dt.date.fromisoformat(str(_ds)[:10])
+            daily_weeks.add(f"{_d.isocalendar().year}-W{_d.isocalendar().week:02d}")
+            daily_months.add(str(_ds)[:7])
+        except Exception:
+            continue
+
+    def _wk_month(w):
+        try:
+            y, wk = w.split('-W')
+            return _dt.date.fromisocalendar(int(y), int(wk), 1).strftime('%Y-%m')
+        except Exception:
+            return None
+
+    xl_weeks = {'DEX 1': set(), 'DEX 2': set()}
+    for _wk, _wv in (WEEKLY_DATA or {}).items():
+        if str(year) not in _wk or not isinstance(_wv, dict):
+            continue
+        if not _wv.get('excel_detail'):
+            continue
+        _base = _wk.split('_')[0]
+        _dex = _wk.split('_')[1] if '_' in _wk else 'DEX 1'
+        xl_weeks.setdefault(_dex, set()).add(_base)
+    xl_months = {d: sorted({m for w in s for m in [_wk_month(w)] if m}) for d, s in xl_weeks.items()}
+    return {'daily_weeks': sorted(daily_weeks), 'daily_months': sorted(daily_months),
+            'xl_weeks': xl_weeks, 'xl_months': xl_months}
+
+
+def _render_coverage_warning(year, freq):
+    """Signale les périodes de l'année sans donnée (fichiers Excel hebdo
+    manquants / DEX 2 absent). freq : 'W' (semaines) ou 'M' (mois)."""
+    try:
+        _cov = _data_coverage(year)
+        _lines = []
+        if freq == 'W':
+            _dw = set(_cov['daily_weeks'])
+            _miss1 = sorted(_dw - _cov['xl_weeks'].get('DEX 1', set()))
+            _miss2 = sorted(_dw - _cov['xl_weeks'].get('DEX 2', set()))
+            if _miss1:
+                _lines.append(f"**DEX 1** — semaines couvertes par les journaliers mais sans fichier Excel hebdo : {_fmt_week_ranges(_miss1)}")
+            if _miss2:
+                if _cov['xl_weeks'].get('DEX 2'):
+                    _lines.append(f"**DEX 2** — semaines sans fichier Excel hebdo : {_fmt_week_ranges(_miss2)}")
+                else:
+                    _lines.append("**DEX 2** — aucun fichier « Rapport hebdo pour finance » disponible pour cette année")
+        else:
+            _dm = set(_cov['daily_months'])
+            _miss1 = sorted(_dm - set(_cov['xl_months'].get('DEX 1', [])))
+            _miss2 = sorted(_dm - set(_cov['xl_months'].get('DEX 2', [])))
+            if _miss1:
+                _lines.append("**DEX 1** — mois sans fichier Excel hebdo : " + ", ".join(_miss1))
+            if _miss2:
+                if _cov['xl_months'].get('DEX 2'):
+                    _lines.append("**DEX 2** — mois sans fichier Excel hebdo : " + ", ".join(_miss2))
+                else:
+                    _lines.append("**DEX 2** — aucun fichier « Rapport hebdo pour finance » disponible pour cette année")
+        if _lines:
+            st.warning("⏳ **Périodes sans données dans le reporting**  \n" + "  \n".join("- " + l for l in _lines))
+    except Exception:
+        pass
+
+
+def _render_aggregated_extras(sorted_periods, x_label, key_prefix, skip_daily=False):
+    """Graphiques détaillés agrégés : débit, CS fuel, flux MP, ventes par
+    emballage, taux de casse (tous issus des fichiers Excel hebdomadaires),
+    puis temps d'arrêt et disponibilité/OEE/CU (issus des données journalières,
+    absent des fichiers Excel hebdo). skip_daily=True n'affiche que les lignes
+    sourcées par les fichiers Excel hebdomadaires."""
+    period_order = [p for p, _ in sorted_periods]
+
+    st.caption("📄 Source : fichiers Excel hebdomadaires — DEX 1 : rapports hebdo « RAPPORT 20xx-Snn » ; "
+               "DEX 2 : fichiers « Rapport hebdo pour finance ». Les arrêts / disponibilité / OEE / CU de DEX 2 "
+               "proviennent de la section KPI's des fichiers Finance ; ceux de DEX 1 restent issus des données journalières.")
+
+    # ── Débit broyeur & CS Gasoil+DDO ──
+    g1, g2 = st.columns(2)
+    with g1:
+        deb_records = []
+        for period, dexs in sorted_periods:
+            for dex_name in ['DEX 1', 'DEX 2']:
+                for pk, val in dexs.get(dex_name, {}).get('debit', {}).items():
+                    if isinstance(val, dict) and val.get('wp', 0) > 0:
+                        v = val['ws'] / val['wp']
+                        if 5 < v < 260:
+                            deb_records.append({x_label: period, 'Site': dex_name, 'Produit': pk, 'Débit (t/h)': round(v, 1)})
+        if deb_records:
+            df = pd.DataFrame(deb_records)
+            fig = px.scatter(df, x=x_label, y='Débit (t/h)', color='Produit', symbol='Site',
+                             color_discrete_map={'CPJ 32.5': '#10b981', 'CPJ 42.5': '#F58220', 'CPA 52.5': '#1E4D8F', 'CPA 42.5': '#8b5cf6', 'CHF': '#ef4444', 'MIX': '#5B6770'},
+                             template='plotly_white', height=380,
+                             title="Débit Broyeur (t/h) — par produit et site",
+                             category_orders={x_label: period_order})
+            fig.update_traces(marker=dict(size=11, opacity=0.85, line=dict(width=1, color='white')))
+            fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_debit", config={"displayModeBar": True})
+        else:
+            st.info("Aucune donnée de débit broyeur agrégée.")
+    with g2:
+        fuel_records = []
+        for period, dexs in sorted_periods:
+            for dex_name in ['DEX 1', 'DEX 2']:
+                for pk, val in dexs.get(dex_name, {}).get('fuel', {}).items():
+                    # Pas de pondération : valeurs par produit, le synthétique MIX est exclu
+                    if pk == 'MIX':
+                        continue
+                    if isinstance(val, dict) and val.get('wp', 0) > 0:
+                        v = val['ws'] / val['wp']
+                        if 0 < v < 50:
+                            fuel_records.append({x_label: period, 'Site': dex_name, 'Produit': pk, 'CS Gasoil+DDO (L/t)': round(v, 2)})
+        if fuel_records:
+            df = pd.DataFrame(fuel_records)
+            fig = px.scatter(df, x=x_label, y='CS Gasoil+DDO (L/t)', color='Produit', symbol='Site',
+                             color_discrete_map={'CPJ 32.5': '#10b981', 'CPJ 42.5': '#F58220', 'CPA 52.5': '#1E4D8F', 'CPA 42.5': '#8b5cf6', 'CHF': '#ef4444'},
+                             template='plotly_white', height=380,
+                             title="CS Gasoil+DDO (L/t) — par produit et site (sans pondération)",
+                             category_orders={x_label: period_order})
+            fig.update_traces(marker=dict(size=11, opacity=0.85, line=dict(width=1, color='white')))
+            fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_fuel", config={"displayModeBar": True})
+        else:
+            st.info("Aucune donnée de consommation gasoil/DDO agrégée.")
+
+    # ── Flux Matières Premières (style journalier) ──
+    flux_mats = []
+    for period, dexs in sorted_periods:
+        for dex_name in ['DEX 1', 'DEX 2']:
+            for mat in dexs.get(dex_name, {}).get('mp_flux', {}):
+                if mat not in flux_mats:
+                    flux_mats.append(mat)
+    prio = ['clinker', 'gypse', 'granite', 'fuel', 'gasoil', 'ddo', 'adjuvants',
+            'laitier', 'pouzzolane', 'msa', 'argile calcinée']
+    flux_mats = sorted(flux_mats, key=lambda m: prio.index(m) if m in prio else 99)
+    _FLUX_COLORS = {'Reçu (t)': '#10b981', 'Stock (t)': '#3b82f6', 'Consommation (t)': '#ef4444'}
+    for mat in flux_mats[:7]:
+        # Un graphique par DEX : les deux côte à côte
+        _fdex = []
+        for dex_name in ['DEX 1', 'DEX 2']:
+            fig = go.Figure()
+            has_data = False
+            for flux_name in ['Reçu (t)', 'Stock (t)', 'Consommation (t)']:
+                xs, ys = [], []
+                for period, dexs in sorted_periods:
+                    f = dexs.get(dex_name, {}).get('mp_flux', {}).get(mat) or {}
+                    v = f.get('recu') if flux_name == 'Reçu (t)' else (f.get('stock') if flux_name == 'Stock (t)' else f.get('conso'))
+                    if isinstance(v, (int, float)) and v > 0:
+                        xs.append(period)
+                        ys.append(v if flux_name != 'Consommation (t)' else -v)
+                if xs:
+                    has_data = True
+                    fig.add_trace(go.Bar(name=flux_name, x=xs, y=ys,
+                                         marker_color=_FLUX_COLORS[flux_name]))
+            xs, ys = [], []
+            for period, dexs in sorted_periods:
+                f = dexs.get(dex_name, {}).get('mp_flux', {}).get(mat) or {}
+                av = f.get('autonomie')
+                if isinstance(av, (int, float)) and av > 0:
+                    xs.append(period)
+                    ys.append(av)
+            if xs:
+                has_data = True
+                fig.add_trace(go.Scatter(name="Autonomie (j)", x=xs, y=ys,
+                                         mode='lines+markers', yaxis='y2',
+                                         line=dict(width=2)))
+            if has_data:
+                fig.update_layout(
+                    barmode='relative', height=420, template='plotly_white',
+                    title=f"Flux {mat.capitalize()} — {dex_name}",
+                    yaxis=dict(title="Tonnes"),
+                    yaxis2=dict(title="Autonomie (j)", overlaying='y', side='right', showgrid=False),
+                    xaxis=dict(title=x_label, categoryorder='array', categoryarray=period_order),
+                    legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='center', x=0.5),
+                    margin=dict(l=20, r=20, t=60, b=20))
+                _fdex.append((dex_name, fig))
+        if not _fdex:
+            continue
+        if len(_fdex) == 1:
+            st.plotly_chart(_fdex[0][1], use_container_width=True,
+                            key=f"{key_prefix}_flux_{mat}_{_fdex[0][0].replace(' ', '')}",
+                            config={"displayModeBar": True})
+        else:
+            _fc1, _fc2 = st.columns(2)
+            with _fc1:
+                st.plotly_chart(_fdex[0][1], use_container_width=True,
+                                key=f"{key_prefix}_flux_{mat}_d1", config={"displayModeBar": True})
+            with _fc2:
+                st.plotly_chart(_fdex[1][1], use_container_width=True,
+                                key=f"{key_prefix}_flux_{mat}_d2", config={"displayModeBar": True})
+
+    # ── Ventes stratifiées par produit et emballage ──
+    g3, g4 = st.columns(2)
+    for gcol, dex_name in ((g3, 'DEX 1'), (g4, 'DEX 2')):
+        with gcol:
+            vente_records = []
+            for period, dexs in sorted_periods:
+                for pk, modes in dexs.get(dex_name, {}).get('exp_mode', {}).items():
+                    for mode, v in modes.items():
+                        if isinstance(v, (int, float)) and v > 0:
+                            vente_records.append({x_label: period, 'Produit': pk, 'Emballage': mode, 'Tonnes': round(v, 1)})
+            if vente_records:
+                df = pd.DataFrame(vente_records)
+                fig = px.bar(df, x=x_label, y='Tonnes', color='Emballage',
+                             color_discrete_map={'Sacs': '#1E4D8F', 'Vrac': '#F58220', 'Big Bag': '#10b981'},
+                             template='plotly_white', height=380,
+                             title=f"Ventes par Produit et Emballage — {dex_name}",
+                             category_orders={x_label: period_order})
+                fig.update_layout(barmode='stack', margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_ventes_{dex_name.replace(' ', '')}", config={"displayModeBar": True})
+            else:
+                st.info(f"Aucune donnée de ventes par emballage {dex_name}.")
+
+    # ── Taux de casse ──
+    casse_records = []
+    for period, dexs in sorted_periods:
+        for dex_name in ['DEX 1', 'DEX 2']:
+            cas = dexs.get(dex_name, {}).get('casse')
+            if isinstance(cas, dict):
+                cas = cas['ws'] / cas['wp'] if cas.get('wp') else None
+            if isinstance(cas, (int, float)) and cas > 0:
+                casse_records.append({x_label: period, 'Site': dex_name, 'Taux de casse (%)': round(cas, 3)})
+    if casse_records:
+        df = pd.DataFrame(casse_records)
+        fig = px.line(df, x=x_label, y='Taux de casse (%)', color='Site', markers=True,
+                      template='plotly_white', height=350,
+                      title="Taux de casse (%) — rapports officiels",
+                      category_orders={x_label: period_order})
+        fig.update_traces(line=dict(width=2))
+        fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+        st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_casse", config={"displayModeBar": True})
+
+    # ── Temps d'arrêt stratifié + Disponibilité/OEE/CU (données journalières) ──
+    if not skip_daily:
+        st.caption("📋 Source : données journalières — ces indicateurs sont absents des fichiers Excel hebdomadaires.")
+    g5, g6 = (st.columns(2) if not skip_daily else (None, None))
+    for gcol, dex_name in ((g5, 'DEX 1'), (g6, 'DEX 2')):
+        if gcol is None:
+            continue
+        with gcol:
+            ar_records = []
+            for period, dexs in sorted_periods:
+                ar = dexs.get(dex_name, {}).get('arrets') or {}
+                if not ar:
+                    continue
+                for cause, lbl in (('externe', "Causes externes"), ('non_planifie', "Non planifié"), ('planifie', "Planifié")):
+                    v = ar.get(cause, 0)
+                    if v and v > 0:
+                        ar_records.append({x_label: period, "Cause": lbl, "Heures": round(v, 1)})
+            if ar_records:
+                df = pd.DataFrame(ar_records)
+                fig = px.bar(df, x=x_label, y='Heures', color='Cause',
+                             color_discrete_map={"Causes externes": '#ef4444', "Non planifié": '#F58220', "Planifié": '#1E4D8F'},
+                             template='plotly_white', height=380,
+                             title=f"Temps d'arrêt broyeur par cause — {dex_name}",
+                             category_orders={x_label: period_order})
+                fig.update_layout(barmode='stack', margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_arrets_{dex_name.replace(' ', '')}", config={"displayModeBar": True})
+            else:
+                st.info(f"Aucune donnée d'arrêts {dex_name}.")
+
+    # ── Disponibilité nette, OEE (TRG), CU% ──
+    perf_records = []
+    if not skip_daily:
+        for period, dexs in sorted_periods:
+            for dex_name in ['DEX 1', 'DEX 2']:
+                pf = dexs.get(dex_name, {}).get('perf') or {}
+                for lbl, kk in (("Disponibilité nette", 'dispo'), ("OEE (TRG)", 'trg'), ("CU%", 'cu')):
+                    d = pf.get(kk)
+                    if isinstance(d, list) and d[1] > 0:
+                        perf_records.append({x_label: period, 'Site': dex_name, 'Indicateur': lbl,
+                                             'Valeur (%)': round(d[0] / d[1] * 100, 1)})
+    if perf_records:
+        df = pd.DataFrame(perf_records)
+        fig = px.line(df, x=x_label, y='Valeur (%)', color='Indicateur', symbol='Site', markers=True,
+                      template='plotly_white', height=400,
+                      title="Disponibilité nette / OEE (TRG) / Capacité d'utilisation (%)",
+                      category_orders={x_label: period_order})
+        fig.update_traces(line=dict(width=2))
+        fig.update_layout(margin=dict(l=20, r=20, t=60, b=20), yaxis=dict(range=[0, 105]))
+        st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_perf", config={"displayModeBar": True})
+
+    # ── Consommations : fuel (L) & adjuvants (L) ──
+    g7, g8 = st.columns(2)
+    with g7:
+        fl_records = []
+        for period, dexs in sorted_periods:
+            for dex_name in ['DEX 1', 'DEX 2']:
+                v = dexs.get(dex_name, {}).get('fuel_l')
+                if isinstance(v, (int, float)) and v > 0:
+                    fl_records.append({x_label: period, 'Site': dex_name, 'Gasoil+DDO (L)': round(v, 0)})
+        if fl_records:
+            df = pd.DataFrame(fl_records)
+            fig = px.bar(df, x=x_label, y='Gasoil+DDO (L)', color='Site', barmode='group',
+                         template='plotly_white', height=350,
+                         title="Consommation Gasoil+DDO (L)",
+                         category_orders={x_label: period_order})
+            fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_fuel_l", config={"displayModeBar": True})
+        else:
+            st.info("Aucune consommation fuel agrégée.")
+    with g8:
+        adj_by_name = {}
+        for period, dexs in sorted_periods:
+            for dex_name in ['DEX 1', 'DEX 2']:
+                _adjs = dexs.get(dex_name, {}).get('additives')
+                if isinstance(_adjs, dict):
+                    for adj, v in _adjs.items():
+                        if isinstance(v, (int, float)) and v > 0:
+                            adj_by_name.setdefault(adj, {})[(period, dex_name)] = v
+                elif isinstance(_adjs, (int, float)) and _adjs > 0:
+                    adj_by_name.setdefault('Adjuvants (total)', {})[(period, dex_name)] = v
+        if adj_by_name:
+            _ncols = 2 if len(adj_by_name) > 1 else 1
+            _acols = st.columns(_ncols)
+            for _i, (_adj, _vals) in enumerate(sorted(adj_by_name.items())):
+                _recs = [{x_label: p, 'Site': d, 'Litres': round(v, 0)}
+                         for (p, d), v in _vals.items()]
+                _df = pd.DataFrame(_recs)
+                fig = px.bar(_df, x=x_label, y='Litres', color='Site', barmode='group',
+                             color_discrete_map={'DEX 1': '#1E4D8F', 'DEX 2': '#F58220'},
+                             template='plotly_white', height=320,
+                             title=f"{_adj} (L)",
+                             category_orders={x_label: period_order})
+                fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+                with _acols[_i % _ncols]:
+                    st.plotly_chart(fig, use_container_width=True,
+                                    key=f"{key_prefix}_adj_{_i}", config={"displayModeBar": True})
+        else:
+            st.info("Aucun adjuvant agrégé.")
+
+
+def _render_aggregated_charts(agg_data, x_label, key_prefix, render_extras=True):
     """Render aggregated daily charts for weekly/monthly tabs.
-    
+
     agg_data: {period_key: {dex: {production: {}, expedition: {}, temps_broyage: {}, ces: {}, matieres: {}}}}
+    render_extras=False n'affiche que les 5 graphes agrégés (production, expédition,
+    temps de broyage, CES, MP) — utilisé pour placer ces graphes juste avant
+    le graphe « Débit broyeur pondéré » de la section mensuelle.
     """
     if not agg_data:
         st.info("Aucune donnée agrégée disponible.")
@@ -16307,6 +16838,8 @@ def _render_aggregated_charts(agg_data, x_label, key_prefix):
         tps_records = []
         for period, dexs in sorted_periods:
             for pk, val in dexs.get('DEX 1', {}).get('temps_broyage', {}).items():
+                if str(pk).lower() in ('total', '_total', 'mix'):
+                    continue
                 if val and val > 0:
                     tps_records.append({x_label: period, 'Produit': pk, 'Temps (h)': round(val, 1)})
         if tps_records:
@@ -16325,6 +16858,8 @@ def _render_aggregated_charts(agg_data, x_label, key_prefix):
         tps_records = []
         for period, dexs in sorted_periods:
             for pk, val in dexs.get('DEX 2', {}).get('temps_broyage', {}).items():
+                if str(pk).lower() in ('total', '_total', 'mix'):
+                    continue
                 if val and val > 0:
                     tps_records.append({x_label: period, 'Produit': pk, 'Temps (h)': round(val, 1)})
         if tps_records:
@@ -16373,6 +16908,10 @@ def _render_aggregated_charts(agg_data, x_label, key_prefix):
                     category_orders={x_label: period_order})
         fig.update_layout(barmode='stack', margin=dict(l=20,r=20,t=40,b=20))
         st.plotly_chart(fig, use_container_width=True, key=f"{key_prefix}_mp", config={"displayModeBar": True})
+
+
+    if render_extras:
+        _render_aggregated_extras(sorted_periods, x_label, key_prefix)
 
 
 def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data):
@@ -16465,6 +17004,9 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
         st.html(dg_kpi_box("Expédition", f'{total_exp_weekly:,.0f} t'))
     with k4:
         st.html(dg_kpi_box("Faits Marquants", f'{total_incidents_weekly}'))
+
+    # Périodes sans données (fichiers Excel hebdo manquants / DEX 2 absent)
+    _render_coverage_warning(year, 'W')
 
     # ── GRAPHIQUES HEBDOMADAIRES ──
     st.markdown("<div style='margin-top:24px;'></div>", unsafe_allow_html=True)
@@ -16594,8 +17136,6 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
 
     # ── GRAPHIQUES JOURNALIERS AGRÉGÉS PAR SEMAINE ──
     st.markdown("<div style='margin-top:24px;'></div>", unsafe_allow_html=True)
-    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Journalières Agrégées par Semaine</div>")
-    
     # Aggregate daily_data by ISO week
     _REAL_PROD = {'CPJ 32.5', 'CPJ 42.5', 'CPA 52.5', 'CPA 42.5', 'CHF'}
     week_agg = {}
@@ -16712,6 +17252,8 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
                     v = 0
                 if v and v > 0:
                     week_agg[week_key][dex_name]['matieres'][mat] = week_agg[week_key][dex_name]['matieres'].get(mat, 0) + v
+
+            _agg_period_extras(week_agg[week_key][dex_name], site_data)
     
     # Convert CES weighted averages
     for wk in week_agg:
@@ -16723,8 +17265,48 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
                 else:
                     del week_agg[wk][dex]['ces'][pk]
     
-    # Render aggregated charts
-    _render_aggregated_charts(week_agg, "Semaine", "weekly_agg")
+    # Métriques détaillées issues des fichiers Excel hebdomadaires (DEX 1) :
+    # débit, CS Gasoil+DDO, flux MP, ventes par emballage, taux de casse,
+    # adjuvants, fuel (L) — _agg_period_extras ne fournit que les arrêts/perf.
+    for _wk, _wdata in filtered_weekly.items():
+        _det = _wdata.get('excel_detail') if isinstance(_wdata, dict) else None
+        if not _det:
+            continue
+        _parts = _wk.split('_')
+        _wk_base = _parts[0]
+        _dex_name = _parts[1] if len(_parts) > 1 else 'DEX 1'
+        if _wk_base in week_agg:
+            _xdet_to_bucket(week_agg[_wk_base].setdefault(_dex_name, {}), _det)
+            # DEX 2 : les KPI's (arrêts, dispo, TRS/OEE, CU) des fichiers
+            # « Rapport hebdo pour finance » remplacent les valeurs journalières
+            _kp = _det.get('kpis') or {}
+            if _dex_name == 'DEX 2' and _kp:
+                _bkt = week_agg[_wk_base]['DEX 2']
+                _ext = _kp.get('causes_externes_h') or 0
+                _tot = _kp.get('arret_total_h') or 0
+                _pla = _kp.get('arret_planifie_h') or 0
+                _bkt['arrets'] = {'externe': _ext, 'planifie': _pla,
+                                  'non_planifie': max(_tot - _ext - _pla, 0),
+                                  'total': _tot}
+                _bkt['perf'] = {
+                    'trg': [(_kp.get('trs_oee') or 0) / 100.0 if (_kp.get('trs_oee') or 0) > 1.5 else (_kp.get('trs_oee') or 0), 1],
+                    'cu': [(_kp.get('cu') or 0) / 100.0 if (_kp.get('cu') or 0) > 1.5 else (_kp.get('cu') or 0), 1],
+                    'dispo': [(_kp.get('dispo_nette') or 0) / 100.0 if (_kp.get('dispo_nette') or 0) > 1.5 else (_kp.get('dispo_nette') or 0), 1]}
+
+    # Taux de casse : fallback rapports officiels hebdomadaires pour les semaines
+    # sans détail Excel (semaines anciennes)
+    for _wk, _wdata in filtered_weekly.items():
+        _ro = _wdata.get('rapport_officiel') or {}
+        _cas = _ro.get('taux_casse_pct')
+        _wk_base = _wk.split('_')[0]
+        if isinstance(_cas, (int, float)) and _cas > 0 and _wk_base in week_agg:
+            _bkt = week_agg[_wk_base].setdefault('DEX 1', {})
+            if not _bkt.get('casse'):
+                _bkt['casse'] = _cas
+
+    for _wk in week_agg:
+        for _dex in week_agg[_wk]:
+            _finalize_excel_bucket(week_agg[_wk][_dex])
 
     # Affichage des données hebdomadaires regroupées dans un expander central
     with st.expander("📋 Voir les données hebdomadaires détaillées", expanded=False):
@@ -16837,6 +17419,11 @@ def _render_weekly_filtered(site, product, broyeur, timeframe, year, daily_data)
 
 
 
+    # ── SECTION AGRÉGÉE (graphiques) — déplacée en bas de page, repliable ──
+    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Journalières Agrégées par Semaine</div>")
+    with st.expander("📊 Graphiques agrégés par semaine (production, expédition, broyage, CES, MP, débit, flux, ventes, casse, dispo…)", expanded=False):
+        _render_aggregated_charts(week_agg, "Semaine", "weekly_agg")
+
     # --- FLUX DE TRÉSORERIE (encaissements / décaissements hebdomadaires) ---
     try:
         _render_treasury_flow_section(freq="W", expanded=False)
@@ -16921,7 +17508,7 @@ def _render_monthly_filtered(site, product, broyeur, timeframe, year, daily_data
     
     # ── GRAPHIQUES JOURNALIERS AGRÉGÉS PAR MOIS ──
     st.markdown("<div style='margin-top:24px;'></div>", unsafe_allow_html=True)
-    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Journalières Agrégées par Mois</div>")
+    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Mensuelles — Vue d'ensemble</div>")
     
     # Aggregate daily_data by month
     month_agg = {}
@@ -17036,6 +17623,8 @@ def _render_monthly_filtered(site, product, broyeur, timeframe, year, daily_data
                     v = 0
                 if v and v > 0:
                     month_agg[month_key][dex_name]['matieres'][mat] = month_agg[month_key][dex_name]['matieres'].get(mat, 0) + v
+
+            _agg_period_extras(month_agg[month_key][dex_name], site_data)
     
     # Convert CES weighted averages
     for mk in month_agg:
@@ -17047,12 +17636,292 @@ def _render_monthly_filtered(site, product, broyeur, timeframe, year, daily_data
                 else:
                     del month_agg[mk][dex]['ces'][pk]
     
-    _render_aggregated_charts(month_agg, "Mois", "monthly_agg")
-    
+    # Taux de casse (cumuls mensuels portés par les fichiers hebdomadaires)
+    for _wk, _wv in WEEKLY_DATA.items():
+        _rm = _wv.get('rapport_mensuel_octobre') or _wv.get('rapport_mensuel') or {}
+        _cas = _rm.get('taux_casse_pct') or (_rm.get('ventes') or {}).get('taux_casse_pct')
+        if isinstance(_cas, (int, float)) and _cas > 0:
+            _ds = _wv.get('date_debut')
+            if _ds:
+                _mk = str(_ds)[:7]
+            else:
+                try:
+                    import datetime as _dt_mod
+                    _yb, _wb = _wk.split('_')[0].split('-W')
+                    _mk = _dt_mod.date.fromisocalendar(int(_yb), int(_wb), 1).strftime('%Y-%m')
+                except Exception:
+                    _mk = None
+            if _mk and _mk in month_agg:
+                month_agg[_mk].setdefault('DEX 1', {})['casse'] = _cas
+
+    # ════════════════════════════════════════════════════════════════════════
+    # DONNÉES HEBDOMADAIRES AGRÉGÉES PAR MOIS + RÉCONCILIATION DES 3 SOURCES
+    # ════════════════════════════════════════════════════════════════════════
+    st.markdown("<div style='margin-top:28px;'></div>", unsafe_allow_html=True)
+    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Hebdomadaires Agrégées par Mois</div>")
+
+    # Périodes sans données (fichiers Excel hebdo manquants / DEX 2 absent)
+    _render_coverage_warning(year, 'M')
+
+    wk_month = {}
+    wk_month_excel = {}
+    excel_cumul = {}
+    excel_cumul_d2 = {}
+    for _wk, _wv in WEEKLY_DATA.items():
+        if str(year) not in _wk:
+            continue
+        _ds = _wv.get('date_debut')
+        if _ds:
+            _mk = str(_ds)[:7]
+        else:
+            # Fallback : déduire le mois de la clé ISO de la semaine
+            try:
+                import datetime as _dt_mod
+                _yb, _wb = _wk.split('_')[0].split('-W')
+                _mk = _dt_mod.date.fromisocalendar(int(_yb), int(_wb), 1).strftime('%Y-%m')
+            except Exception:
+                _mk = None
+        if not _mk or not _mk.startswith(str(year)):
+            continue
+        _b = wk_month.setdefault(_mk, {'production': 0.0, 'expedition': 0.0,
+                                       'ces_ws': 0.0, 'ces_wp': 0.0, 'kc': [], 'weeks': 0})
+        _p = _wv.get('Prod. Sèche', {}) or {}
+        _REAL_PROD_WK = {'CPJ 32.5', 'CPJ 42.5', 'CPA 52.5', 'CPA 42.5', 'CHF'}
+        _prod = _p.get('MIX')
+        if not _prod:
+            _prod = sum(_p.get(_pk, 0) or 0 for _pk in _REAL_PROD_WK) or 0
+        _e = _wv.get('TOTAL (T)', {}) or {}
+        _exp = _e.get('TOTAL') or 0
+        _ces_d = _wv.get('CES (KWh/t)', {}) or {}
+        _ces = _ces_d.get('MIX')
+        if not _ces:
+            _ces_w = [(_ces_d.get(_pk), _p.get(_pk)) for _pk in _REAL_PROD_WK]
+            _ws = sum(c * w for c, w in _ces_w if isinstance(c, (int, float)) and isinstance(w, (int, float)) and w > 0)
+            _wp = sum(w for c, w in _ces_w if isinstance(c, (int, float)) and isinstance(w, (int, float)) and w > 0)
+            _ces = _ws / _wp if _wp else 0
+        _kc_d = _wv.get('% K/C Sec', {}) or {}
+        _kc = _kc_d.get('MIX')
+        if not _kc:
+            _kc_vals = [_kc_d.get(_pk) for _pk in _REAL_PROD_WK]
+            _kc_vals = [v for v in _kc_vals if isinstance(v, (int, float)) and v > 0]
+            _kc = sum(_kc_vals) / len(_kc_vals) if _kc_vals else 0
+        if isinstance(_prod, (int, float)):
+            _b['production'] += _prod
+            _b['ces_wp'] += _prod
+            if isinstance(_ces, (int, float)) and _ces > 0:
+                _b['ces_ws'] += _ces * _prod
+        if isinstance(_exp, (int, float)):
+            _b['expedition'] += _exp
+        if isinstance(_kc, (int, float)) and _kc > 0:
+            _b['kc'].append(_kc)
+        _b['weeks'] += 1
+        # Cumul mensuel porté par le fichier hebdo (rapport mensuel d'octobre)
+        # Cumul mensuel porté par le fichier hebdo (rapport mensuel joint)
+        _rm = _wv.get('rapport_mensuel_octobre') or _wv.get('rapport_mensuel') or {}
+        if _rm:
+            excel_cumul[_mk] = _rm
+        _rm2 = _wv.get('rapport_mensuel_dex2') or {}
+        if _rm2:
+            excel_cumul_d2[_mk] = _rm2
+        # Nouvelles lignes hebdo (débit, CS fuel, flux MP, ventes par emballage,
+        # taux de casse, adjuvants, fuel L) agrégées par mois depuis l'excel_detail
+        _det = _wv.get('excel_detail') if isinstance(_wv, dict) else None
+        if _det:
+            _parts = _wk.split('_')
+            _dex_name = _parts[1] if len(_parts) > 1 else 'DEX 1'
+            _xdet_to_bucket(wk_month_excel.setdefault(_mk, {}).setdefault(_dex_name, {}), _det)
+
+    if wk_month:
+        wk_rows = []
+        for _mk in sorted(wk_month):
+            _b = wk_month[_mk]
+            _ces_m = _b['ces_ws'] / _b['ces_wp'] if _b['ces_wp'] else None
+            _kc_m = sum(_b['kc']) / len(_b['kc']) if _b['kc'] else None
+            wk_rows.append({'Mois': _mk, 'Production (t)': round(_b['production'], 1),
+                            'Expédition (t)': round(_b['expedition'], 1),
+                            'CES (KWh/t)': round(_ces_m, 2) if _ces_m else None,
+                            'K/C sec': round(_kc_m, 4) if _kc_m else None,
+                            'Semaines': _b['weeks']})
+        df_wk = pd.DataFrame(wk_rows)
+
+        gm1, gm2 = st.columns(2)
+        with gm1:
+            fig = px.bar(df_wk, x='Mois', y=['Production (t)', 'Expédition (t)'], barmode='group',
+                         template='plotly_white', height=380,
+                         title="Production / Expédition — fichiers hebdomadaires agrégés par mois")
+            fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig, use_container_width=True, key="monthly_from_weekly_prod", config={"displayModeBar": True})
+        with gm2:
+            fig = go.Figure()
+            fig.add_trace(go.Bar(x=df_wk['Mois'], y=df_wk['CES (KWh/t)'], name='CES (KWh/t)', marker_color='#1E4D8F'))
+            fig.update_layout(template='plotly_white', height=380, barmode='group',
+                              title="CES — fichiers hebdomadaires agrégés par mois",
+                              margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig, use_container_width=True, key="monthly_from_weekly_ces", config={"displayModeBar": True})
+
+        # K/C sec : graphique séparé (ligne)
+        _kc_df = df_wk.dropna(subset=['K/C sec'])
+        if not _kc_df.empty:
+            fig_kc = px.line(_kc_df, x='Mois', y='K/C sec', markers=True,
+                             template='plotly_white', height=340,
+                             title="K/C sec — fichiers hebdomadaires agrégés par mois")
+            fig_kc.update_traces(line=dict(width=2, color='#F58220'))
+            fig_kc.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+            st.plotly_chart(fig_kc, use_container_width=True, key="monthly_from_weekly_kc", config={"displayModeBar": True})
+
+        # ── Mêmes graphes que la section hebdo (production, expédition, broyage,
+        #    CES, MP) construits à partir des fichiers hebdomadaires agrégés par
+        #    mois — placés avant le graphe « Débit broyeur pondéré » ──
+        wk_month_detail = {}
+        for _wk, _wv in WEEKLY_DATA.items():
+            if str(year) not in _wk:
+                continue
+            _ds = _wv.get('date_debut')
+            if _ds:
+                _mk = str(_ds)[:7]
+            else:
+                try:
+                    import datetime as _dt_mod
+                    _yb, _wb = _wk.split('_')[0].split('-W')
+                    _mk = _dt_mod.date.fromisocalendar(int(_yb), int(_wb), 1).strftime('%Y-%m')
+                except Exception:
+                    _mk = None
+            if not _mk or not _mk.startswith(str(year)):
+                continue
+            _parts = _wk.split('_')
+            _dex_name = _parts[1] if len(_parts) > 1 else 'DEX 1'
+            _bd = wk_month_detail.setdefault(_mk, {}).setdefault(_dex_name,
+                     {'production': {}, 'expedition': {}, 'temps_broyage': {}, 'ces': {}, 'matieres': {}})
+            _p = _wv.get('Prod. Sèche', {}) or {}
+            for _pk, _pv in _p.items():
+                if isinstance(_pv, (int, float)) and _pv > 0:
+                    _bd['production'][_pk] = round(_bd['production'].get(_pk, 0) + _pv, 4)
+            for _pk, _pv in (_wv.get('TOTAL (T)', {}) or {}).items():
+                if isinstance(_pv, (int, float)) and _pv > 0:
+                    _bd['expedition'][_pk] = round(_bd['expedition'].get(_pk, 0) + _pv, 4)
+            for _pk, _pv in (_wv.get('Tps de prod. (H)', {}) or {}).items():
+                if str(_pk).lower() in ('total', '_total', 'mix'):
+                    continue
+                if isinstance(_pv, (int, float)) and _pv > 0:
+                    _bd['temps_broyage'][_pk] = round(_bd['temps_broyage'].get(_pk, 0) + _pv, 4)
+            for _pk, _pv in (_wv.get('CES (KWh/t)', {}) or {}).items():
+                _w = _p.get(_pk)
+                if isinstance(_pv, (int, float)) and _pv > 0 and isinstance(_w, (int, float)) and _w > 0:
+                    e = _bd['ces'].setdefault(_pk, {'ws': 0.0, 'wp': 0.0, 'total_prod': 0})
+                    e['ws'] += _pv * _w
+                    e['wp'] += _w
+                    e['total_prod'] += _w
+            _det = _wv.get('excel_detail') if isinstance(_wv, dict) else None
+            if _det:
+                for _mat, _e in (_det.get('consommations_mp', {}) or {}).items():
+                    if not isinstance(_e, dict):
+                        continue
+                    _nm = _XDET_MAT_MAP.get(_mat)
+                    _cv = _e.get('conso_t')
+                    if _nm and isinstance(_cv, (int, float)) and _cv > 0:
+                        _bd['matieres'][_nm] = round(_bd['matieres'].get(_nm, 0) + _cv, 4)
+        for _mk in wk_month_detail:
+            for _dex in wk_month_detail[_mk]:
+                for _pk in list(wk_month_detail[_mk][_dex]['ces'].keys()):
+                    _e = wk_month_detail[_mk][_dex]['ces'][_pk]
+                    if _e.get('total_prod', 0) > 0:
+                        wk_month_detail[_mk][_dex]['ces'][_pk] = round(_e['ws'] / _e['wp'], 4)
+                    else:
+                        del wk_month_detail[_mk][_dex]['ces'][_pk]
+        if wk_month_detail:
+            _render_aggregated_charts(wk_month_detail, "Mois", "monthly_hebdo_detail", render_extras=False)
+
+        # ── Nouvelles lignes hebdo agrégées par mois (source : fichiers Excel hebdo) ──
+        if wk_month_excel:
+            for _mk in wk_month_excel:
+                for _dex in wk_month_excel[_mk]:
+                    _finalize_excel_bucket(wk_month_excel[_mk][_dex])
+            st.html("<div class='section-title-light' style='font-size:0.85rem;'>📈 Débit · CS Fuel · Flux MP · Ventes par emballage · Casse — hebdo Excel agrégé par mois</div>")
+            _render_aggregated_extras(sorted(wk_month_excel.items()), "Mois", "monthly_excel_agg", skip_daily=True)
+
+        # ── Réconciliation des 3 sources ──
+        st.html("<div class='section-title-light' style='font-size:0.85rem;'>🧾 Réconciliation des 3 sources (Journaliers agrégés vs Hebdomadaires agrégés vs Cumul Excel)</div>")
+        rec_rows = []
+        for _mk in sorted(set(list(month_agg.keys()) + list(wk_month.keys()))):
+            # Source 1 : journaliers agrégés (produits réels uniquement —
+            # le dict agrégé contient aussi whatsapp_total/whatsapp_mtd)
+            _REAL_PROD_REC = {'CPJ 32.5', 'CPJ 42.5', 'CPA 52.5', 'CPA 42.5', 'CHF'}
+            _d_prod = _d_exp = 0.0
+            _d_ces_ws = _d_ces_wp = 0.0
+            for _dex in month_agg.get(_mk, {}).values():
+                for _pk, _pv in (_dex.get('production') or {}).items():
+                    if _pk in _REAL_PROD_REC and isinstance(_pv, (int, float)):
+                        _d_prod += _pv
+                _e = _dex.get('expedition') or {}
+                _d_exp += sum(_v for _pk, _v in _e.items()
+                              if _pk in _REAL_PROD_REC and isinstance(_v, (int, float)))
+                _cv = _dex.get('ces') or {}
+                if isinstance(_cv, dict):
+                    _v = _cv.get('Mills') or _cv.get('Total')
+                    if isinstance(_v, (int, float)) and _v > 0:
+                        _d_ces_ws += _v * _d_prod if _d_prod else _v
+                        _d_ces_wp += _d_prod if _d_prod else 1
+            _d_ces = _d_ces_ws / _d_ces_wp if _d_ces_wp else None
+            # Source 2 : hebdomadaires agrégés
+            _w = wk_month.get(_mk, {})
+            _w_prod = _w.get('production', 0)
+            _w_exp = _w.get('expedition', 0)
+            _w_ces = (_w.get('ces_ws', 0) / _w.get('ces_wp', 1)) if _w.get('ces_wp') else None
+            # Source 3 : cumul Excel (rapport mensuel)
+            _xl = excel_cumul.get(_mk, {})
+            _xl_prod = _xl.get('prod_seche_t', {}).get('MIX') if isinstance(_xl.get('prod_seche_t'), dict) else _xl.get('prod_seche_t')
+            _xl_exp = _xl.get('total_ventes_t')
+            _xl_ces = _xl.get('ces_kwh_t')
+            # DEX 2 : agrégation hebdo Excel + cumul mensuel des fichiers Finance
+            _w2 = (wk_month_excel.get(_mk) or {}).get('DEX 2') or {}
+            _w2_prod = (_w2.get('production') or {}).get('MIX') or 0
+            _w2_exp = (_w2.get('expedition') or {}).get('MIX') or 0
+            _x2 = excel_cumul_d2.get(_mk, {})
+            _x2_prod = _x2.get('prod_seche_t', {}).get('MIX') if isinstance(_x2.get('prod_seche_t'), dict) else _x2.get('prod_seche_t')
+            _x2_exp = _x2.get('ventes', {}).get('total_t') if isinstance(_x2.get('ventes'), dict) else _x2.get('total_ventes_t')
+            _x2_cas = _x2.get('ventes', {}).get('taux_casse_pct') if isinstance(_x2.get('ventes'), dict) else _x2.get('taux_casse_pct')
+
+            def _gap(a, b):
+                if isinstance(a, (int, float)) and isinstance(b, (int, float)) and b:
+                    return round((a - b) / b * 100, 2)
+                return None
+
+            rec_rows.append({
+                'Mois': _mk,
+                'Prod. journaliers (t)': round(_d_prod, 1),
+                'Prod. hebdo (t)': round(_w_prod, 1) if _w_prod else None,
+                'Prod. cumul Excel (t)': _xl_prod,
+                'Écart J/H (%)': _gap(_d_prod, _w_prod),
+                'Écart J/XL (%)': _gap(_d_prod, _xl_prod),
+                'Exp. journaliers (t)': round(_d_exp, 1),
+                'Exp. hebdo (t)': round(_w_exp, 1) if _w_exp else None,
+                'Exp. cumul Excel (t)': _xl_exp,
+                'Écart E J/H (%)': _gap(_d_exp, _w_exp),
+                'Écart E J/XL (%)': _gap(_d_exp, _xl_exp),
+                'CES journaliers': round(_d_ces, 2) if _d_ces else None,
+                'CES hebdo': round(_w_ces, 2) if _w_ces else None,
+                'CES Excel': _xl_ces,
+                'Prod. hebdo D2 (t)': round(_w2_prod, 1) if _w2_prod else None,
+                'Prod. cumul D2 (t)': round(_x2_prod, 1) if isinstance(_x2_prod, (int, float)) else None,
+                'Écart D2 H/XL (%)': _gap(_w2_prod, _x2_prod),
+                'Exp. hebdo D2 (t)': round(_w2_exp, 1) if _w2_exp else None,
+                'Exp. cumul D2 (t)': round(_x2_exp, 1) if isinstance(_x2_exp, (int, float)) else None,
+                'Casse D2 cumul (%)': round(_x2_cas, 3) if isinstance(_x2_cas, (int, float)) else None,
+            })
+        if rec_rows:
+            st.dataframe(pd.DataFrame(rec_rows), use_container_width=True, hide_index=True)
+            st.caption("Écart J/H = (journaliers agrégés − hebdo agrégés) / hebdo agrégés · Écart J/XL = (journaliers agrégés − cumul Excel) / cumul Excel. "
+                       "Les cumuls Excel ne sont disponibles que pour les mois couverts par les rapports mensuels joints aux fichiers hebdomadaires.")
+    else:
+        st.info("Aucune donnée hebdomadaire pour l'année sélectionnée.")
+
     # Tableau détaillé
     st.dataframe(df, use_container_width=True, hide_index=True)
 
-
+    # ── SECTION AGRÉGÉE (graphiques journaliers agrégés par mois) — bas de page, repliable ──
+    st.html("<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Journalières Agrégées par Mois</div>")
+    with st.expander("📊 Graphiques agrégés par mois (production, expédition, broyage, CES, MP, débit, flux, ventes, casse, dispo…)", expanded=False):
+        _render_aggregated_charts(month_agg, "Mois", "monthly_agg")
 
     # --- FLUX DE TRÉSORERIE (encaissements / décaissements mensuels) ---
     try:
@@ -17108,6 +17977,204 @@ def _render_annual_filtered(site, product, broyeur, timeframe, year):
         fig2 = px.bar(prod_df, x="Année", y="Production (t)", color_discrete_sequence=["#1E4D8F"])
         fig2.update_layout(template="plotly_white", height=350)
         st.plotly_chart(fig2, use_container_width=True, key="chart_fig2_21", config={"displayModeBar": True})
+
+    # ════════════════════════════════════════════════════════════════════
+    # DONNÉES MENSUELLES AGRÉGÉES PAR AN (KPI boxes + pie charts)
+    # ════════════════════════════════════════════════════════════════════
+    st.markdown("<div style='margin-top:28px;'></div>", unsafe_allow_html=True)
+    st.html(f"<div class='section-title-light' style='font-size:0.9rem;'>📊 Données Mensuelles Agrégées par An — {year}</div>")
+
+    # Périodes sans données (fichiers Excel hebdo manquants / DEX 2 absent)
+    _render_coverage_warning(year, 'M')
+
+    year_month = {}
+    for _wk, _wv in (WEEKLY_DATA or {}).items():
+        if str(year) not in _wk:
+            continue
+        _det = _wv.get('excel_detail') if isinstance(_wv, dict) else None
+        if not _det:
+            continue
+        _ds = _wv.get('date_debut')
+        if _ds:
+            _mk = str(_ds)[:7]
+        else:
+            try:
+                import datetime as _dt_mod
+                _yb, _wb = _wk.split('_')[0].split('-W')
+                _mk = _dt_mod.date.fromisocalendar(int(_yb), int(_wb), 1).strftime('%Y-%m')
+            except Exception:
+                _mk = None
+        if not _mk or not _mk.startswith(str(year)):
+            continue
+        _parts = _wk.split('_')
+        _dex_name = _parts[1] if len(_parts) > 1 else 'DEX 1'
+        _xdet_to_bucket(year_month.setdefault(_mk, {}).setdefault(_dex_name, {}), _det)
+
+    if year_month:
+        for _mk in year_month:
+            for _dex in year_month[_mk]:
+                _finalize_excel_bucket(year_month[_mk][_dex])
+
+        def _wavg_metric(key):
+            _ws = _wp = 0.0
+            for _buckets in year_month.values():
+                for _b in _buckets.values():
+                    e = (_b.get(key) or {}).get('MIX') or {}
+                    _ws += e.get('ws', 0)
+                    _wp += e.get('wp', 0)
+            return _ws / _wp if _wp else None
+
+        _tot_prod = sum(_b.get('xprod', 0) for _buckets in year_month.values() for _b in _buckets.values())
+        _tot_exp = sum(_b.get('xexp', 0) for _buckets in year_month.values() for _b in _buckets.values())
+        _tot_tps = sum(_b.get('tps_prod', 0) for _buckets in year_month.values() for _b in _buckets.values())
+        _debit_y = _wavg_metric('debit')
+        _ces_y = _wavg_metric('ces_x')
+        _fuel_y = _wavg_metric('fuel')
+        _kc_y = _wavg_metric('kc_x')
+        _casse_ws = _casse_wp = 0.0
+        _clinker_conso = 0.0
+        for _buckets in year_month.values():
+            for _b in _buckets.values():
+                _c = _b.get('casse')
+                if isinstance(_c, (int, float)) and _c > 0:
+                    _w = _b.get('xexp') or 1
+                    _casse_ws += _c * _w
+                    _casse_wp += _w
+                _clinker_conso += (_b.get('mp_flux', {}).get('clinker', {}) or {}).get('conso', 0)
+        _casse_y = _casse_ws / _casse_wp if _casse_wp else None
+
+        k1, k2, k3, k4 = st.columns(4)
+        with k1:
+            st.markdown(dg_kpi_box("🏭 Production totale", f"{_tot_prod:,.0f} t".replace(",", " ")), unsafe_allow_html=True)
+        with k2:
+            st.markdown(dg_kpi_box("🚚 Expédition totale", f"{_tot_exp:,.0f} t".replace(",", " ")), unsafe_allow_html=True)
+        with k3:
+            st.markdown(dg_kpi_box("⏱️ Temps de production total", f"{_tot_tps:,.0f} h".replace(",", " ")), unsafe_allow_html=True)
+        with k4:
+            st.markdown(dg_kpi_box("⚡ CES moyen (pondéré)", f"{_ces_y:,.1f} KWh/t".replace(",", " ") if _ces_y else "—"), unsafe_allow_html=True)
+        k5, k6, k7, k8 = st.columns(4)
+        with k5:
+            st.markdown(dg_kpi_box("🌀 Débit moyen (pondéré)", f"{_debit_y:,.1f} t/h".replace(",", " ") if _debit_y else "—"), unsafe_allow_html=True)
+        with k6:
+            st.markdown(dg_kpi_box("⛽ CS Gasoil+DDO moyen", f"{_fuel_y:,.2f} L/t" if _fuel_y else "—"), unsafe_allow_html=True)
+        with k7:
+            st.markdown(dg_kpi_box("📦 Taux de casse moyen", f"{_casse_y:,.2f} %" if _casse_y else "—"), unsafe_allow_html=True)
+        with k8:
+            st.markdown(dg_kpi_box("🧱 Clinker consommé", f"{_clinker_conso:,.0f} t".replace(",", " ")), unsafe_allow_html=True)
+        if _kc_y:
+            st.caption(f"K/C sec moyen pondéré sur l'année : {_kc_y*100:,.1f} %" if _kc_y < 1 else f"K/C sec moyen pondéré sur l'année : {_kc_y:,.1f} %")
+
+        pie_prod, pie_ventes_prod = {}, {}
+        pie_exp_mode = {'Sacs': 0.0, 'Vrac': 0.0, 'Big Bag': 0.0}
+        pie_mp = {}
+        pie_adj = {}
+        pie_month_prod, pie_month_exp = {}, {}
+        for _mk, _buckets in sorted(year_month.items()):
+            _mp_prod = _mp_exp = 0.0
+            for _b in _buckets.values():
+                for _pk, _pv in (_b.get('xprod_detail') or {}).items():
+                    pie_prod[_pk] = pie_prod.get(_pk, 0) + _pv
+                    _mp_prod += _pv
+                for _pk, _modes in (_b.get('exp_mode') or {}).items():
+                    _pv = sum(_modes.values())
+                    if _pv > 0:
+                        pie_ventes_prod[_pk] = pie_ventes_prod.get(_pk, 0) + _pv
+                    for _mode, _mv in _modes.items():
+                        pie_exp_mode[_mode] = pie_exp_mode.get(_mode, 0) + _mv
+                    _mp_exp += _pv
+                for _mat, _f in (_b.get('mp_flux') or {}).items():
+                    if isinstance(_f, dict) and isinstance(_f.get('conso'), (int, float)) and _f['conso'] > 0:
+                        pie_mp[_mat] = pie_mp.get(_mat, 0) + _f['conso']
+                for _adj, _av in (_b.get('additives') or {}).items():
+                    if isinstance(_av, (int, float)) and _av > 0:
+                        pie_adj[_adj] = pie_adj.get(_adj, 0) + _av
+            if _mp_prod > 0:
+                pie_month_prod[_mk] = _mp_prod
+            if _mp_exp > 0:
+                pie_month_exp[_mk] = _mp_exp
+
+        p1, p2 = st.columns(2)
+        with p1:
+            if pie_prod:
+                _dfp = pd.DataFrame([{'Produit': k, 'Production (t)': v} for k, v in pie_prod.items() if v > 0])
+                _figp = px.pie(_dfp, names='Produit', values='Production (t)', hole=0.4,
+                               title="Production par produit", template='plotly_white',
+                               color_discrete_sequence=["#1E4D8F", "#F58220", "#10b981", "#5B6770"])
+                _figp.update_layout(height=400, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figp, use_container_width=True, key="annual_pie_prod", config={"displayModeBar": True})
+            else:
+                st.info("Aucune donnée de production hebdomadaire Excel pour cette année.")
+        with p2:
+            if pie_ventes_prod:
+                _dfe = pd.DataFrame([{'Produit': k, 'Tonnes': v} for k, v in pie_ventes_prod.items() if v > 0])
+                _fige = px.pie(_dfe, names='Produit', values='Tonnes', hole=0.4,
+                               title="Ventes par produit", template='plotly_white',
+                               color_discrete_sequence=["#10b981", "#F58220", "#1E4D8F", "#8b5cf6"])
+                _fige.update_layout(height=400, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_fige, use_container_width=True, key="annual_pie_ventes_prod", config={"displayModeBar": True})
+            else:
+                st.info("Aucune donnée de ventes hebdomadaires Excel pour cette année.")
+
+        p3, p4 = st.columns(2)
+        with p3:
+            _pem = {k: v for k, v in pie_exp_mode.items() if v > 0}
+            if _pem:
+                _dfm = pd.DataFrame([{'Emballage': k, 'Tonnes': v} for k, v in _pem.items()])
+                _figm = px.pie(_dfm, names='Emballage', values='Tonnes', hole=0.4,
+                               title="Ventes par mode d'emballage", template='plotly_white',
+                               color_discrete_map={'Sacs': '#1E4D8F', 'Vrac': '#F58220', 'Big Bag': '#10b981'})
+                _figm.update_layout(height=400, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figm, use_container_width=True, key="annual_pie_exp", config={"displayModeBar": True})
+            else:
+                st.info("Aucune donnée de ventes par emballage hebdomadaires Excel pour cette année.")
+        with p4:
+            st.html("<div class='section-title-light' style='font-size:0.85rem;'>Répartition des consommations</div>")
+            _FUEL_SET = {'fuel', 'gasoil', 'ddo'}
+            _mp_only = {k: v for k, v in pie_mp.items() if k not in _FUEL_SET and k != 'adjuvants' and v > 0}
+            _fuel_only = {k: v for k, v in pie_mp.items() if k in _FUEL_SET and v > 0}
+            if _mp_only:
+                _dfx = pd.DataFrame([{'Matière': k, 'Consommation (t)': v} for k, v in _mp_only.items()])
+                _figx = px.pie(_dfx, names='Matière', values='Consommation (t)', hole=0.4,
+                               title="Conso MP (hors fuel & adjuvants)", template='plotly_white',
+                               color_discrete_sequence=px.colors.sequential.Teal_r)
+                _figx.update_layout(height=380, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figx, use_container_width=True, key="annual_pie_mp", config={"displayModeBar": True})
+            else:
+                st.info("Aucune donnée de consommation MP hebdomadaires Excel pour cette année.")
+            if _fuel_only:
+                _dff = pd.DataFrame([{'Produit': k, 'Consommation (t)': v} for k, v in _fuel_only.items()])
+                _figf = px.pie(_dff, names='Produit', values='Consommation (t)', hole=0.4,
+                               title="Conso fuel / gasoil / DDO", template='plotly_white',
+                               color_discrete_map={'fuel': '#92400E', 'gasoil': '#F58220', 'ddo': '#5B6770'})
+                _figf.update_layout(height=380, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figf, use_container_width=True, key="annual_pie_fuel", config={"displayModeBar": True})
+            if pie_adj:
+                _dfa = pd.DataFrame([{'Adjuvant': k, 'Consommation (L)': v} for k, v in pie_adj.items() if v > 0])
+                _figa = px.pie(_dfa, names='Adjuvant', values='Consommation (L)', hole=0.4,
+                               title="Conso adjuvants par produit", template='plotly_white',
+                               color_discrete_sequence=px.colors.sequential.Purples_r)
+                _figa.update_layout(height=380, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figa, use_container_width=True, key="annual_pie_adj", config={"displayModeBar": True})
+
+        p5, p6 = st.columns(2)
+        with p5:
+            if pie_month_prod:
+                _dfy = pd.DataFrame([{'Mois': k, 'Production (t)': v} for k, v in sorted(pie_month_prod.items())])
+                _figy = px.bar(_dfy, x='Mois', y='Production (t)',
+                               title="Répartition mensuelle de la production", template='plotly_white',
+                               color_discrete_sequence=["#1E4D8F"])
+                _figy.update_layout(height=400, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figy, use_container_width=True, key="annual_bar_month", config={"displayModeBar": True})
+        with p6:
+            if pie_month_exp:
+                _dfz = pd.DataFrame([{'Mois': k, 'Expédition (t)': v} for k, v in sorted(pie_month_exp.items())])
+                _figz = px.bar(_dfz, x='Mois', y='Expédition (t)',
+                               title="Répartition mensuelle des ventes", template='plotly_white',
+                               color_discrete_sequence=["#F58220"])
+                _figz.update_layout(height=400, margin=dict(l=20, r=20, t=50, b=20))
+                st.plotly_chart(_figz, use_container_width=True, key="annual_bar_month_exp", config={"displayModeBar": True})
+    else:
+        st.info(f"Aucune donnée hebdomadaire Excel disponible pour l'année {year} (les fichiers hebdomadaires Excel couvrent DEX 1 toute l'année 2026 et DEX 2 via les fichiers « Rapport hebdo pour finance »).")
 
 
 # ═════════════════════════════════════════════════════════════════
