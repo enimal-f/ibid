@@ -474,6 +474,146 @@
    "date": "2026-09-21",
    "orders_t": 3797.0,
    "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-22",
+   "orders_t": 3105.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-23",
+   "orders_t": 3841.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-24",
+   "orders_t": 3395.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-25",
+   "orders_t": 2807.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-26",
+   "orders_t": 2362.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-28",
+   "orders_t": 4136.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-29",
+   "orders_t": 3901.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-09-30",
+   "orders_t": 4887.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-01",
+   "orders_t": 1820.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-02",
+   "orders_t": 1428.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-03",
+   "orders_t": 1844.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-05",
+   "orders_t": 1992.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-06",
+   "orders_t": 3867.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-07",
+   "orders_t": 3437.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-08",
+   "orders_t": 3131.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-09",
+   "orders_t": 2965.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-10",
+   "orders_t": 1712.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-12",
+   "orders_t": 3590.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-13",
+   "orders_t": 4031.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-14",
+   "orders_t": 2956.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-15",
+   "orders_t": 4040.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-16",
+   "orders_t": 3519.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-17",
+   "orders_t": 3479.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-19",
+   "orders_t": 3017.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-20",
+   "orders_t": 3968.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-21",
+   "orders_t": 2450.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-22",
+   "orders_t": 2366.0,
+   "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-23",
+   "orders_t": 4575.0,
+   "source": "whatsapp_commercial"
   }
  ],
  "production": [
@@ -1446,12 +1586,33 @@
    "date": "2026-09-21",
    "expedie_t": 3672.98,
    "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-10-20",
+   "expedie_t": 2947.34,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-10-21",
+   "expedie_t": 2801.82,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-10-22",
+   "expedie_t": 2737.84,
+   "source": "whatsapp_production"
+  },
+  {
+   "date": "2026-10-24",
+   "expedie_t": 5331.0,
+   "source": "whatsapp_production",
+   "note": "point combiné 23-24/10 (MTD 63 145,8 t)"
   }
  ],
  "meta": {
-  "parsed_at": "2026-09-23T00:00:00",
-  "commercial_file": "WhatsApp Chat with Suivi commercial SC-CI(4).txt",
-  "production_file": "WhatsApp Chat with Suivi production et maintenance .txt",
-  "note": "Dates = date du rapport dans le corps du message (jour J-1), fallback date du message. MTD disponible dans daily_data (whatsapp_mtd)."
+  "parsed_at": "2026-10-27",
+  "commercial_file": "Suivi commercial SC-CI(4).txt",
+  "production_file": "Suivi production et maintenance(5).txt",
+  "note": "Points commerciaux intégrés jusqu'au 23/10/2026 (MTD 59 697 t ; 24-25/10 ≈ 1 257 t déduits du point du 26/10) et points de production jusqu'au 24/10/2026 (point combiné 23-24/10 : 5 331 t, MTD 63 145,8 t)."
  }
 }

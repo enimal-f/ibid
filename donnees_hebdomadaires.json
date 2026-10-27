@@ -42490,48 +42490,329 @@
  },
  "2026-W43": {
   "DEX 1": {
-   "Prod humide": {},
-   "Prod. Sèche": {},
-   "TOTAL (T)": {
-    "TOTAL": 798.0
+   "Prod humide": {
+    "MIX": 3927.2
    },
-   "CES (KWh/t)": {},
-   "CS Gasoil+DDO (L/t)": {},
-   "Tps de prod. (H)": {},
-   "Débit (T/h)": {},
-   "% K/C Sec": {},
-   "% K/C Humide": {},
+   "Prod. Sèche": {
+    "MIX": 3861.20162
+   },
+   "TOTAL (T)": {
+    "TOTAL": 4894.26
+   },
+   "CES (KWh/t)": {
+    "MIX": 50.31
+   },
+   "CS Gasoil+DDO (L/t)": {
+    "MIX": 3.8939
+   },
+   "Tps de prod. (H)": {
+    "MIX": 83.82
+   },
+   "Débit (T/h)": {
+    "MIX": 46.85
+   },
+   "% K/C Sec": {
+    "MIX": 0.477722
+   },
+   "% K/C Humide": {
+    "MIX": 0.469902
+   },
    "Clinker": {},
    "Gypse": {},
    "Granite": {},
    "Laitier": {},
    "expedition_par_produit": {
-    "CPJ 32.5": 460.0,
-    "CPJ 42.5": 338.0
+    "CPJ 32.5": 3599.0,
+    "CPJ 42.5": 1295.26
    },
-   "days_count": 1,
+   "days_count": 7,
    "site": "SCCI1",
    "date_debut": "2026-10-19",
-   "date_fin": "2026-10-19",
-   "date_range": "19/10 - 19/10",
+   "date_fin": "2026-10-25",
+   "date_range": "19/10 - 25/10",
    "faits_marquants": [
-    "19/10 : expédition 798 t (sacs uniquement : CPJ 32.5 460 t + CPJ 42.5 338 t) ; broyeur à l'arrêt (causes externes) ; réception granite 214,16 t",
+    "19/10 : expédition 798.00 t ; production nulle ; arrêts 24.0 h",
+    "20/10 : expédition 755.00 t ; production 259.56 t ; arrêts 18.41 h",
+    "21/10 : expédition 755.00 t ; production 776.02 t ; arrêts 6.9 h",
+    "22/10 : expédition 867.26 t ; production 908.22 t ; arrêts 4.73 h",
+    "23/10 : expédition 900.00 t ; production 747.29 t ; arrêts 8.42 h",
+    "24/10 : expédition 819.00 t ; production 859.17 t ; arrêts 5.7 h",
+    "25/10 : expédition 0.00 t ; production 376.94 t ; arrêts 16.02 h",
+    "Remplacement des plaques de la table du broyeur A terminé en cours de semaine",
     "Incident ligne HT-CIE : 7 km de câble à remplacer, attente du retour de CI Energie"
    ],
    "cibles": {
-    "commandes_hebdo_t": 6985.0,
-    "commandes_mtd_t": 50306.0,
+    "commandes_hebdo_t": 17633.0,
+    "commandes_mtd_t": 60954.0,
     "commandes_budget_t": 85000.0,
-    "commandes_source": "Suivi commercial SC-CI(3).txt"
+    "commandes_source": "Suivi commercial SC-CI(4).txt"
    },
    "ecarts": {},
-   "qualite": {}
+   "qualite": {},
+   "rapport_officiel": {
+    "source": "Rapport Hebdo semaine 43.xlsx — SCCI DEX1, point de la semaine du 19 au 25/10/2026",
+    "taux_casse_pct": 0.782,
+    "ventes_detail_t": {
+     "CPJ 32.5 SAC": 3599.0,
+     "CPJ 42.5 SAC": 1254.0,
+     "CPJ 42.5 VRAC": 41.26
+    },
+    "ventes_sacs_t": 4853.0,
+    "ventes_vracs_t": 41.26,
+    "transfert_t": 0.0,
+    "sacs_kraft": {
+     "PP": null,
+     "KRAFT": 4853.0
+    },
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 1427.06,
+      "stock": 34813.001,
+      "autonomie": 132.1
+     },
+     "Gypse": {
+      "stock": 1282.548
+     },
+     "Granite": {
+      "recu": 2003.6,
+      "stock": 517.061,
+      "autonomie": 2.19
+     },
+     "Laitier": {
+      "stock": -945.2443
+     },
+     "Gasoil": {
+      "recu": 15000.0,
+      "stock": 2725.4689
+     },
+     "Adj. SIKA": {
+      "recu": 24000.0,
+      "stock": 30558.762
+     }
+    }
+   },
+   "rapport_mensuel_octobre": {
+    "source": "Rapport Hebdo semaine 43.xlsx — SCCI DEX1, point du mois d'octobre 2026 (S40 + S41 + S42 + S43)",
+    "periodes": [
+     "28/09 - 04/10",
+     "05/10 - 11/10",
+     "12/10 - 18/10",
+     "19/10 - 25/10"
+    ],
+    "prod_humide_t": {
+     "MIX": 15603.09
+    },
+    "prod_seche_t": {
+     "MIX": 15378.46
+    },
+    "tps_prod_h": 328.58,
+    "debit_t_h": 47.486,
+    "ces_kwh_t": 48.285,
+    "cs_gasoil_l_t": 3.655,
+    "kc_sec": 0.4954,
+    "kc_humide": 0.4885,
+    "clinker_t": 7621.54,
+    "gypse_t": 774.54,
+    "granite_t": 5848.83,
+    "laitier_t": 1053.94,
+    "argile_t": 304.24,
+    "ventes_detail_t": {
+     "CPJ 32.5 SAC": 11146.0,
+     "CPJ 42.5 SAC": 5216.0,
+     "CPJ 42.5 VRAC": 689.08
+    },
+    "total_ventes_t": 17051.08,
+    "taux_casse_pct": 0.738,
+    "sacs_kraft_pct": {
+     "PP": 0.0093,
+     "KRAFT": 0.0003
+    },
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 34600.0,
+      "stock": 34813.001
+     },
+     "Gypse": {
+      "stock": 1282.548
+     },
+     "Granite": {
+      "recu": 4262.64,
+      "stock": 517.061
+     },
+     "Laitier": {
+      "stock": -945.244
+     },
+     "Gasoil": {
+      "recu": 57001.05,
+      "stock": 2725.469
+     },
+     "Adj. SIKA": {
+      "recu": 30000.0,
+      "stock": 30558.762
+     }
+    }
+   },
+   "excel_detail": {
+    "prod_humide_t": {
+     "CPA 52.5": 0.0,
+     "CPJ 42.5": 0.0,
+     "CPJ 32.5": 3927.2,
+     "CHF": 0.0,
+     "MIX": 3927.2
+    },
+    "prod_seche_t": {
+     "CPA 52.5": 0.0,
+     "CPJ 42.5": 0.0,
+     "CPJ 32.5": 3861.20162,
+     "CHF": 0.0,
+     "MIX": 3861.20162
+    },
+    "tps_prod_h": {
+     "CPA 52.5": 0.0,
+     "CPJ 42.5": 0.0,
+     "CPJ 32.5": 83.816667,
+     "CHF": 0.0,
+     "MIX": 83.816667
+    },
+    "debit_t_h": {
+     "CPA 52.5": 0.0,
+     "CPJ 42.5": 0.0,
+     "CPJ 32.5": 46.854643,
+     "CHF": 0.0,
+     "MIX": 46.854643
+    },
+    "ces_kwh_t": {
+     "CPJ 32.5": 50.314626,
+     "MIX": 50.314626
+    },
+    "cs_gasoil_ddo_l_t": {
+     "CPJ 32.5": 3.893943,
+     "MIX": 3.893943
+    },
+    "facteur_debit_pct": 0.685678,
+    "kc_sec": {
+     "CPA 52.5": 0.0,
+     "CPJ 42.5": 0.0,
+     "CPJ 32.5": 0.477722,
+     "CHF": 0.0,
+     "MIX": 0.477722
+    },
+    "kc_humide": {
+     "CPJ 32.5": 0.469902,
+     "CHF": 0.0,
+     "MIX": 0.469902
+    },
+    "consommations_mp": {
+     "Clinker": {
+      "conso_t": 1845.4,
+      "recu_t": 1427.06,
+      "stock_initial_t": 35109.341,
+      "stock_t": 34813.001,
+      "autonomie_j": 132.0532
+     },
+     "Gypse": {
+      "conso_t": 195.9,
+      "recu_t": 0.0,
+      "stock_initial_t": 1465.492,
+      "stock_t": 1282.548,
+      "autonomie_j": 45.8287
+     },
+     "Granite": {
+      "conso_t": 1650.1625,
+      "recu_t": 2003.6,
+      "stock_initial_t": 420.0185,
+      "stock_t": 517.061,
+      "autonomie_j": 2.1934
+     },
+     "Pouzzolane": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 5.73,
+      "stock_t": 5.73,
+      "autonomie_j": 0.0
+     },
+     "Laitier": {
+      "conso_t": 235.7375,
+      "recu_t": 0.0,
+      "stock_initial_t": -725.0818,
+      "stock_t": -945.2443,
+      "autonomie_j": -28.0681
+     },
+     "MSA": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 0.0,
+      "stock_t": 0.0
+     },
+     "Argile calciné": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": -304.2407,
+      "stock_t": -304.2407
+     },
+     "Gasoil": {
+      "conso_t": 15292.2939,
+      "recu_t": 15000.0,
+      "stock_initial_t": 1759.8187,
+      "stock_t": 2725.4689,
+      "autonomie_j": 1.2476
+     },
+     "DDO": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 0.0,
+      "stock_t": 0.0
+     },
+     "Adj. PEG": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 0.0,
+      "stock_t": 0.0
+     },
+     "Adj. SIKA": {
+      "conso_t": 1570.88,
+      "recu_t": 24000.0,
+      "stock_initial_t": 32025.8196,
+      "stock_t": 30558.762,
+      "autonomie_j": 136.1729
+     },
+     "Adj. Chryso": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 38000.0,
+      "stock_t": 38000.0
+     },
+     "Adj. BIOLATEX": {
+      "conso_t": 0.0,
+      "recu_t": 0.0,
+      "stock_initial_t": 1800.0,
+      "stock_t": 1800.0
+     }
+    },
+    "ventes": {
+     "total_t": 4894.26,
+     "taux_casse_pct": 0.7819,
+     "detail_t": {
+      "CPJ 32,5 SAC": 3599.0,
+      "CPJ 42,5 SAC": 1254.0,
+      "CPA 42,5 SAC": 0.0,
+      "CPA 52,5 SAC": 0.0,
+      "CPJ 32,5 VRAC": 0.0,
+      "CPJ 42,5 VRAC": 41.26,
+      "CPA 42,5 VRAC": 0.0,
+      "CPA 52,5 VRAC": 0.0,
+      "CHF VRAC": 0.0
+     }
+    },
+    "periode": "SCCI DEX1 Point de la semaine 4 du 19 au 25 OCT 2026",
+    "source": "Rapport Hebdo semaine 43.xlsx"
+   }
   },
   "DEX 2": {
    "Prod humide": {},
    "Prod. Sèche": {},
    "TOTAL (T)": {
-    "TOTAL": 1703.52
+    "TOTAL": 11425.26
    },
    "CES (KWh/t)": {},
    "CS Gasoil+DDO (L/t)": {},
@@ -42544,24 +42825,32 @@
    "Granite": {},
    "Laitier": {},
    "expedition_par_produit": {
-    "CPJ 42.5": 742.0,
-    "CPA 42.5": 89.52,
-    "CPA 52.5": 872.0
+    "CPJ 42.5": 4131.0,
+    "CPA 42.5": 1142.26,
+    "CPA 52.5": 6152.0
    },
-   "days_count": 1,
+   "days_count": 7,
    "site": "SCCI2",
    "date_debut": "2026-10-19",
-   "date_fin": "2026-10-19",
-   "date_range": "19/10 - 19/10",
+   "date_fin": "2026-10-25",
+   "date_range": "19/10 - 25/10",
    "faits_marquants": [
-    "19/10 : expédition 1 703,52 t ; PAS DE PRODUCTION — entretien hebdomadaire (arrêt 06h-06h) ; réception clinker 8 601,02 t (parking)",
+    "19/10 : expédition 1 703.52 t ; production nulle ; arrêts 24.0 h",
+    "20/10 : expédition 2 192.34 t ; production 1 773.74 t ; arrêts 10.100000000000001 h",
+    "21/10 : expédition 2 046.82 t ; production 2 521.99 t ; arrêts 5.25 h",
+    "22/10 : expédition 1 870.58 t ; production 2 206.13 t ; arrêts 6.400000000000002 h",
+    "23/10 : expédition 2 237.00 t ; production 1 104.04 t ; arrêts 15.916666666666666 h",
+    "24/10 : expédition 1 375.00 t ; production 2 336.94 t ; arrêts 4.0 h",
+    "25/10 : expédition 0.00 t ; production 971.23 t ; arrêts 15.883333333333333 h",
+    "Arrêt du broyeur pour optimisation dans la nuit du 22/10 (18h54-01h15)",
+    "Réceptions clinker importantes en cours de semaine (parking)",
     "Incident ligne HT-CIE : 7 km de câble à remplacer, attente du retour de CI Energie"
    ],
    "cibles": {
-    "commandes_hebdo_t": 6985.0,
-    "commandes_mtd_t": 50306.0,
+    "commandes_hebdo_t": 17633.0,
+    "commandes_mtd_t": 60954.0,
     "commandes_budget_t": 85000.0,
-    "commandes_source": "Suivi commercial SC-CI(3).txt"
+    "commandes_source": "Suivi commercial SC-CI(4).txt"
    },
    "ecarts": {},
    "qualite": {}
