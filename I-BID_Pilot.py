@@ -9272,6 +9272,152 @@ def apply_market_data():
 
 
 
+_PM_VOL_KEYS = ["vol_cpa_site1", "vol_cpa_site2", "vol_cpj42_site1", "vol_cpj42_site2", "vol_cpj32_site1", "vol_cpj32_site2"]
+
+
+def _apply_point_mort_rn0():
+
+    """Point mort : ajuste les volumes (mix produit/site conserve) par dichotomie
+
+    pour un Resultat Net annuel nul. Retourne les volumes au point mort."""
+
+    base_vols = {k: get_val(k) for k in _PM_VOL_KEYS}
+
+    def _rn_at(mult):
+
+        for k in _PM_VOL_KEYS:
+
+            set_val(k, int(base_vols[k] * mult))
+
+        return sum((calculate_monthly_model(m).get("net_income", 0) or 0) for m in range(12))
+
+    if _rn_at(1.0) >= 0:
+
+        lo, hi = 0.0, 1.0
+
+    else:
+
+        lo, hi = 1.0, 3.0  # situation deja deficitaire : point mort au-dessus de l'actuel
+
+    for _ in range(40):
+
+        mid = (lo + hi) / 2
+
+        if _rn_at(mid) > 0:
+
+            hi = mid
+
+        else:
+
+            lo = mid
+
+    _rn_at((lo + hi) / 2)  # applique le multiplicateur final
+
+    return {k: get_val(k) for k in _PM_VOL_KEYS}
+
+
+def _compute_point_mort_rn0():
+
+    """Point mort RN = 0 (apres amortissements, interets et impot) :
+
+    retourne (tonnes_annuelles, CA_annuel) SANS modifier l'etat courant."""
+
+    _backup = {k: get_val(k) for k in _PM_VOL_KEYS}
+
+    _apply_point_mort_rn0()
+
+    _annual_pm = calculate_annual_data()
+
+    for _k, _v in _backup.items():
+
+        set_val(_k, _v)
+
+    return sum(_annual_pm["annual_prod"].values()), _annual_pm["annual_revenue_total"]
+
+
+def _optimize_mix_for_scenario():
+
+    """Realloue le mix produit/site selon la profitabilite unitaire courante
+
+    (prix et couts du scenario) : volume total par site conserve, chaque produit
+
+    plafonne a sa demande courante (somme des volumes par site). Retourne les
+
+    volumes optimises {vol_<produit>_<site>: tonnes}."""
+
+    try:
+
+        from scipy.optimize import linprog
+
+    except ImportError:
+
+        return {}
+
+    pk_of = {p: normalize_product_key(p) for p in PRODUCTS}
+
+    sk_of = {s: s.lower().replace(" ", "") for s in SITES}  # "Site 1" -> "site1"
+
+    combos = [(p, s) for p in PRODUCTS for s in SITES]
+
+    idx = {cb: i for i, cb in enumerate(combos)}
+
+    vkey = lambda p, s: f"vol_{pk_of[p]}_{sk_of[s]}"
+
+    demand = {p: sum(get_val(vkey(p, s)) for s in SITES) for p in PRODUCTS}
+
+    site_vol = {s: sum(get_val(vkey(p, s)) for p in PRODUCTS) for s in SITES}
+
+    n = len(combos)
+
+    c = np.array([-_compute_unit_profit(p, s) for (p, s) in combos])
+
+    A_eq, b_eq = [], []
+
+    for s in SITES:
+
+        row = np.zeros(n)
+
+        for p in PRODUCTS:
+
+            row[idx[(p, s)]] = 1.0
+
+        A_eq.append(row)
+
+        b_eq.append(site_vol[s])
+
+    A_ub, b_ub = [], []
+
+    for p in PRODUCTS:
+
+        if demand[p] > 0:
+
+            row = np.zeros(n)
+
+            for s in SITES:
+
+                row[idx[(p, s)]] = 1.0
+
+            A_ub.append(row)
+
+            b_ub.append(demand[p])
+
+    res = linprog(c,
+
+                  A_ub=np.array(A_ub) if A_ub else None,
+
+                  b_ub=np.array(b_ub) if b_ub else None,
+
+                  A_eq=np.array(A_eq), b_eq=np.array(b_eq),
+
+                  bounds=[(0, None)] * n, method="highs")
+
+    if not res.success:
+
+        return {}
+
+    return {vkey(p, s): int(round(res.x[idx[(p, s)]])) for (p, s) in combos}
+
+
 def apply_scenario(scenario_name):
 
     st.session_state["active_scenario"] = scenario_name
@@ -9360,21 +9506,13 @@ def apply_scenario(scenario_name):
 
     elif scenario_name == "Point Mort":
 
-        # Scenario Point Mort: volumes exacts au seuil de rentabilite (EBITDA = 0)
+        # Scenario Point Mort: volumes au seuil de rentabilite (Resultat Net annuel = 0)
 
-        # Calcule a partir du modele: Break-even = Couts Fixes / Marge Contribution
+        # Calcule dynamiquement par dichotomie a partir du modele courant,
 
-        # Volumes mensuels au point mort en conservant le mix produit actuel
+        # en conservant le mix produit/site actuel
 
-        updates = {
-
-            "vol_cpa_site1": 1921, "vol_cpa_site2": 36509,
-
-            "vol_cpj42_site1": 15372, "vol_cpj42_site2": 30744,
-
-            "vol_cpj32_site1": 73019, "vol_cpj32_site2": 3843,
-
-        }
+        updates = _apply_point_mort_rn0()
 
     else:
 
@@ -9388,7 +9526,15 @@ def apply_scenario(scenario_name):
 
         pending[k] = v
 
+    # Reallocation du mix produit/site selon la profitabilite du scenario
 
+    if scenario_name in ("Pessimiste", "Optimiste", "Hausse Clinker", "Baisse Prix"):
+
+        for _mk, _mv in _optimize_mix_for_scenario().items():
+
+            set_val(_mk, _mv)
+
+            pending[_mk] = _mv
 
     if pending:
 
@@ -21059,18 +21205,78 @@ def generate_html_report():
 
     # Build scenario comparison data
     scen_comparison = []
+    _scen_radar_html = []
     for scen_name in ["Base", "Pessimiste", "Optimiste", "Hausse Clinker", "Baisse Prix", "Max CPA", "Point Mort"]:
         # Save current state
         saved_state = {k: get_val(k) for k in VALUE_KEYS.keys()}
-        apply_scenario(scen_name)
+        # Scenarios relatifs aux parametres courants (coherents avec le Rapport Modele)
+        if scen_name == "Pessimiste":
+            set_val("price_cpa", int(saved_state["price_cpa"] * 0.90))
+            set_val("price_cpj42", int(saved_state["price_cpj42"] * 0.90))
+            set_val("price_cpj32", int(saved_state["price_cpj32"] * 0.90))
+            set_val("clinker_cost", int(saved_state["clinker_cost"] * 1.15))
+            for _vk in _PM_VOL_KEYS:
+                set_val(_vk, int(saved_state[_vk] * 0.85))
+        elif scen_name == "Optimiste":
+            set_val("price_cpa", int(saved_state["price_cpa"] * 1.10))
+            set_val("price_cpj42", int(saved_state["price_cpj42"] * 1.10))
+            set_val("price_cpj32", int(saved_state["price_cpj32"] * 1.10))
+            set_val("clinker_cost", int(saved_state["clinker_cost"] * 0.95))
+            for _vk in _PM_VOL_KEYS:
+                set_val(_vk, int(saved_state[_vk] * 1.15))
+        elif scen_name == "Hausse Clinker":
+            set_val("clinker_cost", int(saved_state["clinker_cost"] * 1.30))
+        elif scen_name == "Baisse Prix":
+            set_val("price_cpa", int(saved_state["price_cpa"] * 0.85))
+            set_val("price_cpj42", int(saved_state["price_cpj42"] * 0.85))
+            set_val("price_cpj32", int(saved_state["price_cpj32"] * 0.85))
+        elif scen_name == "Point Mort":
+            _apply_point_mort_rn0()
+        elif scen_name == "Max CPA":
+            apply_scenario(scen_name)
+        # Reallocation du mix produit/site selon la profitabilite du scenario
+        if scen_name in ("Pessimiste", "Optimiste", "Hausse Clinker", "Baisse Prix"):
+            for _mk, _mv in _optimize_mix_for_scenario().items():
+                set_val(_mk, _mv)
         res_scen = calculate_monthly_model()
         annual_scen = calculate_annual_data()
+        _rn_s = annual_scen.get("annual_net_income", 0) or 0
+        _tax_s = sum((m.get("tax", 0) or 0) for m in annual_scen.get("monthly", []))
+        _vol_s = sum(annual_scen["annual_prod"].values())
+        _cu_num = sum((m.get("overall_cap_util", 0) or 0) * (m.get("grand_total", 0) or 0) for m in annual_scen.get("monthly", []))
+        _cr_num = sum((m.get("avg_cost", 0) or 0) * (m.get("grand_total", 0) or 0) for m in annual_scen.get("monthly", []))
+        _ces_num = 0.0
+        for m in annual_scen.get("monthly", []):
+            for (_p, _s), _v in (m.get("prod") or {}).items():
+                try:
+                    _pk = normalize_product_key(_p)
+                    _sk = f"kwh_per_tonne_{_pk}_{_s.lower().replace(' ', '')}"
+                    _kwh = get_val(_sk) if _sk in VALUE_KEYS else get_val(f"kwh_per_tonne_{_pk}")
+                    _ces_num += _kwh * _v
+                except Exception:
+                    pass
         scen_comparison.append({
             "Scenario": scen_name,
             "CA (Mds)": round(annual_scen["annual_revenue_total"] / 1e9, 2),
             "EBITDA (Mds)": round(annual_scen["annual_ebitda"] / 1e9, 2),
             "Marge EBITDA": f"{safe_div(annual_scen['annual_ebitda'], annual_scen['annual_revenue_total'], 0)*100:.1f}%",
-            "Volume (kt)": round(sum(annual_scen["annual_prod"].values()) / 1e3, 1),
+            "RN (Mds)": round(_rn_s / 1e9, 2),
+            "FCF (Mds)": round((annual_scen["annual_ebitda"] - _tax_s) / 1e9, 2),
+            "Volume (kt)": round(_vol_s / 1e3, 1),
+            "CU (%)": f"{safe_div(_cu_num, _vol_s, 0)*100:.1f}%",
+            "Coût revient (kXOF/t)": round(safe_div(_cr_num, _vol_s, 0) / 1e3, 2),
+            "CES broyeur (kWh/t)": round(safe_div(_ces_num, _vol_s, 0), 1),
+        })
+        _scen_radar_html.append({
+            "Scenario": scen_name,
+            "CA": annual_scen["annual_revenue_total"],
+            "EBITDA": annual_scen["annual_ebitda"],
+            "RN": _rn_s,
+            "FCF": annual_scen["annual_ebitda"] - _tax_s,
+            "Vol": _vol_s,
+            "CU": safe_div(_cu_num, _vol_s, 0),
+            "CR": safe_div(_cr_num, _vol_s, 0),
+            "CES": safe_div(_ces_num, _vol_s, 0),
         })
         # Restore state
         for k, v in saved_state.items():
@@ -21413,6 +21619,79 @@ def generate_html_report():
     )
     chart6_html = fig6.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False})
 
+    # Chart 6b: Radar multi-indicateurs par scénario (indice : meilleur = 100)
+    chart6b_html = ""
+    if _scen_radar_html:
+        _axes_h = [
+            ("CA (Mds)", lambda r: r["CA"] / 1e9, True),
+            ("EBITDA (Mds)", lambda r: r["EBITDA"] / 1e9, True),
+            ("RN (Mds)", lambda r: r["RN"] / 1e9, True),
+            ("FCF (Mds)", lambda r: r["FCF"] / 1e9, True),
+            ("Production (kt)", lambda r: r["Vol"] / 1e3, True),
+            ("CU (%)", lambda r: r["CU"] * 100, True),
+            ("Coût revient (kXOF/t)", lambda r: r["CR"] / 1e3, False),
+            ("CES broyeur (kWh/t)", lambda r: r["CES"], False),
+        ]
+        _theta_h = [a[0] for a in _axes_h] + [_axes_h[0][0]]
+        _colors_h = {"Base": "#F58220", "Pessimiste": "#ef4444", "Optimiste": "#10b981",
+                     "Hausse Clinker": "#8b5cf6", "Baisse Prix": "#3b82f6",
+                     "Max CPA": "#06b6d4", "Point Mort": "#5B6770"}
+        _axis_idx_h = []
+        for _lab, _f, _hb in _axes_h:
+            _vals = [_f(r) for r in _scen_radar_html]
+            _pos = [v for v in _vals if v and v > 0]
+            if _hb:
+                _best = max(_pos) if _pos else (max(_vals) if _vals else 0)
+                _axis_idx_h.append([safe_div(v, _best, 0) * 100 if _best else 0 for v in _vals])
+            else:
+                _best = min(_pos) if _pos else 0
+                _axis_idx_h.append([safe_div(_best, v, 0) * 100 if v and v > 0 else 0 for v in _vals])
+        fig6b = go.Figure()
+        _draw_h = [(i, r) for i, r in enumerate(_scen_radar_html) if r["Scenario"] != "Base"]
+        _draw_h += [(i, r) for i, r in enumerate(_scen_radar_html) if r["Scenario"] == "Base"]
+        for _si, r in _draw_h:
+            _rv = [_axis_idx_h[_ai][_si] for _ai in range(len(_axes_h))]
+            _hv = [_f(r) for _lab, _f, _hb in _axes_h]
+            _is_base = r["Scenario"] == "Base"
+            fig6b.add_trace(go.Scatterpolar(
+                r=_rv + [_rv[0]], theta=_theta_h, name=r["Scenario"],
+                fill="toself" if _is_base else "none",
+                fillcolor="rgba(245,130,32,0.15)",
+                mode="lines+markers" if _is_base else "lines",
+                marker=dict(size=6, color="#F58220") if _is_base else None,
+                line=dict(color=_colors_h.get(r["Scenario"], "#ffffff"), width=3 if _is_base else 2,
+                          dash="dot" if r["Scenario"] == "Point Mort" else "solid"),
+                customdata=[[f"{v:,.2f}"] for v in _hv + [_hv[0]]],
+                hovertemplate="%{theta} : %{customdata[0]} (indice %{r:.0f})<extra>" + r["Scenario"] + "</extra>",
+            ))
+        fig6b.update_layout(
+            title="Comparaison des Scénarios — CA · EBITDA · RN · FCF · Production · CU% · Coût de revient · CES broyeur (indice : meilleur scénario = 100)",
+            plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+            font=dict(color="#E6E9ED", family="Inter, sans-serif", size=11),
+            polar=dict(bgcolor="rgba(0,0,0,0)",
+                       radialaxis=dict(visible=True, gridcolor="rgba(255,255,255,0.15)", tickfont=dict(color="#5B6770", size=9)),
+                       angularaxis=dict(gridcolor="rgba(255,255,255,0.1)", tickfont=dict(color="#E6E9ED", size=10))),
+            legend=dict(orientation="h", yanchor="bottom", y=-0.18, xanchor="center", x=0.5, font=dict(color="#E6E9ED")),
+            margin=dict(l=50, r=50, t=80, b=90), height=540, autosize=True,
+        )
+        chart6b_html = fig6b.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False})
+
+    # Table HTML complète des scénarios (8 indicateurs)
+    _scen_table_rows = "".join(
+        "<tr>" + "".join(
+            f"<td style='padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.06);'>{v}</td>"
+            for v in row.values()
+        ) + "</tr>"
+        for row in scen_comparison
+    )
+    scen_table_html = (
+        "<table style='width:100%; border-collapse:collapse; font-size:0.82rem; color:#E6E9ED;'>"
+        "<thead><tr style='border-bottom:2px solid #F58220; color:#F58220; text-align:left;'>"
+        + "".join(f"<th style='padding:8px;'>{k}</th>" for k in scen_comparison[0].keys())
+        + f"</tr></thead><tbody>{_scen_table_rows}</tbody></table>"
+        if scen_comparison else ""
+    )
+
     # Chart 7: Suggestions Status
     all_suggestions = generate_suggestions_enhanced(res) if st.session_state.get("use_enhanced_suggestions", False) else generate_suggestions(res)
     applied = get_clean_set("applied_suggestions")
@@ -21462,7 +21741,17 @@ def generate_html_report():
         .header h1 { color: #F58220; font-size: 2rem; margin: 0; }
         .header p { color: #5B6770; font-size: 0.9rem; margin: 8px 0 0 0; }
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
-        .kpi-card { background: linear-gradient(135deg, #1e3a5f 0%, #0a0a1a 100%); border: 1px solid #1E4D8F; border-radius: 12px; padding: 20px; text-align: center; }
+        .kpi-card { background: linear-gradient(135deg, #1e3a5f 0%, #0a0a1a 100%); border: 1px solid #1E4D8F; border-radius: 12px; padding: 20px; text-align: center; position: relative; }
+        /* Tooltips KPI (survol) — version statique pour le rapport HTML */
+        .kpi-card .tooltip-wrapper { position: absolute; top: 8px; right: 10px; }
+        .kpi-card .kpi-info-icon { cursor: help; opacity: 0.7; font-size: 0.85rem; }
+        .kpi-card .kpi-hover-tooltip { display: none; position: absolute; top: 26px; right: 0; z-index: 50; width: 300px; text-align: left; background: #0f172a; border: 1px solid #F58220; border-radius: 10px; padding: 12px 14px; color: #E6E9ED; font-size: 0.78rem; line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .kpi-card .tooltip-wrapper:hover .kpi-hover-tooltip { display: block; }
+        .kpi-card .kpi-hover-tooltip .popover-title { color: #F58220; font-weight: 700; font-size: 0.82rem; margin-bottom: 6px; border-bottom: 1px solid #5B6770; padding-bottom: 4px; }
+        .kpi-card .kpi-hover-tooltip .popover-section { margin-top: 6px; }
+        .kpi-card .kpi-hover-tooltip .popover-section-label { color: #5B6770; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .kpi-card .kpi-hover-tooltip .popover-formula { color: #10b981; font-family: monospace; font-size: 0.75rem; }
+        @media print { .kpi-card .tooltip-wrapper { display: none !important; } }
         .kpi-card .val { font-size: 1.6rem; font-weight: 800; color: #F58220; }
         .kpi-card .lbl { font-size: 0.75rem; color: #5B6770; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 6px; }
         .section { background: rgba(30,77,143,0.08); border: 1px solid rgba(30,77,143,0.3); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
@@ -21594,17 +21883,45 @@ def generate_html_report():
     html_parts.append("</div>")
 
     # KPI Grid
-    html_parts.append("<div class='kpi-grid'>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{format_xof(annual['annual_revenue_total'])}</div><div class='lbl'>CA Annuel</div></div>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{format_xof(annual['annual_ebitda'])}</div><div class='lbl'>EBITDA Annuel</div></div>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{safe_div(annual['annual_ebitda'], annual['annual_revenue_total'], 0)*100:.1f}%</div><div class='lbl'>Marge EBITDA</div></div>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{format_tonnes(sum(annual['annual_prod'].values()))}</div><div class='lbl'>Volume Total</div></div>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{format_xof(annual['annual_net_income'])}</div><div class='lbl'>Resultat Net</div></div>")
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{safe_div(annual['annual_net_income'], annual['annual_revenue_total'], 0)*100:.1f}%</div><div class='lbl'>Marge Nette</div></div>")
+    _ca_var = safe_div(annual['annual_revenue_total'] - get_val('budget_revenue') * 12, get_val('budget_revenue') * 12, 0) * 100
+    _vol_var = safe_div(sum(annual['annual_prod'].values()) - get_val('budget_volume') * 12, get_val('budget_volume') * 12, 0) * 100
+    _eb_var = safe_div(annual['annual_ebitda'] - get_val('budget_ebitda') * 12, get_val('budget_ebitda') * 12, 0) * 100
     _rn_cible = get_val("budget_net_income") * 12
     _rn_var = safe_div(annual['annual_net_income'] - _rn_cible, _rn_cible, 0) * 100
     _rn_col = "#10b981" if _rn_var >= 0 else "#ef4444"
-    html_parts.append(f"<div class='kpi-card'><div class='val'>{format_xof(_rn_cible)}</div><div class='lbl'>Résultat Net Cible</div><div style='color:{_rn_col}; font-size:0.8rem; margin-top:4px;'>{'▲' if _rn_var >= 0 else '▼'} {abs(_rn_var):.1f}% vs Modèle</div></div>")
+    _sub = lambda v, ref: (f"<div style='color:{'#10b981' if v >= 0 else '#ef4444'}; font-size:0.78rem; margin-top:4px;'>{'▲' if v >= 0 else '▼'} {abs(v):.1f}% vs {ref}</div>")
+    _tt_ca = _build_kpi_details_static("CA Annuel",
+        "CA = Σ (prix produit × volume) sur 12 mois",
+        f"CA modèle: {format_xof(annual['annual_revenue_total'])}<br>Budget CA: {format_xof(get_val('budget_revenue') * 12)} ({format_xof(get_val('budget_revenue'))}/mois)",
+        "Le chiffre d'affaires agrège les ventes des 3 produits sur les 2 sites, avec saisonnalité.")
+    _tt_eb = _build_kpi_details_static("EBITDA Annuel",
+        "EBITDA = Marge Brute − Couts Fixes − Maintenance − SGA",
+        f"Marge brute: {format_xof(sum(m.get('gross_margin',0) for m in annual['monthly']))}<br>Couts fixes: {format_xof(sum(m.get('total_fixed',0) for m in annual['monthly']))}<br>Budget EBITDA: {format_xof(get_val('budget_ebitda') * 12)}",
+        "L'EBITDA reflète la rentabilité opérationnelle avant amortissements et charges financières.")
+    _tt_mg = _build_kpi_details_static("Marge EBITDA",
+        "Marge EBITDA = EBITDA / CA × 100",
+        f"EBITDA: {format_xof(annual['annual_ebitda'])} | CA: {format_xof(annual['annual_revenue_total'])}<br>Budget marge: {get_val('budget_ebitda_margin')*100:.1f}%",
+        "La marge EBITDA mesure l'efficacité opérationnelle : combien de CA se transforme en profit brut.")
+    _tt_vol = _build_kpi_details_static("Volume Total",
+        "Volume = Σ production des 3 produits × 2 sites sur 12 mois",
+        f"Volume modèle: {format_tonnes(sum(annual['annual_prod'].values()))}<br>Budget volume: {format_tonnes(get_val('budget_volume') * 12)} ({format_tonnes(get_val('budget_volume'))}/mois)",
+        "Le volume annuel résulte du plan de production mensuel par produit et par site.")
+    _tt_rn = _build_kpi_details_static("Résultat Net",
+        "RN = EBIT − Intérêts − Impôt<br>Écart = (RN modèle − RN cible) / RN cible",
+        f"EBIT: {format_xof(sum(m.get('ebit',0) for m in annual['monthly']))}<br>Intérêts: {format_xof(get_val('interests_monthly')*12)} | Impôt: {format_xof(sum(m.get('tax',0) for m in annual['monthly']))}<br>RN cible: {format_xof(_rn_cible)} ({format_xof(get_val('budget_net_income'))}/mois)",
+        "Le résultat net est le profit final après tous les coûts, amortissements, intérêts et impôts. La cible est saisie dans le sidebar (Objectifs Budget).")
+    _tt_mn = _build_kpi_details_static("Marge Nette",
+        "Marge Nette = RN / CA × 100",
+        f"RN: {format_xof(annual['annual_net_income'])} | CA: {format_xof(annual['annual_revenue_total'])}",
+        "La marge nette mesure la rentabilité finale après amortissements, intérêts et impôt.")
+    html_parts.append("<div class='kpi-grid'>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_ca}<div class='val'>{format_xof(annual['annual_revenue_total'])}</div><div class='lbl'>CA Annuel</div>{_sub(_ca_var, 'Budget')}</div>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_eb}<div class='val'>{format_xof(annual['annual_ebitda'])}</div><div class='lbl'>EBITDA Annuel</div>{_sub(_eb_var, 'Budget')}</div>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_mg}<div class='val'>{safe_div(annual['annual_ebitda'], annual['annual_revenue_total'], 0)*100:.1f}%</div><div class='lbl'>Marge EBITDA</div><div style='color:#5B6770; font-size:0.78rem; margin-top:4px;'>Budget: {get_val('budget_ebitda_margin')*100:.1f}%</div></div>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_vol}<div class='val'>{format_tonnes(sum(annual['annual_prod'].values()))}</div><div class='lbl'>Volume Total</div>{_sub(_vol_var, 'Budget')}</div>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_rn}<div class='val'>{format_xof(annual['annual_net_income'])}</div><div class='lbl'>Resultat Net</div>{_sub(_rn_var, f'cible ({format_xof(_rn_cible)})')}</div>")
+    html_parts.append(f"<div class='kpi-card'>{_tt_mn}<div class='val'>{safe_div(annual['annual_net_income'], annual['annual_revenue_total'], 0)*100:.1f}%</div><div class='lbl'>Marge Nette</div></div>")
+    # (boîte "Résultat Net Cible" supprimée : l'écart est désormais en sous-titre de la boîte Résultat Net)
     html_parts.append("</div>")
 
     # Charts
@@ -21664,8 +21981,7 @@ def generate_html_report():
     net_margin_pct = safe_div(annual_net_val, annual_revenue_val, 0) * 100
 
     # Break-even analysis
-    be_tonnes_annual = sum(m.get("break_even_tonnes", 0) for m in annual["monthly"])
-    be_rev_annual = sum(m.get("break_even_revenue", 0) for m in annual["monthly"])
+    be_tonnes_annual, be_rev_annual = _compute_point_mort_rn0()  # point mort RN = 0, coherent avec la comparaison des scenarios
     securite_marge = safe_div(total_vol_annual - be_tonnes_annual, total_vol_annual, 0) * 100
 
     # Liquidity indicators
@@ -21800,7 +22116,7 @@ def generate_html_report():
     # Break-even analysis
     html_parts.append(f"""
     <div style='background:rgba(255,255,255,0.03);border:1px solid rgba(30,77,143,0.2);border-radius:10px;padding:16px;margin-bottom:16px;' class='ibid-sub'>
-        <div style='font-size:0.85rem;font-weight:700;color:#F58220;margin-bottom:12px;'>📍 Analyse du Point Mort</div>
+        <div style='font-size:0.85rem;font-weight:700;color:#F58220;margin-bottom:12px;'>📍 Analyse du Point Mort (RN = 0, après amortissements, intérêts et impôt — cohérent avec la Comparaison des Scénarios)</div>
         <div style='display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;'>
             <div style='text-align:center;padding:10px;background:rgba(0,0,0,0.2);border-radius:8px;'>
                 <div style='font-size:0.7rem;color:#5B6770;margin-bottom:4px;'>Seuil Rentabilité (Vol)</div>
@@ -21983,8 +22299,8 @@ def generate_html_report():
     # === GRANULARITY TOGGLE ===
     html_parts.append('<div class="granularity-tabs">')
     html_parts.append('<button class="granularity-tab active" onclick="switchGranularity(&apos;monthly&apos;, this)">📅 Mensuel</button>')
-    html_parts.append('<button class="granularity-tab" onclick="switchGranularity(&apos;weekly&apos;, this)">📅 Hebdomadaire</button>')
-    html_parts.append('<button class="granularity-tab" onclick="switchGranularity(&apos;daily&apos;, this)">📅 Journalier</button>')
+    html_parts.append('<button class="granularity-tab" onclick="switchGranularity(&apos;quarterly&apos;, this)">📅 Trimestrielle</button>')
+    html_parts.append('<button class="granularity-tab" onclick="switchGranularity(&apos;semester&apos;, this)">📅 Semestrielle</button>')
     html_parts.append('</div>')
     html_parts.append('<div id="gran-monthly" class="granularity-content active">')
     html_parts.append("<div class='section'><h3 id='i8'>8. 📈 Évolution Mensuelle sur 12 Mois</h3>")
@@ -22011,13 +22327,21 @@ def generate_html_report():
     html_parts.append("<div class='section'><h3 id='i12'>12. 🏭 Mix Produit et Rentabilité</h3>")
     html_parts.append(mix_cards_final)
     html_parts.append("</div>")
-    html_parts.append("</div>")
+    html_parts.append("</div>")  # closes two-col
+    html_parts.append('</div>')  # closes gran-monthly — les sections 13/14 ci-dessous restent visibles dans toutes les vues de granularité
 
     # Scenario Comparison Bar Chart (REPLACES TABLE)
     html_parts.append("<div class='section'><h3 id='i13'>13. 📊 Comparaison des Scenarios</h3>")
+    html_parts.append(scen_table_html)
     html_parts.append("<div class='chart-container'>")
     html_parts.append(chart6_html)
-    html_parts.append("</div></div>")
+    html_parts.append("</div>")
+    if chart6b_html:
+        html_parts.append("<div class='chart-container'>")
+        html_parts.append(chart6b_html)
+        html_parts.append("</div>")
+        html_parts.append("<p style='color:#5B6770; font-size:0.75rem; margin-top:6px;'>Radar indexé par axe : meilleure valeur parmi les scénarios = 100 (pour le Coût de revient et la CES broyeur, la plus faible est la meilleure). Pessimiste = prix −10 %, clinker +15 %, volumes −15 % ; Optimiste = prix +10 %, clinker −5 %, volumes +15 % ; Hausse Clinker = clinker +30 % ; Baisse Prix = prix −15 % ; dans ces 4 cas, le mix produit/site est réalloué par optimisation de la marge unitaire ; Point Mort = volumes ajustés pour un RN annuel nul. FCF = EBITDA − impôt (hors capex et variation de BFR).</p>")
+    html_parts.append("</div>")
 
     html_parts.append("<div class='section section-flow'><h3 id='i14'>14. 💡 Suggestions d'Optimisation</h3>")
     html_parts.append("<div class='chart-container'>")
@@ -22048,134 +22372,90 @@ def generate_html_report():
     html_parts.append("I-BiD® v2.5.0 — Industrial Intelligence Platform | Atlantic Group × SC CI Côte d'Ivoire")
     html_parts.append("</div>")
 
-    html_parts.append('</div>')  # closes gran-monthly
+    # === QUARTERLY VIEW (agrégation des 12 mois du modèle) ===
+    _q_defs = [("T1", range(0, 3)), ("T2", range(3, 6)), ("T3", range(6, 9)), ("T4", range(9, 12))]
 
-    # === WEEKLY CHARTS ===
-    html_parts.append('<div id="gran-weekly" class="granularity-content">')
-    html_parts.append("<div class='section'><h3>📅 Évolution Hebdomadaire</h3>")
+    _q_labels = [q[0] for q in _q_defs]
+    _q_ca = [sum((annual["monthly"][m].get("total_revenue", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
+    _q_eb = [sum((annual["monthly"][m].get("ebitda", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
+    _q_rn = [sum((annual["monthly"][m].get("net_income", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
+    _q_vol = [sum((annual["monthly"][m].get("grand_total", 0) or 0) for m in r) / 1e3 for _, r in _q_defs]
 
-    if WEEKLY_DATA:
-        try:
-            _wk_items = sorted(WEEKLY_DATA.items(), key=lambda x: x[0])
-            _wk_labels = [w[0][:10] for w in _wk_items]
-            _wk_prod = [w[1].get("production_t", 0) for w in _wk_items]
-            _wk_exp = [w[1].get("expedition_t", 0) for w in _wk_items]
+    html_parts.append('<div id="gran-quarterly" class="granularity-content">')
+    html_parts.append("<div class='section'><h3>📅 Évolution Trimestrielle</h3>")
 
-            fig_w = go.Figure()
-            fig_w.add_trace(go.Scatter(x=_wk_labels, y=_wk_prod, mode='lines+markers',
-                name='Production (t)', line=dict(color='#F58220', width=2),
-                marker=dict(size=6)))
-            fig_w.add_trace(go.Scatter(x=_wk_labels, y=_wk_exp, mode='lines+markers',
-                name='Expédition (t)', line=dict(color='#1E4D8F', width=2),
-                marker=dict(size=6)))
-            fig_w.update_layout(
-                title='Production & Expédition Hebdomadaires (tonnes)',
-                height=420, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                font_color='white', title_font_color='white',
-                xaxis_tickangle=-45, xaxis_showgrid=False,
-                legend=dict(orientation='h', yanchor='bottom', y=-0.35,
-                    xanchor='center', x=0.5,
-                    bgcolor='rgba(15,23,42,0.9)', bordercolor='#1E4D8F', borderwidth=1))
-            html_parts.append(fig_w.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-        except Exception:
-            html_parts.append('<p style="color:#5B6770;text-align:center;">Données hebdomadaires non disponibles</p>')
-    else:
-        html_parts.append('<p style="color:#5B6770;text-align:center;">Aucune donnée hebdomadaire chargée</p>')
+    fig_q = go.Figure()
+    fig_q.add_trace(go.Bar(x=_q_labels, y=_q_ca, name="CA", marker_color="#1E4D8F", opacity=0.9,
+                           text=[f"{v:.1f}" for v in _q_ca], textposition="outside", textfont=dict(color="white", size=10)))
+    fig_q.add_trace(go.Bar(x=_q_labels, y=_q_eb, name="EBITDA", marker_color="#10b981", opacity=0.9,
+                           text=[f"{v:.1f}" for v in _q_eb], textposition="outside", textfont=dict(color="white", size=10)))
+    fig_q.add_trace(go.Scatter(x=_q_labels, y=_q_rn, name="Résultat Net", mode="lines+markers+text",
+                               line=dict(color="#F58220", width=3), marker=dict(size=9, symbol="diamond", color="#F58220"),
+                               text=[f"{v:.1f}" for v in _q_rn], textposition="top center", textfont=dict(color="#F58220", size=10)))
+    fig_q.update_layout(
+        title="CA · EBITDA · Résultat Net par Trimestre (Mds XOF)",
+        barmode="group", height=420, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        font_color="white", title_font_color="white",
+        yaxis=dict(title="Mds XOF", gridcolor="rgba(255,255,255,0.1)"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,
+                    bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1))
+    html_parts.append(fig_q.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
 
-    # Weekly CES if available
-    try:
-        _wk_items = sorted(WEEKLY_DATA.items(), key=lambda x: x[0])
-        _wk_ces = [w[1].get("ces_kwh_t", 0) for w in _wk_items if w[1].get("ces_kwh_t")]
-        if _wk_ces:
-            _wk_labels = [w[0][:10] for w in _wk_items]
-            fig_w_ces = go.Figure()
-            fig_w_ces.add_trace(go.Bar(
-                x=_wk_labels[:len(_wk_ces)], y=_wk_ces,
-                marker_color='#F58220', name='CES (kWh/t)'))
-            fig_w_ces.update_layout(
-                title='Consommation Électrique Spécifique Hebdomadaire',
-                height=380, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                font_color='white', title_font_color='white',
-                xaxis_tickangle=-45,
-                legend=dict(orientation='h', yanchor='bottom', y=-0.3,
-                    xanchor='center', x=0.5,
-                    bgcolor='rgba(15,23,42,0.9)', bordercolor='#1E4D8F', borderwidth=1))
-            html_parts.append(fig_w_ces.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-    except Exception:
-        pass
+    fig_q2 = go.Figure()
+    fig_q2.add_trace(go.Bar(x=_q_labels, y=_q_vol, name="Volume (kt)", marker_color="#F58220",
+                            text=[f"{v:.0f}" for v in _q_vol], textposition="outside", textfont=dict(color="white", size=10)))
+    fig_q2.update_layout(
+        title="Volume de Production par Trimestre (kt)",
+        height=340, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        font_color="white", title_font_color="white",
+        yaxis=dict(title="kt", gridcolor="rgba(255,255,255,0.1)"),
+        showlegend=False)
+    html_parts.append(fig_q2.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
 
     html_parts.append('</div>')  # closes section
-    html_parts.append('</div>')  # closes gran-weekly
+    html_parts.append('</div>')  # closes gran-quarterly
 
-    # === DAILY CHARTS ===
-    html_parts.append('<div id="gran-daily" class="granularity-content">')
-    html_parts.append("<div class='section'><h3>📅 Évolution Journalière</h3>")
+    # === SEMESTER VIEW ===
+    _s_defs = [("S1", range(0, 6)), ("S2", range(6, 12))]
+    _s_labels = [s[0] for s in _s_defs]
+    _s_ca = [sum((annual["monthly"][m].get("total_revenue", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
+    _s_eb = [sum((annual["monthly"][m].get("ebitda", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
+    _s_rn = [sum((annual["monthly"][m].get("net_income", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
+    _s_vol = [sum((annual["monthly"][m].get("grand_total", 0) or 0) for m in r) / 1e3 for _, r in _s_defs]
 
-    if DAILY_DATA:
-        try:
-            _day_items = sorted(DAILY_DATA.items(), key=lambda x: x[0])
-            _day_items = _day_items[-90:]  # last 90 days
-            _day_labels = [d[0] for d in _day_items]
+    html_parts.append('<div id="gran-semester" class="granularity-content">')
+    html_parts.append("<div class='section'><h3>📅 Évolution Semestrielle</h3>")
 
-            _day_prod_s1 = []
-            _day_prod_s2 = []
-            _day_exp_s1 = []
-            _day_exp_s2 = []
+    fig_s = go.Figure()
+    fig_s.add_trace(go.Bar(x=_s_labels, y=_s_ca, name="CA", marker_color="#1E4D8F", opacity=0.9,
+                           text=[f"{v:.1f}" for v in _s_ca], textposition="outside", textfont=dict(color="white", size=11)))
+    fig_s.add_trace(go.Bar(x=_s_labels, y=_s_eb, name="EBITDA", marker_color="#10b981", opacity=0.9,
+                           text=[f"{v:.1f}" for v in _s_eb], textposition="outside", textfont=dict(color="white", size=11)))
+    fig_s.add_trace(go.Scatter(x=_s_labels, y=_s_rn, name="Résultat Net", mode="lines+markers+text",
+                               line=dict(color="#F58220", width=3), marker=dict(size=10, symbol="diamond", color="#F58220"),
+                               text=[f"{v:.1f}" for v in _s_rn], textposition="top center", textfont=dict(color="#F58220", size=11)))
+    fig_s.update_layout(
+        title="CA · EBITDA · Résultat Net par Semestre (Mds XOF)",
+        barmode="group", height=420, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        font_color="white", title_font_color="white",
+        yaxis=dict(title="Mds XOF", gridcolor="rgba(255,255,255,0.1)"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,
+                    bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1))
+    html_parts.append(fig_s.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
 
-            for _dk, _dd in _day_items:
-                _s1 = _dd.get("Site 1 (DEX 1)", {}) if isinstance(_dd, dict) else {}
-                _s2 = _dd.get("Site 2 (DEX 2)", {}) if isinstance(_dd, dict) else {}
-                if not _s1 and not _s2:
-                    for _kk, _vv in (_dd.items() if isinstance(_dd, dict) else []):
-                        if "dex 1" in str(_kk).lower() or "site 1" in str(_kk).lower():
-                            _s1 = _vv if isinstance(_vv, dict) else {}
-                        elif "dex 2" in str(_kk).lower() or "site 2" in str(_kk).lower():
-                            _s2 = _vv if isinstance(_vv, dict) else {}
-                _day_prod_s1.append(_s1.get("production_t", 0) if isinstance(_s1, dict) else 0)
-                _day_prod_s2.append(_s2.get("production_t", 0) if isinstance(_s2, dict) else 0)
-                _day_exp_s1.append(_s1.get("expedition_t", 0) if isinstance(_s1, dict) else 0)
-                _day_exp_s2.append(_s2.get("expedition_t", 0) if isinstance(_s2, dict) else 0)
-
-            fig_d = go.Figure()
-            fig_d.add_trace(go.Scatter(x=_day_labels, y=_day_prod_s1, mode='lines',
-                name='Prod Site 1', line=dict(color='#F58220', width=1.5)))
-            fig_d.add_trace(go.Scatter(x=_day_labels, y=_day_prod_s2, mode='lines',
-                name='Prod Site 2', line=dict(color='#1E4D8F', width=1.5)))
-            fig_d.add_trace(go.Scatter(x=_day_labels, y=_day_exp_s1, mode='lines',
-                name='Exp Site 1', line=dict(color='#F58220', width=1.5, dash='dash')))
-            fig_d.add_trace(go.Scatter(x=_day_labels, y=_day_exp_s2, mode='lines',
-                name='Exp Site 2', line=dict(color='#1E4D8F', width=1.5, dash='dash')))
-            fig_d.update_layout(
-                title='Production & Expédition Journalières par Site (90 derniers jours)',
-                height=420, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                font_color='white', title_font_color='white',
-                xaxis_tickangle=-45, xaxis_showgrid=False,
-                legend=dict(orientation='h', yanchor='bottom', y=-0.35,
-                    xanchor='center', x=0.5,
-                    bgcolor='rgba(15,23,42,0.9)', bordercolor='#1E4D8F', borderwidth=1))
-            html_parts.append(fig_d.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-            _day_tot_prod = [a + b for a, b in zip(_day_prod_s1, _day_prod_s2)]
-            fig_d2 = go.Figure()
-            fig_d2.add_trace(go.Bar(x=_day_labels, y=_day_tot_prod,
-                marker_color='#F58220', name='Production totale'))
-            fig_d2.update_layout(
-                title='Production Journalière Totale',
-                height=360, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-                font_color='white', title_font_color='white',
-                xaxis_tickangle=-45, xaxis_showgrid=False,
-                legend=dict(orientation='h', yanchor='bottom', y=-0.3,
-                    xanchor='center', x=0.5,
-                    bgcolor='rgba(15,23,42,0.9)', bordercolor='#1E4D8F', borderwidth=1))
-            html_parts.append(fig_d2.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-        except Exception as _e:
-            html_parts.append(f'<p style="color:#5B6770;text-align:center;">Erreur données journalières: {_e}</p>')
-    else:
-        html_parts.append('<p style="color:#5B6770;text-align:center;">Aucune donnée journalière chargée</p>')
+    fig_s2 = go.Figure()
+    fig_s2.add_trace(go.Bar(x=_s_labels, y=_s_vol, name="Volume (kt)", marker_color="#F58220",
+                            text=[f"{v:.0f}" for v in _s_vol], textposition="outside", textfont=dict(color="white", size=11)))
+    fig_s2.update_layout(
+        title="Volume de Production par Semestre (kt)",
+        height=340, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        font_color="white", title_font_color="white",
+        yaxis=dict(title="kt", gridcolor="rgba(255,255,255,0.1)"),
+        showlegend=False)
+    html_parts.append(fig_s2.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
 
     html_parts.append('</div>')  # closes section
-    html_parts.append('</div>')  # closes gran-daily
+    html_parts.append('</div>')  # closes gran-semester
 
     # === JAVASCRIPT ===
     html_parts.append("""
@@ -25028,10 +25308,10 @@ if st.session_state.get("show_infographic", False):
         # Sélecteur de granularité (dans le flux principal, pas dans generate_html_report)
         gran_col1, gran_col2 = st.columns([1, 3])
         with gran_col1:
-            _gran_opts = ["Hebdomadaire", "Journalier"]
-            _gran_val = st.session_state.get("comp_report_granularity", "Hebdomadaire")
+            _gran_opts = ["Trimestrielle", "Semestrielle"]
+            _gran_val = st.session_state.get("comp_report_granularity", "Trimestrielle")
             if _gran_val not in _gran_opts:
-                _gran_val = "Hebdomadaire"  # valeur persistée obsolète (ex. "Mensuel") -> fallback
+                _gran_val = "Trimestrielle"  # valeur persistée obsolète (ex. "Hebdomadaire") -> fallback
             st.radio(
                 "Granularité des graphiques",
                 options=_gran_opts,
@@ -25040,11 +25320,11 @@ if st.session_state.get("show_infographic", False):
                 horizontal=True
             )
         with gran_col2:
-            g = st.session_state.get("comp_report_granularity", "Mensuel")
-            if g == "Hebdomadaire":
-                st.info("📅 Agrégation hebdomadaire")
-            elif g == "Journalier":
-                st.info("📅 Données brutes quotidiennes")
+            g = st.session_state.get("comp_report_granularity", "Trimestrielle")
+            if g == "Trimestrielle":
+                st.info("📅 Agrégation trimestrielle")
+            elif g == "Semestrielle":
+                st.info("📅 Agrégation semestrielle")
             else:
                 st.info("📅 Vue mensuelle (défaut)")
 
@@ -25090,7 +25370,7 @@ if st.session_state.get("show_infographic", False):
 
         st.html("<h4 style='color:#F58220; margin-top:20px;'>🎯 Indicateurs Cles de Performance</h4>")
 
-        ic1, ic2, ic3, ic4, ic5, ic6 = st.columns(6)
+        ic1, ic2, ic3, ic4, ic5 = st.columns(5)
 
         with ic1:
 
@@ -25166,35 +25446,23 @@ if st.session_state.get("show_infographic", False):
 
             net_margin = safe_div(annual['annual_net_income'], annual['annual_revenue_total'], 0) * 100
 
-            formula = "Résultat Net = EBIT − Intérêts − Impôt"
-
-            inputs = f"EBIT annuel: {format_xof(sum(m.get('ebit',0) for m in annual['monthly']))}<br>Intérêts: {format_xof(get_val('interests_monthly')*12)} | Impôt: {format_xof(sum(m.get('tax',0) for m in annual['monthly']))}"
-
-            reason = "Le résultat net est le profit final après tous les coûts, amortissements, intérêts et impôts."
-
-            tooltip = _build_kpi_details_static("Résultat Net", formula, inputs, reason)
-
-            st.html(f"<div class='infographic-kpi'>{tooltip}<div class='val'>{format_xof(annual['annual_net_income'])}</div><div class='lbl'>Resultat Net</div><div style='color:#5B6770; font-size:0.78rem;'>Marge: {net_margin:.1f}%</div></div>")
-
-        with ic6:
-
             rn_cible = get_val('budget_net_income') * 12
 
             rn_var = safe_div(annual['annual_net_income'] - rn_cible, rn_cible, 0) * 100
 
-            arrow = "▲" if rn_var >= 0 else "▼"
+            rn_arrow = "▲" if rn_var >= 0 else "▼"
 
-            color = "#10b981" if rn_var >= 0 else "#ef4444"
+            rn_color = "#10b981" if rn_var >= 0 else "#ef4444"
 
-            formula = "Écart = (RN modèle − RN cible) / RN cible"
+            formula = "Résultat Net = EBIT − Intérêts − Impôt<br>Écart = (RN modèle − RN cible) / RN cible"
 
-            inputs = f"RN cible: {format_xof(rn_cible)} ({format_xof(get_val('budget_net_income'))}/mois)<br>RN modèle: {format_xof(annual['annual_net_income'])}"
+            inputs = f"EBIT annuel: {format_xof(sum(m.get('ebit',0) for m in annual['monthly']))}<br>Intérêts: {format_xof(get_val('interests_monthly')*12)} | Impôt: {format_xof(sum(m.get('tax',0) for m in annual['monthly']))}<br>RN cible: {format_xof(rn_cible)} ({format_xof(get_val('budget_net_income'))}/mois)"
 
-            reason = "La cible de résultat net est saisie dans le sidebar (Objectifs Budget) et sert de référence pour évaluer la trajectoire du modèle."
+            reason = "Le résultat net est le profit final après tous les coûts, amortissements, intérêts et impôts. La cible est saisie dans le sidebar (Objectifs Budget)."
 
-            tooltip = _build_kpi_details_static("RN Cible", formula, inputs, reason)
+            tooltip = _build_kpi_details_static("Résultat Net", formula, inputs, reason)
 
-            st.html(f"<div class='infographic-kpi'>{tooltip}<div class='val'>{format_xof(rn_cible)}</div><div class='lbl'>RN Cible</div><div style='color:{color}; font-size:0.78rem;'>{arrow} {abs(rn_var):.1f}% vs Modèle</div></div>")
+            st.html(f"<div class='infographic-kpi'>{tooltip}<div class='val'>{format_xof(annual['annual_net_income'])}</div><div class='lbl'>Resultat Net</div><div style='color:#5B6770; font-size:0.78rem;'>Marge: {net_margin:.1f}%</div><div style='color:{rn_color}; font-size:0.78rem;'>{rn_arrow} {abs(rn_var):.1f}% vs cible ({format_xof(rn_cible)})</div></div>")
 
 
 
@@ -25722,17 +25990,15 @@ if st.session_state.get("show_infographic", False):
 
         with wc_col3:
 
-            be_tonnes = sum(m.get('break_even_tonnes', 0) for m in annual['monthly'])
-
-            be_rev = sum(m.get('break_even_revenue', 0) for m in annual['monthly'])
+            be_tonnes, be_rev = _compute_point_mort_rn0()  # point mort RN = 0, coherent avec la comparaison des scenarios
 
             securite = safe_div(vol_total - be_tonnes, vol_total, 0) * 100
 
-            formula = "Marge Sécurité = (Production − PM) / Production × 100"
+            formula = "Point mort = volumes tels que RN annuel = 0 (dichotomie, mix conserve)<br>Marge Sécurité = (Production − PM) / Production × 100"
 
-            inputs = f"Production: {format_tonnes(vol_total)} | PM: {format_tonnes(be_tonnes)} | PM CA: {format_xof(be_rev)}"
+            inputs = f"Production: {format_tonnes(vol_total)} | PM (RN=0): {format_tonnes(be_tonnes)} | PM CA: {format_xof(be_rev)}"
 
-            reason = "La marge de sécurité indique de combien la production peut baisser avant de devenir déficitaire."
+            reason = "La marge de sécurité indique de combien la production peut baisser avant un résultat net négatif. Le point mort est calcule apres amortissements, intérêts et impôt — il est donc superieur au seuil EBITDA."
 
             tooltip = _build_kpi_details_static("Marge de Sécurité", formula, inputs, reason)
 
@@ -25870,6 +26136,8 @@ if st.session_state.get("show_infographic", False):
 
         scen_comparison = []
 
+        _scen_radar = []
+
         for scen_name in ["Base", "Pessimiste", "Optimiste", "Hausse Clinker", "Baisse Prix", "Point Mort"]:
 
             ss_backup = {}
@@ -25904,6 +26172,10 @@ if st.session_state.get("show_infographic", False):
 
                 set_val("clinker_cost", int(ss_backup["clinker_cost"] * 1.15))
 
+                for _vk in _PM_VOL_KEYS:
+
+                    set_val(_vk, int(ss_backup[_vk] * 0.85))
+
             elif scen_name == "Optimiste":
 
                 set_val("price_cpa", int(ss_backup["price_cpa"] * 1.10))
@@ -25913,6 +26185,10 @@ if st.session_state.get("show_infographic", False):
                 set_val("price_cpj32", int(ss_backup["price_cpj32"] * 1.10))
 
                 set_val("clinker_cost", int(ss_backup["clinker_cost"] * 0.95))
+
+                for _vk in _PM_VOL_KEYS:
+
+                    set_val(_vk, int(ss_backup[_vk] * 1.15))
 
             elif scen_name == "Hausse Clinker":
 
@@ -25926,11 +26202,37 @@ if st.session_state.get("show_infographic", False):
 
                 set_val("price_cpj32", int(ss_backup["price_cpj32"] * 0.85))
 
+            elif scen_name == "Point Mort":
+
+                # Point mort : volumes (mix produit/site conserve) tels que RN annuel = 0
+
+                _apply_point_mort_rn0()
+
+            # Reallocation du mix produit/site selon la profitabilite du scenario
+
+            if scen_name in ("Pessimiste", "Optimiste", "Hausse Clinker", "Baisse Prix"):
+
+                for _mk, _mv in _optimize_mix_for_scenario().items():
+
+                    set_val(_mk, _mv)
+
 
 
             annual_ebitda = 0
 
             annual_rev = 0
+
+            annual_rn = 0
+
+            annual_tax = 0
+
+            annual_vol = 0
+
+            _cu_num = 0.0
+
+            _cr_num = 0.0
+
+            _ces_num = 0.0
 
             for month_idx in range(12):
 
@@ -25940,6 +26242,34 @@ if st.session_state.get("show_infographic", False):
 
                 annual_rev += res_m.get("total_revenue", 0)
 
+                annual_rn += res_m.get("net_income", 0)
+
+                annual_tax += res_m.get("tax", 0) or 0
+
+                _vol_m = res_m.get("grand_total", 0) or 0
+
+                annual_vol += _vol_m
+
+                _cu_num += (res_m.get("overall_cap_util", 0) or 0) * _vol_m
+
+                _cr_num += (res_m.get("avg_cost", 0) or 0) * _vol_m
+
+                for (_p, _s), _v in (res_m.get("prod") or {}).items():
+
+                    try:
+
+                        _pk = normalize_product_key(_p)
+
+                        _sk = f"kwh_per_tonne_{_pk}_{_s.lower().replace(' ', '')}"
+
+                        _kwh = get_val(_sk) if _sk in VALUE_KEYS else get_val(f"kwh_per_tonne_{_pk}")
+
+                        _ces_num += _kwh * _v
+
+                    except Exception:
+
+                        pass
+
 
 
             for k, v in ss_backup.items():
@@ -25948,7 +26278,7 @@ if st.session_state.get("show_infographic", False):
 
 
 
-            scen_comparison.append({
+            _scen_row = {
 
                 "Scenario": scen_name,
 
@@ -25956,7 +26286,43 @@ if st.session_state.get("show_infographic", False):
 
                 "EBITDA (Mds)": f"{annual_ebitda/1e9:.2f}",
 
-                "Marge (%)": f"{safe_div(annual_ebitda, annual_rev, 0)*100:.1f}%"
+                "Marge (%)": f"{safe_div(annual_ebitda, annual_rev, 0)*100:.1f}%",
+
+                "RN (Mds)": f"{annual_rn/1e9:.2f}",
+
+                "FCF (Mds)": f"{(annual_ebitda - annual_tax)/1e9:.2f}",
+
+                "Production (kt)": f"{annual_vol/1e3:.1f}",
+
+                "CU (%)": f"{safe_div(_cu_num, annual_vol, 0)*100:.1f}%",
+
+                "Coût revient (kXOF/t)": f"{safe_div(_cr_num, annual_vol, 0)/1e3:.2f}",
+
+                "CES broyeur (kWh/t)": f"{safe_div(_ces_num, annual_vol, 0):.1f}",
+
+            }
+
+            scen_comparison.append(_scen_row)
+
+            _scen_radar.append({
+
+                "Scenario": scen_name,
+
+                "CA": annual_rev,
+
+                "EBITDA": annual_ebitda,
+
+                "RN": annual_rn,
+
+                "FCF": annual_ebitda - annual_tax,
+
+                "Vol": annual_vol,
+
+                "CU": safe_div(_cu_num, annual_vol, 0),
+
+                "CR": safe_div(_cr_num, annual_vol, 0),
+
+                "CES": safe_div(_ces_num, annual_vol, 0),
 
             })
 
@@ -25965,6 +26331,123 @@ if st.session_state.get("show_infographic", False):
         scen_df = pd.DataFrame(scen_comparison)
 
         st.dataframe(scen_df, hide_index=True, use_container_width=True)
+
+        # === Radar multi-indicateurs par scénario (indice : meilleur scénario = 100) ===
+
+        if _scen_radar:
+
+            _axes_radar = [
+
+                ("CA (Mds)", lambda r: r["CA"] / 1e9, True),
+
+                ("EBITDA (Mds)", lambda r: r["EBITDA"] / 1e9, True),
+
+                ("RN (Mds)", lambda r: r["RN"] / 1e9, True),
+
+                ("FCF (Mds)", lambda r: r["FCF"] / 1e9, True),
+
+                ("Production (kt)", lambda r: r["Vol"] / 1e3, True),
+
+                ("CU (%)", lambda r: r["CU"] * 100, True),
+
+                ("Coût revient (kXOF/t)", lambda r: r["CR"] / 1e3, False),
+
+                ("CES broyeur (kWh/t)", lambda r: r["CES"], False),
+
+            ]
+
+            _theta = [a[0] for a in _axes_radar] + [_axes_radar[0][0]]
+
+            _scen_colors = {"Base": "#F58220", "Pessimiste": "#ef4444", "Optimiste": "#10b981",
+
+                            "Hausse Clinker": "#8b5cf6", "Baisse Prix": "#3b82f6", "Point Mort": "#5B6770"}
+
+            # Indexation par axe : meilleure valeur parmi tous les scénarios = 100
+
+            # (max pour les indicateurs "plus c'est haut, mieux c'est" ; min pour Coût de revient et CES broyeur)
+
+            _axis_idx = []
+
+            for _lab, _f, _higher_better in _axes_radar:
+
+                _vals = [_f(r) for r in _scen_radar]
+
+                _pos = [v for v in _vals if v and v > 0]
+
+                if _higher_better:
+
+                    _best = max(_pos) if _pos else (max(_vals) if _vals else 0)
+
+                    _axis_idx.append([safe_div(v, _best, 0) * 100 if _best else 0 for v in _vals])
+
+                else:
+
+                    _best = min(_pos) if _pos else 0
+
+                    _axis_idx.append([safe_div(_best, v, 0) * 100 if v and v > 0 else 0 for v in _vals])
+
+            fig_radar = go.Figure()
+
+            # Tracé : scénarios alternatifs d'abord, Base en dernier (au premier plan)
+
+            _draw_order = [(_si, r) for _si, r in enumerate(_scen_radar) if r["Scenario"] != "Base"]
+
+            _draw_order += [(_si, r) for _si, r in enumerate(_scen_radar) if r["Scenario"] == "Base"]
+
+            for _si, r in _draw_order:
+
+                _rv = [_axis_idx[_ai][_si] for _ai in range(len(_axes_radar))]
+
+                _hv = [_f(r) for _lab, _f, _hb in _axes_radar]
+
+                _is_base = r["Scenario"] == "Base"
+
+                fig_radar.add_trace(go.Scatterpolar(
+
+                    r=_rv + [_rv[0]], theta=_theta, name=r["Scenario"],
+
+                    fill="toself" if _is_base else "none",
+
+                    fillcolor="rgba(245,130,32,0.15)",
+
+                    mode="lines+markers" if _is_base else "lines",
+
+                    marker=dict(size=6, color="#F58220") if _is_base else None,
+
+                    line=dict(color=_scen_colors.get(r["Scenario"], "#ffffff"), width=3 if _is_base else 2,
+                              dash="solid" if r["Scenario"] != "Point Mort" else "dot"),
+
+                    customdata=[[f"{v:,.2f}"] for v in _hv + [_hv[0]]],
+
+                    hovertemplate="%{theta} : %{customdata[0]} (indice %{r:.0f})<extra>" + r["Scenario"] + "</extra>",
+
+                ))
+
+            fig_radar.update_layout(
+
+                title="🔄 Comparaison des Scénarios — CA · EBITDA · RN · FCF · Production · CU% · Coût de revient · CES broyeur (indice : meilleur scénario = 100)",
+
+                template="plotly_dark", height=540,
+
+                polar=dict(bgcolor="rgba(0,0,0,0)",
+
+                           radialaxis=dict(visible=True, gridcolor="rgba(255,255,255,0.15)",
+
+                                           tickfont=dict(color="#5B6770", size=9)),
+
+                           angularaxis=dict(gridcolor="rgba(255,255,255,0.1)",
+
+                                            tickfont=dict(color="#E6E9ED", size=10))),
+
+                legend=dict(orientation="h", yanchor="bottom", y=-0.18, xanchor="center", x=0.5),
+
+                margin=dict(t=80, b=90),
+
+            )
+
+            st.plotly_chart(fig_radar, use_container_width=True, key="chart_scen_radar_infographic", config={"displayModeBar": True})
+
+            st.caption("Radar indexé par axe : la meilleure valeur parmi tous les scénarios = 100 (pour le Coût de revient et la CES broyeur, la valeur la plus faible est la meilleure). Le survol affiche les valeurs réelles. Le scénario Base (orange, rempli, marqueurs) est tracé au premier plan. Hypothèses : Pessimiste = prix −10 %, clinker +15 %, volumes −15 % ; Optimiste = prix +10 %, clinker −5 %, volumes +15 % ; Hausse Clinker = clinker +30 % ; Baisse Prix = prix −15 % ; dans les 4 cas, le mix produit/site est réalloué par optimisation (marge unitaire max, volume total par site conservé, produit plafonné à sa demande) ; Point Mort = volumes ajustés par dichotomie pour un RN annuel nul. FCF = EBITDA − impôt (modèle simplifié, hors capex et variation de BFR). CES broyeur = consommation électrique spécifique pondérée par le mix produit/site du scénario.")
 
 
 
@@ -36339,13 +36822,13 @@ if active_tab == 5:  # Optimisation
 
     with pm_col1:
 
-        be_annual = sum(m.get("break_even_tonnes", 0) for m in annual_data["monthly"])
+        be_annual, be_rev_annual = _compute_point_mort_rn0()  # point mort RN = 0, coherent avec la comparaison des scenarios
 
-        formula = "PM (t) = Couts Fixes / Marge Contribution par t"
+        formula = "Point mort = volumes tels que RN annuel = 0 (dichotomie, mix produit/site conserve)"
 
-        inputs = f"Couts fixes: {format_xof(sum(m.get('total_fixed', 0) for m in annual_data['monthly']))}<br>Marge contrib/t: {format_xof(safe_div(sum(m.get('gross_margin', 0) for m in annual_data['monthly']), sum(m.get('grand_total', 0) for m in annual_data['monthly']), 0))}"
+        inputs = f"RN cible: 0 | PM (t): {format_tonnes(be_annual)} | PM (CA): {format_xof(be_rev_annual)}"
 
-        reason = "Le point mort indique le volume minimum pour couvrir tous les couts fixes."
+        reason = "Le point mort indique le volume minimum pour un resultat net nul, apres amortissements, interets et impot."
 
         tooltip = _build_kpi_details_static("Point Mort (tonnes)", formula, inputs, reason)
 
@@ -36355,13 +36838,11 @@ if active_tab == 5:  # Optimisation
 
     with pm_col2:
 
-        be_rev_annual = sum(m.get("break_even_revenue", 0) for m in annual_data["monthly"])
+        formula = "PM (CA) = chiffre d'affaires au point mort (RN = 0)"
 
-        formula = "PM (CA) = PM (t) × Prix moyen / t"
+        inputs = f"PM: {format_tonnes(be_annual)} | CA au PM: {format_xof(be_rev_annual)}"
 
-        inputs = f"PM: {format_tonnes(be_annual)} | Prix moyen: {format_xof(safe_div(sum(m.get('total_revenue', 0) for m in annual_data['monthly']), sum(m.get('grand_total', 0) for m in annual_data['monthly']), 0))}"
-
-        reason = "Le point mort en CA représente le chiffre d'affaires minimum pour rentabilité."
+        reason = "Le point mort en CA représente le chiffre d'affaires minimum pour un resultat net nul."
 
         tooltip = _build_kpi_details_static("Point Mort (CA)", formula, inputs, reason)
 
