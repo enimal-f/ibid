@@ -22328,7 +22328,131 @@ def generate_html_report():
     html_parts.append(mix_cards_final)
     html_parts.append("</div>")
     html_parts.append("</div>")  # closes two-col
-    html_parts.append('</div>')  # closes gran-monthly — les sections 13/14 ci-dessous restent visibles dans toutes les vues de granularité
+    html_parts.append('</div>')  # closes gran-monthly
+
+    # === VUES TRIMESTRIELLE / SEMESTRIELLE — sections 8 à 12 agrégées ===
+    # Chaque volet reprend les sections 8-12 avec les données agrégées par période ;
+    # les sections 13/14 (communes) restent après les trois volets, dans l'ordre.
+    from plotly.subplots import make_subplots as _mk_sub_gran
+    _mpd_agg = calculate_monthly_product_cost_analysis()
+    _gran_panes = [
+        ("quarterly", "Trimestrielle", [("T1", range(0, 3)), ("T2", range(3, 6)), ("T3", range(6, 9)), ("T4", range(9, 12))]),
+        ("semester", "Semestrielle", [("S1", range(0, 6)), ("S2", range(6, 12))]),
+    ]
+    _colors_prod_gran = {"CPA 52.5": "#F58220", "CPJ 42.5": "#1E4D8F", "CPJ 32.5": "#10b981"}
+    _colors_rn_gran = {"CPA 52.5": "#22c55e", "CPJ 42.5": "#4ade80", "CPJ 32.5": "#86efac"}
+
+    for _g_id, _g_nom, _g_defs in _gran_panes:
+        _g_labels = [d[0] for d in _g_defs]
+        _g_ranges = [d[1] for d in _g_defs]
+        _g_ca = [sum((annual["monthly"][m].get("total_revenue", 0) or 0) for m in r) / 1e9 for r in _g_ranges]
+        _g_eb = [sum((annual["monthly"][m].get("ebitda", 0) or 0) for m in r) / 1e9 for r in _g_ranges]
+        _g_rn = [sum((annual["monthly"][m].get("net_income", 0) or 0) for m in r) / 1e9 for r in _g_ranges]
+
+        html_parts.append(f'<div id="gran-{_g_id}" class="granularity-content">')
+
+        # --- Section 8 : évolution CA / EBITDA / RN agrégés ---
+        html_parts.append(f"<div class='section'><h3>8. 📈 Évolution {_g_nom}</h3>")
+        html_parts.append("<div class='chart-container'>")
+        _fig8 = go.Figure()
+        _fig8.add_trace(go.Bar(x=_g_labels, y=_g_ca, name="CA", marker_color="#1E4D8F", opacity=0.9,
+                               text=[f"{v:.1f}" for v in _g_ca], textposition="outside", textfont=dict(color="white", size=10)))
+        _fig8.add_trace(go.Bar(x=_g_labels, y=_g_eb, name="EBITDA", marker_color="#10b981", opacity=0.9,
+                               text=[f"{v:.1f}" for v in _g_eb], textposition="outside", textfont=dict(color="white", size=10)))
+        _fig8.add_trace(go.Scatter(x=_g_labels, y=_g_rn, name="Résultat Net", mode="lines+markers+text",
+                                   line=dict(color="#F58220", width=3), marker=dict(size=9, symbol="diamond", color="#F58220"),
+                                   text=[f"{v:.1f}" for v in _g_rn], textposition="top center", textfont=dict(color="#F58220", size=10)))
+        _fig8.update_layout(
+            title=f"CA · EBITDA · Résultat Net — vue {_g_nom.lower()} (Mds XOF)",
+            barmode="group", height=420, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+            font_color="white", title_font_color="white",
+            yaxis=dict(title="Mds XOF", gridcolor="rgba(255,255,255,0.1)"),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,
+                        bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1))
+        html_parts.append(_fig8.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
+        html_parts.append("</div></div>")
+
+        # --- Section 9 : prix vs coût de revient par produit (moyennes pondérées) ---
+        html_parts.append(f"<div class='section'><h3>9. 📊 Évolution {_g_nom} par Produit — Prix vs Coût de Revient</h3>")
+        html_parts.append("<p style='margin:-8px 0 10px 0; color:#9fb3d9; font-size:0.85rem;'>Moyennes pondérées par les volumes sur la période — prix effectif (primes vrac/DDP), net d'amortissements, intérêts et impôt</p>")
+        html_parts.append("<div class='chart-container'>")
+        _fig9 = _mk_sub_gran(rows=len(PRODUCTS), cols=1, shared_xaxes=True, vertical_spacing=0.10,
+                             subplot_titles=[f"<b>{_p}</b>" for _p in PRODUCTS])
+        for _i, _p in enumerate(PRODUCTS, start=1):
+            _rows_p = _mpd_agg.get(_p, [])
+            _prix, _cv, _ct, _mv, _rnt = [], [], [], [], []
+            for r in _g_ranges:
+                _v = sum(_rows_p[m]["volume"] for m in r)
+                if _v > 0:
+                    _pr = sum(_rows_p[m]["prix_vente"] * _rows_p[m]["volume"] for m in r) / _v
+                    _c = sum(_rows_p[m]["cout_variable_t"] * _rows_p[m]["volume"] for m in r) / _v
+                    _t = sum(_rows_p[m]["cout_complet_t"] * _rows_p[m]["volume"] for m in r) / _v
+                    _n = sum(_rows_p[m]["net_income"] for m in r)
+                    _prix.append(_pr); _cv.append(_c); _ct.append(_t)
+                    _mv.append(_pr - _c); _rnt.append(_n / _v)
+                else:
+                    _prix.append(None); _cv.append(None); _ct.append(None); _mv.append(None); _rnt.append(None)
+            _show = (_i == 1)
+            _fig9.add_trace(go.Bar(x=_g_labels, y=_mv, name="Marge Variable", legendgroup="g9",
+                                   marker_color="rgba(34, 197, 94, 0.55)", showlegend=_show), row=_i, col=1)
+            _fig9.add_trace(go.Bar(x=_g_labels, y=_rnt, name="Résultat Net (XOF/t)", legendgroup="g9",
+                                   marker_color="rgba(251, 191, 36, 0.75)", width=0.5, showlegend=_show), row=_i, col=1)
+            _fig9.add_trace(go.Scatter(x=_g_labels, y=_prix, name="Prix de Vente", legendgroup="g9", mode="lines+markers",
+                                       marker=dict(symbol="diamond", size=9), line=dict(color="#F58220", width=3), showlegend=_show), row=_i, col=1)
+            _fig9.add_trace(go.Scatter(x=_g_labels, y=_ct, name="Coût Total (modèle)", legendgroup="g9", mode="lines",
+                                       line=dict(color="#a78bfa", width=2, dash="dash"), showlegend=_show), row=_i, col=1)
+            _fig9.add_trace(go.Scatter(x=_g_labels, y=_cv, name="Coût Variable (modèle)", legendgroup="g9", mode="lines",
+                                       line=dict(color="#f87171", width=2, dash="dot"), showlegend=_show), row=_i, col=1)
+        _fig9.update_layout(template="plotly_dark", height=340 * len(PRODUCTS) + 120, hovermode="x unified",
+                            legend=dict(orientation="h", yanchor="bottom", y=-0.08, xanchor="center", x=0.5),
+                            margin=dict(t=60, b=80))
+        _fig9.update_yaxes(title_text="XOF / tonne", tickformat=",.0f")
+        html_parts.append(_fig9.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
+        html_parts.append("</div></div>")
+
+        # --- Section 10 : résultat net par produit (M XOF, empilé) ---
+        html_parts.append(f"<div class='section'><h3>10. 💰 Résultat Net {_g_nom} par Produit (M XOF)</h3>")
+        html_parts.append("<div class='chart-container'>")
+        _fig10 = go.Figure()
+        for _p in PRODUCTS:
+            _rows_p = _mpd_agg.get(_p, [])
+            _rn_m = [sum(_rows_p[m]["net_income"] for m in r) / 1e6 for r in _g_ranges]
+            _fig10.add_trace(go.Bar(x=_g_labels, y=_rn_m, name=_p,
+                                    marker_color=_colors_rn_gran.get(_p, "#22c55e"),
+                                    text=[f"{v:,.0f}" for v in _rn_m], textposition="inside",
+                                    textfont=dict(color="#0f172a", size=10)))
+        _fig10.update_layout(barmode="stack", template="plotly_dark", height=380,
+                             yaxis=dict(tickformat=",.0f", title="M XOF"),
+                             legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5),
+                             margin=dict(t=40, b=60))
+        html_parts.append(_fig10.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
+        html_parts.append("</div></div>")
+
+        # --- Sections 11 & 12 : mix volumes agrégé + rentabilité (annuelle) ---
+        html_parts.append("<div class='two-col'>")
+        html_parts.append(f"<div class='section'><h3>11. 🏭 Mix Volumes — vue {_g_nom.lower()}</h3>")
+        html_parts.append("<div class='chart-container'>")
+        _fig11 = go.Figure()
+        for _p in PRODUCTS:
+            _rows_p = _mpd_agg.get(_p, [])
+            _v_kt = [sum(_rows_p[m]["volume"] for m in r) / 1e3 for r in _g_ranges]
+            _fig11.add_trace(go.Bar(x=_g_labels, y=_v_kt, name=_p,
+                                    marker_color=_colors_prod_gran.get(_p, "#F58220"),
+                                    text=[f"{v:.0f}" for v in _v_kt], textposition="inside",
+                                    textfont=dict(color="white", size=10)))
+        _fig11.update_layout(barmode="stack", template="plotly_dark", height=380,
+                             yaxis=dict(tickformat=",.0f", title="kt"),
+                             legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
+                             margin=dict(t=40, b=70))
+        html_parts.append(_fig11.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
+        html_parts.append("</div></div>")
+        html_parts.append("<div class='section'><h3>12. 🏭 Mix Produit et Rentabilité</h3>")
+        html_parts.append("<p style='margin:-8px 0 10px 0; color:#9fb3d9; font-size:0.8rem;'>Indicateurs annuels — identiques dans toutes les vues.</p>")
+        html_parts.append(mix_cards_final)
+        html_parts.append("</div>")
+        html_parts.append("</div>")  # closes two-col
+
+        html_parts.append('</div>')  # closes gran-{_g_id}
 
     # Scenario Comparison Bar Chart (REPLACES TABLE)
     html_parts.append("<div class='section'><h3 id='i13'>13. 📊 Comparaison des Scenarios</h3>")
@@ -22371,91 +22495,6 @@ def generate_html_report():
     html_parts.append("<div class='footer'>")
     html_parts.append("I-BiD® v2.5.0 — Industrial Intelligence Platform | Atlantic Group × SC CI Côte d'Ivoire")
     html_parts.append("</div>")
-
-    # === QUARTERLY VIEW (agrégation des 12 mois du modèle) ===
-    _q_defs = [("T1", range(0, 3)), ("T2", range(3, 6)), ("T3", range(6, 9)), ("T4", range(9, 12))]
-
-    _q_labels = [q[0] for q in _q_defs]
-    _q_ca = [sum((annual["monthly"][m].get("total_revenue", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
-    _q_eb = [sum((annual["monthly"][m].get("ebitda", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
-    _q_rn = [sum((annual["monthly"][m].get("net_income", 0) or 0) for m in r) / 1e9 for _, r in _q_defs]
-    _q_vol = [sum((annual["monthly"][m].get("grand_total", 0) or 0) for m in r) / 1e3 for _, r in _q_defs]
-
-    html_parts.append('<div id="gran-quarterly" class="granularity-content">')
-    html_parts.append("<div class='section'><h3>📅 Évolution Trimestrielle</h3>")
-
-    fig_q = go.Figure()
-    fig_q.add_trace(go.Bar(x=_q_labels, y=_q_ca, name="CA", marker_color="#1E4D8F", opacity=0.9,
-                           text=[f"{v:.1f}" for v in _q_ca], textposition="outside", textfont=dict(color="white", size=10)))
-    fig_q.add_trace(go.Bar(x=_q_labels, y=_q_eb, name="EBITDA", marker_color="#10b981", opacity=0.9,
-                           text=[f"{v:.1f}" for v in _q_eb], textposition="outside", textfont=dict(color="white", size=10)))
-    fig_q.add_trace(go.Scatter(x=_q_labels, y=_q_rn, name="Résultat Net", mode="lines+markers+text",
-                               line=dict(color="#F58220", width=3), marker=dict(size=9, symbol="diamond", color="#F58220"),
-                               text=[f"{v:.1f}" for v in _q_rn], textposition="top center", textfont=dict(color="#F58220", size=10)))
-    fig_q.update_layout(
-        title="CA · EBITDA · Résultat Net par Trimestre (Mds XOF)",
-        barmode="group", height=420, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        font_color="white", title_font_color="white",
-        yaxis=dict(title="Mds XOF", gridcolor="rgba(255,255,255,0.1)"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,
-                    bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1))
-    html_parts.append(fig_q.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-    fig_q2 = go.Figure()
-    fig_q2.add_trace(go.Bar(x=_q_labels, y=_q_vol, name="Volume (kt)", marker_color="#F58220",
-                            text=[f"{v:.0f}" for v in _q_vol], textposition="outside", textfont=dict(color="white", size=10)))
-    fig_q2.update_layout(
-        title="Volume de Production par Trimestre (kt)",
-        height=340, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        font_color="white", title_font_color="white",
-        yaxis=dict(title="kt", gridcolor="rgba(255,255,255,0.1)"),
-        showlegend=False)
-    html_parts.append(fig_q2.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-    html_parts.append('</div>')  # closes section
-    html_parts.append('</div>')  # closes gran-quarterly
-
-    # === SEMESTER VIEW ===
-    _s_defs = [("S1", range(0, 6)), ("S2", range(6, 12))]
-    _s_labels = [s[0] for s in _s_defs]
-    _s_ca = [sum((annual["monthly"][m].get("total_revenue", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
-    _s_eb = [sum((annual["monthly"][m].get("ebitda", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
-    _s_rn = [sum((annual["monthly"][m].get("net_income", 0) or 0) for m in r) / 1e9 for _, r in _s_defs]
-    _s_vol = [sum((annual["monthly"][m].get("grand_total", 0) or 0) for m in r) / 1e3 for _, r in _s_defs]
-
-    html_parts.append('<div id="gran-semester" class="granularity-content">')
-    html_parts.append("<div class='section'><h3>📅 Évolution Semestrielle</h3>")
-
-    fig_s = go.Figure()
-    fig_s.add_trace(go.Bar(x=_s_labels, y=_s_ca, name="CA", marker_color="#1E4D8F", opacity=0.9,
-                           text=[f"{v:.1f}" for v in _s_ca], textposition="outside", textfont=dict(color="white", size=11)))
-    fig_s.add_trace(go.Bar(x=_s_labels, y=_s_eb, name="EBITDA", marker_color="#10b981", opacity=0.9,
-                           text=[f"{v:.1f}" for v in _s_eb], textposition="outside", textfont=dict(color="white", size=11)))
-    fig_s.add_trace(go.Scatter(x=_s_labels, y=_s_rn, name="Résultat Net", mode="lines+markers+text",
-                               line=dict(color="#F58220", width=3), marker=dict(size=10, symbol="diamond", color="#F58220"),
-                               text=[f"{v:.1f}" for v in _s_rn], textposition="top center", textfont=dict(color="#F58220", size=11)))
-    fig_s.update_layout(
-        title="CA · EBITDA · Résultat Net par Semestre (Mds XOF)",
-        barmode="group", height=420, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        font_color="white", title_font_color="white",
-        yaxis=dict(title="Mds XOF", gridcolor="rgba(255,255,255,0.1)"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,
-                    bgcolor="rgba(15,23,42,0.9)", bordercolor="#1E4D8F", borderwidth=1))
-    html_parts.append(fig_s.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-    fig_s2 = go.Figure()
-    fig_s2.add_trace(go.Bar(x=_s_labels, y=_s_vol, name="Volume (kt)", marker_color="#F58220",
-                            text=[f"{v:.0f}" for v in _s_vol], textposition="outside", textfont=dict(color="white", size=11)))
-    fig_s2.update_layout(
-        title="Volume de Production par Semestre (kt)",
-        height=340, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        font_color="white", title_font_color="white",
-        yaxis=dict(title="kt", gridcolor="rgba(255,255,255,0.1)"),
-        showlegend=False)
-    html_parts.append(fig_s2.to_html(full_html=False, include_plotlyjs=False, config={"responsive": False}))
-
-    html_parts.append('</div>')  # closes section
-    html_parts.append('</div>')  # closes gran-semester
 
     # === JAVASCRIPT ===
     html_parts.append("""
