@@ -42875,5 +42875,902 @@
   "DEX 2": {
    "site": "Site 2 (DEX 2)"
   }
+ },
+ "2026-W44": {
+  "DEX 1": {
+   "Prod humide": {
+    "CPJ 32.5": 1836.663999999987,
+    "MIX": 1836.663999999987
+   },
+   "Prod. Sèche": {
+    "CPJ 32.5": 1806.6408141999873,
+    "MIX": 1806.6408141999873
+   },
+   "TOTAL (T)": {
+    "TOTAL": 1836.663999999987
+   },
+   "CES (KWh/t)": {
+    "CPJ 32.5": 44.32400264828,
+    "MIX": 44.32400264828
+   },
+   "CS Gasoil+DDO (L/t)": {
+    "CPJ 32.5": 3.672364192210381,
+    "MIX": 3.672364192210381
+   },
+   "Tps de prod. (H)": {
+    "CPJ 32.5": 25.600000000000005,
+    "MIX": 25.600000000000005
+   },
+   "Débit (T/h)": {
+    "CPJ 32.5": 71.74468749999949,
+    "MIX": 71.74468749999949
+   },
+   "% K/C Sec": {
+    "CPJ 32.5": 0.4762929691041219,
+    "MIX": 0.4762929691041219
+   },
+   "% K/C Humide": {
+    "CPJ 32.5": 0.46881193293928897,
+    "MIX": 0.46881193293928897
+   },
+   "Clinker": {
+    "MIX": 861.0500000000002
+   },
+   "Gypse": {
+    "MIX": 92.52599999999802
+   },
+   "Granite": {
+    "MIX": 772.7019999999902
+   },
+   "Laitier": {
+    "MIX": 110.3859999999986
+   },
+   "expedition_par_produit": {
+    "CPJ 42.5": 46.5
+   },
+   "days_count": 7,
+   "site": "SCCI1",
+   "date_debut": "2026-10-26",
+   "date_fin": "2026-11-01",
+   "date_range": "26/10 - 01/11",
+   "faits_marquants": [
+    "26/10 : expédition 751.50 t ; production 0.00 t",
+    "26/10 — 06h00 à 06h00 : Broyeur A en maintenance.",
+    "26/10 — 0 6h00 à 06h00 : Broyeur B à m’arrêt pour optimisation.",
+    "26/10 — WhatsApp: Usine 1: Broyeur à l’arrêt (stock élevé)/ quais vides",
+    "26/10 — WhatsApp: Usine 2: Broyeur à l'arrêt (stock élevé) / quais vides",
+    "26/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "27/10 : expédition 591.00 t ; production 0.00 t ; arrêts 24.00 h",
+    "27/10 — 06h00 à 18h00 : Broyeur A en maintenance.",
+    "27/10 — 0 6h00 à 06h00 : Broyeur B à m’arrêt pour optimisation.",
+    "28/10 : expédition 680.00 t ; production 1047.29 t ; arrêts 8.93 h",
+    "28/10 — 08h00 : Démarrage du broyeur A",
+    "28/10 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "28/10 — WhatsApp: Usine 1: Broyeur en marche /quais vides",
+    "28/10 — WhatsApp: Usine 2: Broyeur en marche / expéditions en marche",
+    "28/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "29/10 : expédition 610.00 t ; production 0.00 t",
+    "30/10 : expédition 875.00 t ; production 0.00 t",
+    "30/10 — WhatsApp: Usine 1: Broyeur à l’arrêt /expedition en marche",
+    "30/10 — WhatsApp: Usine 2: à l’arrêt",
+    "30/10 — WhatsApp: _défaut sur le câble HT SCCI1, engendré par un prestataire de SILO . Les défauts au nombre de 02 ont été retrouvés, les corrections sont en cours . _",
+    "30/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "31/10 : expédition 1110.00 t ; production 0.00 t",
+    "31/10 — WhatsApp: Usine 1: Broyeur à l’arrêt / expédition à l arrêt",
+    "31/10 — WhatsApp: Usine 2: à l’arrêt",
+    "31/10 — WhatsApp: _défaut sur le câble HT SCCI1, engendré par un prestataire de SILO . Les défauts au nombre de 02 ont été retrouvés, les corrections sont en cours . _",
+    "31/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "01/11 : expédition 1010.00 t ; production 735.95 t ; arrêts 19.63 h",
+    "01/11 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "01/11 — WhatsApp: Usine 1: en marche",
+    "01/11 — WhatsApp: Usine 2: en marche",
+    "01/11 — WhatsApp: Les défauts ont été réparés .",
+    "01/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE"
+   ],
+   "cibles": {
+    "commandes_hebdo_t": 19825.0,
+    "commandes_mtd_t": 80779.0,
+    "commandes_budget_t": 85000.0,
+    "commandes_source": "Suivi commercial SC-CI(5).txt"
+   },
+   "ecarts": {},
+   "qualite": {},
+   "rapport_officiel": {
+    "source": "Rapport Hebdo semaine 44.xlsx — SCCI DEX1, point de la semaine du 26/10 au 01/11/2026",
+    "taux_casse_pct": 0.62,
+    "ventes_detail_t": {
+     "CPJ 32,5 SAC": 3047,
+     "CPJ 42,5 SAC": 2534,
+     "CPJ 42,5 VRAC": 46.5
+    },
+    "ventes_sacs_t": 5581,
+    "ventes_vracs_t": 46.5,
+    "transfert_t": 0.0,
+    "sacs_kraft": {
+     "PP": null,
+     "KRAFT": null
+    },
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 0,
+      "stock": 33533,
+      "stock_initial": 34813.001000000004
+     },
+     "Gypse": {
+      "recu": 0,
+      "stock": 1153,
+      "stock_initial": 1282.5480000000025
+     },
+     "Granite": {
+      "recu": 5334.78,
+      "stock": 4808,
+      "stock_initial": 2754.561024908452
+     },
+     "Pouzzolane": {
+      "recu": 0,
+      "stock": 5.73,
+      "stock_initial": 5.73
+     },
+     "Laitier": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": -945.2443333333292
+     },
+     "MSA": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Argile calciné": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": -304.2406915751185
+     },
+     "Gasoil": {
+      "recu": 0,
+      "stock": 3980.5697836729987,
+      "stock_initial": 4725.468890394838
+     },
+     "DDO": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Adj. Pegasus": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Adj. SIKA": {
+      "recu": 0,
+      "stock": 30243.011600000005,
+      "stock_initial": 30558.762000000006
+     },
+     "Adj. Chryso": {
+      "recu": 0,
+      "stock": 38000,
+      "stock_initial": 38000
+     },
+     "Adj. BIOLATEX": {
+      "recu": 0,
+      "stock": 1800,
+      "stock_initial": 1800
+     }
+    }
+   },
+   "excel_detail": {
+    "prod_humide_t": {
+     "CPJ 32.5": 1836.663999999987,
+     "MIX": 1836.663999999987
+    },
+    "prod_seche_t": {
+     "CPJ 32.5": 1806.6408141999873,
+     "MIX": 1806.6408141999873
+    },
+    "tps_prod_h": {
+     "CPJ 32.5": 25.600000000000005,
+     "MIX": 25.600000000000005
+    },
+    "debit_t_h": {
+     "CPJ 32.5": 71.74468749999949,
+     "MIX": 71.74468749999949
+    },
+    "ces_kwh_t": {
+     "CPJ 32.5": 44.32400264828,
+     "MIX": 44.32400264828
+    },
+    "cs_gasoil_ddo_l_t": {
+     "CPJ 32.5": 3.672364192210381,
+     "MIX": 3.672364192210381
+    },
+    "facteur_debit_pct": 0.9565958333333264,
+    "kc_sec": {
+     "CPJ 32.5": 0.4762929691041219,
+     "MIX": 0.4762929691041219
+    },
+    "kc_humide": {
+     "CPJ 32.5": 0.46881193293928897,
+     "MIX": 0.46881193293928897
+    },
+    "consommations_mp": {
+     "Clinker": {
+      "conso_t": 861.0500000000002,
+      "recu_t": 0,
+      "stock_initial_t": 34813.001000000004,
+      "stock_t": 33533
+     },
+     "Gypse": {
+      "conso_t": 92.52599999999802,
+      "recu_t": 0,
+      "stock_initial_t": 1282.5480000000025,
+      "stock_t": 1153
+     },
+     "Granite": {
+      "conso_t": 772.7019999999902,
+      "recu_t": 5334.78,
+      "stock_initial_t": 2754.561024908452,
+      "stock_t": 4808
+     },
+     "Pouzzolane": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 5.73,
+      "stock_t": 5.73
+     },
+     "Laitier": {
+      "conso_t": 110.3859999999986,
+      "recu_t": 0,
+      "stock_initial_t": -945.2443333333292,
+      "stock_t": 0
+     },
+     "MSA": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Argile calciné": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": -304.2406915751185,
+      "stock_t": 0
+     },
+     "Gasoil": {
+      "conso_t": 6744.899106721839,
+      "recu_t": 0,
+      "stock_initial_t": 4725.468890394838,
+      "stock_t": 3980.5697836729987
+     },
+     "DDO": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Adj. Pegasus": {
+      "conso_t": 315.75039999999973,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Adj. SIKA": {
+      "conso_t": 734.6655999999948,
+      "recu_t": 0,
+      "stock_initial_t": 30558.762000000006,
+      "stock_t": 30243.011600000005
+     },
+     "Adj. Chryso": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 38000,
+      "stock_t": 38000
+     },
+     "Adj. BIOLATEX": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 1800,
+      "stock_t": 1800
+     }
+    }
+   },
+   "rapport_mensuel_octobre": {
+    "Prod humide": {
+     "CPJ 42.5": 3643.7010000000155,
+     "CPJ 32.5": 13796.057999999948,
+     "MIX": 17439.75899999996
+    },
+    "Prod. Sèche": {
+     "CPJ 42.5": 3599.9869189495394,
+     "CPJ 32.5": 13585.114656630716,
+     "MIX": 17185.101575580255
+    },
+    "Tps de prod. (H)": {
+     "CPJ 42.5": 76.98333333333332,
+     "CPJ 32.5": 277.20000000000005,
+     "MIX": 354.1833333333334
+    },
+    "Débit (T/h)": {
+     "CPJ 42.5": 47.33103702100043,
+     "CPJ 32.5": 49.76932900432881,
+     "MIX": 49.239355324455204
+    },
+    "CES (KWh/t)": {
+     "CPJ 42.5": 56.81971026215267,
+     "CPJ 32.5": 45.50381456051328,
+     "MIX": 47.868052534441674
+    },
+    "CS Gasoil+DDO (L/t)": {
+     "CPJ 42.5": 3.749417689315669,
+     "CPJ 32.5": 3.632104709356103,
+     "MIX": 3.656614992003453
+    },
+    "Facteur de débit (%)": {
+     "CPJ 42.5": 0.6310804936133391,
+     "CPJ 32.5": 0.6635910533910508,
+     "MIX": 0.6565247376594027
+    },
+    "% K/C Sec": {
+     "CPJ 42.5": 0.5925473822006178,
+     "CPJ 32.5": 0.4670855744302598,
+     "MIX": 0.49336769239241685
+    },
+    "% K/C Humide": {
+     "CPJ 42.5": 0.5857157324379821,
+     "CPJ 32.5": 0.46016159108638066,
+     "MIX": 0.4863937053258593
+    }
+   }
+  },
+  "DEX 2": {
+   "Prod humide": {
+    "CPA 52.5": 5941.18,
+    "CPJ 42.5": 1137.76,
+    "MIX": 7078.94
+   },
+   "Prod. Sèche": {},
+   "TOTAL (T)": {
+    "TOTAL": 7078.94
+   },
+   "CES (KWh/t)": {
+    "MIX": 33.84
+   },
+   "CS Gasoil+DDO (L/t)": {},
+   "Tps de prod. (H)": {
+    "MIX": 56.28
+   },
+   "Débit (T/h)": {
+    "MIX": 125.78
+   },
+   "% K/C Sec": {
+    "MIX": 0.7649
+   },
+   "% K/C Humide": {
+    "MIX": 0.7649
+   },
+   "Clinker": {
+    "MIX": 5414.78
+   },
+   "Gypse": {
+    "MIX": 353.91
+   },
+   "Granite": {
+    "MIX": 1310.25
+   },
+   "Laitier": {},
+   "expedition_par_produit": {
+    "CPJ 42.5": 2598.06,
+    "CPA 42.5": 608.22,
+    "CPA 52.5": 6798.0
+   },
+   "days_count": 7,
+   "date_debut": "2026-10-26",
+   "date_fin": "2026-11-01",
+   "date_range": "26/10 - 01/11",
+   "faits_marquants": [
+    "26/10 : expédition 2333.00 t ; production 0.00 t",
+    "26/10 — 06h00-21h30 : Arrêt du broyeur pour entretien hebdomadaire",
+    "26/10 — 21h30-06h00 : Arrêt du broyeur pour bon niveau des silos",
+    "26/10 — WhatsApp: Usine 1: Broyeur à l’arrêt (stock élevé)/ quais vides",
+    "26/10 — WhatsApp: Usine 2: Broyeur à l'arrêt (stock élevé) / quais vides",
+    "26/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "27/10 : expédition 2525.78 t ; production 1672.49 t ; arrêts 10.25 h",
+    "27/10 — 06h00-09h33 : Arrêt du broyeur pour bon niveau des silos",
+    "27/10 — 10h44-11h26 : Arrêt du broyeur pour variation de tension",
+    "27/10 — 18h58-01h08 : Arrêt du broyeur pour optimisation énergétique",
+    "27/10 — Réception de 1295,90T de granite",
+    "28/10 : expédition 2903.88 t ; production 2252.16 t ; arrêts 5.80 h",
+    "28/10 — 19h00-0h48 : Arrêt du broyeur pour optimisation énergétique",
+    "28/10 — Réception de 49075,32T de granite",
+    "28/10 — WhatsApp: Usine 1: Broyeur en marche /quais vides",
+    "28/10 — WhatsApp: Usine 2: Broyeur en marche / expéditions en marche",
+    "28/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "29/10 : expédition 845.34 t ; production 1812.52 t",
+    "29/10 — 08h42-15h48 ; 04h03-06h00 : Arrêt du broyeur pour coupure CIE",
+    "29/10 — Réception de 4170,74T de granite",
+    "30/10 : expédition 0.00 t ; production 0.00 t",
+    "30/10 — WhatsApp: Usine 1: Broyeur à l’arrêt /expedition en marche",
+    "30/10 — WhatsApp: Usine 2: à l’arrêt",
+    "30/10 — WhatsApp: _défaut sur le câble HT SCCI1, engendré par un prestataire de SILO . Les défauts au nombre de 02 ont été retrouvés, les corrections sont en cours . _",
+    "30/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "31/10 : expédition 0.00 t ; production 0.00 t",
+    "31/10 — WhatsApp: Usine 1: Broyeur à l’arrêt / expédition à l arrêt",
+    "31/10 — WhatsApp: Usine 2: à l’arrêt",
+    "31/10 — WhatsApp: _défaut sur le câble HT SCCI1, engendré par un prestataire de SILO . Les défauts au nombre de 02 ont été retrouvés, les corrections sont en cours . _",
+    "31/10 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "01/11 : expédition 1396.28 t ; production 1341.77 t ; arrêts 19.17 h",
+    "01/11 — 00h00-15h26 : Broyeur à l’arrêt pour coupure CIE",
+    "01/11 — 01h43-02h23 ; 05h34-06h00 : Arrêt broyeur pour vibration",
+    "01/11 — Réception de 6053,10T de clinker et 1723,66T de granite",
+    "01/11 — WhatsApp: Usine 1: en marche",
+    "01/11 — WhatsApp: Usine 2: en marche",
+    "01/11 — WhatsApp: Les défauts ont été réparés .",
+    "01/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE"
+   ],
+   "ecarts": {},
+   "qualite": {},
+   "site": "SCCI2"
+  }
+ },
+ "2026-W45": {
+  "DEX 1": {
+   "Prod humide": {
+    "CPJ 42.5": 5538.340999999973,
+    "CPJ 32.5": 2854.1090000000077,
+    "MIX": 8392.44999999998
+   },
+   "Prod. Sèche": {
+    "CPJ 42.5": 5465.999888399973,
+    "CPJ 32.5": 2794.8389457000076,
+    "MIX": 8260.83883409998
+   },
+   "TOTAL (T)": {
+    "TOTAL": 8392.44999999998
+   },
+   "CES (KWh/t)": {
+    "CPJ 42.5": 44.95546195887122,
+    "CPJ 32.5": 39.544783278860166,
+    "MIX": 34.9959070354903
+   },
+   "CS Gasoil+DDO (L/t)": {
+    "CPJ 42.5": 2.497559948055291,
+    "CPJ 32.5": 2.6131954246000713,
+    "MIX": 2.536885324354911
+   },
+   "Tps de prod. (H)": {
+    "CPJ 42.5": 80.58333333333334,
+    "CPJ 32.5": 37.85,
+    "MIX": 118.43333333333334
+   },
+   "Débit (T/h)": {
+    "CPJ 42.5": 68.72811995863461,
+    "CPJ 32.5": 75.4057859973582,
+    "MIX": 70.86222910216702
+   },
+   "% K/C Sec": {
+    "CPJ 42.5": 0.6034041685705399,
+    "CPJ 32.5": 0.4802281605999674,
+    "MIX": 0.561730785132656
+   },
+   "% K/C Humide": {
+    "CPJ 42.5": 0.5958006197162651,
+    "CPJ 32.5": 0.47047502390413143,
+    "MIX": 0.553179822340317
+   },
+   "Clinker": {
+    "MIX": 4642.533999999983
+   },
+   "Gypse": {
+    "MIX": 422.00800000000163
+   },
+   "Granite": {
+    "MIX": 4642.533999999983
+   },
+   "Laitier": {
+    "MIX": 729.5866666666655
+   },
+   "expedition_par_produit": {
+    "CPJ 32.5": 236.0,
+    "CPJ 42.5": 772.68
+   },
+   "days_count": 7,
+   "site": "SCCI1",
+   "date_debut": "2026-11-02",
+   "date_fin": "2026-11-08",
+   "date_range": "02/11 - 08/11",
+   "faits_marquants": [
+    "02/11 : expédition 1814.00 t ; production 1464.24 t ; arrêts 3.70 h",
+    "02/11 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "02/11 — WhatsApp: Usine 1: broyeur À en marche / quais vides",
+    "02/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "02/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "03/11 : expédition 612.00 t ; production 458.58 t ; arrêts 17.33 h",
+    "03/11 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "03/11 — WhatsApp: Usine 1: broyeur en entretien / expedition en marche",
+    "03/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "03/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "04/11 : expédition 1395.00 t ; production 1074.50 t ; arrêts 29.15 h",
+    "04/11 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "04/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "04/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "04/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "05/11 : expédition 906.00 t ; production 1218.55 t ; arrêts 30.90 h",
+    "05/11 — 06h51-06h00 : Broyeur B à l’arrêt pour interconnexion avec le site 2",
+    "05/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "05/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "05/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "06/11 : expédition 771.00 t ; production 581.78 t ; arrêts 16.15 h",
+    "06/11 — 06h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "06/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "06/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "06/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "07/11 : expédition 1321.00 t ; production 1804.83 t",
+    "07/11 — 06h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "07/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "07/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "07/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "08/11 : expédition 290.00 t ; production 1789.97 t ; arrêts 0.33 h",
+    "08/11 — 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation.",
+    "08/11 — WhatsApp: Usine 1: broyeur en marche / quais vides",
+    "08/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "08/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE"
+   ],
+   "cibles": {},
+   "ecarts": {},
+   "qualite": {},
+   "rapport_officiel": {
+    "source": "Rapport Hebdo SEM 45.xlsx — SCCI DEX1, point de la semaine du 02 au 08/11/2026",
+    "taux_casse_pct": 1.9,
+    "ventes_detail_t": {
+     "CPJ 32,5 SAC": 3268,
+     "CPJ 42,5 SAC": 3841,
+     "CPJ 42,5 VRAC": 102.68
+    },
+    "ventes_sacs_t": 7109,
+    "ventes_vracs_t": 102.68,
+    "transfert_t": 0.0,
+    "sacs_kraft": {
+     "PP": null,
+     "KRAFT": null
+    },
+    "stocks_mp": {
+     "Clinker": {
+      "recu": 6480.780000000001,
+      "stock": 35370.40100000003,
+      "stock_initial": 32656.32100000002
+     },
+     "Gypse": {
+      "recu": 460.98,
+      "stock": 1191.7779999999984,
+      "stock_initial": 1372.5740000000005
+     },
+     "Granite": {
+      "recu": 110.75999999999999,
+      "stock": 2330.006666666669,
+      "stock_initial": 3485.7900000000045
+     },
+     "Pouzzolane": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 32656.32100000002
+     },
+     "Laitier": {
+      "recu": 0,
+      "stock": 308.67133333333265,
+      "stock_initial": 581.8480000000038
+     },
+     "MSA": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Argile calciné": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Gasoil": {
+      "recu": 20000,
+      "stock": 5674.703834090097,
+      "stock_initial": 5275.252908589431
+     },
+     "DDO": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Adj. Pegasus": {
+      "recu": 0,
+      "stock": 0,
+      "stock_initial": 0
+     },
+     "Adj. SIKA": {
+      "recu": 0,
+      "stock": 21588.638800000004,
+      "stock_initial": 23026.55720000001
+     },
+     "Adj. Chryso": {
+      "recu": 0,
+      "stock": 38000,
+      "stock_initial": 38000
+     },
+     "Adj. BIOLATEX": {
+      "recu": 0,
+      "stock": 1800,
+      "stock_initial": 1800
+     }
+    }
+   },
+   "excel_detail": {
+    "prod_humide_t": {
+     "CPJ 42.5": 5538.340999999973,
+     "CPJ 32.5": 2854.1090000000077,
+     "MIX": 8392.44999999998
+    },
+    "prod_seche_t": {
+     "CPJ 42.5": 5465.999888399973,
+     "CPJ 32.5": 2794.8389457000076,
+     "MIX": 8260.83883409998
+    },
+    "tps_prod_h": {
+     "CPJ 42.5": 80.58333333333334,
+     "CPJ 32.5": 37.85,
+     "MIX": 118.43333333333334
+    },
+    "debit_t_h": {
+     "CPJ 42.5": 68.72811995863461,
+     "CPJ 32.5": 75.4057859973582,
+     "MIX": 70.86222910216702
+    },
+    "ces_kwh_t": {
+     "CPJ 42.5": 44.95546195887122,
+     "CPJ 32.5": 39.544783278860166,
+     "MIX": 34.9959070354903
+    },
+    "cs_gasoil_ddo_l_t": {
+     "CPJ 42.5": 2.497559948055291,
+     "CPJ 32.5": 2.6131954246000713,
+     "MIX": 2.536885324354911
+    },
+    "facteur_debit_pct": 1.0370082307634199,
+    "kc_sec": {
+     "CPJ 42.5": 0.6034041685705399,
+     "CPJ 32.5": 0.4802281605999674,
+     "MIX": 0.561730785132656
+    },
+    "kc_humide": {
+     "CPJ 42.5": 0.5958006197162651,
+     "CPJ 32.5": 0.47047502390413143,
+     "MIX": 0.553179822340317
+    },
+    "consommations_mp": {
+     "Clinker": {
+      "conso_t": 4642.533999999983,
+      "recu_t": 6480.780000000001,
+      "stock_initial_t": 32656.32100000002,
+      "stock_t": 35370.40100000003
+     },
+     "Gypse": {
+      "conso_t": 422.00800000000163,
+      "recu_t": 460.98,
+      "stock_initial_t": 1372.5740000000005,
+      "stock_t": 1191.7779999999984
+     },
+     "Granite": {
+      "conso_t": 4642.533999999983,
+      "recu_t": 110.75999999999999,
+      "stock_initial_t": 3485.7900000000045,
+      "stock_t": 2330.006666666669
+     },
+     "Pouzzolane": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 32656.32100000002,
+      "stock_t": 0
+     },
+     "Laitier": {
+      "conso_t": 729.5866666666655,
+      "recu_t": 0,
+      "stock_initial_t": 581.8480000000038,
+      "stock_t": 308.67133333333265
+     },
+     "MSA": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Argile calciné": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Gasoil": {
+      "conso_t": 21290.683240382325,
+      "recu_t": 20000,
+      "stock_initial_t": 5275.252908589431,
+      "stock_t": 5674.703834090097
+     },
+     "DDO": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Adj. Pegasus": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 0,
+      "stock_t": 0
+     },
+     "Adj. SIKA": {
+      "conso_t": 3356.9799999999923,
+      "recu_t": 0,
+      "stock_initial_t": 23026.55720000001,
+      "stock_t": 21588.638800000004
+     },
+     "Adj. Chryso": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 38000,
+      "stock_t": 38000
+     },
+     "Adj. BIOLATEX": {
+      "conso_t": 0,
+      "recu_t": 0,
+      "stock_initial_t": 1800,
+      "stock_t": 1800
+     }
+    }
+   },
+   "rapport_mensuel_novembre": {
+    "Prod humide": {
+     "CPJ 42.5": 6232.555999999966,
+     "CPJ 32.5": 2895.847000000018,
+     "MIX": 9128.402999999984
+    },
+    "Prod. Sèche": {
+     "CPJ 42.5": 6149.556893399966,
+     "CPJ 32.5": 2835.932870100017,
+     "MIX": 8985.489763499983
+    },
+    "Tps de prod. (H)": {
+     "CPJ 42.5": 90.28333333333335,
+     "CPJ 32.5": 38.516666666666666,
+     "MIX": 128.8
+    },
+    "Débit (T/h)": {
+     "CPJ 42.5": 69.03329518183457,
+     "CPJ 32.5": 75.18425789701475,
+     "MIX": 70.87269409937875
+    },
+    "CES (KWh/t)": {
+     "CPJ 42.5": 45.24415666940231,
+     "CPJ 32.5": 39.704949842024696,
+     "MIX": 43.48692756005634
+    },
+    "CS Gasoil+DDO (L/t)": {
+     "CPJ 42.5": 2.5244928316120556,
+     "CPJ 32.5": 2.725024223064696,
+     "MIX": 2.5881083652759354
+    },
+    "Facteur de débit (%)": {
+     "CPJ 42.5": 0.9204439357577944,
+     "CPJ 32.5": 1.0024567719601967,
+     "MIX": 1.0371613770640793
+    },
+    "% K/C Sec": {
+     "CPJ 42.5": 0.6006809853673356,
+     "CPJ 32.5": 0.481609658848988,
+     "MIX": 0.5631005865635353
+    },
+    "% K/C Humide": {
+     "CPJ 42.5": 0.5929856065472983,
+     "CPJ 32.5": 0.47188715425918304,
+     "MIX": 0.5545689645823034
+    }
+   }
+  },
+  "DEX 2": {
+   "Prod humide": {
+    "CPA 52.5": 10828.14,
+    "CPJ 42.5": 3068.14,
+    "MIX": 13896.28
+   },
+   "Prod. Sèche": {},
+   "TOTAL (T)": {
+    "TOTAL": 13896.28
+   },
+   "CES (KWh/t)": {
+    "MIX": 32.74
+   },
+   "CS Gasoil+DDO (L/t)": {},
+   "Tps de prod. (H)": {
+    "MIX": 104.29
+   },
+   "Débit (T/h)": {
+    "MIX": 133.25
+   },
+   "% K/C Sec": {
+    "MIX": 0.7514
+   },
+   "% K/C Humide": {
+    "MIX": 0.7514
+   },
+   "Clinker": {
+    "MIX": 10441.12
+   },
+   "Gypse": {
+    "MIX": 694.78
+   },
+   "Granite": {
+    "MIX": 2760.28
+   },
+   "Laitier": {},
+   "expedition_par_produit": {
+    "CPJ 42.5": 2686.0,
+    "CPA 42.5": 1169.26,
+    "CPA 52.5": 10150.0
+   },
+   "days_count": 7,
+   "date_debut": "2026-11-02",
+   "date_fin": "2026-11-08",
+   "date_range": "02/11 - 08/11",
+   "faits_marquants": [
+    "02/11 : expédition 3289.30 t ; production 3135.00 t ; arrêts 0.18 h",
+    "02/11 — 06h00-06h11 : Arrêt broyeur pour vibration – En cours de",
+    "02/11 — redémarrage",
+    "02/11 — Réception de 163,86T de clinker",
+    "02/11 — WhatsApp: Usine 1: broyeur À en marche / quais vides",
+    "02/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "02/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "03/11 : expédition 1749.60 t ; production 2457.45 t ; arrêts 5.43 h",
+    "03/11 — 06h08-06h42 ; 08h52-09h59 : Arrêt broyeur pour vibration 12h30-14h28 ; 15h20-17h00 : Arrêt du broyeur, Défaut \"speed",
+    "03/11 — monitor\" élévateur produit fini",
+    "03/11 — WhatsApp: Usine 1: broyeur en entretien / expedition en marche",
+    "03/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "03/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "04/11 : expédition 2132.94 t ; production 1180.88 t ; arrêts 15.65 h",
+    "04/11 — 09h25-10h03 ; 15h09-16h28 : Arrêt broyeur pour vibration 10h39-11h37 : Arrêt du broyeur _ test sur le groupe électrogène",
+    "04/11 — expédition 17h17-06h00 : Arrêt du broyeur pour variation de tension CIE",
+    "04/11 — suivi de l’optimisation",
+    "04/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "04/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "04/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "05/11 : expédition 2052.76 t ; production 2537.47 t ; arrêts 4.85 h",
+    "05/11 — 06h00-07h21 : Arrêt broyeur pour optimisation _ bon niveau des",
+    "05/11 — silos",
+    "05/11 — 09h56-11h29 : Arrêt broyeur pour variation de tension CIE",
+    "05/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "05/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "05/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "06/11 : expédition 1883.42 t ; production 1485.61 t ; arrêts 12.58 h",
+    "06/11 — 17h58-06h00 : Arrêt broyeur pour optimisation _ bon niveau des",
+    "06/11 — silos",
+    "06/11 — Réception de 5648,16T de clinker",
+    "06/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "06/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "06/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "07/11 : expédition 2462.24 t ; production 1401.72 t ; arrêts 13.70 h",
+    "07/11 — 08h35-15h21 : Arrêt broyeur pour défaut speed monitor",
+    "07/11 — élévateur produit fini 21h35-00h10 : Arrêt broyeur pour bourrage de la bande",
+    "07/11 — 1621BC01 00h40-01h09 : Arrêt broyeur _ défaut feedback déviateur",
+    "07/11 — 1621DG01",
+    "07/11 — Réception de 10759,70T de clinker",
+    "07/11 — WhatsApp: Usine 1: broyeur en marche / expedition en marche",
+    "07/11 — WhatsApp: Usine 2: broyeur en marche / expedition en marche",
+    "07/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE",
+    "08/11 : expédition 435.00 t ; production 1698.15 t ; arrêts 11.32 h",
+    "08/11 — 18h41-06h00 : Arrêt broyeur _ rupture de la bande alimentation",
+    "08/11 — broyeur (1621BC01)",
+    "08/11 — Réception de 8365,50T de clinker",
+    "08/11 — WhatsApp: Usine 1: broyeur en marche / quais vides",
+    "08/11 — WhatsApp: Usine 2: broyeur en marche / quais vides",
+    "08/11 — WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut: 7 km de câbles à remplacer - En attente du retour de CI-Énergie / CIE"
+   ],
+   "ecarts": {},
+   "qualite": {},
+   "site": "SCCI2"
+  }
  }
 }

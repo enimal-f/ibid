@@ -614,6 +614,54 @@
    "date": "2026-10-23",
    "orders_t": 4575.0,
    "source": "whatsapp_commercial"
+  },
+  {
+   "date": "2026-10-26",
+   "orders_t": 3347.0,
+   "mtd_t": 64301.0,
+   "budget_t": 85000.0,
+   "pct_budget": 75.6,
+   "source": "Suivi commercial SC-CI(5).txt"
+  },
+  {
+   "date": "2026-10-27",
+   "orders_t": 3484.0,
+   "mtd_t": 67785.0,
+   "budget_t": 85000.0,
+   "pct_budget": 79.7,
+   "source": "Suivi commercial SC-CI(5).txt"
+  },
+  {
+   "date": "2026-10-28",
+   "orders_t": 3242.0,
+   "mtd_t": 71027.0,
+   "budget_t": 85000.0,
+   "pct_budget": 83.6,
+   "source": "Suivi commercial SC-CI(5).txt"
+  },
+  {
+   "date": "2026-10-29",
+   "orders_t": 3774.0,
+   "mtd_t": 74801.0,
+   "budget_t": 85000.0,
+   "pct_budget": 88.0,
+   "source": "Suivi commercial SC-CI(5).txt"
+  },
+  {
+   "date": "2026-10-30",
+   "orders_t": 3287.0,
+   "mtd_t": 78088.0,
+   "budget_t": 85000.0,
+   "pct_budget": 91.9,
+   "source": "Suivi commercial SC-CI(5).txt"
+  },
+  {
+   "date": "2026-10-31",
+   "orders_t": 2691.0,
+   "mtd_t": 80779.0,
+   "budget_t": 85000.0,
+   "pct_budget": 95.0,
+   "source": "Suivi commercial SC-CI(5).txt"
   }
  ],
  "production": [
@@ -1607,12 +1655,166 @@
    "expedie_t": 5331.0,
    "source": "whatsapp_production",
    "note": "point combiné 23-24/10 (MTD 63 145,8 t)"
+  },
+  {
+   "date": "2026-10-26",
+   "expedie_t": 3084.5,
+   "mtd_t": 65965.28,
+   "dex1_t": 751.5,
+   "dex2_t": 2333.0,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-10-27",
+   "expedie_t": 3116.78,
+   "mtd_t": 69082.06,
+   "dex1_t": 591.0,
+   "dex2_t": 2525.78,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-10-28",
+   "expedie_t": 3583.88,
+   "mtd_t": 72665.94,
+   "dex1_t": 680.0,
+   "dex2_t": 2903.88,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-10-29",
+   "expedie_t": 1455.34,
+   "mtd_t": 74121.28,
+   "dex1_t": 610.0,
+   "dex2_t": 845.34,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-10-30",
+   "expedie_t": 875.0,
+   "mtd_t": 74996.28,
+   "dex1_t": 875.0,
+   "dex2_t": 0.0,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-10-31",
+   "expedie_t": 1110.0,
+   "mtd_t": 76106.28,
+   "dex1_t": 1110.0,
+   "dex2_t": 0.0,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-01",
+   "expedie_t": 2356.28,
+   "mtd_t": 2356.28,
+   "dex1_t": 960.0,
+   "dex2_t": 1396.28,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-02",
+   "expedie_t": 5103.3,
+   "mtd_t": 7459.58,
+   "dex1_t": 1814.0,
+   "dex2_t": 3289.3,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-03",
+   "expedie_t": 2423.74,
+   "mtd_t": 9883.32,
+   "dex1_t": 714.14,
+   "dex2_t": 1709.6,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-04",
+   "expedie_t": 3527.94,
+   "mtd_t": 13411.26,
+   "dex1_t": 1395.0,
+   "dex2_t": 2132.94,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-05",
+   "expedie_t": 2958.76,
+   "mtd_t": 15780.02,
+   "dex1_t": 906.0,
+   "dex2_t": 2052.76,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-06",
+   "expedie_t": 2654.42,
+   "mtd_t": 18434.44,
+   "dex1_t": 771.0,
+   "dex2_t": 1883.42,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-07",
+   "expedie_t": 3783.24,
+   "mtd_t": 22217.68,
+   "dex1_t": 1321.0,
+   "dex2_t": 2462.24,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-08",
+   "expedie_t": 700.0,
+   "mtd_t": 22917.68,
+   "dex1_t": 265.0,
+   "dex2_t": 435.0,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-09",
+   "expedie_t": 1507.34,
+   "mtd_t": 24385.02,
+   "dex1_t": 210.0,
+   "dex2_t": 1297.34,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-10",
+   "expedie_t": 2170.0,
+   "mtd_t": 27235.56,
+   "dex1_t": 1013.0,
+   "dex2_t": 1157.0,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-11",
+   "expedie_t": 2942.54,
+   "mtd_t": 30178.1,
+   "dex1_t": 803.0,
+   "dex2_t": 2139.54,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-12",
+   "expedie_t": 2713.1,
+   "mtd_t": 32896.2,
+   "dex1_t": 1169.0,
+   "dex2_t": 1544.1,
+   "source": "Suivi production et maintenance(6).txt"
+  },
+  {
+   "date": "2026-11-13",
+   "expedie_t": 3161.7,
+   "mtd_t": 36057.9,
+   "dex1_t": 625.0,
+   "dex2_t": 2536.7,
+   "source": "Suivi production et maintenance(6).txt"
   }
  ],
  "meta": {
-  "parsed_at": "2026-10-27",
-  "commercial_file": "Suivi commercial SC-CI(4).txt",
-  "production_file": "Suivi production et maintenance(5).txt",
-  "note": "Points commerciaux intégrés jusqu'au 23/10/2026 (MTD 59 697 t ; 24-25/10 ≈ 1 257 t déduits du point du 26/10) et points de production jusqu'au 24/10/2026 (point combiné 23-24/10 : 5 331 t, MTD 63 145,8 t)."
+  "parsed_at": "2026-11-16",
+  "sources": [
+   "Suivi production et maintenance(6).txt",
+   "Suivi commercial SC-CI(5).txt"
+  ],
+  "note": "production jusqu’au 13/11/2026 ; commercial jusqu’au 31/10/2026"
  }
 }
