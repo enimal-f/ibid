@@ -255946,8 +255946,12 @@
   "DEX 1": {
    "date": "2026-11-13",
    "site": "DEX 1",
-   "source_pdf": null,
+   "source_pdf": "SCCI1_RPJ_13112026.pdf",
    "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 630.0,
     "CPJ 32.5": {
      "sacs": 0.0,
      "vracs": 0.0,
@@ -255973,47 +255977,192 @@
      "vracs": 0.0,
      "big_bag": 0.0
     },
-    "total_sacs": 625.0,
-    "total_vracs": 0.0,
-    "total_big_bag": 0.0,
-    "total_jour": 625.0,
-    "whatsapp_total": 3161.7,
-    "whatsapp_mtd": 36057.9
+    "whatsapp_total": 630.0
    },
    "production": {
-    "matieres_premieres": {},
-    "total_production": {},
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 37.13,
+      "Total": 37.13
+     },
+     "gypse": {
+      "CPJ 42.5": 3.99,
+      "Total": 3.99
+     },
+     "granite": {
+      "CPJ 42.5": 33.37,
+      "Total": 33.37
+     },
+     "laitier": {
+      "CPJ 42.5": 4.77,
+      "Total": 4.77
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 79.25
+     },
+     "Total": {
+      "Mills": 79.25
+     }
+    },
     "ces_mills": {},
-    "fuel_mills": {},
-    "debit_broyeur": {},
-    "temps_broyage": {},
-    "total_matieres": {}
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 2.3,
+      "Mills": 2.3
+     },
+     "Total": {
+      "A": 2.3,
+      "Mills": 2.3
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 80.59,
+      "Mills": 80.59
+     },
+     "Total": {
+      "A": 80.59,
+      "Mills": 80.59
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.98,
+      "B": 0.0,
+      "Mills": 0.98
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 0.98,
+      "B": 0.0,
+      "Mills": 0.98
+     }
+    },
+    "total_matieres": {
+     "production": 79.25,
+     "total": 79.25,
+     "fuel": 2.3,
+     "debit": 80.59,
+     "temps": 0.98,
+     "clinker": 37.13,
+     "gypse": 3.99,
+     "granite": 33.37,
+     "laitier": 4.77
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 23.02,
+     "total": 23.02,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 1.0782,
+     "cu_pct": 0.0408,
+     "dispo_nette_pct": 1.0
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 31.7,
+      "Total|T": 31.7
+     }
+    }
    },
    "computed": {
     "CES_Site": null,
-    "Debit_Site": null
+    "Debit_Site": 80.59
    },
-   "quality": {},
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 9.7,
+      "so3": 3659.0,
+      "k_c": "46,8%"
+     }
+    }
+   },
    "faits_marquants": [
-    "WhatsApp: Usine 1: Broyeur à l’arrêt / Expédition en marche",
-    "WhatsApp: Usine 2: Broyeur à l’arrêt / Expédition en marche",
-    "WhatsApp: - ateliers bordage site 1&2: à l’arrêt suite au défaut câble HT du site 1",
-    "WhatsApp: INCIDENT MAJEUR: Ligne HT-CIE en défaut site 1: recherches en cours;",
-    "WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut site 2: 7 km de câbles à remplacer : j’ai été informé par comtel par l’entremise du DEX CIE de la validation desdits travaux par la CI Energie."
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 1152,74 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation."
    ],
-   "stocks": {},
-   "cibles": {
-    "commandes_journalieres_t": null,
-    "commandes_mtd_t": null,
-    "commandes_budget_t": null,
-    "commandes_source": "Suivi commercial SC-CI(5).txt (données jusqu’au 31/10)"
+   "stocks": {
+    "total_disponible": 6918.26,
+    "TOTAL DISPONIBLE": 6918.26
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 1152.74,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 35337.0,
+     "autonomie": 32.71944444444444
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1419.0,
+     "autonomie": 15.766666666666667
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 1152.74,
+     "stock": 5456.0,
+     "autonomie": 10.103703703703705
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
    }
   },
   "DEX 2": {
    "date": "2026-11-13",
    "site": "DEX 2",
-   "source_pdf": null,
+   "source_pdf": "SCCI 2_RPJ_13112026.pdf",
    "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 2536.7,
     "CPJ 32.5": {
      "sacs": 0.0,
      "vracs": 0.0,
@@ -256039,12 +256188,329 @@
      "vracs": 0.0,
      "big_bag": 0.0
     },
-    "total_sacs": 2536.7,
+    "whatsapp_total": 2536.7,
+    "whatsapp_mtd": 24036.22
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 86.75,
+      "Total": 86.75
+     },
+     "gypse": {
+      "CPJ 42.5": 7.62,
+      "Total": 7.62
+     },
+     "granite": {
+      "CPJ 42.5": 57.88,
+      "Total": 57.88
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 152.25
+     },
+     "Total": {
+      "Mills": 152.25
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 29.92
+     },
+     "Total": {
+      "Mills": 29.92
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 149.75
+     },
+     "Total": {
+      "Mills": 149.75
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 1.02
+     },
+     "Total": {
+      "Mills": 1.02
+     }
+    },
+    "total_matieres": {
+     "production": 152.25,
+     "total": 152.25,
+     "ces": 29.92,
+     "fuel": 0.0,
+     "debit": 149.75,
+     "temps": 1.02,
+     "clinker": 86.75,
+     "gypse": 7.62,
+     "granite": 57.88
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 22.98,
+     "total": 22.983333333333334,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 1.03264344262295,
+     "cu_pct": 0.04,
+     "dispo_nette_pct": 1.0
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPJ 42.5": 99.99780000000001,
+      "Total|T": 99.99780000000001
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 29.92,
+    "Debit_Site": 149.75
+   },
+   "quality": {
+    "Broyeur": {
+     "CPJ 42.5": {
+      "refus_45u": 4.6,
+      "so3": 4004.0,
+      "k_c": "57,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 07h02-06h00 : Arrêt broyeur pour défaut sur le câble CIE"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 2296.0,
+    "SILO 2 (CPA 52,5)": 996.0,
+    "total_disponible": 3292.0,
+    "TOTAL DISPONIBLE": 3292.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 89939.58500000103,
+     "autonomie": 40.88162954545501
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18726.20130000011,
+     "autonomie": 37.45240260000022
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 929.78,
+     "stock": 13401.825000000052,
+     "autonomie": 13.922583333333383
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-14": {
+  "DEX 1": {
+   "date": "2026-11-14",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_14112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
     "total_vracs": 0.0,
     "total_big_bag": 0.0,
-    "total_jour": 2536.7,
-    "whatsapp_total": 3161.7,
-    "whatsapp_mtd": 36057.9
+    "total_jour": 920.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
+   },
+   "production": {
+    "matieres_premieres": {},
+    "total_production": {},
+    "ces_mills": {},
+    "fuel_mills": {},
+    "debit_broyeur": {},
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     }
+    },
+    "total_matieres": {},
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 24.0,
+     "total": 24.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.0,
+     "cu_pct": 0.0,
+     "dispo_nette_pct": 0.0
+    }
+   },
+   "computed": {
+    "CES_Site": null,
+    "Debit_Site": null
+   },
+   "quality": {},
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 248,04 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation."
+   ],
+   "stocks": {
+    "total_disponible": 5947.83,
+    "TOTAL DISPONIBLE": 5947.83
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 248.04,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 35337.0,
+     "autonomie": 32.71944444444444
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1419.0,
+     "autonomie": 15.766666666666667
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 248.04,
+     "stock": 5704.0,
+     "autonomie": 10.562962962962963
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-14",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_14112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 545.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
    },
    "production": {
     "matieres_premieres": {},
@@ -256053,7 +256519,18 @@
     "fuel_mills": {},
     "debit_broyeur": {},
     "temps_broyage": {},
-    "total_matieres": {}
+    "total_matieres": {},
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 24.0,
+     "total": 24.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.0,
+     "cu_pct": 0.0,
+     "dispo_nette_pct": 1.0
+    }
    },
    "computed": {
     "CES_Site": null,
@@ -256061,18 +256538,3174 @@
    },
    "quality": {},
    "faits_marquants": [
-    "WhatsApp: Usine 1: Broyeur à l’arrêt / Expédition en marche",
-    "WhatsApp: Usine 2: Broyeur à l’arrêt / Expédition en marche",
-    "WhatsApp: - ateliers bordage site 1&2: à l’arrêt suite au défaut câble HT du site 1",
-    "WhatsApp: INCIDENT MAJEUR: Ligne HT-CIE en défaut site 1: recherches en cours;",
-    "WhatsApp: INCIDENT MAJEUR: - Ligne HT-CIE en défaut site 2: 7 km de câbles à remplacer : j’ai été informé par comtel par l’entremise du DEX CIE de la validation desdits travaux par la CI Energie."
+    "1 06h00-06h00 : Arrêt broyeur pour défaut sur le câble CIE"
    ],
-   "stocks": {},
-   "cibles": {
-    "commandes_journalieres_t": null,
-    "commandes_mtd_t": null,
-    "commandes_budget_t": null,
-    "commandes_source": "Suivi commercial SC-CI(5).txt (données jusqu’au 31/10)"
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1596.0,
+    "SILO 2 (CPA 52,5)": 720.0,
+    "total_disponible": 2316.0,
+    "TOTAL DISPONIBLE": 2316.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 22.08,
+     "stock": 89874.91500000103,
+     "autonomie": 40.88162954545501
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18718.58130000011,
+     "autonomie": 37.45240260000022
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 922.86,
+     "stock": 14324.685000000052,
+     "autonomie": 13.922583333333383
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-15": {
+  "DEX 1": {
+   "date": "2026-11-15",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_15112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 220.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
+   },
+   "production": {
+    "matieres_premieres": {},
+    "total_production": {},
+    "ces_mills": {},
+    "fuel_mills": {},
+    "debit_broyeur": {},
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     }
+    },
+    "total_matieres": {},
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 24.0,
+     "total": 24.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.0,
+     "cu_pct": 0.0,
+     "dispo_nette_pct": 0.0
+    }
+   },
+   "computed": {
+    "CES_Site": null,
+    "Debit_Site": null
+   },
+   "quality": {},
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 0 6h00 à 06h00 : Broyeur B à l’arrêt pour optimisation."
+   ],
+   "stocks": {
+    "total_disponible": 5938.7,
+    "TOTAL DISPONIBLE": 5938.7
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 35337.0,
+     "autonomie": 32.71944444444444
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1419.0,
+     "autonomie": 15.766666666666667
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 5704.0,
+     "autonomie": 10.562962962962963
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-15",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_15112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 0.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
+   },
+   "production": {
+    "matieres_premieres": {},
+    "total_production": {},
+    "ces_mills": {},
+    "fuel_mills": {},
+    "debit_broyeur": {},
+    "temps_broyage": {},
+    "total_matieres": {},
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 24.0,
+     "total": 24.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.0,
+     "cu_pct": 0.0,
+     "dispo_nette_pct": 1.0
+    }
+   },
+   "computed": {
+    "CES_Site": null,
+    "Debit_Site": null
+   },
+   "quality": {},
+   "faits_marquants": [
+    "1 06h00-06h00 : Arrêt broyeur pour défaut sur le câble CIE"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1596.0,
+    "SILO 2 (CPA 52,5)": 720.0,
+    "total_disponible": 2316.0,
+    "TOTAL DISPONIBLE": 2316.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 22.08,
+     "stock": 89874.91500000103,
+     "autonomie": 40.88162954545501
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18718.58130000011,
+     "autonomie": 37.45240260000022
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 922.86,
+     "stock": 14324.685000000052,
+     "autonomie": 13.922583333333383
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-16": {
+  "DEX 1": {
+   "date": "2026-11-16",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_16112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 665.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 32.5": 127.45,
+      "Total": 127.45
+     },
+     "gypse": {
+      "CPJ 42.5": 13.11,
+      "Total": 13.11
+     },
+     "granite": {
+      "CPJ 32.5": 105.01,
+      "Total": 105.01
+     },
+     "laitier": {
+      "CPJ 42.5": 15.0,
+      "Total": 15.0
+     }
+    },
+    "total_production": {
+     "CPJ 32.5": {
+      "Mills": 260.56
+     },
+     "Total": {
+      "Mills": 260.56
+     }
+    },
+    "ces_mills": {
+     "CPJ 32.5": {
+      "A": 30.41,
+      "Mills": 30.41
+     },
+     "Total": {
+      "A": 30.4,
+      "Mills": 30.4
+     }
+    },
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 2.53,
+      "Mills": 2.53
+     },
+     "Total": {
+      "A": 2.53,
+      "Mills": 2.53
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 73.74,
+      "Mills": 73.74
+     },
+     "Total": {
+      "A": 73.74,
+      "Mills": 73.74
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 3.53,
+      "B": 0.0,
+      "Mills": 3.53
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 3.53,
+      "B": 0.0,
+      "Mills": 3.53
+     }
+    },
+    "total_matieres": {
+     "production": 260.56,
+     "total": 260.56,
+     "ces": 30.4,
+     "fuel": 2.53,
+     "debit": 73.74,
+     "temps": 3.53,
+     "clinker": 127.45,
+     "gypse": 13.11,
+     "granite": 105.01,
+     "laitier": 15.0
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 19.48,
+     "total": 20.47,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9436,
+     "cu_pct": 0.1883,
+     "dispo_nette_pct": 0.9588
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 104.22,
+      "Total|T": 104.22
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 30.4,
+    "Debit_Site": 73.74
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 9.95,
+      "so3": 3699.0,
+      "k_c": "48,9%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 878,18 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour optimisation."
+   ],
+   "stocks": {
+    "total_disponible": 5993.48,
+    "TOTAL DISPONIBLE": 5993.48
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 878.18,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 35210.0,
+     "autonomie": 32.601851851851855
+    },
+    "gypse": {
+     "recu": 878.18,
+     "stock": 2284.0,
+     "autonomie": 25.377777777777776
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 5599.0,
+     "autonomie": 10.368518518518519
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-16",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_16112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 350.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    }
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 49.75,
+      "CPA 52.5": 42.3,
+      "Total": 92.05
+     },
+     "gypse": {
+      "CPJ 42.5": 3.11,
+      "CPA 52.5": 2.64,
+      "Total": 5.75
+     },
+     "granite": {
+      "CPJ 42.5": 9.29,
+      "CPA 52.5": 7.91,
+      "Total": 17.2
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 62.15
+     },
+     "CPA 52.5": {
+      "Mills": 52.85
+     },
+     "Total": {
+      "Mills": 115.0
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 33.49
+     },
+     "CPA 52.5": {
+      "Mills": 34.37
+     },
+     "Total": {
+      "Mills": 33.9
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 124.3
+     },
+     "CPA 52.5": {
+      "Mills": 121.96
+     },
+     "Total": {
+      "Mills": 123.21
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 0.5
+     },
+     "Total": {
+      "Mills": 0.93
+     },
+     "CPA 52.5": {
+      "Mills": 0.43
+     }
+    },
+    "total_matieres": {
+     "production": 115.0,
+     "total": 115.0,
+     "ces": 33.9,
+     "fuel": 0.0,
+     "debit": 123.21,
+     "temps": 0.93,
+     "clinker": 92.05,
+     "gypse": 5.75,
+     "granite": 17.2
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 19.383333333333333,
+     "total": 23.066666666666666,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.75806266511143,
+     "cu_pct": 0.038888888888888896,
+     "dispo_nette_pct": 0.8465277777777778
+    }
+   },
+   "computed": {
+    "CES_Site": 33.9,
+    "Debit_Site": 123.21
+   },
+   "quality": {},
+   "faits_marquants": [
+    "06h00-01h23 : Arrêt broyeur pour défaut sur le câble CIE _ fin de 1 la réparation du câble et redisposition des équipements"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1184.0,
+    "total_disponible": 1184.0,
+    "TOTAL DISPONIBLE": 1184.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 89782.86500000121,
+     "autonomie": 40.81039318181873
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18712.831300000114,
+     "autonomie": 37.42566260000023
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 206.92,
+     "stock": 14514.80500000003,
+     "autonomie": 16.127561111111145
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-17": {
+  "DEX 1": {
+   "date": "2026-11-17",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_17112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1501.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1501.0,
+    "whatsapp_mtd": 15327.68
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 582.03,
+      "Total": 582.03
+     },
+     "gypse": {
+      "CPJ 42.5": 51.55,
+      "Total": 51.55
+     },
+     "granite": {
+      "CPJ 42.5": 264.08,
+      "Total": 264.08
+     },
+     "laitier": {
+      "CPJ 42.5": 123.82,
+      "Total": 123.82
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 1021.48
+     },
+     "Total": {
+      "Mills": 1021.48
+     }
+    },
+    "ces_mills": {
+     "Total": {
+      "A": 42.89,
+      "Mills": 42.89
+     }
+    },
+    "fuel_mills": {
+     "Total": {
+      "A": 2.13,
+      "Mills": 2.13
+     }
+    },
+    "debit_broyeur": {
+     "Total": {
+      "A": 74.38,
+      "Mills": 74.38
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPJ 42.5": {
+      "A": 13.73,
+      "B": 0.0,
+      "Mills": 13.7
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.003
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 13.73,
+      "B": 0.0,
+      "Mills": 13.73
+     }
+    },
+    "total_matieres": {
+     "production": 1021.48,
+     "total": 1021.48,
+     "ces": 42.89,
+     "fuel": 2.13,
+     "debit": 74.38,
+     "temps": 13.73,
+     "clinker": 582.03,
+     "gypse": 51.55,
+     "granite": 264.08,
+     "laitier": 123.82
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 9.22,
+     "total": 10.27,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9486,
+     "cu_pct": 0.6158,
+     "dispo_nette_pct": 0.9563
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 42.5|A": 408.59,
+      "Total|T": 408.59
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 42.89,
+    "Debit_Site": 74.38
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 42.5": {
+      "refus_45u": 9.57,
+      "so3": 2.56,
+      "blaine": 3691.5,
+      "k_c": "57,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 0 6h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 5556.52,
+    "TOTAL DISPONIBLE": 5556.52
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 34628.00199999983,
+     "autonomie": 32.06296481481466
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 2232.205000000005,
+     "autonomie": 24.80227777777783
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 5335.062191575145,
+     "autonomie": 9.879744799213231
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-17",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_17112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1979.04,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1979.04,
+    "whatsapp_mtd": 26912.26
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPA 52.5": 1582.45,
+      "Total": 1582.45
+     },
+     "gypse": {
+      "CPA 52.5": 98.66,
+      "Total": 98.66
+     },
+     "granite": {
+      "CPA 52.5": 286.12,
+      "Total": 286.12
+     }
+    },
+    "total_production": {
+     "CPA 52.5": {
+      "Mills": 1967.23
+     },
+     "Total": {
+      "Mills": 1967.23
+     }
+    },
+    "ces_mills": {
+     "CPA 52.5": {
+      "Mills": 33.12
+     },
+     "Total": {
+      "Mills": 33.12
+     }
+    },
+    "fuel_mills": {
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPA 52.5": {
+      "Mills": 132.32
+     },
+     "Total": {
+      "Mills": 132.32
+     }
+    },
+    "temps_broyage": {
+     "Total": {
+      "Mills": 14.87
+     },
+     "CPA 52.5": {
+      "Mills": 14.87
+     }
+    },
+    "total_matieres": {
+     "production": 1967.23,
+     "total": 1967.23,
+     "ces": 33.12,
+     "fuel": 0.0,
+     "debit": 132.32,
+     "temps": 14.87,
+     "clinker": 1582.45,
+     "gypse": 98.66,
+     "granite": 286.12
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 8.599999999999996,
+     "total": 9.133333333333333,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9952641140624136,
+     "cu_pct": 0.6194444444444445,
+     "dispo_nette_pct": 0.9777777777777775
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPA 52.5": 700.0,
+      "Total|T": 700.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 33.12,
+    "Debit_Site": 132.32
+   },
+   "quality": {
+    "Broyeur": {
+     "CPA 52.5": {
+      "refus_45u": 3.92,
+      "so3": 2.54,
+      "blaine": 4038.29,
+      "paf": 2.07,
+      "k_c": "80,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 15h42-16h15 : Arrêt broyeur pour baisse de tension CIE 2 17h58-02h00 : Arrêt broyeur pour effacement CIE"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 500.0,
+    "SILO 2 (CPA 52,5)": 932.0,
+    "total_disponible": 2064.0,
+    "TOTAL DISPONIBLE": 2064.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 88200.41500000103,
+     "autonomie": 40.091097727273194
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18614.17130000011,
+     "autonomie": 37.228342600000225
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 14228.685000000034,
+     "autonomie": 15.809650000000039
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-18": {
+  "DEX 1": {
+   "date": "2026-11-18",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_18112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1430.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1442.88,
+    "whatsapp_mtd": 16780.56
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "Total": 992.64
+     },
+     "gypse": {
+      "Total": 84.67
+     },
+     "granite": {
+      "Total": 449.12
+     },
+     "laitier": {
+      "Total": 154.84
+     }
+    },
+    "total_production": {
+     "Total": {
+      "Mills": 1681.27
+     }
+    },
+    "ces_mills": {
+     "CPJ 32.5": {
+      "A": 40.33,
+      "Mills": 40.33
+     },
+     "CPJ 42.5": {
+      "A": 42.75,
+      "Mills": 42.75
+     },
+     "Total": {
+      "A": 42.71,
+      "Mills": 42.71
+     }
+    },
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 2.69,
+      "Mills": 2.69
+     },
+     "CPJ 42.5": {
+      "A": 2.05,
+      "Mills": 2.05
+     },
+     "Total": {
+      "A": 2.06,
+      "Mills": 2.06
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 65.65,
+      "Mills": 65.65
+     },
+     "CPJ 42.5": {
+      "A": 73.12,
+      "Mills": 73.12
+     },
+     "Total": {
+      "A": 72.99,
+      "Mills": 72.99
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.38,
+      "B": 0.0,
+      "Mills": 0.38
+     },
+     "CPJ 42.5": {
+      "A": 22.65,
+      "B": 0.0,
+      "Mills": 22.6
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.005
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 23.03,
+      "B": 0.0,
+      "Mills": 23.03
+     }
+    },
+    "total_matieres": {
+     "production": 1681.27,
+     "total": 1681.27,
+     "ces": 42.71,
+     "fuel": 2.06,
+     "debit": 72.99,
+     "temps": 23.03,
+     "clinker": 992.64,
+     "gypse": 84.67,
+     "granite": 449.12,
+     "laitier": 154.84
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 0.0,
+     "total": 0.96,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.934,
+     "cu_pct": 1.0,
+     "dispo_nette_pct": 0.9596
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 10.07,
+      "CPJ 42.5|A": 662.44,
+      "Total|T": 672.5100000000001
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 42.71,
+    "Debit_Site": 72.99
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 42.5,
+      "so3": 9.9,
+      "blaine": 2.62,
+      "paf": 3656.88,
+      "k_c": "47,5%"
+     },
+     "CPJ 42.5": {
+      "refus_45u": 9.9,
+      "so3": 2.62,
+      "blaine": 3656.88,
+      "k_c": "59,2%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 6189.13,
+    "TOTAL DISPONIBLE": 6189.13
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 33635.36,
+     "autonomie": 31.143851851851853
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 2147.53,
+     "autonomie": 23.861444444444448
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 4885.944,
+     "autonomie": 9.048044444444445
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-18",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_18112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 3131.42,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 3131.42,
+    "whatsapp_mtd": 30043.68
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPA 52.5": 2480.75,
+      "Total": 2480.75
+     },
+     "gypse": {
+      "CPA 52.5": 155.26,
+      "Total": 155.26
+     },
+     "granite": {
+      "CPA 52.5": 475.78,
+      "Total": 475.78
+     }
+    },
+    "total_production": {
+     "CPA 52.5": {
+      "Mills": 3111.79
+     },
+     "Total": {
+      "Mills": 3111.79
+     }
+    },
+    "ces_mills": {
+     "CPA 52.5": {
+      "Mills": 32.63
+     },
+     "Total": {
+      "Mills": 32.63
+     }
+    },
+    "fuel_mills": {
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPA 52.5": {
+      "Mills": 132.6
+     },
+     "Total": {
+      "Mills": 132.6
+     }
+    },
+    "temps_broyage": {
+     "Total": {
+      "Mills": 23.47
+     },
+     "CPA 52.5": {
+      "Mills": 23.47
+     }
+    },
+    "total_matieres": {
+     "production": 3111.79,
+     "total": 3111.79,
+     "ces": 32.63,
+     "fuel": 0.0,
+     "debit": 132.6,
+     "temps": 23.47,
+     "clinker": 2480.75,
+     "gypse": 155.26,
+     "granite": 475.78
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 0.0,
+     "total": 0.5333333333333314,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9973685897436017,
+     "cu_pct": 0.9777777777777779,
+     "dispo_nette_pct": 0.9777777777777779
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPA 52.5": 1450.0,
+      "Total|T": 1450.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 32.63,
+    "Debit_Site": 132.6
+   },
+   "quality": {
+    "Broyeur": {
+     "CPA 52.5": {
+      "refus_45u": 3.83,
+      "so3": 2.61,
+      "blaine": 4090.67,
+      "paf": 2.16,
+      "k_c": "80,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 10h44-11h16 : Arrêt broyeur pour vibration"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 500.0,
+    "SILO 2 (CPA 52,5)": 1216.0,
+    "total_disponible": 1716.0,
+    "TOTAL DISPONIBLE": 1716.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 85719.66500000103,
+     "autonomie": 38.96348409090956
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18458.9113000001,
+     "autonomie": 36.9178226000002
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 13752.905000000006,
+     "autonomie": 15.281005555555563
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-19": {
+  "DEX 1": {
+   "date": "2026-11-19",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_19112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 650.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 650.0,
+    "whatsapp_mtd": 17420.56
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 32.5": 311.66,
+      "CPJ 42.5": 638.15,
+      "Total": 949.81
+     },
+     "gypse": {
+      "CPJ 32.5": 32.83,
+      "CPJ 42.5": 56.29,
+      "Total": 89.12
+     },
+     "granite": {
+      "CPJ 32.5": 272.85,
+      "CPJ 42.5": 429.02,
+      "Total": 701.87
+     },
+     "laitier": {
+      "CPJ 32.5": 35.77,
+      "Total": 35.77
+     }
+    },
+    "total_production": {
+     "CPJ 32.5": {
+      "Mills": 653.11
+     },
+     "CPJ 42.5": {
+      "Mills": 1123.46
+     },
+     "Total": {
+      "Mills": 1776.57
+     }
+    },
+    "ces_mills": {
+     "CPJ 32.5": {
+      "A": 38.33,
+      "Mills": 38.33
+     },
+     "CPJ 42.5": {
+      "A": 40.99,
+      "Mills": 40.99
+     },
+     "Total": {
+      "A": 40.01,
+      "Mills": 40.01
+     }
+    },
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 1.86,
+      "Mills": 1.86
+     },
+     "CPJ 42.5": {
+      "A": 1.58,
+      "Mills": 1.58
+     },
+     "Total": {
+      "A": 1.68,
+      "Mills": 1.68
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 74.5,
+      "Mills": 74.5
+     },
+     "CPJ 42.5": {
+      "A": 74.32,
+      "Mills": 74.32
+     },
+     "Total": {
+      "A": 74.39,
+      "Mills": 74.39
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 8.77,
+      "B": 0.0,
+      "Mills": 8.77
+     },
+     "CPJ 42.5": {
+      "A": 15.12,
+      "B": 0.0,
+      "Mills": 15.12
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 23.88,
+      "B": 0.0,
+      "Mills": 23.88
+     }
+    },
+    "total_matieres": {
+     "production": 1776.57,
+     "total": 1776.57,
+     "ces": 40.01,
+     "fuel": 1.68,
+     "debit": 74.39,
+     "temps": 23.88,
+     "clinker": 949.81,
+     "gypse": 89.12,
+     "granite": 701.87,
+     "laitier": 35.77
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 0.0,
+     "total": 0.12,
+     "planifie": 0.12
+    },
+    "performance": {
+     "trg_pct": 0.987,
+     "cu_pct": 1.0,
+     "dispo_nette_pct": 0.995
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 261.24,
+      "CPJ 42.5|A": 449.38,
+      "Total|T": 710.62
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 40.01,
+    "Debit_Site": 74.39
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 9.73,
+      "so3": 2.7,
+      "blaine": 3703.0,
+      "k_c": "47,7%"
+     },
+     "CPJ 42.5": {
+      "refus_45u": 9.94,
+      "so3": 2.59,
+      "blaine": 3662.43,
+      "k_c": "56,8%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 6851.74,
+    "TOTAL DISPONIBLE": 6851.74
+   },
+   "receptions_mp": {
+    "clinker": 0.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 32685.558999999834,
+     "autonomie": 30.264406481481327
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 2058.41,
+     "autonomie": 22.871222222222222
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 4184.07,
+     "autonomie": 7.748277777777777
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-19",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_19112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 2656.22,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 2656.22,
+    "whatsapp_mtd": 32699.9
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 635.7,
+      "CPA 52.5": 1830.3,
+      "Total": 2466.0
+     },
+     "gypse": {
+      "CPJ 42.5": 47.28,
+      "CPA 52.5": 114.39,
+      "Total": 161.67
+     },
+     "granite": {
+      "CPJ 42.5": 261.84,
+      "CPA 52.5": 343.16,
+      "Total": 605.0
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 944.82
+     },
+     "CPA 52.5": {
+      "Mills": 2287.85
+     },
+     "Total": {
+      "Mills": 3232.67
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 31.66
+     },
+     "CPA 52.5": {
+      "Mills": 32.52
+     },
+     "Total": {
+      "Mills": 32.27
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 138.27
+     },
+     "CPA 52.5": {
+      "Mills": 135.38
+     },
+     "Total": {
+      "Mills": 136.21
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 6.83
+     },
+     "Total": {
+      "Mills": 23.73
+     },
+     "CPA 52.5": {
+      "Mills": 16.9
+     }
+    },
+    "total_matieres": {
+     "production": 3232.67,
+     "total": 3232.67,
+     "ces": 32.27,
+     "fuel": 0.0,
+     "debit": 136.21,
+     "temps": 23.73,
+     "clinker": 2466.0,
+     "gypse": 161.67,
+     "granite": 605.0
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 0.0,
+     "total": 0.2666666666666657,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9840058674201138,
+     "cu_pct": 0.9888888888888889,
+     "dispo_nette_pct": 0.9888888888888889
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPA 52.5": 849.0,
+      "CPJ 42.5": 351.0,
+      "Total|T": 1200.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 32.27,
+    "Debit_Site": 136.21
+   },
+   "quality": {
+    "Broyeur": {
+     "CPJ 42.5": {
+      "refus_45u": 3.85,
+      "so3": 2.9,
+      "blaine": 3768.5,
+      "paf": 2.25,
+      "k_c": "67,0%"
+     },
+     "CPA 52.5": {
+      "refus_45u": 3.83,
+      "so3": 2.61,
+      "blaine": 4090.67,
+      "paf": 2.16,
+      "k_c": "80,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 RAS"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1548.0,
+    "SILO 2 (CPA 52,5)": 1880.0,
+    "total_disponible": 3055.0,
+    "TOTAL DISPONIBLE": 3055.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 0.0,
+     "stock": 83253.66500000103,
+     "autonomie": 37.842575000000465
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18297.241300000118,
+     "autonomie": 36.594482600000234
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 13147.905000000006,
+     "autonomie": 14.60878333333334
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-20": {
+  "DEX 1": {
+   "date": "2026-11-20",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_20112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1152.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1152.0,
+    "whatsapp_mtd": 18572.57
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 32.5": 836.66,
+      "Total": 836.66
+     },
+     "gypse": {
+      "CPJ 42.5": 89.93,
+      "Total": 89.93
+     },
+     "granite": {
+      "CPJ 32.5": 754.39,
+      "Total": 754.39
+     },
+     "laitier": {
+      "CPJ 32.5": 107.77,
+      "Total": 107.77
+     }
+    },
+    "total_production": {
+     "CPJ 32.5": {
+      "Mills": 1788.75
+     },
+     "Total": {
+      "Mills": 1788.75
+     }
+    },
+    "ces_mills": {
+     "CPJ 32.5": {
+      "A": 37.15,
+      "Mills": 37.15
+     },
+     "Total": {
+      "A": 37.15,
+      "Mills": 37.15
+     }
+    },
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 1.94,
+      "Mills": 1.94
+     },
+     "Total": {
+      "A": 1.94,
+      "Mills": 1.94
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 76.39,
+      "Mills": 76.39
+     },
+     "Total": {
+      "A": 76.39,
+      "Mills": 76.39
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 23.42,
+      "B": 0.0,
+      "Mills": 23.42
+     },
+     "CPJ 32.5": {
+      "A": 23.42,
+      "B": 0.0,
+      "Mills": 23.42
+     }
+    },
+    "total_matieres": {
+     "production": 1788.75,
+     "total": 1788.75,
+     "ces": 37.15,
+     "fuel": 1.94,
+     "debit": 76.39,
+     "temps": 23.42,
+     "clinker": 836.66,
+     "gypse": 89.93,
+     "granite": 754.39,
+     "laitier": 107.77
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 0.0,
+     "total": 0.58,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9938,
+     "cu_pct": 1.0,
+     "dispo_nette_pct": 0.9758
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 715.5,
+      "Total|T": 715.5
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 37.15,
+    "Debit_Site": 76.39
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 10.74,
+      "so3": 2.67,
+      "blaine": 3623.82,
+      "k_c": "46,8%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 235,58 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 7831.3,
+    "TOTAL DISPONIBLE": 7831.3
+   },
+   "receptions_mp": {
+    "clinker": 235.58,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 235.58,
+     "stock": 32084.48,
+     "autonomie": 29.707851851851853
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1968.48,
+     "autonomie": 21.872
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 6.0,
+     "autonomie": 0.041666666666666664
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 3429.68,
+     "autonomie": 6.351259259259259
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-20",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_20112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 2597.02,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 2597.02,
+    "whatsapp_mtd": 35296.92
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 304.5,
+      "CPA 52.5": 2090.3,
+      "Total": 2394.8
+     },
+     "gypse": {
+      "CPJ 42.5": 25.13,
+      "CPA 52.5": 130.64,
+      "Total": 155.77
+     },
+     "granite": {
+      "CPJ 42.5": 173.59,
+      "CPA 52.5": 391.94,
+      "Total": 565.53
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 503.22
+     },
+     "CPA 52.5": {
+      "Mills": 2612.88
+     },
+     "Total": {
+      "Mills": 3116.1
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 33.51
+     },
+     "CPA 52.5": {
+      "Mills": 32.18
+     },
+     "Total": {
+      "Mills": 32.39
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 148.73
+     },
+     "CPA 52.5": {
+      "Mills": 136.21
+     },
+     "Total": {
+      "Mills": 138.08
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 3.38
+     },
+     "Total": {
+      "Mills": 22.57
+     },
+     "CPA 52.5": {
+      "Mills": 19.18
+     }
+    },
+    "total_matieres": {
+     "production": 3116.1,
+     "total": 3116.1,
+     "ces": 32.39,
+     "fuel": 0.0,
+     "debit": 138.08,
+     "temps": 22.57,
+     "clinker": 2394.8,
+     "gypse": 155.77,
+     "granite": 565.53
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 0.0,
+     "total": 1.4333333333333371,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9742669714179296,
+     "cu_pct": 0.9402777777777777,
+     "dispo_nette_pct": 0.9402777777777777
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPA 52.5": 931.0,
+      "CPJ 42.5": 179.0,
+      "Total|T": 1110.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 32.39,
+    "Debit_Site": 138.08
+   },
+   "quality": {
+    "Broyeur": {
+     "CPJ 42.5": {
+      "refus_45u": 4.45,
+      "so3": 4073.5,
+      "k_c": "57,0%"
+     },
+     "CPA 52.5": {
+      "refus_45u": 3.8,
+      "so3": 2.48,
+      "blaine": 4114.78,
+      "paf": 2.02,
+      "k_c": "80,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 09h06-09h56 : Arrêt broyeur pour vibration 09h59-10h35 : Arrêt broyeur pour déport bande au pied de la 2 1621BC01"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1620.0,
+    "SILO 2 (CPA 52,5)": 2260.0,
+    "total_disponible": 3880.0,
+    "TOTAL DISPONIBLE": 3880.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 1991.0,
+     "stock": 82849.86500000121,
+     "autonomie": 37.6590295454551
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 18141.4713000001,
+     "autonomie": 36.2829426000002
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 12582.375000000036,
+     "autonomie": 13.980416666666708
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-21": {
+  "DEX 1": {
+   "date": "2026-11-21",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_21112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 40.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 0.0,
+    "whatsapp_mtd": 18572.57
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 35.58,
+      "Total": 35.58
+     },
+     "gypse": {
+      "CPJ 42.5": 3.82,
+      "Total": 3.82
+     },
+     "granite": {
+      "CPJ 42.5": 32.05,
+      "Total": 32.05
+     },
+     "laitier": {
+      "CPJ 42.5": 4.58,
+      "Total": 4.58
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 76.03
+     },
+     "Total": {
+      "Mills": 76.03
+     }
+    },
+    "ces_mills": {
+     "CPJ 32.5": {
+      "A": 32.49,
+      "Mills": 32.49
+     },
+     "Total": {
+      "A": 32.48,
+      "Mills": 32.48
+     }
+    },
+    "fuel_mills": {
+     "CPJ 32.5": {
+      "A": 1.9,
+      "Mills": 1.9
+     },
+     "Total": {
+      "A": 1.9,
+      "Mills": 1.9
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 32.5": {
+      "A": 76.03,
+      "Mills": 76.03
+     },
+     "Total": {
+      "A": 76.03,
+      "Mills": 76.03
+     }
+    },
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 1.0,
+      "B": 0.0,
+      "Mills": 1.0
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "Total": {
+      "A": 1.0,
+      "B": 0.0,
+      "Mills": 1.0
+     }
+    },
+    "total_matieres": {
+     "production": 76.03,
+     "total": 76.03,
+     "ces": 32.48,
+     "fuel": 1.9,
+     "debit": 76.03,
+     "temps": 1.0,
+     "clinker": 35.58,
+     "gypse": 3.82,
+     "granite": 32.05,
+     "laitier": 4.58
+    },
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 0.0,
+     "total": 23.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.0422,
+     "cu_pct": 1.0,
+     "dispo_nette_pct": 0.0417
+    },
+    "adjuvants": {
+     "sika_l": {
+      "CPJ 32.5|A": 30.41,
+      "Total|T": 30.41
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 32.48,
+    "Debit_Site": 76.03
+   },
+   "quality": {
+    "Broyeur A": {
+     "CPJ 32.5": {
+      "refus_45u": 10.0,
+      "so3": 3687.0,
+      "k_c": "46,8%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 1486,0 t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 7831.3,
+    "TOTAL DISPONIBLE": 7831.3
+   },
+   "receptions_mp": {
+    "clinker": 1486.0,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 1486.0,
+     "stock": 33534.9,
+     "autonomie": 31.050833333333333
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1964.66,
+     "autonomie": 21.829555555555558
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 3397.63,
+     "autonomie": 6.2919074074074075
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-21",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_21112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1734.16,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1734.16,
+    "whatsapp_mtd": 37031.08
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 150.75,
+      "CPA 52.5": 2321.95,
+      "Total": 2472.7
+     },
+     "gypse": {
+      "CPJ 42.5": 13.22,
+      "CPA 52.5": 145.17,
+      "Total": 158.39
+     },
+     "granite": {
+      "CPJ 42.5": 100.59,
+      "CPA 52.5": 436.2,
+      "Total": 536.79
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 264.56
+     },
+     "CPA 52.5": {
+      "Mills": 2903.32
+     },
+     "Total": {
+      "Mills": 3167.88
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 29.32
+     },
+     "CPA 52.5": {
+      "Mills": 31.35
+     },
+     "Total": {
+      "Mills": 31.18
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 146.98
+     },
+     "CPA 52.5": {
+      "Mills": 137.49
+     },
+     "Total": {
+      "Mills": 138.23
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 1.8
+     },
+     "Total": {
+      "Mills": 22.92
+     },
+     "CPA 52.5": {
+      "Mills": 21.12
+     }
+    },
+    "total_matieres": {
+     "production": 3167.88,
+     "total": 3167.88,
+     "ces": 31.18,
+     "fuel": 0.0,
+     "debit": 138.23,
+     "temps": 22.92,
+     "clinker": 2472.7,
+     "gypse": 158.39,
+     "granite": 536.79
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 1.0833333333333321,
+     "total": 1.0833333333333321,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 1.0344264746917506,
+     "cu_pct": 0.9548611111111112,
+     "dispo_nette_pct": 1.0
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPA 52.5": 1136.0,
+      "CPJ 42.5": 104.0,
+      "Total|T": 1240.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 31.18,
+    "Debit_Site": 138.23
+   },
+   "quality": {
+    "Broyeur": {
+     "CPJ 42.5": {
+      "k_c": "57,0%"
+     },
+     "CPA 52.5": {
+      "refus_45u": 3.52,
+      "so3": 2.54,
+      "blaine": 4110.36,
+      "paf": 1.95,
+      "k_c": "80,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "1 19h04-20h09 : Arrêt broyeur dû à une baisse de tension CIE"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 1160.0,
+    "SILO 2 (CPA 52,5)": 3848.0,
+    "total_disponible": 5008.0,
+    "TOTAL DISPONIBLE": 5008.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 6423.92,
+     "stock": 86801.08500000103,
+     "autonomie": 39.4550386363641
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 17983.081300000114,
+     "autonomie": 35.96616260000023
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 12045.585000000014,
+     "autonomie": 13.383983333333349
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
+   }
+  }
+ },
+ "2026-11-22": {
+  "DEX 1": {
+   "date": "2026-11-22",
+   "site": "DEX 1",
+   "source_pdf": "SCCI1_RPJ_22112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 1239.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 1239.0,
+    "whatsapp_mtd": 19851.56
+   },
+   "production": {
+    "matieres_premieres": {},
+    "total_production": {},
+    "ces_mills": {},
+    "fuel_mills": {},
+    "debit_broyeur": {},
+    "temps_broyage": {
+     "CPJ 32.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPJ 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 42.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CPA 52.5": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     },
+     "CHF": {
+      "A": 0.0,
+      "B": 0.0,
+      "Mills": 0.0
+     }
+    },
+    "total_matieres": {},
+    "arrets_broyeur": {
+     "non_planifie": 5.0,
+     "causes_externes": 0.0,
+     "total": 24.0,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": null,
+     "cu_pct": null,
+     "dispo_nette_pct": null
+    }
+   },
+   "computed": {
+    "CES_Site": null,
+    "Debit_Site": null
+   },
+   "quality": {},
+   "faits_marquants": [
+    "1 • Réceptions matières : Clinker : 2400,56t ; Gypse : 0 t ; Pz : 0,0 t ; Granite : 0 t ; Laitier 0,0 t ; Calcaire : 0t 2 • 06h00 à 06h00 : Broyeur B à l’arrêt pour Interconnexion au site 2."
+   ],
+   "stocks": {
+    "total_disponible": 6477.39,
+    "TOTAL DISPONIBLE": 6477.39
+   },
+   "receptions_mp": {
+    "clinker": 2400.56,
+    "gypse": 0.0,
+    "pouzzolane": 0.0,
+    "granite": 0.0,
+    "calcaire": 0.0,
+    "laitier": 0.0
+   },
+   "stock_mp": {
+    "clinker": {
+     "recu": 2400.56,
+     "stock": 35935.46,
+     "autonomie": 33.27357407407408
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 1964.66,
+     "autonomie": 21.829555555555558
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 3397.63,
+     "autonomie": 6.2919074074074075
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": null
+    }
+   }
+  },
+  "DEX 2": {
+   "date": "2026-11-22",
+   "site": "DEX 2",
+   "source_pdf": "SCCI 2_RPJ_22112026.pdf",
+   "expedition": {
+    "total_sacs": 0,
+    "total_vracs": 0.0,
+    "total_big_bag": 0.0,
+    "total_jour": 377.0,
+    "CPJ 32.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPJ 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 42.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CPA 52.5": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "CHF": {
+     "sacs": 0.0,
+     "vracs": 0.0,
+     "big_bag": 0.0
+    },
+    "whatsapp_total": 377.0,
+    "whatsapp_mtd": 37408.08
+   },
+   "production": {
+    "matieres_premieres": {
+     "clinker": {
+      "CPJ 42.5": 1471.0,
+      "Total": 1471.0
+     },
+     "gypse": {
+      "CPJ 42.5": 129.04,
+      "Total": 129.04
+     },
+     "granite": {
+      "CPJ 42.5": 980.57,
+      "Total": 980.57
+     }
+    },
+    "total_production": {
+     "CPJ 42.5": {
+      "Mills": 2580.61
+     },
+     "Total": {
+      "Mills": 2580.61
+     }
+    },
+    "ces_mills": {
+     "CPJ 42.5": {
+      "Mills": 29.2
+     },
+     "Total": {
+      "Mills": 29.2
+     }
+    },
+    "fuel_mills": {
+     "CPJ 42.5": {
+      "Mills": 0.0
+     },
+     "Total": {
+      "Mills": 0.0
+     }
+    },
+    "debit_broyeur": {
+     "CPJ 42.5": {
+      "Mills": 144.3
+     },
+     "Total": {
+      "Mills": 144.3
+     }
+    },
+    "temps_broyage": {
+     "CPJ 42.5": {
+      "Mills": 17.88
+     },
+     "Total": {
+      "Mills": 17.88
+     }
+    },
+    "total_matieres": {
+     "production": 2580.61,
+     "total": 2580.61,
+     "ces": 29.2,
+     "fuel": 0.0,
+     "debit": 144.3,
+     "temps": 17.88,
+     "clinker": 1471.0,
+     "gypse": 129.04,
+     "granite": 980.57
+    },
+    "arrets_broyeur": {
+     "non_planifie": null,
+     "causes_externes": 6.116666666666667,
+     "total": 6.116666666666667,
+     "planifie": 0.0
+    },
+    "performance": {
+     "trg_pct": 0.9951897676511067,
+     "cu_pct": 0.7451388888888889,
+     "dispo_nette_pct": 1.0
+    },
+    "adjuvants": {
+     "biolatex_l": {
+      "CPJ 42.5": 740.0,
+      "Total|T": 740.0
+     }
+    }
+   },
+   "computed": {
+    "CES_Site": 29.2,
+    "Debit_Site": 144.3
+   },
+   "quality": {
+    "Broyeur": {
+     "CPJ 42.5": {
+      "refus_45u": 4.76,
+      "so3": 2.69,
+      "blaine": 4040.5,
+      "paf": 2.01,
+      "k_c": "57,0%"
+     }
+    }
+   },
+   "faits_marquants": [
+    "00h00-06h00 : Arrêt broyeur (vidange + refroidissement pour 1 Entretien hebdomadaire)"
+   ],
+   "stocks": {
+    "SILO 1 (CPJ 42,5)": 3628.0,
+    "SILO 2 (CPA 52,5)": 3748.0,
+    "total_disponible": 7376.0,
+    "TOTAL DISPONIBLE": 7376.0
+   },
+   "receptions_mp": {},
+   "stock_mp": {
+    "clinker": {
+     "recu": 5352.88,
+     "stock": 90682.96500000103,
+     "autonomie": 41.21952954545501
+    },
+    "gypse": {
+     "recu": 0.0,
+     "stock": 17854.041300000106,
+     "autonomie": 35.70808260000021
+    },
+    "argile_calcinee": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "pouzzolane": {
+     "recu": 0.0,
+     "stock": 10.0,
+     "autonomie": 0.0
+    },
+    "granite": {
+     "recu": 0.0,
+     "stock": 11065.015000000065,
+     "autonomie": 12.294461111111183
+    },
+    "calcaire": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    },
+    "laitier": {
+     "recu": 0.0,
+     "stock": 0.0,
+     "autonomie": 0.0
+    }
    }
   }
  }

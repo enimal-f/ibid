@@ -10742,9 +10742,9 @@ def _render_quality_control_charts(selected_product):
     """Affiche les cartes de contrôle qualité avec toutes les métriques disponibles."""
     from datetime import date
 
-    # ──── SYNTHÈSE RÉUNIONS QUALITÉ (11/08, 22/09, 29/09, 06/10 & 10/11/2026) ────
-    st.html("<div class='section-title'>🔬 Réunions Qualité — Synthèse (réunions du 11/08, du 22/09, du 29/09, du 06/10 et du 10/11/2026)</div>")
-    st.caption("Source : présentations « REUNION QUALITE 11-08-26 », « REUNION QUALITE 22-09-26 », « REUNION QUALITE 29-09-26 », « REUNION QUALITE 06-10-26 » et « REUNION QUALITE 10-11-26 » — Direction Qualité.")
+    # ──── SYNTHÈSE RÉUNIONS QUALITÉ (11/08, 22/09, 29/09, 06/10, 10/11, 17/11 & 24/11/2026) ────
+    st.html("<div class='section-title'>🔬 Réunions Qualité — Synthèse (réunions du 11/08, du 22/09, du 29/09, du 06/10, du 10/11, du 17/11 et du 24/11/2026)</div>")
+    st.caption("Source : présentations « REUNION QUALITE 11-08-26 », « REUNION QUALITE 22-09-26 », « REUNION QUALITE 29-09-26 », « REUNION QUALITE 06-10-26 », « REUNION QUALITE 10-11-26 », « REUNION QUALITE 17-11-26 » et « REUNION QUALITE 24-11-26 » — Direction Qualité.")
 
     # ──── ÉVOLUTION GRAPHIQUE DES RÉUNIONS QUALITÉ (11/08 → 22/09 → 29/09/2026) ────
     with st.expander("📈 Évolution des résistances entre réunions qualité — 11/08 → 22/09 → 29/09 → 06/10/2026 (cliquer pour déplier)", expanded=False):
@@ -10785,8 +10785,8 @@ def _render_quality_control_charts(selected_product):
 
 
     # ──── COMPTES RENDUS DÉTAILLÉS DES RÉUNIONS QUALITÉ ────
-    with st.expander("🗂️ Réunions de Qualité — comptes rendus détaillés (22/09, 29/09, 06/10 & 10/11/2026) (cliquer pour déplier)", expanded=False):
-        st.caption("📋 Chaque sous-section ci-dessous correspond à un compte-rendu de réunion qualité ; la période des KPI est rappelée dans chaque sous-section (S39 pour le 22/09, S40 pour le 29/09, S41 pour le 06/10, S45 pour le 10/11/2026).")
+    with st.expander("🗂️ Réunions de Qualité — comptes rendus détaillés (22/09, 29/09, 06/10, 10/11, 17/11 & 24/11/2026) (cliquer pour déplier)", expanded=False):
+        st.caption("📋 Chaque sous-section ci-dessous correspond à un compte-rendu de réunion qualité ; la période des KPI est rappelée dans chaque sous-section (S39 pour le 22/09, S40 pour le 29/09, S41 pour le 06/10, S45 pour le 10/11, S46 pour le 17/11 et S47 pour le 24/11/2026).")
         # Alertes résistances mécaniques (réunion du 22/09/2026)
         with st.expander("📌 Réunion Qualité du 22/09/2026 — alertes résistances, conformité & benchmarks (cliquer pour déplier)", expanded=False):
             st.caption("📅 Période des KPI ci-dessous : résistances mesurées en semaine 39 (données labo du 14–20/09/2026) ; benchmarks : campagne août–septembre 2026. Source : réunion qualité du 22/09/2026.")
@@ -11145,6 +11145,193 @@ def _render_quality_control_charts(selected_product):
             - **Réclamations qualité clients** : procédure QHSE toujours en attente de recommandations / approbation du contrôle interne.
             """)
 
+        with st.expander("🗓️ Réunion Qualité du 17/11/2026 — humidité MP S46, écarts, résistances mécaniques & benchmark novembre (cliquer pour déplier)", expanded=False):
+            st.caption("📅 Période des KPI ci-dessous : humidité matières premières semaine 46 (09–15/11 site 1, 10–16/11 site 2) ; écarts de production semaine du 02–08/11/2026 ; résistances mécaniques 2/7/28 j (productions octobre – mi-novembre 2026, comparées à S46) ; benchmark : campagne novembre 2026. Source : présentation « REUNION QUALITE 17-11-26 » — Direction Qualité.")
+
+            r171, r172, r173, r174 = st.columns(4)
+            with r171:
+                st.html(dg_kpi_box("CPJ 32.5 R — Rc 28 j (Site 1)", "27,5 MPa",
+                                   "S46 : 26,4 — déficit critique ≈ 16 % vs 32,5 MPa", "neg"))
+            with r172:
+                st.html(dg_kpi_box("CPJ 42.5 N — Rc 28 j (Site 1)", "37,5 MPa",
+                                   "S46 : 36,9 — déficit 4,6 MPa (−12 %)", "neg"))
+            with r173:
+                st.html(dg_kpi_box("CPJ 42.5 N — Rc 7 j (Site 2)", "18,2 MPa",
+                                   "déficit alarmant 11,8 MPa vs objectif interne 30 MPa", "neg"))
+            with r174:
+                st.html(dg_kpi_box("CPA 52.5 N — Rc 28 j (Site 2)", "47,6 MPa",
+                                   "S46 : 47,5 — déficit ≈ 5 MPa vs 52,5 MPa", "neg"))
+
+            _rq17_prod = ["CPJ 32.5 R — Site 1", "CPJ 42.5 N — Site 1", "CPJ 42.5 N — Site 2", "CPA 52.5 N — Site 2"]
+            _rq17_rc2 = [9.3, 13.0, 12.6, 23.0]
+            _rq17_rc7 = [16.7, 21.3, 18.2, 37.7]
+            _rq17_rc28 = [27.5, 37.5, 28.7, 47.6]
+            _rq17_norm28 = [32.5, 42.5, 42.5, 52.5]
+            fig_rq17 = go.Figure()
+            fig_rq17.add_trace(go.Bar(name="Rc 2 j", x=_rq17_prod, y=_rq17_rc2, marker_color="#94a3b8",
+                                      text=[f"{v:.1f}".replace(".", ",") for v in _rq17_rc2], textposition="outside"))
+            fig_rq17.add_trace(go.Bar(name="Rc 7 j", x=_rq17_prod, y=_rq17_rc7, marker_color="#1E4D8F",
+                                      text=[f"{v:.1f}".replace(".", ",") for v in _rq17_rc7], textposition="outside"))
+            fig_rq17.add_trace(go.Bar(name="Rc 28 j", x=_rq17_prod, y=_rq17_rc28, marker_color="#F58220",
+                                      text=[f"{v:.1f}".replace(".", ",") for v in _rq17_rc28], textposition="outside"))
+            fig_rq17.add_trace(go.Scatter(name="Exigence normative 28 j", x=_rq17_prod, y=_rq17_norm28, mode="markers",
+                                          marker=dict(symbol="line-ns", size=20, color="#ef4444", line=dict(width=3))))
+            fig_rq17.update_layout(title="Résistances mécaniques 2 / 7 / 28 jours (MPa) — réunion du 17/11/2026",
+                                   template="plotly_white", height=440, barmode="group", yaxis_title="MPa",
+                                   legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5))
+            st.plotly_chart(fig_rq17, use_container_width=True, key="chart_reunion_qualite_rc_1711")
+
+            st.markdown("""
+            **💧 Humidité des matières premières (semaine 46)** — Site 2 : hausse importante de l'humidité du granite **(+21 %)** et du gypse **(+24 %)** du 10 au 16/11, due au stockage extérieur et à l'exposition à la pluie.
+            """)
+            _h171, _h172 = st.columns(2)
+            with _h171:
+                st.markdown("**Site 1 — humidité alimentation broyeur (09–15/11/2026)**")
+                _h1 = pd.DataFrame({
+                    "Matière": ["Clinker", "Gypse", "Granite + laitier"],
+                    "Moyenne (%)": ["0,05", "2,95", "3,46"],
+                    "Écart-type": ["0,03", "0,54", "0,85"],
+                    "Spectre": ["≤ 0,2 %", "≤ 3 %", "≤ 5 %"],
+                })
+                st.dataframe(_h1, use_container_width=True, hide_index=True)
+            with _h172:
+                st.markdown("**Site 2 — humidité alimentation broyeur (10–16/11/2026)**")
+                _h2 = pd.DataFrame({
+                    "Matière": ["Clinker", "Gypse", "Granite"],
+                    "Moyenne (%)": ["0,04", "3,54", "4,17"],
+                    "Écart-type": ["0,02", "0,72", "0,98"],
+                    "Spectre": ["≤ 0,2 %", "≤ 3 %", "≤ 5 %"],
+                })
+                st.dataframe(_h2, use_container_width=True, hide_index=True)
+
+            st.markdown("""**📊 Écarts de production — semaine du 02 au 08/11/2026 (Site 2)**
+            ⚠️ **CPA 52,5 N (K/C 80 %)** : RI = 11,3 % — **non conforme** à la norme NI 05.06.001:2023 (écart majeur, cible ≤ 15 % → ici valeur largement sous la cible mais signalée non conforme au référentiel).
+            """)
+            _ec17 = pd.DataFrame({
+                "Produit": ["CPA 52,5 N (K/C 80 %)", "CPJ 42,5 N (K/C 57 %)", "CEM II 42,5 N (K/C 60 %)", "CEM II 32,5 R (K/C 47 %)"],
+                "Refus 45µm (%)": ["3,6", "4,4", "9,5", "10,7"],
+                "Cible refus": ["3–4 %", "4–6 %", "6–8 %", "6–8 %"],
+                "SO3 (%)": ["2,66", "2,7", "2,6", "2,5"],
+                "Cible SO3": ["2,3–2,7 %", "2,5–2,9 %", "2,5–2,9 %", "2,5–2,9 %"],
+                "RI (%)": ["11,3", "30,7", "21,6", "35,4"],
+                "Cible RI": ["≤ 15 %", "≤ 34 %", "≤ 25 %", "≤ 39 %"],
+            })
+            st.dataframe(_ec17, use_container_width=True, hide_index=True)
+
+            st.markdown("""**🏆 Benchmark mensuel novembre 2026 — résistances mécaniques 2 & 7 jours**""")
+            _b171, _b172 = st.columns(2)
+            with _b171:
+                st.markdown("**CEM II 42,5 N — Rc 2 j (MPa), novembre 2026**")
+                _bm42 = pd.DataFrame({
+                    "Ciment": ["CIMPOR", "LIMAK", "CIMAF", "LAFARGE", "CIM IVOIRE", "SC-CI Site 1", "SC-CI Site 2"],
+                    "Rc 2 j (MPa)": ["17,4", "15,0", "15,3", "16,2", "16,1", "14,4", "10,9"],
+                    "Rc 7 j (MPa)": ["30,7", "28,5", "26,8", "26,6", "25,9", "23,2", "20,1"],
+                    "Rang": [1, 2, 3, 4, 5, 6, 7],
+                })
+                st.dataframe(_bm42, use_container_width=True, hide_index=True)
+            with _b172:
+                st.markdown("**CEM II 32,5 R — Rc 2 j (MPa), novembre 2026**")
+                _bm325 = pd.DataFrame({
+                    "Ciment": ["PRESTIGE", "LAFARGE", "SC-CI", "DANGOTE"],
+                    "Rc 2 j (MPa)": ["17,6", "10,1", "10,7", "6,9"],
+                    "Rc 7 j (MPa)": ["28,1", "19,5", "18,2", "16,2"],
+                    "Rang": [1, 2, 3, 4],
+                })
+                st.dataframe(_bm325, use_container_width=True, hide_index=True)
+
+            st.markdown("""
+            **📋 Points d'attention & actions (réunion du 17/11/2026)**
+            - **CPJ 42.5 N Site 2** : Rc 7 j = 18,2 MPa — déficit alarmant de 11,8 MPa sous l'objectif interne (30 MPa) ; Rc 28 j = 28,7 MPa, déficit ≈ 14 MPa vs exigence normative 42,5 MPa → **action corrective obligatoire : rehausser le facteur clinker à 65 %**.
+            - **CPA 52.5 N Site 2** : Rc 2 j conforme à la norme (23,0 MPa ≥ 20) mais sous l'exigence interne (≥ 25) ; Rc 28 j = 47,6 MPa — non conformité systémique (−5 MPa vs 52,5) → action corrective obligatoire.
+            - **CPJ 32.5 R Site 1** : Rc 28 j = 27,5 MPa (en hausse vs 26,4 à S46) mais toujours non conforme (−16 %) ; Rc 7 j = 16,7 MPa, 0 % de conformité à l'exigence interne (≥ 22 MPa).
+            - **CPJ 42.5 N Site 1** : Rc 28 j = 37,5 MPa — déficit critique 4,6 MPa (−12 %) vs exigence normative.
+            - **Humidité MP Site 2** : +21 % granite / +24 % gypse (pluie, stockage extérieur) → surveiller l'impact sur les consommations d'énergie de séchage.
+            - **Réclamations qualité clients** : procédure QHSE toujours en attente de recommandations / approbation du contrôle interne.
+            """)
+
+        with st.expander("🗓️ Réunion Qualité du 24/11/2026 — humidité MP S47, écarts, résistances mécaniques (cliquer pour déplier)", expanded=False):
+            st.caption("📅 Période des KPI ci-dessous : humidité matières premières semaine 47 (16–22/11/2026) ; écarts de production semaine du 16–23/11/2026 ; résistances mécaniques 2/7/28 j (productions fin octobre – 21/11/2026, comparées à S47). Source : présentation « REUNION QUALITE 24-11-26 » — Direction Qualité.")
+
+            r241, r242, r243, r244 = st.columns(4)
+            with r241:
+                st.html(dg_kpi_box("CPJ 32.5 R — Rc 28 j (Site 1)", "28,1 MPa",
+                                   "S47 : 27,5 — déficit ≈ 14 % vs 32,5 MPa", "neg"))
+            with r242:
+                st.html(dg_kpi_box("CPJ 42.5 N — Rc 28 j (Site 1)", "37,0 MPa",
+                                   "S47 : 37,5 — déficit 5,5 MPa (−13 %)", "neg"))
+            with r243:
+                st.html(dg_kpi_box("CPA 52.5 N — Rc 7 j (Site 2)", "39,5 MPa",
+                                   "S47 : 37,7 — objectif interne 39 MPa atteint (+2 MPa)", "pos"))
+            with r244:
+                st.html(dg_kpi_box("CPJ 42.5 N — Rc 28 j (Site 2)", "29,0 MPa",
+                                   "déficit alarmant 13,5 MPa (−32 %) vs 42,5 MPa", "neg"))
+
+            _rq24_prod = ["CPJ 32.5 R — Site 1", "CPJ 42.5 N — Site 1", "CPJ 42.5 N — Site 2", "CPA 52.5 N — Site 2"]
+            _rq24_rc2 = [9.35, 13.2, 12.6, 21.6]
+            _rq24_rc7 = [17.8, 22.0, 21.9, 39.5]
+            _rq24_rc28 = [28.1, 37.0, 29.0, 47.5]
+            _rq24_norm28 = [32.5, 42.5, 42.5, 52.5]
+            fig_rq24 = go.Figure()
+            fig_rq24.add_trace(go.Bar(name="Rc 2 j", x=_rq24_prod, y=_rq24_rc2, marker_color="#94a3b8",
+                                      text=[f"{v:.2f}".rstrip("0").rstrip(".").replace(".", ",") for v in _rq24_rc2], textposition="outside"))
+            fig_rq24.add_trace(go.Bar(name="Rc 7 j", x=_rq24_prod, y=_rq24_rc7, marker_color="#1E4D8F",
+                                      text=[f"{v:.1f}".replace(".", ",") for v in _rq24_rc7], textposition="outside"))
+            fig_rq24.add_trace(go.Bar(name="Rc 28 j", x=_rq24_prod, y=_rq24_rc28, marker_color="#F58220",
+                                      text=[f"{v:.1f}".replace(".", ",") for v in _rq24_rc28], textposition="outside"))
+            fig_rq24.add_trace(go.Scatter(name="Exigence normative 28 j", x=_rq24_prod, y=_rq24_norm28, mode="markers",
+                                          marker=dict(symbol="line-ns", size=20, color="#ef4444", line=dict(width=3))))
+            fig_rq24.update_layout(title="Résistances mécaniques 2 / 7 / 28 jours (MPa) — réunion du 24/11/2026",
+                                   template="plotly_white", height=440, barmode="group", yaxis_title="MPa",
+                                   legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5))
+            st.plotly_chart(fig_rq24, use_container_width=True, key="chart_reunion_qualite_rc_2411")
+
+            st.markdown("""
+            **💧 Humidité des matières premières (semaine 47, 16–22/11/2026)** — Site 2 : humidité du clinker **+125 %** (0,04 % → 0,09 %), due à l'utilisation en mélange du clinker stocké au parking (transfert vers le hall en cours) ; gypse **+19 %** (3,54 % → 4,21 %, stockage extérieur exposé à la pluie).
+            """)
+            _h241, _h242 = st.columns(2)
+            with _h241:
+                st.markdown("**Site 1 — humidité alimentation broyeur (16–22/11/2026)**")
+                _h1 = pd.DataFrame({
+                    "Matière": ["Clinker", "Gypse", "Granite + laitier"],
+                    "Moyenne (%)": ["0,07", "1,64", "3,37"],
+                    "Écart-type": ["0,03", "0,44", "0,90"],
+                    "Spectre": ["≤ 0,2 %", "≤ 3 %", "≤ 5 %"],
+                })
+                st.dataframe(_h1, use_container_width=True, hide_index=True)
+            with _h242:
+                st.markdown("**Site 2 — humidité alimentation broyeur (16–22/11/2026)**")
+                _h2 = pd.DataFrame({
+                    "Matière": ["Clinker", "Gypse", "Granite"],
+                    "Moyenne (%)": ["0,09", "4,21", "3,36"],
+                    "Écart-type": ["0,05", "1,70", "0,59"],
+                    "Spectre": ["≤ 0,2 %", "≤ 3 %", "≤ 5 %"],
+                })
+                st.dataframe(_h2, use_container_width=True, hide_index=True)
+
+            st.markdown("""**📊 Écarts de production — semaine du 16 au 23/11/2026**
+            ⚠️ **CPA 52,5 N (K/C 80 %)** : RI = 11,6 % — **non conforme** à l'exigence normative NI 05.06.001:2023 (écart majeur).
+            """)
+            _ec24 = pd.DataFrame({
+                "Produit": ["CPA 52,5 N (K/C 80 %)", "CPJ 42,5 N (K/C 57 %)", "CEM II 42,5 N (K/C 60 %)", "CEM II 42,5 N (K/C 57 %)", "CEM II 32,5 R (K/C 47 %)"],
+                "Refus 45µm (%)": ["3,8", "4,4", "9,6", "10,4", "10,7"],
+                "Cible refus": ["3–4 %", "4–6 %", "6–8 %", "6–8 %", "6–8 %"],
+                "SO3 (%)": ["2,54", "2,7", "2,6", "2,5", "2,5"],
+                "Cible SO3": ["2,3–2,7 %", "2,5–2,9 %", "2,5–2,9 %", "2,5–2,9 %", "2,5–2,9 %"],
+                "RI (%)": ["11,6", "29,3", "23,8", "31,6", "35,4"],
+                "Cible RI": ["≤ 15 %", "≤ 34 %", "≤ 25 %", "≤ 34 %", "≤ 39 %"],
+            })
+            st.dataframe(_ec24, use_container_width=True, hide_index=True)
+
+            st.markdown("""
+            **📋 Points d'attention & actions (réunion du 24/11/2026)**
+            - **CPJ 42.5 N Site 2** : Rc 7 j = 21,9 MPa (en hausse vs 18,8 à S47) mais déficit alarmant de 8,1 MPa (−27 %) sous l'objectif interne de 30 MPa ; Rc 28 j = 29,0 MPa, déficit 13,5 MPa (−32 %) vs exigence normative → **action corrective obligatoire : rehausser le facteur clinker (K/C 57 %)**.
+            - **CPA 52.5 N Site 2** : ✅ Rc 7 j = 39,5 MPa — objectif interne de 39 MPa dépassé (+2 MPa vs S47, clinker réactif) ; ⚠️ Rc 2 j = 21,6 MPa — régression d'environ 1,5 MPa vs S47 due au clinker stocké au parking (transfert vers le hall en cours) ; ❌ Rc 28 j = 47,5 MPa — non conformité persistante (−5 MPa vs 52,5) → action corrective.
+            - **CPJ 32.5 R Site 1** : Rc 28 j = 28,1 MPa (en hausse vs 27,5 à S47) mais toujours non conforme (−14 %) ; Rc 7 j = 17,8 MPa, 0 % de conformité à l'exigence interne (≥ 22 MPa).
+            - **CPJ 42.5 N Site 1** : Rc 28 j = 37,0 MPa — déficit 5,5 MPa (−13 %) ; Rc 2 j 100 % conforme à la norme (13,2 MPa ≥ 10) mais 0 % conforme à l'objectif interne (≥ 17 MPa).
+            - **Humidité MP Site 2** : clinker +125 % (clinker parking), gypse +19 % (pluie) → surveiller l'impact sur les énergies de séchage.
+            - **Réclamations qualité clients** : procédure QHSE toujours en attente de recommandations / approbation du contrôle interne.
+            """)
+
     # Humidité matières premières + écarts de production (réunion du 22/09/2026, sem. du 14-20/09)
     with st.expander("💧 Humidité matières premières & écarts de production vs consignes — semaine du 14–20/09/2026 (cliquer pour déplier)", expanded=False):
         rh1, rh2 = st.columns(2)
@@ -11170,7 +11357,7 @@ def _render_quality_control_charts(selected_product):
             st.dataframe(_ecarts, use_container_width=True, hide_index=True)
 
     # Actions & suivi + rappel réunion du 11/08/2026
-    with st.expander("📝 Actions & suivi des réunions qualité (11/08 → 10/11/2026)", expanded=False):
+    with st.expander("📝 Actions & suivi des réunions qualité (11/08 → 24/11/2026)", expanded=False):
         st.markdown("""
         **Suivi des décisions (compte-rendu du 29/09/2026)**
         - **Résistances 28 j toujours non conformes** sur les 4 gammes (CPA 52.5 N S2 : 45,7 MPa ; CPJ 42.5 N S1 : 33,7 ; CPJ 42.5 N S2 : 28,7 ; CPJ 32.5 R S1 : 22,4) — poursuite du mélange clinker hydraté concassé à 20 % et du suivi hebdomadaire.

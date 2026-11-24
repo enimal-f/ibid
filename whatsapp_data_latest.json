@@ -1804,17 +1804,65 @@
    "date": "2026-11-13",
    "expedie_t": 3161.7,
    "mtd_t": 36057.9,
-   "dex1_t": 625.0,
+   "dex1_t": 630.0,
    "dex2_t": 2536.7,
-   "source": "Suivi production et maintenance(6).txt"
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-17",
+   "expedie_t": 3480.94,
+   "mtd_t": 42239.94,
+   "dex1_t": 1501.0,
+   "dex2_t": 1979.04,
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-18",
+   "expedie_t": 4574.3,
+   "mtd_t": 46814.24,
+   "dex1_t": 1442.88,
+   "dex2_t": 3131.42,
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-19",
+   "expedie_t": 3306.22,
+   "mtd_t": 50120.47,
+   "dex1_t": 650.0,
+   "dex2_t": 2656.22,
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-20",
+   "expedie_t": 3749.02,
+   "mtd_t": 53869.48,
+   "dex1_t": 1152.0,
+   "dex2_t": 2597.02,
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-21",
+   "expedie_t": 1734.16,
+   "mtd_t": 55869.48,
+   "dex1_t": 0.0,
+   "dex2_t": 1734.16,
+   "source": "Suivi production et maintenance(7).txt"
+  },
+  {
+   "date": "2026-11-22",
+   "expedie_t": 1616.0,
+   "mtd_t": 57259.65,
+   "dex1_t": 1239.0,
+   "dex2_t": 377.0,
+   "source": "Suivi production et maintenance(7).txt"
   }
  ],
  "meta": {
-  "parsed_at": "2026-11-16",
+  "parsed_at": "2026-11-24",
   "sources": [
-   "Suivi production et maintenance(6).txt",
+   "Suivi production et maintenance(7).txt",
    "Suivi commercial SC-CI(5).txt"
   ],
-  "note": "production jusqu’au 13/11/2026 ; commercial jusqu’au 31/10/2026"
+  "note": "production jusqu’au 22/11/2026 ; commercial jusqu’au 31/10/2026"
  }
 }
